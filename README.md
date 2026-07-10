@@ -88,6 +88,7 @@ graph TD
 ## Current Candidates
 
 ### Tools (Methods)
+* **[MAGNET](https://github.com/magnetmicro/MAGNET)** - `tools/magnet/`
 
 ### Datasets (Monoliths)
 

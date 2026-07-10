@@ -1,0 +1,3 @@
+[submodule "tools/magnet/MAGNET"]
+	path = tools/magnet/MAGNET
+	url = git@github.com:magnetmicro/MAGNET.git
