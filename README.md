@@ -91,6 +91,7 @@ graph TD
 * **[MAGNET](https://github.com/magnetmicro/MAGNET)** - `tools/magnet/`
 
 ### Datasets (Monoliths)
+* **[Acme Air](https://github.com/acmeair/acmeair)** - `datasets/acme-air/`
 
 ### Metrics
 

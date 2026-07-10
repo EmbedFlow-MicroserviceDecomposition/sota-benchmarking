@@ -1,3 +1,6 @@
 [submodule "tools/magnet/MAGNET"]
 	path = tools/magnet/MAGNET
 	url = git@github.com:magnetmicro/MAGNET.git
+[submodule "datasets/acme-air/acmeair"]
+	path = datasets/acme-air/acmeair
+	url = git@github.com:acmeair/acmeair.git
