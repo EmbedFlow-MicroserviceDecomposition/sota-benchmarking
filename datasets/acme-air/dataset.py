@@ -75,13 +75,12 @@ def generate_universal_json(source_dir, output_file):
                 file_path = os.path.join(root, file)
                 extracted_methods = extract_method_info(file_path)
                 for m in extracted_methods:
-                    # In case of overloaded methods, this simple ID might collide. 
-                    # For a robust pipeline, appending parameter types to the ID is recommended.
-                    # We will append the number of parameters to mitigate basic collisions.
-                    method_id = f"{m['id']}_{len(m['parameters'])}"
+                    # We use the base method ID to ensure compatibility with decomposition tools.
+                    # Overloaded methods will collide, which matches standard tool behavior.
+                    method_id = m['id']
                     all_methods[method_id] = m
 
-    xmi_path = 'acmeair_kdm.xmi'
+    xmi_path = 'acmeair-unified_kdm.xmi'
 
     output_data = {
         "dataset": "Acme Air",
@@ -98,7 +97,7 @@ def generate_universal_json(source_dir, output_file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Dataset: Monolith Adapter for Acme Air")
-    parser.add_argument("--source_dir", type=str, default="acmeair", help="Path to the monolithic source code")
+    parser.add_argument("--source_dir", type=str, default="acmeair-unified", help="Path to the monolithic source code")
     parser.add_argument("--output", type=str, default="dataset.json", help="Output path for the Universal JSON")
     
     args = parser.parse_args()
