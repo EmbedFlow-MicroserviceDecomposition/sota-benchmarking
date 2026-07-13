@@ -1,0 +1,5151 @@
+com.acmeair.service.KeyGenerator.generate,KeyGenerator.java,"Object generate() {
+		return java.util.UUID.randomUUID().toString();
+	}
+"
+com.acmeair.service.FlightService.getFlightByFlightId,FlightService.java,"Flight getFlightByFlightId(String flightId, String flightSegment) {
+		try {
+			Flight flight = flightPKtoFlightCache.get(flightId);
+			if (flight == null) {				
+				flight = getFlight(flightId, flightSegment);
+				if (flightId != null && flight != null) {
+					flightPKtoFlightCache.putIfAbsent(flightId, flight);
+				}
+			}
+			return flight;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.service.FlightService.getFlightByAirportsAndDepartureDate,FlightService.java,"List<Flight> getFlightByAirportsAndDepartureDate(String fromAirport,	String toAirport, Date deptDate) {
+		if(logger.isLoggable(Level.FINE))
+			logger.fine(""Search for flights from ""+ fromAirport + "" to "" + toAirport + "" on "" + deptDate.toString());
+
+		String originPortAndDestPortQueryString= fromAirport+toAirport;
+		FlightSegment segment = originAndDestPortToSegmentCache.get(originPortAndDestPortQueryString);
+
+		if (segment == null) {
+			segment = getFlightSegment(fromAirport, toAirport);
+			originAndDestPortToSegmentCache.putIfAbsent(originPortAndDestPortQueryString, segment);
+		}		
+		// cache flights that not available (checks against sentinel value above indirectly)
+		if (segment.getFlightName() == null) {
+			return new ArrayList<Flight>(); 
+		}
+
+		String segId = segment.getFlightName();
+		String flightSegmentIdAndScheduledDepartureTimeQueryString = segId + deptDate.toString();
+		List<Flight> flights = flightSegmentAndDataToFlightCache.get(flightSegmentIdAndScheduledDepartureTimeQueryString);
+
+		if (flights == null) {				
+			flights = getFlightBySegment(segment, deptDate);
+			flightSegmentAndDataToFlightCache.putIfAbsent(flightSegmentIdAndScheduledDepartureTimeQueryString, flights);
+		}
+		if(logger.isLoggable(Level.FINEST))
+			logger.finest(""Returning ""+ flights);
+		return flights;
+
+	}
+"
+com.acmeair.service.FlightService.getFlightByAirports,FlightService.java,"List<Flight> getFlightByAirports(String fromAirport, String toAirport) {
+			FlightSegment segment = getFlightSegment(fromAirport, toAirport);
+			if (segment == null) {
+				return new ArrayList<Flight>(); 
+			}	
+			return getFlightBySegment(segment, null);
+	}
+"
+com.acmeair.service.ServiceLocator.instance,ServiceLocator.java,"ServiceLocator instance() {
+		if (singletonServiceLocator.get() == null) {
+			synchronized (singletonServiceLocator) {
+				if (singletonServiceLocator.get() == null) {
+					singletonServiceLocator.set(new ServiceLocator());
+				}
+			}
+		}
+		return singletonServiceLocator.get();
+	}
+"
+com.acmeair.service.ServiceLocator.initialization,ServiceLocator.java,"void initialization()  {		
+		if(beanManager == null){
+			logger.info(""Attempting to look up BeanManager through JNDI at java:comp/BeanManager"");
+			try {
+				beanManager = (BeanManager) new InitialContext().lookup(""java:comp/BeanManager"");
+			} catch (NamingException e) {
+				logger.severe(""BeanManager not found at java:comp/BeanManager"");
+			}
+		}
+		
+		if(beanManager == null){
+			logger.info(""Attempting to look up BeanManager through JNDI at java:comp/env/BeanManager"");
+			try {
+				beanManager = (BeanManager) new InitialContext().lookup(""java:comp/env/BeanManager"");
+			} catch (NamingException e) {
+				logger.severe(""BeanManager not found at java:comp/env/BeanManager "");
+			}
+		}
+	}
+"
+com.acmeair.service.ServiceLocator.updateService,ServiceLocator.java,"void updateService(String serviceName){
+		logger.info(""Service Locator updating service to : "" + serviceName);
+		serviceType = serviceName;
+	}
+"
+com.acmeair.service.ServiceLocator.getService,ServiceLocator.java,"<T> T getService (Class<T> clazz) {		
+		logger.fine(""Looking up service:  ""+clazz.getName() + "" with service type: "" + serviceType);
+		if(beanManager == null) {
+			logger.severe(""BeanManager is null!!!"");
+		}		
+    	Set<Bean<?>> beans = beanManager.getBeans(clazz,new AnnotationLiteral<Any>() {
+			private static final long serialVersionUID = 1L;});
+    	for (Bean<?> bean : beans) {
+    		logger.fine("" Bean = ""+bean.getBeanClass().getName());
+    		for (Annotation qualifer: bean.getQualifiers()) {
+    			if(null == serviceType) {
+    				logger.warning(""Service type is not set, searching for the default implementation."");
+    				if(Default.class.getName().equalsIgnoreCase(qualifer.annotationType().getName())){
+    					CreationalContext<?> ctx = beanManager.createCreationalContext(bean);
+    					return  (T) beanManager.getReference(bean, clazz, ctx);
+    				}
+    			} else {    				   
+    				if(DataService.class.getName().equalsIgnoreCase(qualifer.annotationType().getName())){
+    					DataService service = (DataService) qualifer;
+    					logger.fine(""   name=""+service.name()+"" description=""+service.description());
+    					if(serviceType.equalsIgnoreCase(service.name())) {
+    						CreationalContext<?> ctx = beanManager.createCreationalContext(bean);
+    						return  (T) beanManager.getReference(bean, clazz, ctx);
+
+    					}
+    				}
+    			}
+    		}
+    	}
+    	logger.warning(""No Service of type: "" + serviceType + "" found for ""+clazz.getName()+"" "");
+    	return null;
+	}
+"
+com.acmeair.service.ServiceLocator.getServices,ServiceLocator.java,"Map<String,String> getServices (){
+		TreeMap<String,String> services = new TreeMap<String,String>();
+		logger.fine(""Getting CustomerService Impls"");
+    	Set<Bean<?>> beans = beanManager.getBeans(CustomerService.class,new AnnotationLiteral<Any>() {
+			private static final long serialVersionUID = 1L;});
+    	for (Bean<?> bean : beans) {    		
+    		for (Annotation qualifer: bean.getQualifiers()){
+    			if(DataService.class.getName().equalsIgnoreCase(qualifer.annotationType().getName())){
+    				DataService service = (DataService) qualifer;
+    				logger.fine(""   name=""+service.name()+"" description=""+service.description());
+    				services.put(service.name(), service.description());
+    			}
+    		}
+    	}    	
+    	return services;
+	}
+"
+com.acmeair.service.ServiceLocator.getServiceType,ServiceLocator.java,"String getServiceType (){
+		if(serviceType == null){
+			return ""default"";
+		}
+		return serviceType;
+	}
+"
+com.acmeair.service.CustomerService.getCustomerByUsername,CustomerService.java,"Customer getCustomerByUsername(String username) {
+		Customer c = getCustomer(username);
+		if (c != null) {
+			c.setPassword(null);
+		}
+		return c;
+	}
+"
+com.acmeair.service.CustomerService.validateCustomer,CustomerService.java,"boolean validateCustomer(String username, String password) {
+		boolean validatedCustomer = false;
+		Customer customerToValidate = getCustomer(username);
+		if (customerToValidate != null) {
+			validatedCustomer = password.equals(customerToValidate.getPassword());
+		}
+		return validatedCustomer;
+	}
+"
+com.acmeair.service.CustomerService.getCustomerByUsernameAndPassword,CustomerService.java,"Customer getCustomerByUsernameAndPassword(String username,
+			String password) {
+		Customer c = getCustomer(username);
+		if (!c.getPassword().equals(password)) {
+			return null;
+		}
+		// Should we also set the password to null?
+		return c;
+	}
+"
+com.acmeair.service.CustomerService.validateSession,CustomerService.java,"CustomerSession validateSession(String sessionid) {
+		CustomerSession cSession = getSession(sessionid);
+		if (cSession == null) {
+			return null;
+		}
+
+		Date now = new Date();
+
+		if (cSession.getTimeoutTime().before(now)) {
+			removeSession(cSession);
+			return null;
+		}
+		return cSession;		
+	}
+"
+com.acmeair.service.CustomerService.createSession,CustomerService.java,"CustomerSession createSession(String customerId) {
+		String sessionId = keyGenerator.generate().toString();
+		Date now = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(now);
+		c.add(Calendar.DAY_OF_YEAR, DAYS_TO_ALLOW_SESSION);
+		Date expiration = c.getTime();
+		
+		return createSession(sessionId, customerId, now, expiration);
+	}
+"
+com.acmeair.web.FlightsREST.getTripFlights,FlightsREST.java,"TripFlightOptions getTripFlights(
+			@FormParam(""fromAirport"") String fromAirport,
+			@FormParam(""toAirport"") String toAirport,
+			@FormParam(""fromDate"") Date fromDate,
+			@FormParam(""returnDate"") Date returnDate,
+			@FormParam(""oneWay"") boolean oneWay
+			) {
+		TripFlightOptions options = new TripFlightOptions();
+		ArrayList<TripLegInfo> legs = new ArrayList<TripLegInfo>();
+		
+		TripLegInfo toInfo = new TripLegInfo();
+		List<Flight> toFlights = flightService.getFlightByAirportsAndDepartureDate(fromAirport, toAirport, fromDate);
+		toInfo.setFlightsOptions(toFlights);
+		legs.add(toInfo);
+		toInfo.setCurrentPage(0);
+		toInfo.setHasMoreOptions(false);
+		toInfo.setNumPages(1);
+		toInfo.setPageSize(TripLegInfo.DEFAULT_PAGE_SIZE);
+		
+		if (!oneWay) {
+			TripLegInfo retInfo = new TripLegInfo();
+			List<Flight> retFlights = flightService.getFlightByAirportsAndDepartureDate(toAirport, fromAirport, returnDate);
+			retInfo.setFlightsOptions(retFlights);
+			legs.add(retInfo);
+			retInfo.setCurrentPage(0);
+			retInfo.setHasMoreOptions(false);
+			retInfo.setNumPages(1);
+			retInfo.setPageSize(TripLegInfo.DEFAULT_PAGE_SIZE);
+			options.setTripLegs(2);
+		}
+		else {
+			options.setTripLegs(1);
+		}
+		
+		options.setTripFlights(legs);
+		
+		return options;
+	}
+"
+com.acmeair.web.FlightsREST.browseFlights,FlightsREST.java,"TripFlightOptions browseFlights(
+			@FormParam(""fromAirport"") String fromAirport,
+			@FormParam(""toAirport"") String toAirport,
+			@FormParam(""oneWay"") boolean oneWay
+			) {
+		TripFlightOptions options = new TripFlightOptions();
+		ArrayList<TripLegInfo> legs = new ArrayList<TripLegInfo>();
+		
+		TripLegInfo toInfo = new TripLegInfo();
+		List<Flight> toFlights = flightService.getFlightByAirports(fromAirport, toAirport);
+		toInfo.setFlightsOptions(toFlights);
+		legs.add(toInfo);
+		toInfo.setCurrentPage(0);
+		toInfo.setHasMoreOptions(false);
+		toInfo.setNumPages(1);
+		toInfo.setPageSize(TripLegInfo.DEFAULT_PAGE_SIZE);
+		
+		if (!oneWay) {
+			TripLegInfo retInfo = new TripLegInfo();
+			List<Flight> retFlights = flightService.getFlightByAirports(toAirport, fromAirport);
+			retInfo.setFlightsOptions(retFlights);
+			legs.add(retInfo);
+			retInfo.setCurrentPage(0);
+			retInfo.setHasMoreOptions(false);
+			retInfo.setNumPages(1);
+			retInfo.setPageSize(TripLegInfo.DEFAULT_PAGE_SIZE);
+			options.setTripLegs(2);
+		}
+		else {
+			options.setTripLegs(1);
+		}
+		
+		options.setTripFlights(legs);
+		
+		return options;
+	}	
+"
+com.acmeair.web.BookingsREST.bookFlights,BookingsREST.java,"Response bookFlights(
+			@FormParam(""userid"") String userid,
+			@FormParam(""toFlightId"") String toFlightId,
+			@FormParam(""toFlightSegId"") String toFlightSegId,
+			@FormParam(""retFlightId"") String retFlightId,
+			@FormParam(""retFlightSegId"") String retFlightSegId,
+			@FormParam(""oneWayFlight"") boolean oneWay) {
+		try {
+			String bookingIdTo = bs.bookFlight(userid, toFlightSegId, toFlightId);
+			String bookingIdReturn = null;
+			if (!oneWay) {
+				bookingIdReturn = bs.bookFlight(userid, retFlightSegId, retFlightId);
+			}
+			// YL. BookingInfo will only contains the booking generated keys as customer info is always available from the session
+			BookingReceiptInfo bi;
+			if (!oneWay)
+				bi = new BookingReceiptInfo(bookingIdTo, bookingIdReturn, oneWay);
+			else
+				bi = new BookingReceiptInfo(bookingIdTo, null, oneWay);
+			
+			return Response.ok(bi).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+"
+com.acmeair.web.BookingsREST.getBookingByNumber,BookingsREST.java,"BookingInfo getBookingByNumber(
+			@PathParam(""number"") String number,
+			@PathParam(""userid"") String userid) {
+		try {
+			Booking b = bs.getBooking(userid, number);
+			BookingInfo bi = null;
+			if(b != null){
+				bi = new BookingInfo(b);
+			}
+			return bi;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+"
+com.acmeair.web.BookingsREST.getBookingsByUser,BookingsREST.java,"List<BookingInfo> getBookingsByUser(@PathParam(""user"") String user) {
+		try {
+			List<Booking> list =  bs.getBookingsByUser(user);
+			List<BookingInfo> newList = new ArrayList<BookingInfo>();
+			for(Booking b : list){
+				newList.add(new BookingInfo(b));
+			}
+			return newList;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+"
+com.acmeair.web.BookingsREST.cancelBookingsByNumber,BookingsREST.java,"Response cancelBookingsByNumber(
+			@FormParam(""number"") String number,
+			@FormParam(""userid"") String userid) {
+		try {
+			bs.cancelBooking(userid, number);
+			return Response.ok(""booking "" + number + "" deleted."").build();
+					
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+"
+com.acmeair.web.LoginREST.login,LoginREST.java,"Response login(@FormParam(""login"") String login, @FormParam(""password"") String password) {
+		try {
+			boolean validCustomer = customerService.validateCustomer(login, password);
+			
+			if (!validCustomer) {
+				return Response.status(Response.Status.FORBIDDEN).build();
+			}
+			
+			CustomerSession session = customerService.createSession(login);
+			// TODO:  Need to fix the security issues here - they are pretty gross likely
+			NewCookie sessCookie = new NewCookie(SESSIONID_COOKIE_NAME, session.getId());
+			// TODO: The mobile client app requires JSON in the response. 
+			// To support the mobile client app, choose one of the following designs:
+			// - Change this method to return JSON, and change the web app javascript to handle a JSON response.
+			//   example:  return Response.ok(""{\""status\"":\""logged-in\""}"").cookie(sessCookie).build();
+			// - Or create another method which is identical to this one, except returns JSON response.
+			//   Have the web app use the original method, and the mobile client app use the new one.
+			return Response.ok(""logged in"").cookie(sessCookie).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+"
+com.acmeair.web.LoginREST.logout,LoginREST.java,"Response logout(@QueryParam(""login"") String login, @CookieParam(""sessionid"") String sessionid) {
+		try {
+			customerService.invalidateSession(sessionid);
+			// The following call will trigger query against all partitions, disable for now
+//			customerService.invalidateAllUserSessions(login);
+			
+			// TODO:  Want to do this with setMaxAge to zero, but to do that I need to have the same path/domain as cookie
+			// created in login.  Unfortunately, until we have a elastic ip and domain name its hard to do that for ""localhost"".
+			// doing this will set the cookie to the empty string, but the browser will still send the cookie to future requests
+			// and the server will need to detect the value is invalid vs actually forcing the browser to time out the cookie and
+			// not send it to begin with
+			NewCookie sessCookie = new NewCookie(SESSIONID_COOKIE_NAME, """");
+			return Response.ok(""logged out"").cookie(sessCookie).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+"
+com.acmeair.web.CustomerREST.validate,CustomerREST.java,"boolean validate(String customerid)	{
+		String loginUser = (String) request.getAttribute(RESTCookieSessionFilter.LOGIN_USER);
+		return customerid.equals(loginUser);
+	}
+"
+com.acmeair.web.CustomerREST.getCustomer,CustomerREST.java,"Response getCustomer(@CookieParam(""sessionid"") String sessionid, @PathParam(""custid"") String customerid) {
+		try {
+			// make sure the user isn't trying to update a customer other than the one currently logged in
+			if (!validate(customerid)) {
+				return Response.status(Response.Status.FORBIDDEN).build();
+				
+			}
+			Customer customer = customerService.getCustomerByUsername(customerid);	
+			CustomerInfo customerDTO = new CustomerInfo(customer);			
+			return Response.ok(customerDTO).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+"
+com.acmeair.web.CustomerREST.putCustomer,CustomerREST.java,"Response putCustomer(@CookieParam(""sessionid"") String sessionid, CustomerInfo customer) {
+		if (!validate(customer.getUsername())) {
+			return Response.status(Response.Status.FORBIDDEN).build();
+		}
+		
+		Customer customerFromDB = customerService.getCustomerByUsernameAndPassword(customer.getUsername(), customer.getPassword());
+		if (customerFromDB == null) {
+			// either the customer doesn't exist or the password is wrong
+			return Response.status(Response.Status.FORBIDDEN).build();
+		}
+		
+		CustomerAddress addressFromDB = customerFromDB.getAddress();
+		addressFromDB.setStreetAddress1(customer.getAddress().getStreetAddress1());
+		if (customer.getAddress().getStreetAddress2() != null) {
+			addressFromDB.setStreetAddress2(customer.getAddress().getStreetAddress2());
+		}
+		addressFromDB.setCity(customer.getAddress().getCity());
+		addressFromDB.setStateProvince(customer.getAddress().getStateProvince());
+		addressFromDB.setCountry(customer.getAddress().getCountry());
+		addressFromDB.setPostalCode(customer.getAddress().getPostalCode());
+		
+		customerFromDB.setPhoneNumber(customer.getPhoneNumber());
+		customerFromDB.setPhoneNumberType(Customer.PhoneType.valueOf(customer.getPhoneNumberType()));
+		
+		customerService.updateCustomer(customerFromDB);
+		customerFromDB.setPassword(null);
+		
+		return Response.ok(customerFromDB).build();
+	}
+"
+com.acmeair.web.AppConfig.getClasses,AppConfig.java,"Set<Class<?>> getClasses() {
+        return new HashSet<Class<?>>(Arrays.asList(LoaderREST.class, AcmeAirConfiguration.class));
+    }
+"
+com.acmeair.web.RESTCookieSessionFilter.doFilter,RESTCookieSessionFilter.java,"void doFilter(ServletRequest req, ServletResponse resp,	FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest)req;
+		HttpServletResponse response = (HttpServletResponse)resp;
+		
+		String path = request.getContextPath() + request.getServletPath() + request.getPathInfo();
+		// The following code is to ensure that OG is always set on the thread	
+		try{			
+			if (transactionService!=null)
+				transactionService.prepareForTransaction();
+		}catch( Exception e)
+		{
+			e.printStackTrace();
+		}
+	
+		
+		if (path.endsWith(LOGIN_PATH) || path.endsWith(LOGOUT_PATH) || path.endsWith(LOADDB_PATH)) {
+			// if logging in, logging out, or loading the database, let the request flow
+			chain.doFilter(req, resp);
+			return;
+		}
+		
+		Cookie cookies[] = request.getCookies();
+		Cookie sessionCookie = null;
+		if (cookies != null) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals(LoginREST.SESSIONID_COOKIE_NAME)) {
+					sessionCookie = c;
+				}
+				if (sessionCookie!=null)
+					break; 
+			}
+			String sessionId = """";
+			if (sessionCookie!=null) // We need both cookie to work
+				sessionId= sessionCookie.getValue().trim();
+			// did this check as the logout currently sets the cookie value to """" instead of aging it out
+			// see comment in LogingREST.java
+			if (sessionId.equals("""")) {
+				response.sendError(HttpServletResponse.SC_FORBIDDEN);
+				return;
+			}
+			// Need the URLDecoder so that I can get @ not %40
+			CustomerSession cs = customerService.validateSession(sessionId);
+			if (cs != null) {
+				request.setAttribute(LOGIN_USER, cs.getCustomerid());
+				chain.doFilter(req, resp);
+				return;
+			}
+			else {
+				response.sendError(HttpServletResponse.SC_FORBIDDEN);
+				return;
+			}
+		}
+		
+		// if we got here, we didn't detect the session cookie, so we need to return 404
+		response.sendError(HttpServletResponse.SC_FORBIDDEN);
+	}
+"
+com.acmeair.web.AcmeAirApp.getClasses,AcmeAirApp.java,"Set<Class<?>> getClasses() {
+        return new HashSet<Class<?>>(Arrays.asList(BookingsREST.class, CustomerREST.class, FlightsREST.class, LoginREST.class));
+    }
+"
+com.acmeair.web.dto.FlightInfo.get_id,FlightInfo.java,"String get_id() {
+		return _id;
+	}
+"
+com.acmeair.web.dto.FlightInfo.set_id,FlightInfo.java,"void set_id(String _id) {
+		this._id = _id;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getFlightSegmentId,FlightInfo.java,"String getFlightSegmentId() {
+		return flightSegmentId;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setFlightSegmentId,FlightInfo.java,"void setFlightSegmentId(String flightSegmentId) {
+		this.flightSegmentId = flightSegmentId;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getScheduledDepartureTime,FlightInfo.java,"Date getScheduledDepartureTime() {
+		return scheduledDepartureTime;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setScheduledDepartureTime,FlightInfo.java,"void setScheduledDepartureTime(Date scheduledDepartureTime) {
+		this.scheduledDepartureTime = scheduledDepartureTime;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getScheduledArrivalTime,FlightInfo.java,"Date getScheduledArrivalTime() {
+		return scheduledArrivalTime;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setScheduledArrivalTime,FlightInfo.java,"void setScheduledArrivalTime(Date scheduledArrivalTime) {
+		this.scheduledArrivalTime = scheduledArrivalTime;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getFirstClassBaseCost,FlightInfo.java,"BigDecimal getFirstClassBaseCost() {
+		return firstClassBaseCost;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setFirstClassBaseCost,FlightInfo.java,"void setFirstClassBaseCost(BigDecimal firstClassBaseCost) {
+		this.firstClassBaseCost = firstClassBaseCost;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getEconomyClassBaseCost,FlightInfo.java,"BigDecimal getEconomyClassBaseCost() {
+		return economyClassBaseCost;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setEconomyClassBaseCost,FlightInfo.java,"void setEconomyClassBaseCost(BigDecimal economyClassBaseCost) {
+		this.economyClassBaseCost = economyClassBaseCost;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getNumFirstClassSeats,FlightInfo.java,"int getNumFirstClassSeats() {
+		return numFirstClassSeats;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setNumFirstClassSeats,FlightInfo.java,"void setNumFirstClassSeats(int numFirstClassSeats) {
+		this.numFirstClassSeats = numFirstClassSeats;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getNumEconomyClassSeats,FlightInfo.java,"int getNumEconomyClassSeats() {
+		return numEconomyClassSeats;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setNumEconomyClassSeats,FlightInfo.java,"void setNumEconomyClassSeats(int numEconomyClassSeats) {
+		this.numEconomyClassSeats = numEconomyClassSeats;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getAirplaneTypeId,FlightInfo.java,"String getAirplaneTypeId() {
+		return airplaneTypeId;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setAirplaneTypeId,FlightInfo.java,"void setAirplaneTypeId(String airplaneTypeId) {
+		this.airplaneTypeId = airplaneTypeId;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getFlightSegment,FlightInfo.java,"FlightSegmentInfo getFlightSegment() {
+		return flightSegment;
+	}
+"
+com.acmeair.web.dto.FlightInfo.setFlightSegment,FlightInfo.java,"void setFlightSegment(FlightSegmentInfo flightSegment) {
+		this.flightSegment = flightSegment;
+	}
+"
+com.acmeair.web.dto.FlightInfo.getPkey,FlightInfo.java,"FlightPKInfo getPkey(){
+		return pkey;
+	}
+"
+com.acmeair.web.dto.BookingPKInfo.getId,BookingPKInfo.java,"String getId() {
+		return id;
+	}
+"
+com.acmeair.web.dto.BookingPKInfo.setId,BookingPKInfo.java,"void setId(String id) {
+		this.id = id;
+	}
+"
+com.acmeair.web.dto.BookingPKInfo.getCustomerId,BookingPKInfo.java,"String getCustomerId() {
+		return customerId;
+	}
+"
+com.acmeair.web.dto.BookingPKInfo.setCustomerId,BookingPKInfo.java,"void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+"
+com.acmeair.web.dto.FlightPKInfo.getId,FlightPKInfo.java,"String getId() {
+		return id;
+	}
+"
+com.acmeair.web.dto.FlightPKInfo.setId,FlightPKInfo.java,"void setId(String id) {
+		this.id = id;
+	}
+"
+com.acmeair.web.dto.FlightPKInfo.getFlightSegmentId,FlightPKInfo.java,"String getFlightSegmentId() {
+		return flightSegmentId;
+	}
+"
+com.acmeair.web.dto.FlightPKInfo.setFlightSegmentId,FlightPKInfo.java,"void setFlightSegmentId(String flightSegmentId) {
+		this.flightSegmentId = flightSegmentId;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getUsername,CustomerInfo.java,"String getUsername() {
+		return _id;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setUsername,CustomerInfo.java,"void setUsername(String username) {
+		this._id = username;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getPassword,CustomerInfo.java,"String getPassword() {
+		return password;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setPassword,CustomerInfo.java,"void setPassword(String password) {
+		this.password = password;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getStatus,CustomerInfo.java,"String getStatus() {
+		return status;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setStatus,CustomerInfo.java,"void setStatus(String status) {
+		this.status = status;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getTotal_miles,CustomerInfo.java,"int getTotal_miles() {
+		return total_miles;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setTotal_miles,CustomerInfo.java,"void setTotal_miles(int total_miles) {
+		this.total_miles = total_miles;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getMiles_ytd,CustomerInfo.java,"int getMiles_ytd() {
+		return miles_ytd;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setMiles_ytd,CustomerInfo.java,"void setMiles_ytd(int miles_ytd) {
+		this.miles_ytd = miles_ytd;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getPhoneNumber,CustomerInfo.java,"String getPhoneNumber() {
+		return phoneNumber;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setPhoneNumber,CustomerInfo.java,"void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getPhoneNumberType,CustomerInfo.java,"String getPhoneNumberType() {
+		return phoneNumberType;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setPhoneNumberType,CustomerInfo.java,"void setPhoneNumberType(String phoneNumberType) {
+		this.phoneNumberType = phoneNumberType;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.getAddress,CustomerInfo.java,"AddressInfo getAddress() {
+		return address;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.setAddress,CustomerInfo.java,"void setAddress(AddressInfo address) {
+		this.address = address;
+	}
+"
+com.acmeair.web.dto.CustomerInfo.toString,CustomerInfo.java,"String toString() {
+		return ""Customer [id="" + _id + "", password="" + password + "", status=""
+				+ status + "", total_miles="" + total_miles + "", miles_ytd=""
+				+ miles_ytd + "", address="" + address + "", phoneNumber=""
+				+ phoneNumber + "", phoneNumberType="" + phoneNumberType + ""]"";
+	}
+"
+com.acmeair.web.dto.CustomerInfo.equals,CustomerInfo.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerInfo other = (CustomerInfo) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (miles_ytd != other.miles_ytd)
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		if (phoneNumberType != other.phoneNumberType)
+			return false;
+		if (status != other.status)
+			return false;
+		if (total_miles != other.total_miles)
+			return false;
+		return true;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.isHasMoreOptions,TripLegInfo.java,"boolean isHasMoreOptions() {
+		return hasMoreOptions;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.setHasMoreOptions,TripLegInfo.java,"void setHasMoreOptions(boolean hasMoreOptions) {
+		this.hasMoreOptions = hasMoreOptions;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.getNumPages,TripLegInfo.java,"int getNumPages() {
+		return numPages;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.setNumPages,TripLegInfo.java,"void setNumPages(int numPages) {
+		this.numPages = numPages;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.getPageSize,TripLegInfo.java,"int getPageSize() {
+		return pageSize;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.setPageSize,TripLegInfo.java,"void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.getCurrentPage,TripLegInfo.java,"int getCurrentPage() {
+		return currentPage;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.setCurrentPage,TripLegInfo.java,"void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.getFlightsOptions,TripLegInfo.java,"List<FlightInfo> getFlightsOptions() {
+		return flightsOptions;
+	}
+"
+com.acmeair.web.dto.TripLegInfo.setFlightsOptions,TripLegInfo.java,"void setFlightsOptions(List<Flight> flightsOptions) {
+		List<FlightInfo> flightInfoOptions = new ArrayList<FlightInfo>();
+		for(Flight info : flightsOptions){
+			flightInfoOptions.add(new FlightInfo(info));
+		}
+		this.flightsOptions = flightInfoOptions;
+	}
+"
+com.acmeair.web.dto.BookingReceiptInfo.getDepartBookingId,BookingReceiptInfo.java,"String getDepartBookingId() {
+		return departBookingId;
+	}
+"
+com.acmeair.web.dto.BookingReceiptInfo.setDepartBookingId,BookingReceiptInfo.java,"void setDepartBookingId(String departBookingId) {
+		this.departBookingId = departBookingId;
+	}
+"
+com.acmeair.web.dto.BookingReceiptInfo.getReturnBookingId,BookingReceiptInfo.java,"String getReturnBookingId() {
+		return returnBookingId;
+	}
+"
+com.acmeair.web.dto.BookingReceiptInfo.setReturnBookingId,BookingReceiptInfo.java,"void setReturnBookingId(String returnBookingId) {
+		this.returnBookingId = returnBookingId;
+	}
+"
+com.acmeair.web.dto.BookingReceiptInfo.isOneWay,BookingReceiptInfo.java,"boolean isOneWay() {
+		return oneWay;
+	}
+"
+com.acmeair.web.dto.BookingReceiptInfo.setOneWay,BookingReceiptInfo.java,"void setOneWay(boolean oneWay) {
+		this.oneWay = oneWay;
+	}
+"
+com.acmeair.web.dto.BookingReceiptInfo.toString,BookingReceiptInfo.java,"String toString() {
+		return ""BookingInfo [departBookingId="" + departBookingId
+				+ "", returnBookingId="" + returnBookingId + "", oneWay="" + oneWay
+				+ ""]"";
+	}
+"
+com.acmeair.web.dto.BookingInfo.getBookingId,BookingInfo.java,"String getBookingId() {
+		return bookingId;
+	}
+"
+com.acmeair.web.dto.BookingInfo.setBookingId,BookingInfo.java,"void setBookingId(String bookingId) {
+		this.bookingId = bookingId;
+	}
+"
+com.acmeair.web.dto.BookingInfo.getFlightId,BookingInfo.java,"String getFlightId() {
+		return flightId;
+	}
+"
+com.acmeair.web.dto.BookingInfo.setFlightId,BookingInfo.java,"void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+"
+com.acmeair.web.dto.BookingInfo.getCustomerId,BookingInfo.java,"String getCustomerId() {
+		return customerId;
+	}
+"
+com.acmeair.web.dto.BookingInfo.setCustomerId,BookingInfo.java,"void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+"
+com.acmeair.web.dto.BookingInfo.getDateOfBooking,BookingInfo.java,"Date getDateOfBooking() {
+		return dateOfBooking;
+	}
+"
+com.acmeair.web.dto.BookingInfo.setDateOfBooking,BookingInfo.java,"void setDateOfBooking(Date dateOfBooking) {
+		this.dateOfBooking = dateOfBooking;
+	}	
+"
+com.acmeair.web.dto.BookingInfo.getPkey,BookingInfo.java,"BookingPKInfo getPkey(){
+		return pkey;
+	}
+"
+com.acmeair.web.dto.TripFlightOptions.getTripLegs,TripFlightOptions.java,"int getTripLegs() {
+		return tripLegs;
+	}
+"
+com.acmeair.web.dto.TripFlightOptions.setTripLegs,TripFlightOptions.java,"void setTripLegs(int tripLegs) {
+		this.tripLegs = tripLegs;
+	}
+"
+com.acmeair.web.dto.TripFlightOptions.getTripFlights,TripFlightOptions.java,"List<TripLegInfo> getTripFlights() {
+		return tripFlights;
+	}
+"
+com.acmeair.web.dto.TripFlightOptions.setTripFlights,TripFlightOptions.java,"void setTripFlights(List<TripLegInfo> tripFlights) {
+		this.tripFlights = tripFlights;
+	}
+"
+com.acmeair.web.dto.AddressInfo.getStreetAddress1,AddressInfo.java,"String getStreetAddress1() {
+		return streetAddress1;
+	}
+"
+com.acmeair.web.dto.AddressInfo.setStreetAddress1,AddressInfo.java,"void setStreetAddress1(String streetAddress1) {
+		this.streetAddress1 = streetAddress1;
+	}
+"
+com.acmeair.web.dto.AddressInfo.getStreetAddress2,AddressInfo.java,"String getStreetAddress2() {
+		return streetAddress2;
+	}
+"
+com.acmeair.web.dto.AddressInfo.setStreetAddress2,AddressInfo.java,"void setStreetAddress2(String streetAddress2) {
+		this.streetAddress2 = streetAddress2;
+	}
+"
+com.acmeair.web.dto.AddressInfo.getCity,AddressInfo.java,"String getCity() {
+		return city;
+	}
+"
+com.acmeair.web.dto.AddressInfo.setCity,AddressInfo.java,"void setCity(String city) {
+		this.city = city;
+	}
+"
+com.acmeair.web.dto.AddressInfo.getStateProvince,AddressInfo.java,"String getStateProvince() {
+		return stateProvince;
+	}
+"
+com.acmeair.web.dto.AddressInfo.setStateProvince,AddressInfo.java,"void setStateProvince(String stateProvince) {
+		this.stateProvince = stateProvince;
+	}
+"
+com.acmeair.web.dto.AddressInfo.getCountry,AddressInfo.java,"String getCountry() {
+		return country;
+	}
+"
+com.acmeair.web.dto.AddressInfo.setCountry,AddressInfo.java,"void setCountry(String country) {
+		this.country = country;
+	}
+"
+com.acmeair.web.dto.AddressInfo.getPostalCode,AddressInfo.java,"String getPostalCode() {
+		return postalCode;
+	}
+"
+com.acmeair.web.dto.AddressInfo.setPostalCode,AddressInfo.java,"void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+"
+com.acmeair.web.dto.AddressInfo.toString,AddressInfo.java,"String toString() {
+		return ""CustomerAddress [streetAddress1="" + streetAddress1
+				+ "", streetAddress2="" + streetAddress2 + "", city="" + city
+				+ "", stateProvince="" + stateProvince + "", country="" + country
+				+ "", postalCode="" + postalCode + ""]"";
+	}
+"
+com.acmeair.web.dto.AddressInfo.equals,AddressInfo.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AddressInfo other = (AddressInfo) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (postalCode == null) {
+			if (other.postalCode != null)
+				return false;
+		} else if (!postalCode.equals(other.postalCode))
+			return false;
+		if (stateProvince == null) {
+			if (other.stateProvince != null)
+				return false;
+		} else if (!stateProvince.equals(other.stateProvince))
+			return false;
+		if (streetAddress1 == null) {
+			if (other.streetAddress1 != null)
+				return false;
+		} else if (!streetAddress1.equals(other.streetAddress1))
+			return false;
+		if (streetAddress2 == null) {
+			if (other.streetAddress2 != null)
+				return false;
+		} else if (!streetAddress2.equals(other.streetAddress2))
+			return false;
+		return true;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.get_id,FlightSegmentInfo.java,"String get_id() {
+		return _id;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.set_id,FlightSegmentInfo.java,"void set_id(String _id) {
+		this._id = _id;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.getOriginPort,FlightSegmentInfo.java,"String getOriginPort() {
+		return originPort;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.setOriginPort,FlightSegmentInfo.java,"void setOriginPort(String originPort) {
+		this.originPort = originPort;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.getDestPort,FlightSegmentInfo.java,"String getDestPort() {
+		return destPort;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.setDestPort,FlightSegmentInfo.java,"void setDestPort(String destPort) {
+		this.destPort = destPort;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.getMiles,FlightSegmentInfo.java,"int getMiles() {
+		return miles;
+	}
+"
+com.acmeair.web.dto.FlightSegmentInfo.setMiles,FlightSegmentInfo.java,"void setMiles(int miles) {
+		this.miles = miles;
+	}	
+"
+com.acmeair.config.LoaderREST.queryLoader,LoaderREST.java,"Response queryLoader() {			
+		String response = loader.queryLoader();
+		return Response.ok(response).build();	
+	}
+"
+com.acmeair.config.LoaderREST.loadDB,LoaderREST.java,"Response loadDB(@DefaultValue(""-1"") @QueryParam(""numCustomers"") long numCustomers) {	
+		String response = loader.loadDB(numCustomers);
+		return Response.ok(response).build();	
+	}
+"
+com.acmeair.config.ServiceData.initialization,AcmeAirConfiguration.java,"void initialization()  {		
+		if(beanManager == null){
+			logger.info(""Attempting to look up BeanManager through JNDI at java:comp/BeanManager"");
+			try {
+				beanManager = (BeanManager) new InitialContext().lookup(""java:comp/BeanManager"");
+			} catch (NamingException e) {
+				logger.severe(""BeanManager not found at java:comp/BeanManager"");
+			}
+		}
+		
+		if(beanManager == null){
+			logger.info(""Attempting to look up BeanManager through JNDI at java:comp/env/BeanManager"");
+			try {
+				beanManager = (BeanManager) new InitialContext().lookup(""java:comp/env/BeanManager"");
+			} catch (NamingException e) {
+				logger.severe(""BeanManager not found at java:comp/env/BeanManager "");
+			}
+		}
+	}
+"
+com.acmeair.config.ServiceData.getDataServiceInfo,AcmeAirConfiguration.java,"ArrayList<ServiceData> getDataServiceInfo() {
+		try {	
+			ArrayList<ServiceData> list = new ArrayList<ServiceData>();
+			Map<String, String> services =  ServiceLocator.instance().getServices();
+			logger.fine(""Get data service configuration info"");
+			for (Map.Entry<String, String> entry : services.entrySet()){
+				ServiceData data = new ServiceData();
+				data.name = entry.getKey();
+				data.description = entry.getValue();
+				list.add(data);
+			}
+			
+			return list;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+"
+com.acmeair.config.ServiceData.getActiveDataServiceInfo,AcmeAirConfiguration.java,"Response getActiveDataServiceInfo() {
+		try {		
+			logger.fine(""Get active Data Service info"");
+			return  Response.ok(ServiceLocator.instance().getServiceType()).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok(""Unknown"").build();
+		}
+	}
+"
+com.acmeair.config.ServiceData.getRuntimeInfo,AcmeAirConfiguration.java,"ArrayList<ServiceData> getRuntimeInfo() {
+		try {
+			logger.fine(""Getting Runtime info"");
+			ArrayList<ServiceData> list = new ArrayList<ServiceData>();
+			ServiceData data = new ServiceData();
+			data.name = ""Runtime"";
+			data.description = ""Java"";			
+			list.add(data);
+			
+			data = new ServiceData();
+			data.name = ""Version"";
+			data.description = System.getProperty(""java.version"");			
+			list.add(data);
+			
+			data = new ServiceData();
+			data.name = ""Vendor"";
+			data.description = System.getProperty(""java.vendor"");			
+			list.add(data);
+			
+			return list;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+"
+com.acmeair.config.ServiceData.countBookings,AcmeAirConfiguration.java,"Response countBookings() {
+		try {
+			Long count = bs.count();			
+			return Response.ok(count).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok(-1).build();
+		}
+	}
+"
+com.acmeair.config.ServiceData.countCustomer,AcmeAirConfiguration.java,"Response countCustomer() {
+		try {
+			Long customerCount = customerService.count();
+			
+			return Response.ok(customerCount).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok(-1).build();
+		}
+	}
+"
+com.acmeair.config.ServiceData.countCustomerSessions,AcmeAirConfiguration.java,"Response countCustomerSessions() {
+		try {
+			Long customerCount = customerService.countSessions();
+			
+			return Response.ok(customerCount).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok(-1).build();
+		}
+	}
+"
+com.acmeair.config.ServiceData.countFlights,AcmeAirConfiguration.java,"Response countFlights() {
+		try {
+			Long count = flightService.countFlights();			
+			return Response.ok(count).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok(-1).build();
+		}
+	}
+"
+com.acmeair.config.ServiceData.countFlightSegments,AcmeAirConfiguration.java,"Response countFlightSegments() {
+		try {
+			Long count = flightService.countFlightSegments();			
+			return Response.ok(count).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok(-1).build();
+		}
+	}
+"
+com.acmeair.config.ServiceData.countAirports,AcmeAirConfiguration.java,"Response countAirports() {
+		try {			
+			Long count = flightService.countAirports();	
+			return Response.ok(count).build();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok(-1).build();
+		}
+	}
+"
+com.acmeair.loader.CustomerLoader.loadCustomers,CustomerLoader.java,"void loadCustomers(long numCustomers) {
+		CustomerAddress address = customerService.createAddress(""123 Main St."", null, ""Anytown"", ""NC"", ""USA"", ""27617"");
+		for (long ii = 0; ii < numCustomers; ii++) {
+			customerService.createCustomer(""uid""+ii+""@email.com"", ""password"", Customer.MemberShipStatus.GOLD, 1000000, 1000, ""919-123-4567"", PhoneType.BUSINESS, address);
+		}
+	}
+"
+com.acmeair.loader.Loader.queryLoader,Loader.java,"String queryLoader() {			
+		String message = System.getProperty(""loader.numCustomers"");
+		if (message == null){
+			logger.info(""The system property 'loader.numCustomers' has not been set yet. Looking up the default properties."");
+			lookupDefaults();
+			message = System.getProperty(""loader.numCustomers"");
+		}				
+		return message;	
+	}
+"
+com.acmeair.loader.Loader.loadDB,Loader.java,"String loadDB(long numCustomers) {		
+		String message = """";
+		if(numCustomers == -1)
+			message = execute();
+		else {
+			System.setProperty(""loader.numCustomers"", Long.toString(numCustomers));
+			message = execute(numCustomers);
+		}
+		return message;	
+	}
+"
+com.acmeair.loader.Loader.main,Loader.java,"void main(String args[]) throws Exception {
+		Loader loader = new Loader();
+		loader.execute();
+	}
+"
+com.acmeair.loader.Loader.execute,Loader.java,"String execute() {
+		String numCustomers = System.getProperty(""loader.numCustomers"");
+		if (numCustomers == null){
+			logger.info(""The system property 'loader.numCustomers' has not been set yet. Looking up the default properties."");
+			lookupDefaults();
+			numCustomers = System.getProperty(""loader.numCustomers"");
+		}
+		return execute(Long.parseLong(numCustomers));
+	}
+"
+com.acmeair.loader.Loader.execute,Loader.java,"String execute(long numCustomers) {
+		FlightLoader flightLoader = new FlightLoader();
+		CustomerLoader customerLoader = new CustomerLoader();
+
+    	double length = 0;
+		try {
+			long start = System.currentTimeMillis();
+			logger.info(""Start loading flights"");
+			flightLoader.loadFlights();
+			logger.info(""Start loading "" +  numCustomers + "" customers"");
+			customerLoader.loadCustomers(numCustomers);
+			long stop = System.currentTimeMillis();
+			logger.info(""Finished loading in "" + (stop - start)/1000.0 + "" seconds"");
+			length = (stop - start)/1000.0;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return ""Loaded flights and ""  +  numCustomers + "" customers in "" + length + "" seconds"";
+	}
+"
+com.acmeair.loader.Loader.lookupDefaults,Loader.java,"void lookupDefaults (){
+		Properties props = getProperties();
+		
+        String numCustomers = props.getProperty(""loader.numCustomers"",""100"");
+    	System.setProperty(""loader.numCustomers"", numCustomers);		
+	}
+"
+com.acmeair.loader.Loader.getProperties,Loader.java,"Properties getProperties(){
+        /*
+         * Get Properties from loader.properties file. 
+         * If the file does not exist, use default values
+         */
+		Properties props = new Properties();
+		String propFileName = ""/loader.properties"";
+		try{			
+			InputStream propFileStream = Loader.class.getResourceAsStream(propFileName);
+			props.load(propFileStream);
+		//	props.load(new FileInputStream(propFileName));
+		}catch(FileNotFoundException e){
+			logger.info(""Property file "" + propFileName + "" not found."");
+		}catch(IOException e){
+			logger.info(""IOException - Property file "" + propFileName + "" not found."");
+		}
+    	return props;
+	}
+"
+com.acmeair.loader.FlightLoader.loadFlights,FlightLoader.java,"void loadFlights() throws Exception {
+		InputStream csvInputStream = FlightLoader.class.getResourceAsStream(""/mileage.csv"");
+		
+		LineNumberReader lnr = new LineNumberReader(new InputStreamReader(csvInputStream));
+		String line1 = lnr.readLine();
+		StringTokenizer st = new StringTokenizer(line1, "","");
+		ArrayList<AirportCodeMapping> airports = new ArrayList<AirportCodeMapping>();
+		
+		// read the first line which are airport names
+		while (st.hasMoreTokens()) {
+			AirportCodeMapping acm = flightService.createAirportCodeMapping(null, st.nextToken());
+		//	acm.setAirportName(st.nextToken());
+			airports.add(acm);
+		}
+		// read the second line which contains matching airport codes for the first line
+		String line2 = lnr.readLine();
+		st = new StringTokenizer(line2, "","");
+		int ii = 0;
+		while (st.hasMoreTokens()) {
+			String airportCode = st.nextToken();
+			airports.get(ii).setAirportCode(airportCode);
+			ii++;
+		}
+		// read the other lines which are of format:
+		// airport name, aiport code, distance from this airport to whatever airport is in the column from lines one and two
+		String line;
+		int flightNumber = 0;
+		while (true) {
+			line = lnr.readLine();
+			if (line == null || line.trim().equals("""")) {
+				break;
+			}
+			st = new StringTokenizer(line, "","");
+			String airportName = st.nextToken();
+			String airportCode = st.nextToken();
+			if (!alreadyInCollection(airportCode, airports)) {
+				AirportCodeMapping acm = flightService.createAirportCodeMapping(airportCode, airportName);
+				airports.add(acm);
+			}
+			int indexIntoTopLine = 0;
+			while (st.hasMoreTokens()) {
+				String milesString = st.nextToken();
+				if (milesString.equals(""NA"")) {
+					indexIntoTopLine++;
+					continue;
+				}
+				int miles = Integer.parseInt(milesString);
+				String toAirport = airports.get(indexIntoTopLine).getAirportCode();
+				String flightId = ""AA"" + flightNumber;			
+				flightService.storeFlightSegment(flightId, airportCode, toAirport, miles);
+				Date now = new Date();
+				for (int daysFromNow = 0; daysFromNow < MAX_FLIGHTS_PER_SEGMENT; daysFromNow++) {
+					Calendar c = Calendar.getInstance();
+					c.setTime(now);
+					c.set(Calendar.HOUR_OF_DAY, 0);
+				    c.set(Calendar.MINUTE, 0);
+				    c.set(Calendar.SECOND, 0);
+				    c.set(Calendar.MILLISECOND, 0);
+					c.add(Calendar.DATE, daysFromNow);
+					Date departureTime = c.getTime();
+					Date arrivalTime = getArrivalTime(departureTime, miles);
+					flightService.createNewFlight(flightId, departureTime, arrivalTime, new BigDecimal(500), new BigDecimal(200), 10, 200, ""B747"");
+					
+				}
+				flightNumber++;
+				indexIntoTopLine++;
+			}
+		}
+		
+		for (int jj = 0; jj < airports.size(); jj++) {
+			flightService.storeAirportMapping(airports.get(jj));
+		}
+		lnr.close();
+	}
+"
+com.acmeair.loader.FlightLoader.getArrivalTime,FlightLoader.java,"Date getArrivalTime(Date departureTime, int mileage) {
+		double averageSpeed = 600.0; // 600 miles/hours
+		double hours = (double) mileage / averageSpeed; // miles / miles/hour = hours
+		double partsOfHour = hours % 1.0;
+		int minutes = (int)(60.0 * partsOfHour);
+		Calendar c = Calendar.getInstance();
+		c.setTime(departureTime);
+		c.add(Calendar.HOUR, (int)hours);
+		c.add(Calendar.MINUTE, minutes);
+		return c.getTime();
+	}
+"
+com.acmeair.loader.FlightLoader.alreadyInCollection,FlightLoader.java,"boolean alreadyInCollection(String airportCode, ArrayList<AirportCodeMapping> airports) {
+		for (int ii = 0; ii < airports.size(); ii++) {
+			if (airports.get(ii).getAirportCode().equals(airportCode)) {
+				return true;
+			}
+		}
+		return false;
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.initialization,FlightServiceImpl.java,"void initialization()  {	
+		try {
+			og = WXSSessionManager.getSessionManager().getObjectGrid();
+			FLIGHT_MAP_NAME = BASE_FLIGHT_MAP_NAME + WXSSessionManager.getSessionManager().getMapSuffix();
+			FLIGHT_SEGMENT_MAP_NAME = BASE_FLIGHT_SEGMENT_MAP_NAME + WXSSessionManager.getSessionManager().getMapSuffix();
+			AIRPORT_CODE_MAPPING_MAP_NAME = BASE_AIRPORT_CODE_MAPPING_MAP_NAME + WXSSessionManager.getSessionManager().getMapSuffix();
+		} catch (ObjectGridException e) {
+			logger.severe(""Unable to retreive the ObjectGrid reference "" + e.getMessage());
+		}
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.countFlights,FlightServiceImpl.java,"Long countFlights() {
+		try {
+			Session session = og.getSession();
+			ObjectMap objectMap = session.getMap(FLIGHT_MAP_NAME);			
+			MapIndex mapIndex = (MapIndex)objectMap.getIndex(MapIndexPlugin.SYSTEM_KEY_INDEX_NAME);			
+			Iterator<?> keyIterator = mapIndex.findAll();
+			Long result = 0L;
+			while(keyIterator.hasNext()) {
+				keyIterator.next(); 
+				result++;
+			}
+			/*
+			int partitions = og.getMap(FLIGHT_MAP_NAME).getPartitionManager().getNumOfPartitions();
+			Long result = 0L;
+			ObjectQuery query = og.getSession().createObjectQuery(""SELECT COUNT ( o ) FROM "" + FLIGHT_MAP_NAME + "" o "");
+			for(int i = 0; i<partitions;i++){
+				query.setPartition(i);
+				result += (Long) query.getSingleResult();
+			}
+			*/
+			return result;
+		} catch (UndefinedMapException e) {
+			e.printStackTrace();
+		} catch (TransactionCallbackException e) {
+			e.printStackTrace();
+		} catch (ObjectGridException e) {
+			e.printStackTrace();
+		}
+		return -1L;
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.countAirports,FlightServiceImpl.java,"Long countAirports() {
+		try {
+			Session session = og.getSession();
+			ObjectMap objectMap = session.getMap(AIRPORT_CODE_MAPPING_MAP_NAME);			
+			MapIndex mapIndex = (MapIndex)objectMap.getIndex(MapIndexPlugin.SYSTEM_KEY_INDEX_NAME);			
+			Iterator<?> keyIterator = mapIndex.findAll();
+			Long result = 0L;
+			while(keyIterator.hasNext()) {
+				keyIterator.next(); 
+				result++;
+			}
+			return result;
+		} catch (UndefinedMapException e) {
+			e.printStackTrace();
+		} catch (TransactionCallbackException e) {
+			e.printStackTrace();
+		} catch (ObjectGridException e) {
+			e.printStackTrace();
+		}
+		return -1L;
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.countFlightSegments,FlightServiceImpl.java,"Long countFlightSegments() {
+		try {
+			Session session = og.getSession();
+			ObjectMap objectMap = session.getMap(FLIGHT_SEGMENT_MAP_NAME);			
+			MapIndex mapIndex = (MapIndex)objectMap.getIndex(MapIndexPlugin.SYSTEM_KEY_INDEX_NAME);			
+			Iterator<?> keyIterator = mapIndex.findAll();
+			Long result = 0L;
+			while(keyIterator.hasNext()) {
+				keyIterator.next(); 
+				result++;
+			}
+			/*
+			int partitions = og.getMap(FLIGHT_SEGMENT_MAP_NAME).getPartitionManager().getNumOfPartitions();
+			Long result = 0L;
+			ObjectQuery query = og.getSession().createObjectQuery(""SELECT COUNT ( o ) FROM "" + FLIGHT_SEGMENT_MAP_NAME + "" o "");
+			for(int i = 0; i<partitions;i++){
+				query.setPartition(i);
+				result += (Long) query.getSingleResult();
+			}
+			*/			
+			return result;
+
+		} catch (UndefinedMapException e) {
+			e.printStackTrace();
+		} catch (TransactionCallbackException e) {
+			e.printStackTrace();
+		} catch (ObjectGridException e) {
+			e.printStackTrace();
+		}
+		return -1L;
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.getFlight,FlightServiceImpl.java,"Flight getFlight(String flightId, String flightSegmentId) {
+		try {
+			if(logger.isLoggable(Level.FINER))
+				logger.finer(""in WXS getFlight.  search for flightId = '"" + flightId + ""' and flightSegmentId = '""+flightSegmentId+""'"");
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap flightMap = session.getMap(FLIGHT_MAP_NAME);
+			@SuppressWarnings(""unchecked"")
+			HashSet<FlightImpl> flightsBySegment = (HashSet<FlightImpl>)flightMap.get(flightSegmentId);
+			for (FlightImpl flight : flightsBySegment) {
+				if (flight.getFlightId().equals(flightId)) {
+					return flight;
+				}
+			}
+			logger.warning(""No matching flights found for flightId ="" + flightId + "" and flightSegment "" + flightSegmentId);
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.getFlightSegment,FlightServiceImpl.java,"FlightSegment getFlightSegment(String fromAirport, String toAirport) {
+		try {
+		Session session = null;
+//		boolean startedTran = false;
+		//session = sessionManager.getObjectGridSession();
+		session = og.getSession();
+		FlightSegment segment = null;
+/*		if (!session.isTransactionActive()) {
+			startedTran = true;
+			session.begin();
+		}
+		*/
+		ObjectMap flightSegmentMap = session.getMap(FLIGHT_SEGMENT_MAP_NAME);
+		@SuppressWarnings(""unchecked"")
+		HashSet<FlightSegment> segmentsByOrigPort = (HashSet<FlightSegment>)flightSegmentMap.get(fromAirport);
+		if (segmentsByOrigPort!=null) {
+			for (FlightSegment fs : segmentsByOrigPort) {
+				if (fs.getDestPort().equals(toAirport)) {
+					segment = fs;
+					return segment;
+				}
+			}
+		}
+		if (segment == null) {
+			segment = new FlightSegmentImpl(); // put a sentinel value of a non-populated flightsegment
+		}
+//		if (startedTran)
+//			session.commit();
+		
+		return segment;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.getFlightBySegment,FlightServiceImpl.java,"List<Flight> getFlightBySegment(FlightSegment segment, Date deptDate){
+		try {
+		List<Flight> flights = new ArrayList<Flight>();
+		Session session = null;
+		boolean startedTran = false;
+		if (session == null) {
+			//session = sessionManager.getObjectGridSession();
+			session = og.getSession();
+			if (!session.isTransactionActive()) {
+				startedTran = true;
+				session.begin();
+			}
+		}				
+		
+		ObjectMap flightMap = session.getMap(FLIGHT_MAP_NAME);
+		@SuppressWarnings(""unchecked"")
+		HashSet<Flight> flightsBySegment = (HashSet<Flight>)flightMap.get(segment.getFlightName());
+		if(deptDate != null){
+			for (Flight f : flightsBySegment) {
+				if (areDatesSameWithNoTime(f.getScheduledDepartureTime(), deptDate)) {
+					f.setFlightSegment(segment);
+					flights.add(f);
+				}
+			}
+		} else {
+			for (Flight f : flightsBySegment) {
+				f.setFlightSegment(segment);
+				flights.add(f);
+			}
+		}
+		if (startedTran)
+			session.commit();
+		
+		return flights;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.areDatesSameWithNoTime,FlightServiceImpl.java,"boolean areDatesSameWithNoTime(Date d1, Date d2) {
+		return getDateWithNoTime(d1).equals(getDateWithNoTime(d2));
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.getDateWithNoTime,FlightServiceImpl.java,"Date getDateWithNoTime(Date date) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+		return c.getTime();
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.storeAirportMapping,FlightServiceImpl.java,"void storeAirportMapping(AirportCodeMapping mapping) {
+		try{
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap airportCodeMappingMap = session.getMap(AIRPORT_CODE_MAPPING_MAP_NAME);
+			airportCodeMappingMap.upsert(mapping.getAirportCode(), mapping);
+		}catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.createAirportCodeMapping,FlightServiceImpl.java,"AirportCodeMapping createAirportCodeMapping(String airportCode, String airportName){
+		AirportCodeMapping acm = new AirportCodeMappingImpl(airportCode, airportName);
+		return acm;
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.createNewFlight,FlightServiceImpl.java,"Flight createNewFlight(String flightSegmentId,
+			Date scheduledDepartureTime, Date scheduledArrivalTime,
+			BigDecimal firstClassBaseCost, BigDecimal economyClassBaseCost,
+			int numFirstClassSeats, int numEconomyClassSeats,
+			String airplaneTypeId) {
+		try{
+			String id = keyGenerator.generate().toString();
+			Flight flight = new FlightImpl(id, flightSegmentId,
+				scheduledDepartureTime, scheduledArrivalTime,
+				firstClassBaseCost, economyClassBaseCost,
+				numFirstClassSeats, numEconomyClassSeats,
+				airplaneTypeId);
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap flightMap = session.getMap(FLIGHT_MAP_NAME);
+			//flightMap.insert(flight.getPkey(), flight);
+			//return flight;
+			@SuppressWarnings(""unchecked"")
+			HashSet<Flight> flightsBySegment = (HashSet<Flight>)flightMap.get(flightSegmentId);
+			if (flightsBySegment == null) {
+				flightsBySegment = new HashSet<Flight>();
+			}
+			if (!flightsBySegment.contains(flight)) {
+				flightsBySegment.add(flight);
+				flightMap.upsert(flightSegmentId, flightsBySegment);
+			}
+			return flight;
+		}catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.storeFlightSegment,FlightServiceImpl.java,"void storeFlightSegment(FlightSegment flightSeg) {
+		try {
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap flightSegmentMap = session.getMap(FLIGHT_SEGMENT_MAP_NAME);
+			// TODO: Consider moving this to a ArrayList - List ??
+			@SuppressWarnings(""unchecked"")
+			HashSet<FlightSegment> segmentsByOrigPort = (HashSet<FlightSegment>)flightSegmentMap.get(flightSeg.getOriginPort());
+			if (segmentsByOrigPort == null) {
+				segmentsByOrigPort = new HashSet<FlightSegment>();
+			}
+			if (!segmentsByOrigPort.contains(flightSeg)) {
+				segmentsByOrigPort.add(flightSeg);
+				flightSegmentMap.upsert(flightSeg.getOriginPort(), segmentsByOrigPort);
+			}
+		
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.FlightServiceImpl.storeFlightSegment,FlightServiceImpl.java,"void storeFlightSegment(String flightName, String origPort, String destPort, int miles) {
+		FlightSegment flightSeg = new FlightSegmentImpl(flightName, origPort, destPort, miles);
+		storeFlightSegment(flightSeg);
+	}
+"
+com.acmeair.wxs.service.BookingServiceImpl.initialization,BookingServiceImpl.java,"void initialization()  {
+		try {
+			og = WXSSessionManager.getSessionManager().getObjectGrid();
+			BOOKING_MAP_NAME = BASE_BOOKING_MAP_NAME + WXSSessionManager.getSessionManager().getMapSuffix();
+		} catch (ObjectGridException e) {
+			logger.severe(""Unable to retreive the ObjectGrid reference "" + e.getMessage());
+		}
+	}
+"
+com.acmeair.wxs.service.BookingServiceImpl.bookFlight,BookingServiceImpl.java,"BookingPKImpl bookFlight(String customerId, FlightPKImpl flightId) {
+		try{
+			// We still delegate to the flight and customer service for the map access than getting the map instance directly
+			Flight f = flightService.getFlightByFlightId(flightId.getId(), flightId.getFlightSegmentId());
+			Customer c = customerService.getCustomerByUsername(customerId);
+			
+			BookingImpl newBooking = new BookingImpl(keyGenerator.generate().toString(), new Date(), c, f);
+			BookingPKImpl key = newBooking.getPkey();
+			
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap bookingMap = session.getMap(BOOKING_MAP_NAME);
+			@SuppressWarnings(""unchecked"")
+			HashSet<Booking> bookingsByUser = (HashSet<Booking>)bookingMap.get(customerId);
+			if (bookingsByUser == null) {
+				bookingsByUser = new HashSet<Booking>();
+			}
+			if (bookingsByUser.contains(newBooking)) {
+				throw new Exception(""trying to book a duplicate booking"");
+			}
+			bookingsByUser.add(newBooking);
+			bookingMap.upsert(customerId, bookingsByUser);
+			return key;
+		}catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.BookingServiceImpl.bookFlight,BookingServiceImpl.java,"String bookFlight(String customerId, String flightSegmentId, String id) {
+		if(logger.isLoggable(Level.FINER))
+			logger.finer(""WXS booking service,  bookFlight with customerId = '""+ customerId+""', flightSegmentId = '""+ flightSegmentId + ""',  and id = '"" + id + ""'"");
+		return bookFlight(customerId, new FlightPKImpl(flightSegmentId, id)).getId();
+	}
+"
+com.acmeair.wxs.service.BookingServiceImpl.getBooking,BookingServiceImpl.java,"Booking getBooking(String user, String id) {
+		
+		try{
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap bookingMap = session.getMap(BOOKING_MAP_NAME);
+			
+//			return (Booking)bookingMap.get(new BookingPK(user, id));
+			@SuppressWarnings(""unchecked"")
+			HashSet<BookingImpl> bookingsByUser = (HashSet<BookingImpl>)bookingMap.get(user);
+			if (bookingsByUser == null) {
+				return null;
+			}
+			for (BookingImpl b : bookingsByUser) {
+				if (b.getPkey().getId().equals(id)) {
+					return b;
+				}
+			}
+			return null;
+
+		}catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+			
+	}
+"
+com.acmeair.wxs.service.BookingServiceImpl.cancelBooking,BookingServiceImpl.java,"void cancelBooking(String user, String id) {
+		try{
+			Session session = og.getSession();
+			//Session session = sessionManager.getObjectGridSession();
+			ObjectMap bookingMap = session.getMap(BOOKING_MAP_NAME);
+			@SuppressWarnings(""unchecked"")
+			HashSet<BookingImpl> bookingsByUser = (HashSet<BookingImpl>)bookingMap.get(user);
+			if (bookingsByUser == null) {
+				return;
+			}
+			boolean found = false;
+			HashSet<Booking> newBookings = new HashSet<Booking>();
+			for (BookingImpl b : bookingsByUser) {
+				if (b.getPkey().getId().equals(id)) {
+					found = true;
+				}
+				else {
+					newBookings.add(b);
+				}
+			}
+			
+			if (found) {
+				bookingMap.upsert(user, newBookings);
+			}
+		}catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}		
+"
+com.acmeair.wxs.service.BookingServiceImpl.getBookingsByUser,BookingServiceImpl.java,"List<Booking> getBookingsByUser(String user) {
+		try{
+			Session session = og.getSession();
+			//Session session = sessionManager.getObjectGridSession();
+	
+			boolean startedTran = false;
+			if (!session.isTransactionActive()) {
+				startedTran = true;
+				session.begin();
+			}
+			
+			ObjectMap bookingMap = session.getMap(BOOKING_MAP_NAME);
+			@SuppressWarnings(""unchecked"")
+			HashSet<Booking> bookingsByUser = (HashSet<Booking>)bookingMap.get(user);
+			if (bookingsByUser == null) {
+				bookingsByUser = new HashSet<Booking>();
+			}
+			
+			ArrayList<Booking> bookingsList = new ArrayList<Booking>();
+			for (Booking b : bookingsByUser) {
+				bookingsList.add(b);
+			}
+		
+			if (startedTran)
+				session.commit();
+			
+			return bookingsList;
+		}catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+		
+	}
+"
+com.acmeair.wxs.service.BookingServiceImpl.count,BookingServiceImpl.java,"Long count () {
+		try {
+			Session session = og.getSession();
+			ObjectMap objectMap = session.getMap(BOOKING_MAP_NAME);			
+			MapIndex mapIndex = (MapIndex)objectMap.getIndex(""com.ibm.ws.objectgrid.builtin.map.KeyIndex"");			
+			Iterator<?> keyIterator = mapIndex.findAll();
+			Long result = 0L;
+			while(keyIterator.hasNext()) {
+				keyIterator.next(); 
+				result++;
+			}
+			/*
+			int partitions = og.getMap(BOOKING_MAP_NAME).getPartitionManager().getNumOfPartitions();
+			Long result = 0L;
+			ObjectQuery query = og.getSession().createObjectQuery(""SELECT COUNT ( o ) FROM "" + BOOKING_MAP_NAME + "" o "");
+			for(int i = 0; i<partitions;i++){
+				query.setPartition(i);
+				result += (Long) query.getSingleResult();
+			}
+			*/			
+			return result;
+		} catch (UndefinedMapException e) {
+			e.printStackTrace();
+		} catch (TransactionCallbackException e) {
+			e.printStackTrace();
+		} catch (ObjectGridException e) {
+			e.printStackTrace();
+		}	
+		return -1L;
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.initialization,CustomerServiceImpl.java,"void initialization()  {
+		try {
+			og = WXSSessionManager.getSessionManager().getObjectGrid();
+			CUSTOMER_MAP_NAME = BASE_CUSTOMER_MAP_NAME + WXSSessionManager.getSessionManager().getMapSuffix();
+			CUSTOMER_SESSION_MAP_NAME = BASE_CUSTOMER_SESSION_MAP_NAME + WXSSessionManager.getSessionManager().getMapSuffix();
+		} catch (ObjectGridException e) {
+			logger.severe(""Unable to retreive the ObjectGrid reference "" + e.getMessage());
+		}
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.count,CustomerServiceImpl.java,"Long count () {
+		try {
+			Session session = og.getSession();
+			ObjectMap objectMap = session.getMap(CUSTOMER_MAP_NAME);			
+			MapIndex mapIndex = (MapIndex)objectMap.getIndex(MapIndexPlugin.SYSTEM_KEY_INDEX_NAME);			
+			Iterator<?> keyIterator = mapIndex.findAll();
+			Long result = 0L;
+			while(keyIterator.hasNext()) {
+				keyIterator.next(); 
+				result++;
+			}
+			/*
+			int partitions = og.getMap(CUSTOMER_MAP_NAME).getPartitionManager().getNumOfPartitions();			
+			ObjectQuery query = og.getSession().createObjectQuery(""SELECT COUNT ( o ) FROM "" + CUSTOMER_MAP_NAME + "" o "");
+			for(int i = 0; i<partitions;i++){
+				query.setPartition(i);
+				result += (Long) query.getSingleResult();
+			}
+			*/			
+			return result;
+		} catch (UndefinedMapException e) {
+			e.printStackTrace();
+		} catch (TransactionCallbackException e) {
+			e.printStackTrace();
+		} catch (ObjectGridException e) {
+			e.printStackTrace();
+		}		
+		return -1L;
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.countSessions,CustomerServiceImpl.java,"Long countSessions () {
+		try {
+			Session session = og.getSession();
+			ObjectMap objectMap = session.getMap(CUSTOMER_SESSION_MAP_NAME);			
+			MapIndex mapIndex = (MapIndex)objectMap.getIndex(MapIndexPlugin.SYSTEM_KEY_INDEX_NAME);			
+			Iterator<?> keyIterator = mapIndex.findAll();
+			Long result = 0L;
+			while(keyIterator.hasNext()) {
+				keyIterator.next(); 
+				result++;
+			}
+			/*
+			int partitions = og.getMap(CUSTOMER_SESSION_MAP_NAME).getPartitionManager().getNumOfPartitions();
+			Long result = 0L;
+			ObjectQuery query = og.getSession().createObjectQuery(""SELECT COUNT ( o ) FROM "" + CUSTOMER_SESSION_MAP_NAME + "" o "");
+			for(int i = 0; i<partitions;i++){
+				query.setPartition(i);
+				result += (Long) query.getSingleResult();
+			}
+			*/			
+			return result;
+		} catch (UndefinedMapException e) {
+			e.printStackTrace();
+		} catch (TransactionCallbackException e) {
+			e.printStackTrace();
+		} catch (ObjectGridException e) {
+			e.printStackTrace();
+		}	
+		return -1L;
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.createCustomer,CustomerServiceImpl.java,"Customer createCustomer(String username, String password,
+			MemberShipStatus status, int total_miles, int miles_ytd,
+			String phoneNumber, PhoneType phoneNumberType,
+			CustomerAddress address) {
+		try{
+			Customer customer = new CustomerImpl(username, password, status, total_miles, miles_ytd, address, phoneNumber, phoneNumberType);
+			// Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap customerMap = session.getMap(CUSTOMER_MAP_NAME);
+			customerMap.insert(customer.getUsername(), customer);
+			return customer;
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.createAddress,CustomerServiceImpl.java,"CustomerAddress createAddress (String streetAddress1, String streetAddress2,
+			String city, String stateProvince, String country, String postalCode){
+		CustomerAddress address = new CustomerAddressImpl(streetAddress1, streetAddress2,
+				 city, stateProvince,  country,  postalCode);
+		return address;
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.updateCustomer,CustomerServiceImpl.java,"Customer updateCustomer(Customer customer) {
+		try{
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap customerMap = session.getMap(CUSTOMER_MAP_NAME);
+			customerMap.update(customer.getUsername(), customer);
+			return customer;
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.getCustomer,CustomerServiceImpl.java,"Customer getCustomer(String username) {
+		try{
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap customerMap = session.getMap(CUSTOMER_MAP_NAME);
+			
+			Customer c = (Customer) customerMap.get(username);
+			return c;
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.getSession,CustomerServiceImpl.java,"CustomerSession getSession(String sessionid){
+		try {
+			Session session = og.getSession();
+			ObjectMap customerSessionMap = session.getMap(CUSTOMER_SESSION_MAP_NAME);
+
+			return (CustomerSession)customerSessionMap.get(sessionid);
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.removeSession,CustomerServiceImpl.java,"void removeSession(CustomerSession session){
+		try {
+			Session ogSession = og.getSession();
+			ObjectMap customerSessionMap = ogSession.getMap(CUSTOMER_SESSION_MAP_NAME);
+
+			customerSessionMap.remove(session.getId());
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.createSession,CustomerServiceImpl.java,"CustomerSession createSession(String sessionId, String customerId, Date creation, Date expiration) {
+		try{
+			CustomerSession cSession = new CustomerSessionImpl(sessionId, customerId, creation, expiration);
+			// Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap customerSessionMap = session.getMap(CUSTOMER_SESSION_MAP_NAME);
+			customerSessionMap.insert(cSession.getId(), cSession);
+			return cSession;
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.service.CustomerServiceImpl.invalidateSession,CustomerServiceImpl.java,"void invalidateSession(String sessionid) {
+		try{
+			//Session session = sessionManager.getObjectGridSession();
+			Session session = og.getSession();
+			ObjectMap customerSessionMap = session.getMap(CUSTOMER_SESSION_MAP_NAME);
+			customerSessionMap.remove(sessionid);
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.wxs.utils.MapPutAllAgent.getObjectsToSave,MapPutAllAgent.java,"HashMap<Object, HashMap<Object,Object>> getObjectsToSave() {
+		return objectsToSave;
+	}
+"
+com.acmeair.wxs.utils.MapPutAllAgent.setObjectsToSave,MapPutAllAgent.java,"void setObjectsToSave(HashMap<Object,HashMap<Object,Object>> objectsToSave) {
+		this.objectsToSave = objectsToSave;
+	}
+"
+com.acmeair.wxs.utils.MapPutAllAgent.process,MapPutAllAgent.java,"Object process(Session arg0, ObjectMap arg1, Object arg2) {
+		// The key is the partition key, can be either the PK or when partition field is defined the partition field value
+		try{
+			Object key;
+			// I need to find the real key as the hashmap is using the real key...
+     		if( arg2 instanceof SerializedKey )
+    		     key = ((SerializedKey)arg2).getObject();
+    		else 
+    		     key = arg2;     		
+			
+			HashMap<Object, Object> objectsForThePartition =  this.objectsToSave.get(key);
+			
+			if (objectsForThePartition==null)
+				logger.info(""ERROR!!! Can not get the objects for partiton key:""+arg2);
+			else
+			{
+				Entry<Object, Object> entry;
+				Object value;
+				for (Iterator<Map.Entry<Object, Object>> itr = objectsForThePartition.entrySet().iterator(); itr.hasNext();)
+				{
+					entry = itr.next();
+					key = entry.getKey();
+					value = entry.getValue();
+					
+					logger.finer(""Save using agent:""+key+"",value:""+value);
+					arg1.upsert(key, value);
+				}
+			}
+		}catch (ObjectGridException e)
+		{
+			logger.info(""Getting exception:""+e);
+		}
+		return arg2;	
+	}
+"
+com.acmeair.wxs.utils.MapPutAllAgent.processAllEntries,MapPutAllAgent.java,"Map<Object, Object> processAllEntries(Session arg0, ObjectMap arg1) {
+		return null; 
+	}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getSessionManager,WXSSessionManager.java,"WXSSessionManager getSessionManager() {
+			if (connectionManager.get() == null) {
+				synchronized (connectionManager) {
+					if (connectionManager.get() == null) {
+						connectionManager.set(new WXSSessionManager());
+					}
+				}
+			}
+			return connectionManager.get();
+		}	
+"
+com.acmeair.wxs.utils.WXSSessionManager.initialization,WXSSessionManager.java,"void initialization()  {		
+			
+			
+			String vcapJSONString = System.getenv(""VCAP_SERVICES"");
+			if (vcapJSONString != null) {
+				logger.info(""Reading VCAP_SERVICES"");
+				Object jsonObject = JSONValue.parse(vcapJSONString);
+				logger.info(""jsonObject = "" + ((JSONObject)jsonObject).toJSONString());
+				JSONObject json = (JSONObject)jsonObject;
+				String key;
+				for (Object k: json.keySet())
+				{
+					key = (String ) k;
+					if (key.startsWith(""ElasticCaching"")||key.startsWith(""DataCache""))
+					{
+						JSONArray elasticCachingServiceArray = (JSONArray)json.get(key);
+						JSONObject elasticCachingService = (JSONObject)elasticCachingServiceArray.get(0); 
+						JSONObject credentials = (JSONObject)elasticCachingService.get(""credentials"");
+						String username = (String)credentials.get(""username"");
+						setGridUsername(username);
+						String password = (String)credentials.get(""password"");
+						setGridPassword(password);
+						String gridName = (String)credentials.get(""gridName"");
+						String catalogEndPoint = (String)credentials.get(""catalogEndPoint"");
+						logger.info(""username = "" + username + ""; password = "" + password + ""; gridName =  "" + gridName + ""; catalogEndpoint = "" + catalogEndPoint);
+						setGridConnectString(catalogEndPoint);
+						setGridName(gridName);
+						break;
+					}
+				}
+				setMapSuffix("".NONE.O"");
+			} else {
+				logger.info(""Creating the WXS Client connection. Looking up host and port information"" );
+				gridName = lookup(GRID_NAME_LOOKUP_KEY);
+				if(gridName == null){
+					gridName = ""AcmeGrid"";
+				}
+
+				gridConnectString = lookup(GRID_CONNECT_LOOKUP_KEY);
+				if(gridConnectString == null){							
+					gridConnectString = ""127.0.0.1:2809"";
+					logger.info(""Using default grid connection setting of "" + gridConnectString);
+				}
+
+				setDisableNearCacheNameString(lookup(GRID_DISABLE_NEAR_CACHE_NAME_LOOKUP_KEY));
+				setPartitionFieldNameString(lookup(GRID_PARTITION_FIELD_NAME_LOOKUP_KEY));
+
+			}
+			
+			
+			if(getDisableNearCacheNameString() == null){
+				setDisableNearCacheNameString(""Flight,FlightSegment,AirportCodeMapping,CustomerSession,Booking,Customer"");
+				logger.info(""Using default disableNearCacheNameString value of "" + disableNearCacheNameString);
+			}
+			
+			if(getPartitionFieldNameString() == null){
+				setPartitionFieldNameString(""Flight:pk.flightSegmentId,FlightSegment:originPort,Booking:pk.customerId"");
+				logger.info(""Using default partitionFieldNameString value of "" + partitionFieldNameString);
+			}
+			
+			if (!integrateWithWASTransactions && txManager!=null) // Using Spring TX if WAS TX is not enabled
+			{
+				logger.info(""Session will be created from SpringLocalTxManager w/ tx support."");
+			}else
+			{
+				txManager=null;
+				logger.info(""Session will be created from ObjectGrid directly w/o tx support."");
+			}
+			
+			
+			try {
+				prepareForTransaction();
+			} catch (ObjectGridException e) {
+				e.printStackTrace();
+			} 
+		}	
+"
+com.acmeair.wxs.utils.WXSSessionManager.lookup,WXSSessionManager.java,"String lookup (String key){
+			String value = null;
+			String lookup = key.replace('.', '/');
+			javax.naming.Context context = null;
+			javax.naming.Context envContext = null;
+			try {
+				context = new javax.naming.InitialContext();
+				envContext = (javax.naming.Context) context.lookup(""java:comp/env"");
+				if (envContext != null)
+					value = (String) envContext.lookup(lookup);
+			} catch (NamingException e) {  }
+			
+			if (value != null) {
+				logger.info(""JNDI Found "" + lookup + "" : "" + value);
+			}
+			else if (context != null) {
+				try {
+					value = (String) context.lookup(lookup);
+					if (value != null)
+						logger.info(""JNDI Found "" +lookup + "" : "" + value);
+				} catch (NamingException e) {	}
+			}
+
+			if (value == null) {
+				value = System.getProperty(key);
+				if (value != null)
+					logger.info(""Found "" + key + "" in jvm property : "" + value);
+				else {
+					value = System.getenv(key);
+					if (value != null)
+						logger.info(""Found ""+key+"" in environment property : "" + value);
+				}
+			}
+			return value;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.connectClient,WXSSessionManager.java,"ObjectGrid connectClient(String cep, String gridName, boolean integrateWithWASTransactions,String[] disableNearCacheNames) {
+			try {
+				ObjectGrid gridToReturn = sharedGrid.get();
+				if (gridToReturn == null) {
+					synchronized(sharedGrid) {
+						if (sharedGrid.get() == null) {
+							ObjectGridManager ogm = ObjectGridManagerFactory.getObjectGridManager();
+							ObjectGridConfiguration ogConfig = ObjectGridConfigFactory.createObjectGridConfiguration(gridName);
+							if (integrateWithWASTransactions) // Using WAS Transactions as Highest Priority
+							{
+
+								Plugin trans = ObjectGridConfigFactory.createPlugin(PluginType.TRANSACTION_CALLBACK,
+										""com.ibm.websphere.objectgrid.plugins.builtins.WebSphereTransactionCallback"");
+								ogConfig.addPlugin(trans);
+							}
+							if (disableNearCacheNames!=null) {
+								String mapNames[] = disableNearCacheNames;
+								for (String mName : mapNames) {									
+									BackingMapConfiguration bmc = ObjectGridConfigFactory.createBackingMapConfiguration(mName);
+									bmc.setNearCacheEnabled(false);
+									ogConfig.addBackingMapConfiguration(bmc);
+								}
+							}					
+													
+							ClientClusterContext ccc = null;
+							if (gridUsername != null) {
+								ClientSecurityConfiguration clientSC = ClientSecurityConfigurationFactory.getClientSecurityConfiguration();
+								clientSC.setSecurityEnabled(true);
+								CredentialGenerator credGen = new UserPasswordCredentialGenerator(gridUsername, gridPassword);
+								clientSC.setCredentialGenerator(credGen);
+								ccc = ogm.connect(cep, clientSC, null);
+							}
+							else {
+								ccc = ogm.connect(cep, null, null);
+							}
+
+							ObjectGrid grid = ObjectGridManagerFactory.getObjectGridManager().getObjectGrid(ccc, gridName, ogConfig);
+							sharedGrid.compareAndSet(null, grid);
+							gridToReturn = grid;
+							logger.info(""Create instance of Grid: "" + gridToReturn);
+						}else{
+							gridToReturn = sharedGrid.get(); 
+						}
+					}
+				}
+				return gridToReturn;
+			} catch (Exception e) {
+				throw new ObjectGridRuntimeException(""Unable to connect to catalog server at endpoints:"" + cep,	e);
+			}
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getMapSuffix,WXSSessionManager.java,"String getMapSuffix(){
+			return mapSuffix;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setMapSuffix,WXSSessionManager.java,"void setMapSuffix(String suffix){
+			this.mapSuffix = suffix;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getGridConnectString,WXSSessionManager.java,"String getGridConnectString() {
+			return gridConnectString;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setGridConnectString,WXSSessionManager.java,"void setGridConnectString(String gridConnectString) {
+			this.gridConnectString = gridConnectString;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getGridName,WXSSessionManager.java,"String getGridName() {
+			return gridName;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setGridName,WXSSessionManager.java,"void setGridName(String gridName) {
+			this.gridName = gridName;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getGridUsername,WXSSessionManager.java,"String getGridUsername() {
+			return gridUsername;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setGridUsername,WXSSessionManager.java,"void setGridUsername(String gridUsername) {
+			this.gridUsername = gridUsername;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getGridPassword,WXSSessionManager.java,"String getGridPassword() {
+			return gridPassword;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setGridPassword,WXSSessionManager.java,"void setGridPassword(String gridPassword) {
+			this.gridPassword = gridPassword;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.isIntegrateWithWASTransactions,WXSSessionManager.java,"boolean isIntegrateWithWASTransactions() {
+			return integrateWithWASTransactions;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setIntegrateWithWASTransactions,WXSSessionManager.java,"void setIntegrateWithWASTransactions(boolean integrateWithWASTransactions) {
+			this.integrateWithWASTransactions = integrateWithWASTransactions;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getDisableNearCacheNameString,WXSSessionManager.java,"String getDisableNearCacheNameString() {
+			return disableNearCacheNameString;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setDisableNearCacheNameString,WXSSessionManager.java,"void setDisableNearCacheNameString(String disableNearCacheNameString) {
+			this.disableNearCacheNameString = disableNearCacheNameString;
+			if (disableNearCacheNameString ==null || disableNearCacheNameString.length()==0)
+				disableNearCacheNames =null;
+			else
+				disableNearCacheNames = disableNearCacheNameString.split(SPLIT_COMMA);
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getPartitionFieldNameString,WXSSessionManager.java,"String getPartitionFieldNameString() {
+			return partitionFieldNameString;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setPartitionFieldNameString,WXSSessionManager.java,"void setPartitionFieldNameString(String partitionFieldNameString) {
+			this.partitionFieldNameString = partitionFieldNameString;
+			// In the form of <MapName>:<PartitionFieldName>,<MapName>:<PartitionFieldName>
+			if (partitionFieldNameString ==null || partitionFieldNameString.length()==0)
+				partitionFieldNames =null;
+			else
+			{
+				String[] maps = partitionFieldNameString.split(SPLIT_COMMA);
+				partitionFieldNames = new HashMap<String, String>();
+				String[] mapDef;
+				for (int i=0; i<maps.length; i++)
+				{
+					mapDef = maps[i].split(SPLIT_COLON);
+					partitionFieldNames.put(mapDef[0], mapDef[1]);
+				}
+			}
+			
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getPartitionFieldName,WXSSessionManager.java,"String getPartitionFieldName(String mapName) {
+			if (partitionFieldNames == null)
+				return null;
+			return partitionFieldNames.get(mapName);
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getTxManager,WXSSessionManager.java,"SpringLocalTxManager getTxManager() {
+			return txManager;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.setTxManager,WXSSessionManager.java,"void setTxManager(SpringLocalTxManager txManager) {
+			logger.finer(""txManager:""+txManager);
+			this.txManager = txManager;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.prepareForTransaction,WXSSessionManager.java,"void prepareForTransaction() throws ObjectGridException
+		{
+			ObjectGrid grid = this.getObjectGrid();
+			if (txManager!=null)
+				txManager.setObjectGridForThread(grid);
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getObjectGrid,WXSSessionManager.java,"ObjectGrid getObjectGrid() throws ObjectGridException {
+			ObjectGrid grid = connectClient(this.gridConnectString, this.gridName, this.integrateWithWASTransactions, this.disableNearCacheNames);
+			return grid;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getObjectGridSession,WXSSessionManager.java,"Session getObjectGridSession() throws ObjectGridException {
+			Session result;
+			ObjectGrid grid = getObjectGrid();
+			if (txManager!=null)
+				result= txManager.getSession();
+			else
+				result = grid.getSession();
+			
+//			this.log.debug(""Got session:""+ result);
+			return result;
+		}
+"
+com.acmeair.wxs.utils.WXSSessionManager.getBackingMap,WXSSessionManager.java,"BackingMap getBackingMap(String mapName)throws ObjectGridException
+		{
+			return this.getObjectGrid().getMap(mapName);			
+		}
+"
+com.acmeair.wxs.entities.CustomerImpl.getCustomerId,CustomerImpl.java,"String getCustomerId() {
+		return _id;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getUsername,CustomerImpl.java,"String getUsername() {
+		return _id;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setUsername,CustomerImpl.java,"void setUsername(String username) {
+		this._id = username;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getPassword,CustomerImpl.java,"String getPassword() {
+		return password;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setPassword,CustomerImpl.java,"void setPassword(String password) {
+		this.password = password;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getStatus,CustomerImpl.java,"MemberShipStatus getStatus() {
+		return status;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setStatus,CustomerImpl.java,"void setStatus(MemberShipStatus status) {
+		this.status = status;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getTotal_miles,CustomerImpl.java,"int getTotal_miles() {
+		return total_miles;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setTotal_miles,CustomerImpl.java,"void setTotal_miles(int total_miles) {
+		this.total_miles = total_miles;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getMiles_ytd,CustomerImpl.java,"int getMiles_ytd() {
+		return miles_ytd;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setMiles_ytd,CustomerImpl.java,"void setMiles_ytd(int miles_ytd) {
+		this.miles_ytd = miles_ytd;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getPhoneNumber,CustomerImpl.java,"String getPhoneNumber() {
+		return phoneNumber;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setPhoneNumber,CustomerImpl.java,"void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getPhoneNumberType,CustomerImpl.java,"PhoneType getPhoneNumberType() {
+		return phoneNumberType;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setPhoneNumberType,CustomerImpl.java,"void setPhoneNumberType(PhoneType phoneNumberType) {
+		this.phoneNumberType = phoneNumberType;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.getAddress,CustomerImpl.java,"CustomerAddress getAddress() {
+		return address;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.setAddress,CustomerImpl.java,"void setAddress(CustomerAddress address) {
+		this.address = address;
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.toString,CustomerImpl.java,"String toString() {
+		return ""Customer [id="" + _id + "", password="" + password + "", status=""
+				+ status + "", total_miles="" + total_miles + "", miles_ytd=""
+				+ miles_ytd + "", address="" + address + "", phoneNumber=""
+				+ phoneNumber + "", phoneNumberType="" + phoneNumberType + ""]"";
+	}
+"
+com.acmeair.wxs.entities.CustomerImpl.equals,CustomerImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerImpl other = (CustomerImpl) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (miles_ytd != other.miles_ytd)
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		if (phoneNumberType != other.phoneNumberType)
+			return false;
+		if (status != other.status)
+			return false;
+		if (total_miles != other.total_miles)
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getPkey,BookingImpl.java,"BookingPKImpl getPkey() {
+		return pkey;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getCustomerId,BookingImpl.java,"String getCustomerId() {
+		return pkey.getCustomerId();
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.setPkey,BookingImpl.java,"void setPkey(BookingPKImpl pkey) {
+		this.pkey = pkey;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getFlightKey,BookingImpl.java,"FlightPKImpl getFlightKey() {
+		return flightKey;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.setFlightKey,BookingImpl.java,"void setFlightKey(FlightPKImpl flightKey) {
+		this.flightKey = flightKey;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.setFlight,BookingImpl.java,"void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getDateOfBooking,BookingImpl.java,"Date getDateOfBooking() {
+		return dateOfBooking;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.setDateOfBooking,BookingImpl.java,"void setDateOfBooking(Date dateOfBooking) {
+		this.dateOfBooking = dateOfBooking;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getCustomer,BookingImpl.java,"Customer getCustomer() {
+		return customer;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.setCustomer,BookingImpl.java,"void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getFlight,BookingImpl.java,"Flight getFlight() {
+		return flight;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.toString,BookingImpl.java,"String toString() {
+		return ""Booking [key="" + pkey + "", flightKey="" + flightKey
+				+ "", dateOfBooking="" + dateOfBooking + "", customer="" + customer
+				+ "", flight="" + flight + ""]"";
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.equals,BookingImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookingImpl other = (BookingImpl) obj;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
+			return false;
+		if (dateOfBooking == null) {
+			if (other.dateOfBooking != null)
+				return false;
+		} else if (!dateOfBooking.equals(other.dateOfBooking))
+			return false;
+		if (flight == null) {
+			if (other.flight != null)
+				return false;
+		} else if (!flight.equals(other.flight))
+			return false;
+		if (flightKey == null) {
+			if (other.flightKey != null)
+				return false;
+		} else if (!flightKey.equals(other.flightKey))
+			return false;
+		if (pkey == null) {
+			if (other.pkey != null)
+				return false;
+		} else if (!pkey.equals(other.pkey))
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getBookingId,BookingImpl.java,"String getBookingId() {
+		return pkey.getId();
+	}
+"
+com.acmeair.wxs.entities.BookingImpl.getFlightId,BookingImpl.java,"String getFlightId() {
+		return flight.getFlightId();		
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.getId,FlightPKImpl.java,"String getId() {
+		return id;
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.setId,FlightPKImpl.java,"void setId(String id) {
+		this.id = id;
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.getFlightSegmentId,FlightPKImpl.java,"String getFlightSegmentId() {
+		return flightSegmentId;
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.setFlightSegmentId,FlightPKImpl.java,"void setFlightSegmentId(String flightSegmentId) {
+		this.flightSegmentId = flightSegmentId;
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.ibmGetPartition,FlightPKImpl.java,"Object ibmGetPartition() {
+		return this.flightSegmentId;
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.hashCode,FlightPKImpl.java,"int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((flightSegmentId == null) ? 0 : flightSegmentId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.equals,FlightPKImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlightPKImpl other = (FlightPKImpl) obj;
+		if (flightSegmentId == null) {
+			if (other.flightSegmentId != null)
+				return false;
+		} else if (!flightSegmentId.equals(other.flightSegmentId))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.FlightPKImpl.toString,FlightPKImpl.java,"String toString() {
+		return ""FlightPK [flightSegmentId="" + flightSegmentId +"",id="" + id+ ""]"";
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.getId,CustomerSessionImpl.java,"String getId() {
+		return _id;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.setId,CustomerSessionImpl.java,"void setId(String id) {
+		this._id = id;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.getCustomerid,CustomerSessionImpl.java,"String getCustomerid() {
+		return customerid;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.setCustomerid,CustomerSessionImpl.java,"void setCustomerid(String customerid) {
+		this.customerid = customerid;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.getLastAccessedTime,CustomerSessionImpl.java,"Date getLastAccessedTime() {
+		return lastAccessedTime;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.setLastAccessedTime,CustomerSessionImpl.java,"void setLastAccessedTime(Date lastAccessedTime) {
+		this.lastAccessedTime = lastAccessedTime;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.getTimeoutTime,CustomerSessionImpl.java,"Date getTimeoutTime() {
+		return timeoutTime;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.setTimeoutTime,CustomerSessionImpl.java,"void setTimeoutTime(Date timeoutTime) {
+		this.timeoutTime = timeoutTime;
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.toString,CustomerSessionImpl.java,"String toString() {
+		return ""CustomerSession [id="" + _id + "", customerid="" + customerid
+				+ "", lastAccessedTime="" + lastAccessedTime + "", timeoutTime=""
+				+ timeoutTime + ""]"";
+	}
+"
+com.acmeair.wxs.entities.CustomerSessionImpl.equals,CustomerSessionImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerSessionImpl other = (CustomerSessionImpl) obj;
+		if (customerid == null) {
+			if (other.customerid != null)
+				return false;
+		} else if (!customerid.equals(other.customerid))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (lastAccessedTime == null) {
+			if (other.lastAccessedTime != null)
+				return false;
+		} else if (!lastAccessedTime.equals(other.lastAccessedTime))
+			return false;
+		if (timeoutTime == null) {
+			if (other.timeoutTime != null)
+				return false;
+		} else if (!timeoutTime.equals(other.timeoutTime))
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.getId,BookingPKImpl.java,"String getId() {
+		return id;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.setId,BookingPKImpl.java,"void setId(String id) {
+		this.id = id;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.getCustomerId,BookingPKImpl.java,"String getCustomerId() {
+		return customerId;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.setCustomerId,BookingPKImpl.java,"void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.ibmGetPartition,BookingPKImpl.java,"Object ibmGetPartition() {
+		return this.customerId;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.hashCode,BookingPKImpl.java,"int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((customerId == null) ? 0 : customerId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.equals,BookingPKImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookingPKImpl other = (BookingPKImpl) obj;
+		if (customerId == null) {
+			if (other.customerId != null)
+				return false;
+		} else if (!customerId.equals(other.customerId))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.BookingPKImpl.toString,BookingPKImpl.java,"String toString() {
+		return ""BookingPK [customerId="" + customerId + "",id="" + id + ""]"";
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getPkey,FlightImpl.java,"FlightPKImpl getPkey() {
+		return pkey;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setPkey,FlightImpl.java,"void setPkey(FlightPKImpl pkey) {
+		this.pkey = pkey;		
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getFlightId,FlightImpl.java,"String getFlightId() {
+		return pkey.getId();
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setFlightId,FlightImpl.java,"void setFlightId(String id) {
+		pkey.setId(id);		
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getFlightSegmentId,FlightImpl.java,"String getFlightSegmentId()
+	{
+		return pkey.getFlightSegmentId();
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getScheduledDepartureTime,FlightImpl.java,"Date getScheduledDepartureTime() {
+		return scheduledDepartureTime;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setScheduledDepartureTime,FlightImpl.java,"void setScheduledDepartureTime(Date scheduledDepartureTime) {
+		this.scheduledDepartureTime = scheduledDepartureTime;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getScheduledArrivalTime,FlightImpl.java,"Date getScheduledArrivalTime() {
+		return scheduledArrivalTime;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setScheduledArrivalTime,FlightImpl.java,"void setScheduledArrivalTime(Date scheduledArrivalTime) {
+		this.scheduledArrivalTime = scheduledArrivalTime;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getFirstClassBaseCost,FlightImpl.java,"BigDecimal getFirstClassBaseCost() {
+		return firstClassBaseCost;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setFirstClassBaseCost,FlightImpl.java,"void setFirstClassBaseCost(BigDecimal firstClassBaseCost) {
+		this.firstClassBaseCost = firstClassBaseCost;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getEconomyClassBaseCost,FlightImpl.java,"BigDecimal getEconomyClassBaseCost() {
+		return economyClassBaseCost;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setEconomyClassBaseCost,FlightImpl.java,"void setEconomyClassBaseCost(BigDecimal economyClassBaseCost) {
+		this.economyClassBaseCost = economyClassBaseCost;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getNumFirstClassSeats,FlightImpl.java,"int getNumFirstClassSeats() {
+		return numFirstClassSeats;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setNumFirstClassSeats,FlightImpl.java,"void setNumFirstClassSeats(int numFirstClassSeats) {
+		this.numFirstClassSeats = numFirstClassSeats;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getNumEconomyClassSeats,FlightImpl.java,"int getNumEconomyClassSeats() {
+		return numEconomyClassSeats;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setNumEconomyClassSeats,FlightImpl.java,"void setNumEconomyClassSeats(int numEconomyClassSeats) {
+		this.numEconomyClassSeats = numEconomyClassSeats;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getAirplaneTypeId,FlightImpl.java,"String getAirplaneTypeId() {
+		return airplaneTypeId;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setAirplaneTypeId,FlightImpl.java,"void setAirplaneTypeId(String airplaneTypeId) {
+		this.airplaneTypeId = airplaneTypeId;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.getFlightSegment,FlightImpl.java,"FlightSegment getFlightSegment() {
+		return flightSegment;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.setFlightSegment,FlightImpl.java,"void setFlightSegment(FlightSegment flightSegment) {
+		this.flightSegment = flightSegment;
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.toString,FlightImpl.java,"String toString() {
+		return ""Flight key=""+pkey
+				+ "", scheduledDepartureTime="" + scheduledDepartureTime
+				+ "", scheduledArrivalTime="" + scheduledArrivalTime
+				+ "", firstClassBaseCost="" + firstClassBaseCost
+				+ "", economyClassBaseCost="" + economyClassBaseCost
+				+ "", numFirstClassSeats="" + numFirstClassSeats
+				+ "", numEconomyClassSeats="" + numEconomyClassSeats
+				+ "", airplaneTypeId="" + airplaneTypeId + ""]"";
+	}
+"
+com.acmeair.wxs.entities.FlightImpl.equals,FlightImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlightImpl other = (FlightImpl) obj;
+		if (airplaneTypeId == null) {
+			if (other.airplaneTypeId != null)
+				return false;
+		} else if (!airplaneTypeId.equals(other.airplaneTypeId))
+			return false;
+		if (economyClassBaseCost == null) {
+			if (other.economyClassBaseCost != null)
+				return false;
+		} else if (!economyClassBaseCost.equals(other.economyClassBaseCost))
+			return false;
+		if (firstClassBaseCost == null) {
+			if (other.firstClassBaseCost != null)
+				return false;
+		} else if (!firstClassBaseCost.equals(other.firstClassBaseCost))
+			return false;
+		if (flightSegment == null) {
+			if (other.flightSegment != null)
+				return false;
+		} else if (!flightSegment.equals(other.flightSegment))
+			return false;
+		if (pkey == null) {
+			if (other.pkey != null)
+				return false;
+		} else if (!pkey.equals(other.pkey))
+			return false;
+		if (numEconomyClassSeats != other.numEconomyClassSeats)
+			return false;
+		if (numFirstClassSeats != other.numFirstClassSeats)
+			return false;
+		if (scheduledArrivalTime == null) {
+			if (other.scheduledArrivalTime != null)
+				return false;
+		} else if (!scheduledArrivalTime.equals(other.scheduledArrivalTime))
+			return false;
+		if (scheduledDepartureTime == null) {
+			if (other.scheduledDepartureTime != null)
+				return false;
+		} else if (!scheduledDepartureTime.equals(other.scheduledDepartureTime))
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.AirportCodeMappingImpl.getAirportCode,AirportCodeMappingImpl.java,"String getAirportCode() {
+		return _id;
+	}
+"
+com.acmeair.wxs.entities.AirportCodeMappingImpl.setAirportCode,AirportCodeMappingImpl.java,"void setAirportCode(String airportCode) {
+		this._id = airportCode;
+	}
+"
+com.acmeair.wxs.entities.AirportCodeMappingImpl.getAirportName,AirportCodeMappingImpl.java,"String getAirportName() {
+		return airportName;
+	}
+"
+com.acmeair.wxs.entities.AirportCodeMappingImpl.setAirportName,AirportCodeMappingImpl.java,"void setAirportName(String airportName) {
+		this.airportName = airportName;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.getFlightName,FlightSegmentImpl.java,"String getFlightName() {
+		return _id;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.setFlightName,FlightSegmentImpl.java,"void setFlightName(String flightName) {
+		this._id = flightName;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.getOriginPort,FlightSegmentImpl.java,"String getOriginPort() {
+		return originPort;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.setOriginPort,FlightSegmentImpl.java,"void setOriginPort(String originPort) {
+		this.originPort = originPort;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.getDestPort,FlightSegmentImpl.java,"String getDestPort() {
+		return destPort;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.setDestPort,FlightSegmentImpl.java,"void setDestPort(String destPort) {
+		this.destPort = destPort;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.getMiles,FlightSegmentImpl.java,"int getMiles() {
+		return miles;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.setMiles,FlightSegmentImpl.java,"void setMiles(int miles) {
+		this.miles = miles;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.toString,FlightSegmentImpl.java,"String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(""FlightSegment "").append(_id).append("" originating from:\"""").append(originPort).append(""\"" arriving at:\"""").append(destPort).append(""\"""");
+		return sb.toString();
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.equals,FlightSegmentImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlightSegmentImpl other = (FlightSegmentImpl) obj;
+		if (destPort == null) {
+			if (other.destPort != null)
+				return false;
+		} else if (!destPort.equals(other.destPort))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (miles != other.miles)
+			return false;
+		if (originPort == null) {
+			if (other.originPort != null)
+				return false;
+		} else if (!originPort.equals(other.originPort))
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.getStreetAddress1,CustomerAddressImpl.java,"String getStreetAddress1() {
+		return streetAddress1;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.setStreetAddress1,CustomerAddressImpl.java,"void setStreetAddress1(String streetAddress1) {
+		this.streetAddress1 = streetAddress1;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.getStreetAddress2,CustomerAddressImpl.java,"String getStreetAddress2() {
+		return streetAddress2;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.setStreetAddress2,CustomerAddressImpl.java,"void setStreetAddress2(String streetAddress2) {
+		this.streetAddress2 = streetAddress2;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.getCity,CustomerAddressImpl.java,"String getCity() {
+		return city;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.setCity,CustomerAddressImpl.java,"void setCity(String city) {
+		this.city = city;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.getStateProvince,CustomerAddressImpl.java,"String getStateProvince() {
+		return stateProvince;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.setStateProvince,CustomerAddressImpl.java,"void setStateProvince(String stateProvince) {
+		this.stateProvince = stateProvince;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.getCountry,CustomerAddressImpl.java,"String getCountry() {
+		return country;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.setCountry,CustomerAddressImpl.java,"void setCountry(String country) {
+		this.country = country;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.getPostalCode,CustomerAddressImpl.java,"String getPostalCode() {
+		return postalCode;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.setPostalCode,CustomerAddressImpl.java,"void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.toString,CustomerAddressImpl.java,"String toString() {
+		return ""CustomerAddress [streetAddress1="" + streetAddress1
+				+ "", streetAddress2="" + streetAddress2 + "", city="" + city
+				+ "", stateProvince="" + stateProvince + "", country="" + country
+				+ "", postalCode="" + postalCode + ""]"";
+	}
+"
+com.acmeair.wxs.entities.CustomerAddressImpl.equals,CustomerAddressImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerAddressImpl other = (CustomerAddressImpl) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (postalCode == null) {
+			if (other.postalCode != null)
+				return false;
+		} else if (!postalCode.equals(other.postalCode))
+			return false;
+		if (stateProvince == null) {
+			if (other.stateProvince != null)
+				return false;
+		} else if (!stateProvince.equals(other.stateProvince))
+			return false;
+		if (streetAddress1 == null) {
+			if (other.streetAddress1 != null)
+				return false;
+		} else if (!streetAddress1.equals(other.streetAddress1))
+			return false;
+		if (streetAddress2 == null) {
+			if (other.streetAddress2 != null)
+				return false;
+		} else if (!streetAddress2.equals(other.streetAddress2))
+			return false;
+		return true;
+	}
+"
+com.acmeair.reporter.ReportGenerator.main,ReportGenerator.java,"void main(String[] args) {
+		if (args.length == 1) {
+			searchingLocation = (args[0]);
+		}
+		if (!new File(searchingLocation).isDirectory()) {
+			System.out.println(""\"""" + searchingLocation + ""\"" is not a valid directory"");
+			return;
+		}
+		System.out.println(""Parsing acme air test results in the location \"""" + searchingLocation + ""\""""); 
+		
+		ReportGenerator generator = new ReportGenerator();
+		long start, stop;
+		start = System.currentTimeMillis();
+		generator.process();
+		stop = System.currentTimeMillis();
+		System.out.println(""Results generated in "" + (stop - start)/1000.0 + "" seconds"");
+	}
+"
+com.acmeair.reporter.ReportGenerator.process,ReportGenerator.java,"void process() {
+		long start, stop;
+		String overallChartTitle = Messages.getString(""ReportGenerator.THROUGHPUT_TOTAL_LABEL""); 
+		String throughputChartTitle = Messages.getString(""ReportGenerator.THROUGHPUT_TITLE""); 
+		String yAxisLabel = Messages.getString(""ReportGenerator.THROUGHPUT_YAXIS_LABEL"");
+		Map<String, Object> input = new HashMap<String, Object>();	
+		start = System.currentTimeMillis();
+		JmeterSummariserParser jmeterParser = new JmeterSummariserParser();
+		jmeterParser.setFileName(jmeterFileName);
+		jmeterParser.setMultipleChartTitle(throughputChartTitle);
+		jmeterParser.setMultipleYAxisLabel(yAxisLabel);
+		jmeterParser.processDirectory(searchingLocation);
+		//always call it before call generating multiple chart string		
+		String url = jmeterParser.generateChartStrings(overallChartTitle, yAxisLabel,
+				"""", jmeterParser.processData(jmeterParser.getAllInputList(), true),
+				ResultParserHelper.scaleDown(jmeterParser.getAllTimeList(), 3), false);
+		ArrayList<String> list = new ArrayList<String>();		
+		list.add(url);
+		charMap.put(overallChartTitle, list);
+		generateMulitpleLinesChart(jmeterParser);
+		
+		charMap.put(throughputChartTitle, jmeterParser.getCharStrings());
+		
+		StatResult jmeterStats = StatResult.getStatistics(jmeterParser.getAllInputList());
+    	input.put(""jmeterStats"", jmeterStats);
+    	if(!jmeterParser.getAllTimeList().isEmpty()){
+    		input.put(""testStart"", jmeterParser.getTestDate() + "" "" + jmeterParser.getAllTimeList().get(0));
+    		input.put(""testEnd"", jmeterParser.getTestDate() + "" "" + jmeterParser.getAllTimeList().get(jmeterParser.getAllTimeList().size()-1));
+    	}
+		
+    	input.put(""charUrlMap"", charMap);
+		
+		stop = System.currentTimeMillis();
+		System.out.println(""Parsed jmeter in "" + (stop - start)/1000.0 + "" seconds"");
+		
+		start = System.currentTimeMillis();
+		JmeterJTLParser jtlParser = new JmeterJTLParser();
+		jtlParser.processResultsDirectory(searchingLocation);
+		
+    	input.put(""totals"", jtlParser.getResults());
+    	String urls[] = {BOOK_FLIGHT,CANCEL_BOOKING,LOGIN,LOGOUT,LIST_BOOKINGS,QUERY_FLIGHT,UPDATE_CUSTOMER,VIEW_PROFILE,""Authorization""};
+
+    	input.put(""totalUrlMap"" ,reorderTestcases(jtlParser.getResultsByUrl(), urls));	      
+    	input.put(""queryTotals"", getTotals(QUERY_FLIGHT, jtlParser.getResultsByUrl()));
+    	input.put(""bookingTotals"", getTotals(BOOK_FLIGHT, jtlParser.getResultsByUrl()));
+    	input.put(""loginTotals"", getTotals(LOGIN, jtlParser.getResultsByUrl()));
+
+		stop = System.currentTimeMillis();
+		System.out.println(""Parsed jmeter jtl files in "" + (stop - start)/1000.0 + "" seconds"");
+
+
+
+    	List<Object> nmonParsers = Messages.getConfiguration().getList(""parsers.nmonParser.directory"");
+    	if (nmonParsers != null){
+        	LinkedHashMap<String,StatResult> cpuList = new LinkedHashMap<String,StatResult>();
+    		start = System.currentTimeMillis();
+    		for(int i = 0;i < nmonParsers.size(); i++) {
+    			
+    			String enabled = Messages.getString(""parsers.nmonParser(""+i+"")[@enabled]"");			
+    			if (enabled == null ||  !enabled.equalsIgnoreCase(""false"")) {
+
+    				String directory = Messages.getString(""parsers.nmonParser(""+i+"").directory"");    				
+    				String chartTitle = Messages.getString(""parsers.nmonParser(""+i+"").chartTitle"");
+    				String label = Messages.getString(""parsers.nmonParser(""+i+"").label"");
+    				String fileName = Messages.getString(""parsers.nmonParser(""+i+"").fileName"");    				
+    				String relativePath = Messages.getString(""parsers.nmonParser(""+i+"").directory[@relative]"");
+    				
+    				if (relativePath == null ||  !relativePath.equalsIgnoreCase(""false"")) {
+    					directory = searchingLocation +""/"" + directory;
+    				} 
+    				if (fileName == null){
+    					fileName = nmonFileName;
+    				}
+
+    				NmonParser nmon = parseNmonDirectory(directory, fileName, chartTitle);
+    				cpuList  = addCpuStats(nmon, label, cpuList);
+    			}
+    		}
+ 
+    		input.put(""cpuList"", cpuList);
+
+    		stop = System.currentTimeMillis();
+    		System.out.println(""Parsed nmon files in "" + (stop - start)/1000.0 + "" seconds"");
+       	}				
+		
+		
+		if (charMap.size() > 0) {
+			start = System.currentTimeMillis();
+			generateHtmlfile(input);
+			stop = System.currentTimeMillis();
+			System.out.println(""Generated html file in "" + (stop - start)/1000.0 + "" seconds"");
+			System.out.println(""Done, charts were saved to \""""
+							+ searchingLocation + System.getProperty(""file.separator"") + RESULTS_FILE + ""\""""); 
+		} else {
+			System.out.println(""Failed, cannot find valid \"""" 
+							+ jmeterFileName + ""\"" or \"""" + nmonFileName + ""\"" files in location "" + searchingLocation); 
+		}
+	}
+"
+com.acmeair.reporter.ReportGenerator.generateMulitpleLinesChart,ReportGenerator.java,"void generateMulitpleLinesChart(ResultParser parser) {
+		if (parser.getResults().size()<=max_lines){
+			parser.generateMultipleLinesCharString(parser.getMultipleChartTitle(),
+				parser.getMultipleYAxisLabel(), """", parser.getResults());
+		}else {
+			System.out.println(""More than ""+max_lines+"" throughput files found, will break them to ""+max_lines+"" each"");
+			ArrayList<IndividualChartResults> results= parser.getResults();
+			int size = results.size();
+			for (int i=0;i<size;i=i+max_lines){
+				int endLocation = i+max_lines;
+				if (endLocation >size) {
+					endLocation=size;
+				}
+				parser.generateMultipleLinesCharString(parser.getMultipleChartTitle(),
+						parser.getMultipleYAxisLabel(), """", results.subList(i,endLocation)); 
+			}
+		}
+	}
+"
+com.acmeair.reporter.ReportGenerator.getCombinedResultsList,ReportGenerator.java,"ArrayList<Double> getCombinedResultsList (NmonParser parser){
+		Iterator<IndividualChartResults> itr = parser.getMultipleChartResults().getResults().iterator();
+        ArrayList<Double> resultList = new ArrayList<Double>();
+		while(itr.hasNext()){
+			//trim trailing idle times from each of the individual results,
+			//then combine the results together to get the final tallies. 				
+			ArrayList<Double>  curList = itr.next().getInputList();
+			
+			for(int j = curList.size() - 1; j >= 0; j--){
+				  if (curList.get(j).doubleValue() < 1){
+					  curList.remove(j);
+				  }
+			}
+			resultList.addAll(curList);
+		}
+		return resultList;
+    }
+"
+com.acmeair.reporter.ReportGenerator.generateHtmlfile,ReportGenerator.java,"void generateHtmlfile(Map<String, Object> input) {	   
+	    try{
+	    	VelocityEngine ve = new VelocityEngine();
+	    	ve.setProperty(RuntimeConstants.RESOURCE_LOADER, ""classpath"");
+	    	ve.setProperty(""classpath.resource.loader.class"",ClasspathResourceLoader.class.getName());
+	    	ve.init();
+	    	Template template = ve.getTemplate(""templates/acmeair-report.vtl"");
+	    	VelocityContext context = new VelocityContext();
+	    	 	    
+	    	 
+	    	for(Map.Entry<String, Object> entry: input.entrySet()){
+	    		context.put(entry.getKey(), entry.getValue());
+	    	}
+	    	context.put(""math"", new MathTool());
+	    	context.put(""number"", new NumberTool());
+	    	context.put(""date"", new ComparisonDateTool());
+	    	
+	    	Writer file = new FileWriter(new File(searchingLocation
+					+ System.getProperty(""file.separator"") + RESULTS_FILE));	    
+	    	template.merge( context, file );
+	    	file.flush();
+	    	file.close();
+	      
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    }
+    }
+"
+com.acmeair.reporter.ReportGenerator.addCpuStats,ReportGenerator.java,"LinkedHashMap<String,StatResult> addCpuStats(NmonParser parser, String label, LinkedHashMap<String,StatResult> toAdd){
+    	if (parser != null) {				
+    		StatResult cpuStats = StatResult.getStatistics(getCombinedResultsList(parser));
+    		cpuStats.setNumberOfResults(parser.getMultipleChartResults().getResults().size());
+    		toAdd.put(label, cpuStats);			
+    	}else {
+    		System.out.println(""no ""+label+"" cpu data found"");
+    	}
+    	return toAdd;
+    }
+"
+com.acmeair.reporter.ReportGenerator.reorderTestcases,ReportGenerator.java,"Map<String,JtlTotals> reorderTestcases(Map<String,JtlTotals> totalUrlMap, String urls[]){
+    	LinkedHashMap<String,JtlTotals> newMap = new LinkedHashMap<String,JtlTotals>();
+    	
+    	Iterator<String> keys;
+		for(int i=0; i< urls.length;i++){
+			keys  = totalUrlMap.keySet().iterator();
+			while (keys.hasNext()) {
+				String key = keys.next();		        	      
+	        	if(key.toLowerCase().contains(urls[i].toLowerCase())){
+	        		newMap.put(key, totalUrlMap.get(key));	        		
+	        	}			        	
+	        }
+		}
+		//loop 2nd time to get the remaining items
+		keys  = totalUrlMap.keySet().iterator();
+		while (keys.hasNext()) {
+	        String key = keys.next();
+	        boolean found = false;		        
+	        for(int i=0; i< urls.length;i++){
+	        	if(key.toLowerCase().contains(urls[i].toLowerCase())){
+	        		found = true;	
+	        	}
+	        }
+	        if(!found){
+	        	newMap.put(key, totalUrlMap.get(key));	        	
+        	}
+		}		
+    	return newMap;
+    }
+"
+com.acmeair.reporter.ReportGenerator.getTotals,ReportGenerator.java,"JtlTotals getTotals(String url, Map<String,JtlTotals> totalUrlMap){
+    	JtlTotals urlTotals = null;
+    	Iterator<String> keys  = totalUrlMap.keySet().iterator();
+
+    	while (keys.hasNext()) {
+    		String key = keys.next();
+    		if(key.toLowerCase().contains(url.toLowerCase())){
+
+    			if(urlTotals == null){
+    				urlTotals = totalUrlMap.get(key);
+    			}else {
+    				urlTotals.add(totalUrlMap.get(key));
+    			}
+    		}
+    	}
+    	return urlTotals;
+    }
+"
+com.acmeair.reporter.ReportGenerator.parseNmonDirectory,ReportGenerator.java,"NmonParser parseNmonDirectory (String directory, String fileName, String chartTitle ){	
+		if (!new File(directory).isDirectory()) {
+			return null;
+		}		
+		NmonParser parser = new NmonParser();
+		parser.setFileName(fileName);
+		parser.setMultipleChartTitle(chartTitle);
+		parser.processDirectory(directory);
+		generateMulitpleLinesChart(parser);
+		charMap.put(chartTitle, parser.getCharStrings());
+		return parser;
+	}
+"
+com.acmeair.reporter.util.Messages.getString,Messages.java,"String getString(String key) {
+		try {
+			return config.getString(key);
+		} catch (MissingResourceException e) {
+			return '!' + key + '!';
+		}
+	}
+"
+com.acmeair.reporter.util.Messages.getConfiguration,Messages.java,"Configuration getConfiguration(){
+		return config;
+	}
+"
+com.acmeair.reporter.util.StatResult.getMin,StatResult.java,"double getMin() {
+		return min;
+	}
+"
+com.acmeair.reporter.util.StatResult.setMin,StatResult.java,"void setMin(double min) {
+		this.min = min;
+	}
+"
+com.acmeair.reporter.util.StatResult.getMax,StatResult.java,"double getMax() {
+		return max;
+	}
+"
+com.acmeair.reporter.util.StatResult.setMax,StatResult.java,"void setMax(double max) {
+		this.max = max;
+	}
+"
+com.acmeair.reporter.util.StatResult.getAverage,StatResult.java,"double getAverage() {
+		return average;
+	}
+"
+com.acmeair.reporter.util.StatResult.setAverage,StatResult.java,"void setAverage(double average) {
+		this.average = average;
+	}
+"
+com.acmeair.reporter.util.StatResult.getCount,StatResult.java,"int getCount() {
+		return count;
+	}
+"
+com.acmeair.reporter.util.StatResult.setCount,StatResult.java,"void setCount(int count) {
+		this.count = count;
+	}
+"
+com.acmeair.reporter.util.StatResult.getSum,StatResult.java,"double getSum() {
+		return sum;
+	}
+"
+com.acmeair.reporter.util.StatResult.setSum,StatResult.java,"void setSum(double sum) {
+		this.sum = sum;
+	}
+"
+com.acmeair.reporter.util.StatResult.getNumberOfResults,StatResult.java,"double getNumberOfResults() {
+		return numberOfResults;
+	}
+"
+com.acmeair.reporter.util.StatResult.setNumberOfResults,StatResult.java,"void setNumberOfResults(double numberOfResults) {
+		this.numberOfResults = numberOfResults;
+	}
+"
+com.acmeair.reporter.util.StatResult.getStatistics,StatResult.java,"StatResult getStatistics(ArrayList <Double> list){
+    	StatResult result = new StatResult();
+    	result.average = 0;
+    	result.sum = 0;
+        if (list.size()>1)
+        result.min = list.get(1);
+        result.max = 0;
+        result.count  = 0;
+		for (int i = 0; i< list.size();i++){
+			double current = list.get(i).doubleValue();
+			if(i > 0 && i < list.size()-1){
+				result.sum += current;
+				result.count ++;
+				result.min = Math.min(result.min, current);
+				result.max = Math.max(result.max, current);
+			}
+		}
+		if(result.count > 0 && result.sum > 0)
+			result.average = (result.sum/result.count);
+		return result;
+    }
+"
+com.acmeair.reporter.parser.IndividualChartResults.setTitle,IndividualChartResults.java,"void setTitle(String title) {
+		this.title = title;
+	}
+"
+com.acmeair.reporter.parser.IndividualChartResults.getInputList,IndividualChartResults.java,"ArrayList<Double> getInputList() {
+		return inputList;
+	}
+"
+com.acmeair.reporter.parser.IndividualChartResults.setInputList,IndividualChartResults.java,"void setInputList(ArrayList<Double> inputList) {
+		this.inputList = inputList;
+	}
+"
+com.acmeair.reporter.parser.IndividualChartResults.getTimeList,IndividualChartResults.java,"ArrayList<String> getTimeList() {
+		return timeList;
+	}
+"
+com.acmeair.reporter.parser.IndividualChartResults.setTimeList,IndividualChartResults.java,"void setTimeList(ArrayList<String> timeList) {
+		this.timeList = timeList;
+	}
+"
+com.acmeair.reporter.parser.IndividualChartResults.getTitle,IndividualChartResults.java,"String getTitle() {
+		return title;
+	}
+"
+com.acmeair.reporter.parser.IndividualChartResults.incrementFiles,IndividualChartResults.java,"void incrementFiles(){
+    	files++;
+    }
+"
+com.acmeair.reporter.parser.IndividualChartResults.getFilesCount,IndividualChartResults.java,"int getFilesCount(){
+    	return files;
+    }
+"
+com.acmeair.reporter.parser.ResultParser.getMultipleChartResults,ResultParser.java,"MultipleChartResults getMultipleChartResults() {
+		return multipleChartResults;
+	}
+"
+com.acmeair.reporter.parser.ResultParser.addUp,ResultParser.java,"void addUp(ArrayList<Double> list) {
+		//if empty, don't need to add up
+		if (overallResults.getAllInputList().isEmpty()) {
+			overallResults.setAllInputList(list);
+			return;
+		}
+		int size = overallResults.getAllInputList().size();
+		if (size > list.size()) {
+			size = list.size();
+		}
+		for (int i = 0; i < size; i++) {
+			overallResults.getAllInputList().set(i, overallResults.getAllInputList().get(i) + list.get(i));
+		}
+
+	}
+"
+com.acmeair.reporter.parser.ResultParser.processDirectory,ResultParser.java,"void processDirectory(String dirName) {
+		File root = new File(dirName);
+		try {
+			Collection<File> files = FileUtils.listFiles(root,
+					new RegexFileFilter(getFileName()),
+					DirectoryFileFilter.DIRECTORY);
+
+			for (Iterator<File> iterator = files.iterator(); iterator.hasNext();) {
+				File file = (File) iterator.next();
+				processFile(file);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+"
+com.acmeair.reporter.parser.ResultParser.generateChartStrings,ResultParser.java,"String generateChartStrings(String titileLabel, String ylabel,
+			String xlable, double[] inputs, ArrayList<String> timeList, boolean addToList) {
+		if (inputs == null || inputs.length == 0)
+			return null;
+		Line line1 = Plots.newLine(Data.newData(inputs),
+				Color.newColor(""CA3D05""), """");
+		line1.setLineStyle(LineStyle.newLineStyle(2, 1, 0));
+		line1.addShapeMarkers(Shape.DIAMOND, Color.newColor(""CA3D05""), 6);		
+		LineChart chart = GCharts.newLineChart(line1);
+		// Defining axis info and styles
+		chart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0,
+				overallResults.getScale_max() / 0.9));		
+		if (timeList != null && timeList.size() > 0) {
+			chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(timeList));
+		}
+
+		String url = generateDefaultChartSettings(titileLabel, ylabel, xlable,
+				chart, addToList);		
+		return url;
+	}
+"
+com.acmeair.reporter.parser.ResultParser.generateDefaultChartSettings,ResultParser.java,"String generateDefaultChartSettings(String titileLabel,
+			String ylabel, String xlable, LineChart chart, boolean addToList) {
+		AxisStyle axisStyle = AxisStyle.newAxisStyle(BLACK, 13,
+				AxisTextAlignment.CENTER);
+		AxisLabels yAxisLabel = AxisLabelsFactory.newAxisLabels(ylabel, 50.0);
+		yAxisLabel.setAxisStyle(axisStyle);
+		AxisLabels time = AxisLabelsFactory.newAxisLabels(xlable, 50.0);
+		time.setAxisStyle(axisStyle);
+
+		chart.addYAxisLabels(yAxisLabel);
+
+		chart.addXAxisLabels(time);
+
+		chart.setDataEncoding(DataEncoding.SIMPLE);
+
+		chart.setSize(1000, 300);
+
+		chart.setTitle(titileLabel, BLACK, 16);
+		chart.setGrid(100, 10, 3, 2);
+		chart.setBackgroundFill(Fills.newSolidFill(ALICEBLUE));
+		LinearGradientFill fill = Fills.newLinearGradientFill(0, LAVENDER, 100);
+		fill.addColorAndOffset(WHITE, 0);
+		chart.setAreaFill(fill);
+		String url = chart.toURLString();
+		if(addToList) {
+			getCharStrings().add(url);
+		}
+		return url;
+	}
+"
+com.acmeair.reporter.parser.ResultParser.generateMultipleLinesCharString,ResultParser.java,"String generateMultipleLinesCharString(String titileLabel,
+			String ylabel, String xlabel, List<IndividualChartResults> list) {
+
+		if (list ==null || list.size()==0) {
+			return null;
+		}
+		Line[] lines = new Line[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			double[] multiLineData = processMultiLineData(list.get(i).getInputList());
+			if (multiLineData!=null) {
+				lines[i] = Plots.newLine(Data.newData(multiLineData), ResultParserHelper.getColor(i), list.get(i).getTitle());
+				lines[i].setLineStyle(LineStyle.newLineStyle(2, 1, 0));		
+			} else {
+				System.out.println(""found jmeter log file that doesn't have data:\"" "" + list.get(i).getTitle() +""\"" skipping!"");
+				return null;
+			}
+		}
+
+		LineChart chart = GCharts.newLineChart(lines);
+		chart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0,
+				overallResults.getOverallScale_max() / 0.9));
+		
+		chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(list.get(0)
+				.getTimeList()));
+		// Defining axis info and styles
+		String url = generateDefaultChartSettings(titileLabel, ylabel, xlabel,
+				chart, true);		
+		return url;
+	}
+"
+com.acmeair.reporter.parser.ResultParser.getAllInputList,ResultParser.java,"ArrayList<Double> getAllInputList() {
+		return overallResults.getAllInputList();
+	}
+"
+com.acmeair.reporter.parser.ResultParser.getAllTimeList,ResultParser.java,"ArrayList<String> getAllTimeList() {
+		return overallResults.getAllTimeList();
+	}
+"
+com.acmeair.reporter.parser.ResultParser.getCharStrings,ResultParser.java,"ArrayList<String> getCharStrings() {
+		return getMultipleChartResults().getCharStrings();
+	}
+"
+com.acmeair.reporter.parser.ResultParser.getData,ResultParser.java,"<E> IndividualChartResults getData(String fileName) {
+		IndividualChartResults results = new IndividualChartResults();
+		try {
+			FileInputStream fstream = new FileInputStream(fileName);
+			// Get the object of DataInputStream
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+
+			while ((strLine = br.readLine()) != null) {
+				processLine(results, strLine);
+			}
+			in.close();
+		} catch (Exception e) {
+			System.err.println(""Error: "" + e.getMessage());
+		}		
+
+		addUp(results.getInputList());
+		overallResults.setAllTimeList(results.getTimeList());
+		return results;
+	}
+"
+com.acmeair.reporter.parser.ResultParser.getResults,ResultParser.java,"ArrayList<IndividualChartResults> getResults() {
+		return getMultipleChartResults().getResults();
+	}
+"
+com.acmeair.reporter.parser.ResultParser.processData,ResultParser.java,"double[] processData(ArrayList<Double> inputList, boolean isTotalThroughput) {
+		if (inputList != null && inputList.size() > 0) {
+			if (this instanceof NmonParser) {
+					overallResults.setScale_max(90.0);
+			} else {
+				overallResults.setScale_max(Collections.max(inputList));
+			}
+			if (overallResults.getOverallScale_max() < overallResults.getScale_max() && !isTotalThroughput) {
+				overallResults.setOverallScale_max( overallResults.getScale_max());
+			}			
+			double scale_factor = 90 / overallResults.getScale_max();
+			return ResultParserHelper.scaleInputsData(inputList, scale_factor);
+		}
+		return null;
+	}
+"
+com.acmeair.reporter.parser.ResultParser.processMultiLineData,ResultParser.java,"double[] processMultiLineData(ArrayList<Double> inputList) {
+		if (inputList != null && inputList.size() > 0) {			
+			double scale_factor = 90 / overallResults.getOverallScale_max();
+			return ResultParserHelper.scaleInputsData(inputList, scale_factor);
+		}
+		return null;
+	}
+"
+com.acmeair.reporter.parser.ResultParser.getMultipleChartTitle,ResultParser.java,"String getMultipleChartTitle() {		
+		return multipleChartResults.getMultipleChartTitle();
+	}
+"
+com.acmeair.reporter.parser.ResultParser.setMultipleYAxisLabel,ResultParser.java,"void setMultipleYAxisLabel(String label){
+		multipleChartResults.setMultipleChartYAxisLabel(label);
+	}
+"
+com.acmeair.reporter.parser.ResultParser.setMultipleChartTitle,ResultParser.java,"void setMultipleChartTitle(String label){
+		multipleChartResults.setMultipleChartTitle(label);
+	}
+"
+com.acmeair.reporter.parser.ResultParser.getMultipleYAxisLabel,ResultParser.java,"String getMultipleYAxisLabel() {
+		return multipleChartResults.getMultipleChartYAxisLabel();
+	}
+"
+com.acmeair.reporter.parser.ResultParserHelper.getColor,ResultParserHelper.java,"Color getColor(int i) {
+		Color[] colors = { Color.RED, Color.BLACK, Color.BLUE, Color.YELLOW,
+				Color.GREEN, Color.ORANGE, Color.PINK, Color.SILVER,
+				Color.GOLD, Color.WHITE, Color.BROWN, Color.CYAN,Color.GRAY,Color.HONEYDEW,Color.IVORY };
+		return colors[i % 15];
+	}
+"
+com.acmeair.reporter.parser.ResultParserHelper.scaleDown,ResultParserHelper.java,"<E> ArrayList<E> scaleDown(ArrayList<E> testList, int scaleDownFactor) {
+		
+		if (testList==null) {
+			return null;
+		}
+		if (testList.size() <= 7)
+			return testList;
+		if (scaleDownFactor > 10 || scaleDownFactor < 0) {
+			throw new RuntimeException(
+					""currently only support factor from 0-10"");
+		}
+		int listLastItemIndex = testList.size() - 1;
+		int a = (int) java.lang.Math.pow(2, scaleDownFactor);
+		if (a > listLastItemIndex) {
+			return testList;
+		}
+		ArrayList<E> newList = new ArrayList<E>();
+		newList.add(testList.get(0));
+	
+		if (scaleDownFactor == 0) {
+			newList.add(testList.get(listLastItemIndex));
+	
+		} else {
+	
+			for (int m = 1; m <= a; m++) {
+				newList.add(testList.get(listLastItemIndex * m / a));
+			}
+		}
+		return newList;
+	}
+"
+com.acmeair.reporter.parser.ResultParserHelper.scaleInputsData,ResultParserHelper.java,"double[] scaleInputsData(ArrayList<Double> inputList,
+			double scale_factor) {
+		double[] inputs = new double[inputList.size()];
+		for (int i = 0; i <= inputList.size() - 1; i++) {
+			inputs[i] = inputList.get(i) * scale_factor;
+		}
+		return inputs;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.getMultipleChartTitle,MultipleChartResults.java,"String getMultipleChartTitle() {
+		return multipleChartTitle;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.setMultipleChartTitle,MultipleChartResults.java,"void setMultipleChartTitle(String multipleChartTitle) {
+		this.multipleChartTitle = multipleChartTitle;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.getMultipleChartYAxisLabel,MultipleChartResults.java,"String getMultipleChartYAxisLabel() {
+		return multipleChartYAxisLabel;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.setMultipleChartYAxisLabel,MultipleChartResults.java,"void setMultipleChartYAxisLabel(String multipleChartYAxisLabel) {
+		this.multipleChartYAxisLabel = multipleChartYAxisLabel;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.getResults,MultipleChartResults.java,"ArrayList<IndividualChartResults> getResults() {
+		return results;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.setResults,MultipleChartResults.java,"void setResults(ArrayList<IndividualChartResults> results) {
+		this.results = results;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.getCharStrings,MultipleChartResults.java,"ArrayList<String> getCharStrings() {
+		return charStrings;
+	}
+"
+com.acmeair.reporter.parser.MultipleChartResults.setCharStrings,MultipleChartResults.java,"void setCharStrings(ArrayList<String> charStrings) {
+		this.charStrings = charStrings;
+	}
+"
+com.acmeair.reporter.parser.OverallResults.getAllInputList,OverallResults.java,"ArrayList<Double> getAllInputList() {
+		return allInputList;
+	}
+"
+com.acmeair.reporter.parser.OverallResults.setAllInputList,OverallResults.java,"void setAllInputList(ArrayList<Double> allInputList) {
+		this.allInputList = new ArrayList<Double> (allInputList);
+	}
+"
+com.acmeair.reporter.parser.OverallResults.getAllTimeList,OverallResults.java,"ArrayList<String> getAllTimeList() {
+		return allTimeList;
+	}
+"
+com.acmeair.reporter.parser.OverallResults.setAllTimeList,OverallResults.java,"void setAllTimeList(ArrayList<String> allTimeList) {
+		this.allTimeList = new ArrayList<String> (allTimeList);
+	}
+"
+com.acmeair.reporter.parser.OverallResults.getOverallScale_max,OverallResults.java,"double getOverallScale_max() {
+		return overallScale_max;
+	}
+"
+com.acmeair.reporter.parser.OverallResults.setOverallScale_max,OverallResults.java,"void setOverallScale_max(double overallScale_max) {
+		this.overallScale_max = overallScale_max;
+	}
+"
+com.acmeair.reporter.parser.OverallResults.getScale_max,OverallResults.java,"double getScale_max() {
+		return scale_max;
+	}
+"
+com.acmeair.reporter.parser.OverallResults.setScale_max,OverallResults.java,"void setScale_max(double scale_max) {
+		this.scale_max = scale_max;
+	}
+"
+com.acmeair.reporter.parser.component.JmeterJTLParser.setLogFileName,JmeterJTLParser.java,"void setLogFileName (String logFileName) {
+    	this.jmeterJTLFileName = logFileName;
+    }
+"
+com.acmeair.reporter.parser.component.JmeterJTLParser.processResultsDirectory,JmeterJTLParser.java,"void processResultsDirectory(String dirName) {
+    	File root = new File(dirName);
+    	try {
+    		Collection<File> files = FileUtils.listFiles(root,
+    				new RegexFileFilter(jmeterJTLFileName),
+    				DirectoryFileFilter.DIRECTORY);
+
+    		for (Iterator<File> iterator = files.iterator(); iterator.hasNext();) {
+    			File file = (File) iterator.next();
+    			parse(file);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+"
+com.acmeair.reporter.parser.component.JmeterJTLParser.parse,JmeterJTLParser.java,"void parse(File jmeterJTLfile) throws IOException {
+    	if(totalAll == null){
+    		totalAll = new JtlTotals();
+    		totalUrlMap = new HashMap<String, JtlTotals>(); 
+    	}
+    	totalAll.incrementFiles();
+        Pattern pattern = Pattern.compile(regEx);
+        HashMap <String, Integer> threadCounter = new HashMap<String, Integer>();
+        
+        BufferedReader reader = new BufferedReader(new FileReader(jmeterJTLfile));
+        try {
+            String line = reader.readLine();
+            while(line != null) {
+            	
+                Matcher matcher = pattern.matcher(line);
+                if(matcher.find()) {
+                    add(matcher, totalAll);
+                    
+                    String url = matcher.group(GROUP_LB);
+                    JtlTotals urlTotals = totalUrlMap.get(url);
+                    if(urlTotals == null) {
+                        urlTotals = new JtlTotals();                        
+                        totalUrlMap.put(url, urlTotals);
+                    }
+                    add(matcher, urlTotals);
+                    String threadName = matcher.group(GROUP_TN);
+                    Integer threadCnt = threadCounter.get(threadName);
+                    if(threadCnt == null) {
+                    	threadCnt = new Integer(1);
+                    }else{
+                    	threadCnt = Integer.valueOf(threadCnt.intValue()+1);
+                    }
+                    threadCounter.put(threadName, threadCnt);
+                }                
+                line = reader.readLine();
+            }
+            
+        } finally {
+        	reader.close();
+        }
+        totalAll.setThreadMap(threadCounter);
+        if(totalAll.getCount() == 0) {
+            System.out.println(""JmeterJTLParser - No results found!"");
+            return;
+        }
+    } 
+"
+com.acmeair.reporter.parser.component.JmeterJTLParser.getResults,JmeterJTLParser.java,"JtlTotals getResults() {
+    	return totalAll;
+    }
+"
+com.acmeair.reporter.parser.component.JmeterJTLParser.getResultsByUrl,JmeterJTLParser.java,"Map<String, JtlTotals> getResultsByUrl() {
+    	return totalUrlMap;
+    }
+"
+com.acmeair.reporter.parser.component.JmeterJTLParser.add,JmeterJTLParser.java,"void add(Matcher matcher, JtlTotals total) {
+        
+        long timestamp = Long.parseLong(matcher.group(GROUP_TS));
+        total.addTimestamp(timestamp);
+        
+        int time = Integer.parseInt(matcher.group(GROUP_T));
+        total.addTime(time);
+                
+        String rc = matcher.group(GROUP_RC);
+        total.addReturnCode(rc);
+              
+        if(!matcher.group(GROUP_S).equalsIgnoreCase(""true"")) {
+        	total.incrementFailures();
+        }
+
+        String strFlightCount = matcher.group(GROUP_FLIGHTTOCOUNT);
+        if (strFlightCount != null && !strFlightCount.isEmpty()){  
+        	int count = Integer.parseInt(strFlightCount);
+        	total.addToFlight(count);        	
+        }        
+
+        strFlightCount = matcher.group(GROUP_FLIGHTRETCOUNT);
+        if (strFlightCount != null && !strFlightCount.isEmpty()){
+        	total.addFlightRetCount(Integer.parseInt(strFlightCount));
+        }
+        
+        String oneWay = matcher.group(GROUP_ONEWAY);
+        if (oneWay != null && oneWay.equalsIgnoreCase(""true"")){        	
+        	total.incrementOneWayCount();
+        }        
+    } 
+"
+com.acmeair.reporter.parser.component.JmeterSummariserParser.processFile,JmeterSummariserParser.java,"void processFile(File file) {
+		IndividualChartResults result= getData(file.getPath());		
+		super.processData(ResultParserHelper.scaleDown(result.getInputList(),8),false);
+		IndividualChartResults individualResults = new IndividualChartResults();
+		if(result.getTitle() != null){
+			individualResults.setTitle(result.getTitle());
+		} else {
+			individualResults.setTitle(file.getName());
+		}
+		individualResults.setInputList(ResultParserHelper.scaleDown(result.getInputList(),6));
+		individualResults.setTimeList(ResultParserHelper.scaleDown(result.getTimeList(),3));
+		super.getMultipleChartResults().getResults().add(individualResults);
+	}
+"
+com.acmeair.reporter.parser.component.JmeterSummariserParser.getFileName,JmeterSummariserParser.java,"String getFileName() {
+		return jmeterFileName;
+	}
+"
+com.acmeair.reporter.parser.component.JmeterSummariserParser.setFileName,JmeterSummariserParser.java,"void setFileName(String fileName) {
+		jmeterFileName = fileName;
+	}
+"
+com.acmeair.reporter.parser.component.JmeterSummariserParser.getTestDate,JmeterSummariserParser.java,"String getTestDate(){
+		return testDate;
+	}
+"
+com.acmeair.reporter.parser.component.JmeterSummariserParser.processLine,JmeterSummariserParser.java,"void processLine(IndividualChartResults results, String strLine) {		
+		if (strLine.indexOf(""summary +"") > 0) {			
+			String[] tokens = strLine.split("" "");
+			results.getTimeList().add(tokens[1].trim());
+			testDate = tokens[0].trim();		
+			int endposition = strLine.indexOf(""/s"");
+			int startposition = strLine.indexOf(""="");
+			String thoughputS = strLine.substring(startposition + 1, endposition).trim();
+			Double throughput = Double.parseDouble(thoughputS);
+			if (throughput == 0.0 && SKIP_JMETER_DROPOUTS) {
+				return;
+			}
+			results.getInputList().add(throughput);
+		} else if (strLine.indexOf(""Name:"") > 0) {
+			int startIndex = strLine.indexOf("" Name:"")+7;
+			int endIndex = strLine.indexOf("" "", startIndex);
+			String name = strLine.substring(startIndex, endIndex);
+			results.setTitle(name);
+		}
+	}
+"
+com.acmeair.reporter.parser.component.JtlTotals.add,JtlTotals.java,"void add(JtlTotals totals){
+      rcMap.putAll(totals.getReturnCodeCounts());
+      millisMap.putAll(totals.getMillisMap());
+      threadMap.putAll(totals.getThreadMap());
+      one_way_count += totals.getOneWayCount();
+      flight_ret_count += totals.getFlightRetCount();
+      flight_to_empty_count += totals.getEmptyToFlightCount();
+      flight_to_sum += totals.getFlightToSum();
+      flight_to_count += totals.getFlightToCount();
+      failures += totals.getFailures();
+      request_count += totals.getCount();  
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getFlightToCount,JtlTotals.java,"long getFlightToCount() {
+		return flight_to_count;
+	}
+"
+com.acmeair.reporter.parser.component.JtlTotals.addTime,JtlTotals.java,"void addTime(int time){
+    	request_count++;
+    	time_sum+=time;
+        time_max = Math.max(time_max, time);
+        time_min = Math.min(time_min, time);
+        timeList.add(time);
+        Integer bucket = new Integer(time / millisPerBucket);
+        Integer count = millisMap.get(bucket);
+        if(count == null) {
+            count = new Integer(0);
+        }
+        millisMap.put(bucket, new Integer(count.intValue() + 1));
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getMillisMap,JtlTotals.java,"Map<Integer, Integer> getMillisMap() {
+		return millisMap;
+	}
+"
+com.acmeair.reporter.parser.component.JtlTotals.addReturnCode,JtlTotals.java,"void addReturnCode(String rc){
+        Integer rc_count = rcMap.get(rc);
+        if(rc_count == null) {
+            rc_count = new Integer(0);
+        }
+        rcMap.put(rc, new Integer(rc_count.intValue() + 1));    
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.setThreadMap,JtlTotals.java,"void setThreadMap(Map<String,Integer> threadMap){
+    	this.threadMap = threadMap;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.addTimestamp,JtlTotals.java,"void addTimestamp(long timestamp){
+    	timestamp_end = Math.max(timestamp_end, timestamp);
+        timestamp_start = Math.min(timestamp_start, timestamp);
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.incrementFailures,JtlTotals.java,"void incrementFailures(){
+    	failures++;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.addToFlight,JtlTotals.java,"void addToFlight(int count){
+    	this.flight_to_count++;
+    	this.flight_to_sum += count;
+    	if(count == 0)
+    		this.flight_to_empty_count++;	
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.addFlightRetCount,JtlTotals.java,"void addFlightRetCount(int count){
+    	this.flight_ret_count += count;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.incrementOneWayCount,JtlTotals.java,"void incrementOneWayCount(){
+    	one_way_count++;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.incrementFiles,JtlTotals.java,"void incrementFiles(){
+    	files++;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getFilesCount,JtlTotals.java,"int getFilesCount(){
+    	return files;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getCount,JtlTotals.java,"int getCount(){
+    	return request_count;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getThreadMap,JtlTotals.java,"Map<String,Integer> getThreadMap(){
+    	return this.threadMap;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getAverageResponseTime,JtlTotals.java,"int getAverageResponseTime(){
+    	//in case .jtl file doesn't exist, request_count could be 0
+    	//adding this condition to avoid ""divide by zero"" runtime exception
+    	if (request_count==0) {
+    		return time_sum;
+    	}
+    	return  (time_sum/request_count);
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getMaxResponseTime,JtlTotals.java,"int getMaxResponseTime(){
+    	return time_max;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getMinResponseTime,JtlTotals.java,"int getMinResponseTime(){
+    	return time_min;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getFailures,JtlTotals.java,"int getFailures(){
+    	return failures;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.get90thPrecentile,JtlTotals.java,"int get90thPrecentile(){
+    	if(timeList.isEmpty()){
+    		return  Integer.MAX_VALUE; 
+    	}
+    	int target = (int)Math.round(timeList.size() * .90 );
+    	Collections.sort(timeList); 
+    	if(target == timeList.size()){target--;}    	
+    	return timeList.get(target);
+    }    
+"
+com.acmeair.reporter.parser.component.JtlTotals.getReturnCodeCounts,JtlTotals.java,"Map<String, Integer> getReturnCodeCounts(){
+    	return rcMap;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getElapsedTimeInSeconds,JtlTotals.java,"long getElapsedTimeInSeconds(){
+        double secondsElaspsed = (timestamp_end - timestamp_start) / MILLIS_PER_SECOND;
+        return Math.round(secondsElaspsed);
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getRequestsPerSecond,JtlTotals.java,"long getRequestsPerSecond (){      
+        return  Math.round(request_count / getElapsedTimeInSeconds());
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getFlightToSum,JtlTotals.java,"long getFlightToSum(){
+    	return flight_to_sum;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getEmptyToFlightCount,JtlTotals.java,"long getEmptyToFlightCount(){
+    	return flight_to_empty_count;
+    }    
+"
+com.acmeair.reporter.parser.component.JtlTotals.getAverageToFlights,JtlTotals.java,"float getAverageToFlights(){
+    	return (float)flight_to_sum/flight_to_count;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getFlightRetCount,JtlTotals.java,"long getFlightRetCount(){
+    	return flight_ret_count;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getOneWayCount,JtlTotals.java,"long getOneWayCount(){
+    	return one_way_count;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.setResponseTimeStepping,JtlTotals.java,"void setResponseTimeStepping(int milliseconds){
+    	millisPerBucket = milliseconds;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.getResponseTimeStepping,JtlTotals.java,"int getResponseTimeStepping(){
+    	return millisPerBucket;
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.cntByTimeString,JtlTotals.java,"String cntByTimeString() {
+        DecimalFormat df = new DecimalFormat(DECIMAL_PATTERN);
+        List<String> millisStr = new LinkedList<String>();
+        
+        Iterator <Entry<Integer,Integer>>iter = millisMap.entrySet().iterator();
+        while(iter.hasNext()) {
+            Entry<Integer,Integer> millisEntry = iter.next();
+            Integer bucket = (Integer)millisEntry.getKey();
+            Integer bucketCount = (Integer)millisEntry.getValue();
+            
+            int minMillis = bucket.intValue() * millisPerBucket;
+            int maxMillis = (bucket.intValue() + 1) * millisPerBucket;
+            
+            millisStr.add(
+              df.format(minMillis/MILLIS_PER_SECOND)+"" s ""+
+              ""- ""+
+              df.format(maxMillis/MILLIS_PER_SECOND)+"" s ""+
+              ""= "" + bucketCount);
+        }
+        return millisStr.toString();
+    }
+"
+com.acmeair.reporter.parser.component.JtlTotals.cntByTime,JtlTotals.java,"HashMap<String, Integer> cntByTime() {
+        DecimalFormat df = new DecimalFormat(DECIMAL_PATTERN);     
+        LinkedHashMap<String, Integer> millisStr = new LinkedHashMap<String, Integer>(); 
+        Iterator <Entry<Integer,Integer>>iter = millisMap.entrySet().iterator();
+        while(iter.hasNext()) {
+            Entry<Integer,Integer> millisEntry = iter.next();
+            Integer bucket = (Integer)millisEntry.getKey();
+            Integer bucketCount = (Integer)millisEntry.getValue();
+            
+            int minMillis = bucket.intValue() * millisPerBucket;
+            int maxMillis = (bucket.intValue() + 1) * millisPerBucket;
+            
+            millisStr.put(
+              df.format(minMillis/MILLIS_PER_SECOND)+"" s ""+
+              ""- ""+
+              df.format(maxMillis/MILLIS_PER_SECOND)+"" s ""
+              , bucketCount);
+        }
+        return millisStr;
+    }
+"
+com.acmeair.reporter.parser.component.NmonParser.processFile,NmonParser.java,"void processFile(File file) {
+		IndividualChartResults result= getData(file.getPath());
+		super.processData(ResultParserHelper.scaleDown(result.getInputList(),8),false);
+		IndividualChartResults individualResults = new IndividualChartResults();
+
+		individualResults.setTitle(result.getTitle());
+		individualResults.setInputList(ResultParserHelper.scaleDown(result.getInputList(),6));
+		individualResults.setTimeList(ResultParserHelper.scaleDown(result.getTimeList(),3));
+		super.getMultipleChartResults().getResults().add(individualResults);
+	}
+"
+com.acmeair.reporter.parser.component.NmonParser.getFileName,NmonParser.java,"String getFileName() {
+		return nmonFileName;
+	}
+"
+com.acmeair.reporter.parser.component.NmonParser.setFileName,NmonParser.java,"void setFileName(String fileName) {
+		nmonFileName = fileName;
+	}
+"
+com.acmeair.reporter.parser.component.NmonParser.processLine,NmonParser.java,"void processLine(IndividualChartResults results, String strLine) {
+		if(strLine.startsWith(""AAA,host,"")){
+			String[] tokens = strLine.split("","");
+			 results.setTitle(tokens[2].trim());			
+		}
+		
+		if (strLine.indexOf(""ZZZZ"") >=0){
+			String[] tokens = strLine.split("","");
+			 results.getTimeList().add(tokens[2].trim());
+		}
+		
+		if (strLine.indexOf(""CPU_ALL"") >=0 && strLine.indexOf(""CPU Total"")<0) {
+			String[] tokens = strLine.split("","");
+			String user = tokens[2].trim();
+			String sys = tokens[3].trim();
+			Double userDouble = Double.parseDouble(user);
+			Double sysDouble = Double.parseDouble(sys);
+			 results.getInputList().add(userDouble+sysDouble);		
+		}
+	}
+"
+com.acmeair.morphia.BigIntegerConverter.encode,BigIntegerConverter.java,"Object encode(Object value, MappedField optionalExtraInfo) {
+        return value.toString();
+    }
+"
+com.acmeair.morphia.BigIntegerConverter.decode,BigIntegerConverter.java,"Object decode(Class targetClass, Object fromDBObject, MappedField optionalExtraInfo) throws MappingException {
+        if (fromDBObject == null) return null;
+
+        return new BigInteger(fromDBObject.toString());
+    }
+"
+com.acmeair.morphia.DatastoreFactory.getDatastore,DatastoreFactory.java,"Datastore getDatastore(Datastore ds)
+	{
+		Datastore result =ds;
+		
+		if (mongourl!=null)
+		{
+			try{
+				Properties prop = new Properties();
+				prop.load(DatastoreFactory.class.getResource(""/acmeair-mongo.properties"").openStream());
+				boolean fsync = new Boolean(prop.getProperty(""mongo.fsync""));
+				int w = new Integer(prop.getProperty(""mongo.w""));
+				int connectionsPerHost = new Integer(prop.getProperty(""mongo.connectionsPerHost""));
+				int threadsAllowedToBlockForConnectionMultiplier = new Integer(prop.getProperty(""mongo.threadsAllowedToBlockForConnectionMultiplier""));
+				
+				// To match the local options
+				MongoClientOptions.Builder builder = new MongoClientOptions.Builder()
+					.writeConcern(new WriteConcern(w, 0, fsync))
+					.connectionsPerHost(connectionsPerHost)
+					.threadsAllowedToBlockForConnectionMultiplier(threadsAllowedToBlockForConnectionMultiplier);
+			
+				MongoClientURI mongoURI = new MongoClientURI(mongourl, builder);
+				MongoClient mongo = new MongoClient(mongoURI);
+				Morphia morphia = new Morphia();				
+				result = morphia.createDatastore( mongo ,mongoURI.getDatabase());
+				System.out.println(""create mongo datastore with options:""+result.getMongo().getMongoClientOptions());
+			}catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+    	// The converter is added for handing JDK 7 issue
+	//	result.getMapper().getConverters().addConverter(new BigDecimalConverter());		
+    //	result.getMapper().getConverters().addConverter(new BigIntegerConverter());
+    	
+		// Enable index
+		result.ensureIndex(Booking.class, ""pkey.customerId"");
+		result.ensureIndex(Flight.class, ""pkey.flightSegmentId,scheduledDepartureTime"");
+		result.ensureIndex(FlightSegment.class, ""originPort,destPort"");
+
+    	return result;
+	}
+"
+com.acmeair.morphia.BigDecimalConverter.encode,BigDecimalConverter.java,"Object encode(Object value, MappedField optionalExtraInfo) {
+        return value.toString();
+    }
+"
+com.acmeair.morphia.BigDecimalConverter.decode,BigDecimalConverter.java,"Object decode(Class targetClass, Object fromDBObject, MappedField optionalExtraInfo) throws MappingException {
+        if (fromDBObject == null) return null;
+        return new BigDecimal(fromDBObject.toString());
+    }
+"
+com.acmeair.morphia.services.FlightServiceImpl.initialization,FlightServiceImpl.java,"void initialization() {	
+		datastore = MongoConnectionManager.getConnectionManager().getDatastore();
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.countFlights,FlightServiceImpl.java,"Long countFlights() {
+		return datastore.find(FlightImpl.class).countAll();
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.countFlightSegments,FlightServiceImpl.java,"Long countFlightSegments() {
+		return datastore.find(FlightSegmentImpl.class).countAll();
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.countAirports,FlightServiceImpl.java,"Long countAirports() {
+		return datastore.find(AirportCodeMappingImpl.class).countAll();
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.getFlight,FlightServiceImpl.java,"Flight getFlight(String flightId, String segmentId) {
+		Query<FlightImpl> q = datastore.find(FlightImpl.class).field(""_id"").equal(flightId);
+		return q.get();
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.getFlightSegment,FlightServiceImpl.java,"FlightSegment getFlightSegment(String fromAirport, String toAirport){
+		Query<FlightSegmentImpl> q = datastore.find(FlightSegmentImpl.class).field(""originPort"").equal(fromAirport).field(""destPort"").equal(toAirport);
+		FlightSegment segment = q.get();
+		if (segment == null) {
+			segment = new FlightSegmentImpl(); // put a sentinel value of a non-populated flightsegment 
+		}
+		return segment;
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.getFlightBySegment,FlightServiceImpl.java,"List<Flight> getFlightBySegment(FlightSegment segment, Date deptDate){
+		Query<FlightImpl> q2;
+		if(deptDate != null) {
+			q2 = datastore.find(FlightImpl.class).disableValidation().field(""flightSegmentId"").equal(segment.getFlightName()).field(""scheduledDepartureTime"").equal(deptDate);
+		} else {
+			q2 = datastore.find(FlightImpl.class).disableValidation().field(""flightSegmentId"").equal(segment.getFlightName());
+		}
+		List<FlightImpl> flightImpls = q2.asList();
+		List<Flight> flights;
+		if (flightImpls != null) {
+			flights =  new ArrayList<Flight>(); 
+			for (Flight flight : flightImpls) {
+				flight.setFlightSegment(segment);
+				flights.add(flight);
+			}
+		}
+		else {
+			flights = new ArrayList<Flight>(); // put an empty list into the cache in the cache in the case where no matching flights
+		}
+		return flights;
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.storeAirportMapping,FlightServiceImpl.java,"void storeAirportMapping(AirportCodeMapping mapping) {
+		try{
+			datastore.save(mapping);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.createAirportCodeMapping,FlightServiceImpl.java,"AirportCodeMapping createAirportCodeMapping(String airportCode, String airportName){
+		AirportCodeMapping acm = new AirportCodeMappingImpl(airportCode, airportName);
+		return acm;
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.createNewFlight,FlightServiceImpl.java,"Flight createNewFlight(String flightSegmentId,
+			Date scheduledDepartureTime, Date scheduledArrivalTime,
+			BigDecimal firstClassBaseCost, BigDecimal economyClassBaseCost,
+			int numFirstClassSeats, int numEconomyClassSeats,
+			String airplaneTypeId) {
+		String id = keyGenerator.generate().toString();
+		Flight flight = new FlightImpl(id, flightSegmentId,
+			scheduledDepartureTime, scheduledArrivalTime,
+			firstClassBaseCost, economyClassBaseCost,
+			numFirstClassSeats, numEconomyClassSeats,
+			airplaneTypeId);
+		try{
+			datastore.save(flight);
+			return flight;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.storeFlightSegment,FlightServiceImpl.java,"void storeFlightSegment(FlightSegment flightSeg) {
+		try{
+			datastore.save(flightSeg);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.morphia.services.FlightServiceImpl.storeFlightSegment,FlightServiceImpl.java,"void storeFlightSegment(String flightName, String origPort, String destPort, int miles) {
+		FlightSegment flightSeg = new FlightSegmentImpl(flightName, origPort, destPort, miles);
+		storeFlightSegment(flightSeg);
+	}
+"
+com.acmeair.morphia.services.BookingServiceImpl.initialization,BookingServiceImpl.java,"void initialization() {	
+		datastore = MongoConnectionManager.getConnectionManager().getDatastore();	
+	}	
+"
+com.acmeair.morphia.services.BookingServiceImpl.bookFlight,BookingServiceImpl.java,"String bookFlight(String customerId, String flightId) {
+		try{
+			Flight f = flightService.getFlightByFlightId(flightId, null);
+			Customer c = customerService.getCustomerByUsername(customerId);
+			
+			Booking newBooking = new BookingImpl(keyGenerator.generate().toString(), new Date(), c, f);
+
+			datastore.save(newBooking);
+			return newBooking.getBookingId();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.morphia.services.BookingServiceImpl.bookFlight,BookingServiceImpl.java,"String bookFlight(String customerId, String flightSegmentId, String flightId) {
+		return bookFlight(customerId, flightId);	
+	}
+"
+com.acmeair.morphia.services.BookingServiceImpl.getBooking,BookingServiceImpl.java,"Booking getBooking(String user, String bookingId) {
+		try{
+			Query<BookingImpl> q = datastore.find(BookingImpl.class).field(""_id"").equal(bookingId);
+			Booking booking = q.get();
+			
+			return booking;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.morphia.services.BookingServiceImpl.getBookingsByUser,BookingServiceImpl.java,"List<Booking> getBookingsByUser(String user) {
+		try{
+			Query<BookingImpl> q = datastore.find(BookingImpl.class).disableValidation().field(""customerId"").equal(user);
+			List<BookingImpl> bookingImpls = q.asList();
+			List<Booking> bookings = new ArrayList<Booking>();
+			for(Booking b: bookingImpls){
+				bookings.add(b);
+			}
+			return bookings;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.morphia.services.BookingServiceImpl.cancelBooking,BookingServiceImpl.java,"void cancelBooking(String user, String bookingId) {
+		try{
+			datastore.delete(BookingImpl.class, bookingId);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+"
+com.acmeair.morphia.services.BookingServiceImpl.count,BookingServiceImpl.java,"Long count() {
+		return datastore.find(BookingImpl.class).countAll();
+	}	
+"
+com.acmeair.morphia.services.CustomerServiceImpl.initialization,CustomerServiceImpl.java,"void initialization() {	
+		datastore = MongoConnectionManager.getConnectionManager().getDatastore();
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.count,CustomerServiceImpl.java,"Long count() {
+		return datastore.find(CustomerImpl.class).countAll();
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.countSessions,CustomerServiceImpl.java,"Long countSessions() {
+		return datastore.find(CustomerSessionImpl.class).countAll();
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.createCustomer,CustomerServiceImpl.java,"Customer createCustomer(String username, String password,
+			MemberShipStatus status, int total_miles, int miles_ytd,
+			String phoneNumber, PhoneType phoneNumberType,
+			CustomerAddress address) {
+	
+		Customer customer = new CustomerImpl(username, password, status, total_miles, miles_ytd, address, phoneNumber, phoneNumberType);
+		datastore.save(customer);
+		return customer;
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.createAddress,CustomerServiceImpl.java,"CustomerAddress createAddress (String streetAddress1, String streetAddress2,
+			String city, String stateProvince, String country, String postalCode){
+		CustomerAddress address = new CustomerAddressImpl(streetAddress1, streetAddress2,
+				 city, stateProvince,  country,  postalCode);
+		return address;
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.updateCustomer,CustomerServiceImpl.java,"Customer updateCustomer(Customer customer) {
+		datastore.save(customer);
+		return customer;
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.getCustomer,CustomerServiceImpl.java,"Customer getCustomer(String username) {
+		Query<CustomerImpl> q = datastore.find(CustomerImpl.class).field(""_id"").equal(username);
+		Customer customer = q.get();					
+		return customer;
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.getCustomerByUsername,CustomerServiceImpl.java,"Customer getCustomerByUsername(String username) {
+		Query<CustomerImpl> q = datastore.find(CustomerImpl.class).field(""_id"").equal(username);
+		Customer customer = q.get();
+		if (customer != null) {
+			customer.setPassword(null);
+		}			
+		return customer;
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.getSession,CustomerServiceImpl.java,"CustomerSession getSession(String sessionid){
+		Query<CustomerSessionImpl> q = datastore.find(CustomerSessionImpl.class).field(""_id"").equal(sessionid);		
+		return q.get();
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.removeSession,CustomerServiceImpl.java,"void removeSession(CustomerSession session){		
+		datastore.delete(session);	
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.createSession,CustomerServiceImpl.java,"CustomerSession createSession(String sessionId, String customerId, Date creation, Date expiration) {
+		CustomerSession cSession = new CustomerSessionImpl(sessionId, customerId, creation, expiration);
+		datastore.save(cSession);
+		return cSession;
+	}
+"
+com.acmeair.morphia.services.CustomerServiceImpl.invalidateSession,CustomerServiceImpl.java,"void invalidateSession(String sessionid) {		
+		Query<CustomerSessionImpl> q = datastore.find(CustomerSessionImpl.class).field(""_id"").equal(sessionid);
+		datastore.delete(q);
+	}
+"
+com.acmeair.morphia.services.util.MongoConnectionManager.getConnectionManager,MongoConnectionManager.java,"MongoConnectionManager getConnectionManager() {
+		if (connectionManager.get() == null) {
+			synchronized (connectionManager) {
+				if (connectionManager.get() == null) {
+					connectionManager.set(new MongoConnectionManager());
+				}
+			}
+		}
+		return connectionManager.get();
+	}
+"
+com.acmeair.morphia.services.util.MongoConnectionManager.getDB,MongoConnectionManager.java,"DB getDB(){
+		return db;
+	}
+"
+com.acmeair.morphia.services.util.MongoConnectionManager.getDatastore,MongoConnectionManager.java,"Datastore getDatastore(){
+		return datastore;
+	}
+"
+com.acmeair.morphia.services.util.MongoConnectionManager.getDriverVersion,MongoConnectionManager.java,"String getDriverVersion(){
+		return datastore.getMongo().getVersion();
+	}
+"
+com.acmeair.morphia.services.util.MongoConnectionManager.getMongoVersion,MongoConnectionManager.java,"String getMongoVersion(){
+		return datastore.getDB().command(""buildInfo"").getString(""version"");
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getCustomerId,CustomerImpl.java,"String getCustomerId(){
+		return _id;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getUsername,CustomerImpl.java,"String getUsername() {
+		return _id;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setUsername,CustomerImpl.java,"void setUsername(String username) {
+		this._id = username;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getPassword,CustomerImpl.java,"String getPassword() {
+		return password;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setPassword,CustomerImpl.java,"void setPassword(String password) {
+		this.password = password;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getStatus,CustomerImpl.java,"MemberShipStatus getStatus() {
+		return status;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setStatus,CustomerImpl.java,"void setStatus(MemberShipStatus status) {
+		this.status = status;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getTotal_miles,CustomerImpl.java,"int getTotal_miles() {
+		return total_miles;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setTotal_miles,CustomerImpl.java,"void setTotal_miles(int total_miles) {
+		this.total_miles = total_miles;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getMiles_ytd,CustomerImpl.java,"int getMiles_ytd() {
+		return miles_ytd;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setMiles_ytd,CustomerImpl.java,"void setMiles_ytd(int miles_ytd) {
+		this.miles_ytd = miles_ytd;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getPhoneNumber,CustomerImpl.java,"String getPhoneNumber() {
+		return phoneNumber;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setPhoneNumber,CustomerImpl.java,"void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getPhoneNumberType,CustomerImpl.java,"PhoneType getPhoneNumberType() {
+		return phoneNumberType;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setPhoneNumberType,CustomerImpl.java,"void setPhoneNumberType(PhoneType phoneNumberType) {
+		this.phoneNumberType = phoneNumberType;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.getAddress,CustomerImpl.java,"CustomerAddress getAddress() {
+		return address;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.setAddress,CustomerImpl.java,"void setAddress(CustomerAddress address) {
+		this.address = address;
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.toString,CustomerImpl.java,"String toString() {
+		return ""Customer [id="" + _id + "", password="" + password + "", status=""
+				+ status + "", total_miles="" + total_miles + "", miles_ytd=""
+				+ miles_ytd + "", address="" + address + "", phoneNumber=""
+				+ phoneNumber + "", phoneNumberType="" + phoneNumberType + ""]"";
+	}
+"
+com.acmeair.morphia.entities.CustomerImpl.equals,CustomerImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerImpl other = (CustomerImpl) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (miles_ytd != other.miles_ytd)
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		if (phoneNumberType != other.phoneNumberType)
+			return false;
+		if (status != other.status)
+			return false;
+		if (total_miles != other.total_miles)
+			return false;
+		return true;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.getBookingId,BookingImpl.java,"String getBookingId() {
+		return _id;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.setBookingId,BookingImpl.java,"void setBookingId(String bookingId) {
+		this._id = bookingId;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.getFlightId,BookingImpl.java,"String getFlightId() {
+		return flightId;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.setFlightId,BookingImpl.java,"void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.getDateOfBooking,BookingImpl.java,"Date getDateOfBooking() {
+		return dateOfBooking;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.setDateOfBooking,BookingImpl.java,"void setDateOfBooking(Date dateOfBooking) {
+		this.dateOfBooking = dateOfBooking;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.getCustomerId,BookingImpl.java,"String getCustomerId() {
+		return customerId;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.setCustomer,BookingImpl.java,"void setCustomer(String customerId) {
+		this.customerId = customerId;
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.toString,BookingImpl.java,"String toString() {
+		return ""Booking [key="" + _id + "", flightId="" + flightId
+				+ "", dateOfBooking="" + dateOfBooking + "", customerId="" + customerId + ""]"";
+	}
+"
+com.acmeair.morphia.entities.BookingImpl.equals,BookingImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookingImpl other = (BookingImpl) obj;
+		if (customerId == null) {
+			if (other.customerId != null)
+				return false;
+		} else if (!customerId.equals(other.customerId))
+			return false;
+		if (dateOfBooking == null) {
+			if (other.dateOfBooking != null)
+				return false;
+		} else if (!dateOfBooking.equals(other.dateOfBooking))
+			return false;
+		if (flightId == null) {
+			if (other.flightId != null)
+				return false;
+		} else if (!flightId.equals(other.flightId))
+			return false;		
+		return true;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.getId,CustomerSessionImpl.java,"String getId() {
+		return _id;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.setId,CustomerSessionImpl.java,"void setId(String id) {
+		this._id = id;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.getCustomerid,CustomerSessionImpl.java,"String getCustomerid() {
+		return customerid;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.setCustomerid,CustomerSessionImpl.java,"void setCustomerid(String customerid) {
+		this.customerid = customerid;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.getLastAccessedTime,CustomerSessionImpl.java,"Date getLastAccessedTime() {
+		return lastAccessedTime;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.setLastAccessedTime,CustomerSessionImpl.java,"void setLastAccessedTime(Date lastAccessedTime) {
+		this.lastAccessedTime = lastAccessedTime;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.getTimeoutTime,CustomerSessionImpl.java,"Date getTimeoutTime() {
+		return timeoutTime;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.setTimeoutTime,CustomerSessionImpl.java,"void setTimeoutTime(Date timeoutTime) {
+		this.timeoutTime = timeoutTime;
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.toString,CustomerSessionImpl.java,"String toString() {
+		return ""CustomerSession [id="" + _id + "", customerid="" + customerid
+				+ "", lastAccessedTime="" + lastAccessedTime + "", timeoutTime=""
+				+ timeoutTime + ""]"";
+	}
+"
+com.acmeair.morphia.entities.CustomerSessionImpl.equals,CustomerSessionImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerSessionImpl other = (CustomerSessionImpl) obj;
+		if (customerid == null) {
+			if (other.customerid != null)
+				return false;
+		} else if (!customerid.equals(other.customerid))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (lastAccessedTime == null) {
+			if (other.lastAccessedTime != null)
+				return false;
+		} else if (!lastAccessedTime.equals(other.lastAccessedTime))
+			return false;
+		if (timeoutTime == null) {
+			if (other.timeoutTime != null)
+				return false;
+		} else if (!timeoutTime.equals(other.timeoutTime))
+			return false;
+		return true;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getFlightId,FlightImpl.java,"String getFlightId(){
+		return _id;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setFlightId,FlightImpl.java,"void setFlightId(String id){
+		this._id = id;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getFlightSegmentId,FlightImpl.java,"String getFlightSegmentId()
+	{
+		return flightSegmentId;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setFlightSegmentId,FlightImpl.java,"void setFlightSegmentId(String segmentId){
+		this.flightSegmentId = segmentId;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getScheduledDepartureTime,FlightImpl.java,"Date getScheduledDepartureTime() {
+		return scheduledDepartureTime;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setScheduledDepartureTime,FlightImpl.java,"void setScheduledDepartureTime(Date scheduledDepartureTime) {
+		this.scheduledDepartureTime = scheduledDepartureTime;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getScheduledArrivalTime,FlightImpl.java,"Date getScheduledArrivalTime() {
+		return scheduledArrivalTime;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setScheduledArrivalTime,FlightImpl.java,"void setScheduledArrivalTime(Date scheduledArrivalTime) {
+		this.scheduledArrivalTime = scheduledArrivalTime;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getFirstClassBaseCost,FlightImpl.java,"BigDecimal getFirstClassBaseCost() {
+		return firstClassBaseCost;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setFirstClassBaseCost,FlightImpl.java,"void setFirstClassBaseCost(BigDecimal firstClassBaseCost) {
+		this.firstClassBaseCost = firstClassBaseCost;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getEconomyClassBaseCost,FlightImpl.java,"BigDecimal getEconomyClassBaseCost() {
+		return economyClassBaseCost;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setEconomyClassBaseCost,FlightImpl.java,"void setEconomyClassBaseCost(BigDecimal economyClassBaseCost) {
+		this.economyClassBaseCost = economyClassBaseCost;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getNumFirstClassSeats,FlightImpl.java,"int getNumFirstClassSeats() {
+		return numFirstClassSeats;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setNumFirstClassSeats,FlightImpl.java,"void setNumFirstClassSeats(int numFirstClassSeats) {
+		this.numFirstClassSeats = numFirstClassSeats;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getNumEconomyClassSeats,FlightImpl.java,"int getNumEconomyClassSeats() {
+		return numEconomyClassSeats;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setNumEconomyClassSeats,FlightImpl.java,"void setNumEconomyClassSeats(int numEconomyClassSeats) {
+		this.numEconomyClassSeats = numEconomyClassSeats;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getAirplaneTypeId,FlightImpl.java,"String getAirplaneTypeId() {
+		return airplaneTypeId;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setAirplaneTypeId,FlightImpl.java,"void setAirplaneTypeId(String airplaneTypeId) {
+		this.airplaneTypeId = airplaneTypeId;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.getFlightSegment,FlightImpl.java,"FlightSegment getFlightSegment() {
+		return flightSegment;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.setFlightSegment,FlightImpl.java,"void setFlightSegment(FlightSegment flightSegment) {
+		this.flightSegment = flightSegment;
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.toString,FlightImpl.java,"String toString() {
+		return ""Flight key=""+_id
+				+ "", scheduledDepartureTime="" + scheduledDepartureTime
+				+ "", scheduledArrivalTime="" + scheduledArrivalTime
+				+ "", firstClassBaseCost="" + firstClassBaseCost
+				+ "", economyClassBaseCost="" + economyClassBaseCost
+				+ "", numFirstClassSeats="" + numFirstClassSeats
+				+ "", numEconomyClassSeats="" + numEconomyClassSeats
+				+ "", airplaneTypeId="" + airplaneTypeId + ""]"";
+	}
+"
+com.acmeair.morphia.entities.FlightImpl.equals,FlightImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlightImpl other = (FlightImpl) obj;
+		if (airplaneTypeId == null) {
+			if (other.airplaneTypeId != null)
+				return false;
+		} else if (!airplaneTypeId.equals(other.airplaneTypeId))
+			return false;
+		if (economyClassBaseCost == null) {
+			if (other.economyClassBaseCost != null)
+				return false;
+		} else if (!economyClassBaseCost.equals(other.economyClassBaseCost))
+			return false;
+		if (firstClassBaseCost == null) {
+			if (other.firstClassBaseCost != null)
+				return false;
+		} else if (!firstClassBaseCost.equals(other.firstClassBaseCost))
+			return false;
+		if (flightSegment == null) {
+			if (other.flightSegment != null)
+				return false;
+		} else if (!flightSegment.equals(other.flightSegment))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (numEconomyClassSeats != other.numEconomyClassSeats)
+			return false;
+		if (numFirstClassSeats != other.numFirstClassSeats)
+			return false;
+		if (scheduledArrivalTime == null) {
+			if (other.scheduledArrivalTime != null)
+				return false;
+		} else if (!scheduledArrivalTime.equals(other.scheduledArrivalTime))
+			return false;
+		if (scheduledDepartureTime == null) {
+			if (other.scheduledDepartureTime != null)
+				return false;
+		} else if (!scheduledDepartureTime.equals(other.scheduledDepartureTime))
+			return false;
+		return true;
+	}
+"
+com.acmeair.morphia.entities.AirportCodeMappingImpl.getAirportCode,AirportCodeMappingImpl.java,"String getAirportCode() {
+		return _id;
+	}
+"
+com.acmeair.morphia.entities.AirportCodeMappingImpl.setAirportCode,AirportCodeMappingImpl.java,"void setAirportCode(String airportCode) {
+		this._id = airportCode;
+	}
+"
+com.acmeair.morphia.entities.AirportCodeMappingImpl.getAirportName,AirportCodeMappingImpl.java,"String getAirportName() {
+		return airportName;
+	}
+"
+com.acmeair.morphia.entities.AirportCodeMappingImpl.setAirportName,AirportCodeMappingImpl.java,"void setAirportName(String airportName) {
+		this.airportName = airportName;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.getFlightName,FlightSegmentImpl.java,"String getFlightName() {
+		return _id;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.setFlightName,FlightSegmentImpl.java,"void setFlightName(String flightName) {
+		this._id = flightName;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.getOriginPort,FlightSegmentImpl.java,"String getOriginPort() {
+		return originPort;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.setOriginPort,FlightSegmentImpl.java,"void setOriginPort(String originPort) {
+		this.originPort = originPort;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.getDestPort,FlightSegmentImpl.java,"String getDestPort() {
+		return destPort;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.setDestPort,FlightSegmentImpl.java,"void setDestPort(String destPort) {
+		this.destPort = destPort;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.getMiles,FlightSegmentImpl.java,"int getMiles() {
+		return miles;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.setMiles,FlightSegmentImpl.java,"void setMiles(int miles) {
+		this.miles = miles;
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.toString,FlightSegmentImpl.java,"String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(""FlightSegment "").append(_id).append("" originating from:\"""").append(originPort).append(""\"" arriving at:\"""").append(destPort).append(""\"""");
+		return sb.toString();
+	}
+"
+com.acmeair.morphia.entities.FlightSegmentImpl.equals,FlightSegmentImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlightSegmentImpl other = (FlightSegmentImpl) obj;
+		if (destPort == null) {
+			if (other.destPort != null)
+				return false;
+		} else if (!destPort.equals(other.destPort))
+			return false;
+		if (_id == null) {
+			if (other._id != null)
+				return false;
+		} else if (!_id.equals(other._id))
+			return false;
+		if (miles != other.miles)
+			return false;
+		if (originPort == null) {
+			if (other.originPort != null)
+				return false;
+		} else if (!originPort.equals(other.originPort))
+			return false;
+		return true;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.getStreetAddress1,CustomerAddressImpl.java,"String getStreetAddress1() {
+		return streetAddress1;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.setStreetAddress1,CustomerAddressImpl.java,"void setStreetAddress1(String streetAddress1) {
+		this.streetAddress1 = streetAddress1;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.getStreetAddress2,CustomerAddressImpl.java,"String getStreetAddress2() {
+		return streetAddress2;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.setStreetAddress2,CustomerAddressImpl.java,"void setStreetAddress2(String streetAddress2) {
+		this.streetAddress2 = streetAddress2;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.getCity,CustomerAddressImpl.java,"String getCity() {
+		return city;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.setCity,CustomerAddressImpl.java,"void setCity(String city) {
+		this.city = city;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.getStateProvince,CustomerAddressImpl.java,"String getStateProvince() {
+		return stateProvince;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.setStateProvince,CustomerAddressImpl.java,"void setStateProvince(String stateProvince) {
+		this.stateProvince = stateProvince;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.getCountry,CustomerAddressImpl.java,"String getCountry() {
+		return country;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.setCountry,CustomerAddressImpl.java,"void setCountry(String country) {
+		this.country = country;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.getPostalCode,CustomerAddressImpl.java,"String getPostalCode() {
+		return postalCode;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.setPostalCode,CustomerAddressImpl.java,"void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.toString,CustomerAddressImpl.java,"String toString() {
+		return ""CustomerAddress [streetAddress1="" + streetAddress1
+				+ "", streetAddress2="" + streetAddress2 + "", city="" + city
+				+ "", stateProvince="" + stateProvince + "", country="" + country
+				+ "", postalCode="" + postalCode + ""]"";
+	}
+"
+com.acmeair.morphia.entities.CustomerAddressImpl.equals,CustomerAddressImpl.java,"boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerAddressImpl other = (CustomerAddressImpl) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (postalCode == null) {
+			if (other.postalCode != null)
+				return false;
+		} else if (!postalCode.equals(other.postalCode))
+			return false;
+		if (stateProvince == null) {
+			if (other.stateProvince != null)
+				return false;
+		} else if (!stateProvince.equals(other.stateProvince))
+			return false;
+		if (streetAddress1 == null) {
+			if (other.streetAddress1 != null)
+				return false;
+		} else if (!streetAddress1.equals(other.streetAddress1))
+			return false;
+		if (streetAddress2 == null) {
+			if (other.streetAddress2 != null)
+				return false;
+		} else if (!streetAddress2.equals(other.streetAddress2))
+			return false;
+		return true;
+	}
+"
+com.acmeair.wxs.entities.FlightSegmentImpl.FlightSegmentImpl,FlightSegmentImpl.java,"public FlightSegmentImpl() {
+    super();
+}"
+com.acmeair.entities.Booking.Booking,Booking.java,"public Booking() {
+    super();
+}"
+com.acmeair.entities.CustomerSession.CustomerSession,CustomerSession.java,"public CustomerSession() {
+    super();
+}"
+com.acmeair.morphia.BigIntegerConverter.BigIntegerConverter,BigIntegerConverter.java,"public BigIntegerConverter() {
+    super();
+}"
+com.acmeair.wxs.entities.CustomerImpl.CustomerImpl,CustomerImpl.java,"public CustomerImpl() {
+    super();
+}"
+com.acmeair.wxs.entities.AirportCodeMappingImpl.AirportCodeMappingImpl,AirportCodeMappingImpl.java,"public AirportCodeMappingImpl() {
+    super();
+}"
+com.acmeair.reporter.parser.component.JmeterSummariserParser.JmeterSummariserParser,JmeterSummariserParser.java,"public JmeterSummariserParser() {
+    super();
+}"
+com.acmeair.web.dto.FlightInfo.FlightInfo,FlightInfo.java,"public FlightInfo() {
+    super();
+}"
+com.acmeair.wxs.entities.CustomerAddressImpl.CustomerAddressImpl,CustomerAddressImpl.java,"public CustomerAddressImpl() {
+    super();
+}"
+com.acmeair.loader.Loader.Loader,Loader.java,"public Loader() {
+    super();
+}"
+com.acmeair.wxs.service.FlightServiceImpl.FlightServiceImpl,FlightServiceImpl.java,"public FlightServiceImpl() {
+    super();
+}"
+com.acmeair.web.dto.TripLegInfo.TripLegInfo,TripLegInfo.java,"public TripLegInfo() {
+    super();
+}"
+com.acmeair.morphia.entities.CustomerImpl.CustomerImpl,CustomerImpl.java,"public CustomerImpl() {
+    super();
+}"
+com.acmeair.wxs.entities.FlightImpl.FlightImpl,FlightImpl.java,"public FlightImpl() {
+    super();
+}"
+com.acmeair.morphia.entities.AirportCodeMappingImpl.AirportCodeMappingImpl,AirportCodeMappingImpl.java,"public AirportCodeMappingImpl() {
+    super();
+}"
+com.acmeair.entities.Customer.Customer,Customer.java,"public Customer() {
+    super();
+}"
+com.acmeair.entities.FlightSegment.FlightSegment,FlightSegment.java,"public FlightSegment() {
+    super();
+}"
+com.acmeair.web.dto.TripFlightOptions.TripFlightOptions,TripFlightOptions.java,"public TripFlightOptions() {
+    super();
+}"
+com.acmeair.AcmeAirConstants.AcmeAirConstants,AcmeAirConstants.java,"public AcmeAirConstants() {
+    super();
+}"
+com.acmeair.morphia.entities.FlightSegmentImpl.FlightSegmentImpl,FlightSegmentImpl.java,"public FlightSegmentImpl() {
+    super();
+}"
+com.acmeair.wxs.service.BookingServiceImpl.BookingServiceImpl,BookingServiceImpl.java,"public BookingServiceImpl() {
+    super();
+}"
+com.acmeair.service.CustomerService.CustomerService,CustomerService.java,"public CustomerService() {
+    super();
+}"
+com.acmeair.entities.FlightPK.FlightPK,FlightPK.java,"public FlightPK() {
+    super();
+}"
+com.acmeair.entities.Flight.Flight,Flight.java,"public Flight() {
+    super();
+}"
+com.acmeair.service.FlightService.FlightService,FlightService.java,"public FlightService() {
+    super();
+}"
+com.acmeair.loader.FlightLoader.FlightLoader,FlightLoader.java,"public FlightLoader() {
+    super();
+}"
+com.acmeair.reporter.parser.IndividualChartResults.IndividualChartResults,IndividualChartResults.java,"public IndividualChartResults() {
+    super();
+}"
+com.acmeair.reporter.parser.component.JmeterJTLParser.JmeterJTLParser,JmeterJTLParser.java,"public JmeterJTLParser() {
+    super();
+}"
+com.acmeair.entities.BookingPK.BookingPK,BookingPK.java,"public BookingPK() {
+    super();
+}"
+com.acmeair.wxs.entities.FlightPKImpl.FlightPKImpl,FlightPKImpl.java,"public FlightPKImpl() {
+    super();
+}"
+com.acmeair.web.dto.BookingInfo.BookingInfo,BookingInfo.java,"public BookingInfo() {
+    super();
+}"
+com.acmeair.morphia.entities.CustomerSessionImpl.CustomerSessionImpl,CustomerSessionImpl.java,"public CustomerSessionImpl() {
+    super();
+}"
+com.acmeair.wxs.WXSConstants.WXSConstants,WXSConstants.java,"public WXSConstants() {
+    super();
+}"
+com.acmeair.entities.CustomerAddress.CustomerAddress,CustomerAddress.java,"public CustomerAddress() {
+    super();
+}"
+com.acmeair.service.ServiceLocator.ServiceLocator,ServiceLocator.java,"public ServiceLocator() {
+    super();
+}"
+com.acmeair.morphia.services.util.MongoConnectionManager.MongoConnectionManager,MongoConnectionManager.java,"public MongoConnectionManager() {
+    super();
+}"
+com.acmeair.wxs.utils.WXSSessionManager.WXSSessionManager,WXSSessionManager.java,"public WXSSessionManager() {
+    super();
+}"
+com.acmeair.reporter.ReportGenerator.ReportGenerator,ReportGenerator.java,"public ReportGenerator() {
+    super();
+}"
+com.acmeair.reporter.util.StatResult.StatResult,StatResult.java,"public StatResult() {
+    super();
+}"
+com.acmeair.loader.CustomerLoader.CustomerLoader,CustomerLoader.java,"public CustomerLoader() {
+    super();
+}"
+com.acmeair.morphia.MorphiaConstants.MorphiaConstants,MorphiaConstants.java,"public MorphiaConstants() {
+    super();
+}"
+com.acmeair.wxs.entities.BookingPKImpl.BookingPKImpl,BookingPKImpl.java,"public BookingPKImpl() {
+    super();
+}"
+com.acmeair.morphia.entities.FlightImpl.FlightImpl,FlightImpl.java,"public FlightImpl() {
+    super();
+}"
+com.acmeair.wxs.service.CustomerServiceImpl.CustomerServiceImpl,CustomerServiceImpl.java,"public CustomerServiceImpl() {
+    super();
+}"
+com.acmeair.wxs.entities.BookingImpl.BookingImpl,BookingImpl.java,"public BookingImpl() {
+    super();
+}"
+com.acmeair.service.BookingService.BookingService,BookingService.java,"public BookingService() {
+    super();
+}"
+com.acmeair.morphia.services.CustomerServiceImpl.CustomerServiceImpl,CustomerServiceImpl.java,"public CustomerServiceImpl() {
+    super();
+}"
+com.acmeair.web.dto.CustomerInfo.CustomerInfo,CustomerInfo.java,"public CustomerInfo() {
+    super();
+}"
+com.acmeair.web.dto.BookingPKInfo.BookingPKInfo,BookingPKInfo.java,"public BookingPKInfo() {
+    super();
+}"
+com.acmeair.reporter.parser.component.NmonParser.NmonParser,NmonParser.java,"public NmonParser() {
+    super();
+}"
+com.acmeair.morphia.services.BookingServiceImpl.BookingServiceImpl,BookingServiceImpl.java,"public BookingServiceImpl() {
+    super();
+}"
+com.acmeair.morphia.BigDecimalConverter.BigDecimalConverter,BigDecimalConverter.java,"public BigDecimalConverter() {
+    super();
+}"
+com.acmeair.entities.AirportCodeMapping.AirportCodeMapping,AirportCodeMapping.java,"public AirportCodeMapping() {
+    super();
+}"
+com.acmeair.web.dto.FlightSegmentInfo.FlightSegmentInfo,FlightSegmentInfo.java,"public FlightSegmentInfo() {
+    super();
+}"
+com.acmeair.service.TransactionService.TransactionService,TransactionService.java,"public TransactionService() {
+    super();
+}"
+com.acmeair.morphia.entities.BookingImpl.BookingImpl,BookingImpl.java,"public BookingImpl() {
+    super();
+}"
+com.acmeair.morphia.entities.CustomerAddressImpl.CustomerAddressImpl,CustomerAddressImpl.java,"public CustomerAddressImpl() {
+    super();
+}"
+com.acmeair.web.dto.BookingReceiptInfo.BookingReceiptInfo,BookingReceiptInfo.java,"public BookingReceiptInfo() {
+    super();
+}"
+com.acmeair.web.dto.FlightPKInfo.FlightPKInfo,FlightPKInfo.java,"public FlightPKInfo() {
+    super();
+}"
+com.acmeair.web.dto.AddressInfo.AddressInfo,AddressInfo.java,"public AddressInfo() {
+    super();
+}"
+com.acmeair.reporter.parser.component.JtlTotals.JtlTotals,JtlTotals.java,"public JtlTotals() {
+    super();
+}"
+com.acmeair.reporter.parser.ResultParser.ResultParser,ResultParser.java,"public ResultParser() {
+    super();
+}"
+com.acmeair.wxs.entities.CustomerSessionImpl.CustomerSessionImpl,CustomerSessionImpl.java,"public CustomerSessionImpl() {
+    super();
+}"
+com.acmeair.morphia.services.FlightServiceImpl.FlightServiceImpl,FlightServiceImpl.java,"public FlightServiceImpl() {
+    super();
+}"
+com.acmeair.config.AcmeAirConfiguration.AcmeAirConfiguration,AcmeAirConfiguration.java,"public AcmeAirConfiguration() {
+    super();
+}"
