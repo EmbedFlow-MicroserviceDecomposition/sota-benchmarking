@@ -81,7 +81,7 @@ def generate_universal_json(source_dir, output_file):
                     method_id = f"{m['id']}_{len(m['parameters'])}"
                     all_methods[method_id] = m
 
-    xmi_path = os.path.relpath(os.path.join(source_dir, 'inventory_kdm.xmi'))
+    xmi_path = 'acmeair_kdm.xmi'
 
     output_data = {
         "dataset": "Acme Air",
