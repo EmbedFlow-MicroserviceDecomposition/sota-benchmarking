@@ -111,9 +111,13 @@ def calculate_chm(processed_result_path, processed_monolith_path, output_path=No
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Metric: Evaluator for CHM")
-    parser.add_argument("--result", type=str, required=True, help="Path to processed_result.json")
-    parser.add_argument("--monolith", type=str, required=True, help="Path to processed_monolith.json")
-    parser.add_argument("--output", type=str, default=None, help="Path to save chm_score.json")
+    parser.add_argument("--dataset-path", type=str, required=True, help="Path to the dataset directory (contains dataset.json)")
+    parser.add_argument("--output-path", type=str, required=True, help="Path to the tool output directory (contains output.json)")
     
     args = parser.parse_args()
-    calculate_chm(args.result, args.monolith, args.output)
+    
+    dataset_json = os.path.join(args.dataset_path, "dataset.json")
+    output_json = os.path.join(args.output_path, "output.json")
+    chm_score_json = os.path.join(args.output_path, "chm_score.json")
+    
+    calculate_chm(output_json, dataset_json, chm_score_json)

@@ -81,8 +81,12 @@ def generate_universal_json(source_dir, output_file):
                     method_id = f"{m['id']}_{len(m['parameters'])}"
                     all_methods[method_id] = m
 
+    xmi_path = os.path.relpath(os.path.join(source_dir, 'inventory_kdm.xmi'))
+
     output_data = {
         "dataset": "Acme Air",
+        "source_path": os.path.relpath(source_dir),
+        "xmi_path": xmi_path,
         "methods": all_methods
     }
 
@@ -95,7 +99,7 @@ def generate_universal_json(source_dir, output_file):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Dataset: Monolith Adapter for Acme Air")
     parser.add_argument("--source_dir", type=str, default="acmeair", help="Path to the monolithic source code")
-    parser.add_argument("--output", type=str, default="processed_monolith.json", help="Output path for the Universal JSON")
+    parser.add_argument("--output", type=str, default="dataset.json", help="Output path for the Universal JSON")
     
     args = parser.parse_args()
     generate_universal_json(args.source_dir, args.output)
