@@ -19,3 +19,6 @@
 [submodule "datasets/jforum/jakartaEE"]
 	path = datasets/jforum/jakartaEE
 	url = git@github.com:jforum/jakartaEE.git
+[submodule "datasets/javafx-pos/JavaFX-Point-of-Sales"]
+	path = datasets/javafx-pos/JavaFX-Point-of-Sales
+	url = git@github.com:sadatrafsanjani/JavaFX-Point-of-Sales.git

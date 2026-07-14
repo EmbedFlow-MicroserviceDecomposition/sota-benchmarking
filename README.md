@@ -110,6 +110,7 @@ graph TD
 * **[JPetStore](https://github.com/mybatis/jpetstore-6)** - `datasets/jpetstore/`
 * **[DayTrader](https://github.com/WASdev/sample.daytrader7)** - `datasets/daytrader/`
 * **[JForum](https://github.com/jforum/jakartaEE)** - `datasets/jforum/`
+* **[JavaFX Point of Sales](https://github.com/sadatrafsanjani/JavaFX-Point-of-Sales)** - `datasets/javafx-pos/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`
