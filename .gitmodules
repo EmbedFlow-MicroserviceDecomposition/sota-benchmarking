@@ -16,3 +16,6 @@
 [submodule "datasets/daytrader/sample.daytrader7"]
 	path = datasets/daytrader/sample.daytrader7
 	url = git@github.com:WASdev/sample.daytrader7.git
+[submodule "datasets/jforum/jakartaEE"]
+	path = datasets/jforum/jakartaEE
+	url = git@github.com:jforum/jakartaEE.git
