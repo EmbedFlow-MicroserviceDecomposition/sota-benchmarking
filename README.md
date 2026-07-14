@@ -108,6 +108,7 @@ graph TD
 * **[Spring PetClinic](https://github.com/spring-projects/spring-petclinic)** - `datasets/spring-petclinic/`
 * **[Plants by WebSphere](https://github.com/WASdev/sample.plantsbywebsphere)** - `datasets/plants/`
 * **[JPetStore](https://github.com/mybatis/jpetstore-6)** - `datasets/jpetstore/`
+* **[DayTrader](https://github.com/WASdev/sample.daytrader7)** - `datasets/daytrader/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`
