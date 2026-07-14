@@ -106,6 +106,7 @@ graph TD
 ### Datasets (Monoliths)
 * **[Acme Air](https://github.com/acmeair/acmeair)** - `datasets/acme-air/`
 * **[Spring PetClinic](https://github.com/spring-projects/spring-petclinic)** - `datasets/spring-petclinic/`
+* **[Plants by WebSphere](https://github.com/WASdev/sample.plantsbywebsphere)** - `datasets/plants/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`

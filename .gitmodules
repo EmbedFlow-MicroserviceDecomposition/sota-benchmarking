@@ -7,3 +7,6 @@
 [submodule "datasets/spring-petclinic/spring-petclinic"]
 	path = datasets/spring-petclinic/spring-petclinic
 	url = git@github.com:spring-projects/spring-petclinic.git
+[submodule "datasets/plants/sample.plantsbywebsphere"]
+	path = datasets/plants/sample.plantsbywebsphere
+	url = git@github.com:WASdev/sample.plantsbywebsphere.git
