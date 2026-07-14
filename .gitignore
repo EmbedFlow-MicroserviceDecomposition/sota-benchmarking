@@ -1,0 +1,8 @@
+# Ignore generated Universal JSONs
+dataset.json
+
+# Ignore generated KDM Code Models
+*_kdm.xmi
+
+# Ignore tool outputs directories
+outputs/
