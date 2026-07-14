@@ -107,6 +107,7 @@ graph TD
 * **[Acme Air](https://github.com/acmeair/acmeair)** - `datasets/acme-air/`
 * **[Spring PetClinic](https://github.com/spring-projects/spring-petclinic)** - `datasets/spring-petclinic/`
 * **[Plants by WebSphere](https://github.com/WASdev/sample.plantsbywebsphere)** - `datasets/plants/`
+* **[JPetStore](https://github.com/mybatis/jpetstore-6)** - `datasets/jpetstore/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`

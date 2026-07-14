@@ -10,3 +10,6 @@
 [submodule "datasets/plants/sample.plantsbywebsphere"]
 	path = datasets/plants/sample.plantsbywebsphere
 	url = git@github.com:WASdev/sample.plantsbywebsphere.git
+[submodule "datasets/jpetstore/jpetstore-6"]
+	path = datasets/jpetstore/jpetstore-6
+	url = git@github.com:mybatis/jpetstore-6.git
