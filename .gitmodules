@@ -4,3 +4,6 @@
 [submodule "datasets/acme-air/acmeair"]
 	path = datasets/acme-air/acmeair
 	url = git@github.com:acmeair/acmeair.git
+[submodule "datasets/spring-petclinic/spring-petclinic"]
+	path = datasets/spring-petclinic/spring-petclinic
+	url = git@github.com:spring-projects/spring-petclinic.git
