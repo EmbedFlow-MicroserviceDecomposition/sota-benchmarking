@@ -115,6 +115,7 @@ graph TD
 * **[Apache Roller](https://github.com/apache/roller)** - `datasets/apache-roller/`
 * **[Bear Board](https://github.com/rokinmaharjan/bear-board)** - `datasets/bear-board/`
 * **[CICS Genapp](https://github.com/cicsdev/cics-genapp)** - `datasets/genapp/`
+* **[Pharmacy](https://github.com/rokinmaharjan/pharmacy)** - `datasets/pharmacy/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`

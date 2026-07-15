@@ -34,3 +34,6 @@
 [submodule "datasets/genapp/cics-genapp"]
 	path = datasets/genapp/cics-genapp
 	url = git@github.com:cicsdev/cics-genapp.git
+[submodule "datasets/pharmacy/pharmacy"]
+	path = datasets/pharmacy/pharmacy
+	url = git@github.com:rokinmaharjan/pharmacy.git
