@@ -22,3 +22,6 @@
 [submodule "datasets/javafx-pos/JavaFX-Point-of-Sales"]
 	path = datasets/javafx-pos/JavaFX-Point-of-Sales
 	url = git@github.com:sadatrafsanjani/JavaFX-Point-of-Sales.git
+[submodule "datasets/spring-blog/SpringBlog"]
+	path = datasets/spring-blog/SpringBlog
+	url = git@github.com:Raysmond/SpringBlog.git

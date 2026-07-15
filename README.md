@@ -111,6 +111,7 @@ graph TD
 * **[DayTrader](https://github.com/WASdev/sample.daytrader7)** - `datasets/daytrader/`
 * **[JForum](https://github.com/jforum/jakartaEE)** - `datasets/jforum/`
 * **[JavaFX Point of Sales](https://github.com/sadatrafsanjani/JavaFX-Point-of-Sales)** - `datasets/javafx-pos/`
+* **[SpringBlog](https://github.com/Raysmond/SpringBlog)** - `datasets/spring-blog/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`
