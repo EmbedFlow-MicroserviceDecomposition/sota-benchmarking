@@ -28,3 +28,6 @@
 [submodule "datasets/apache-roller/roller"]
 	path = datasets/apache-roller/roller
 	url = git@github.com:apache/roller.git
+[submodule "datasets/bear-board/bear-board"]
+	path = datasets/bear-board/bear-board
+	url = git@github.com:rokinmaharjan/bear-board.git
