@@ -37,3 +37,6 @@
 [submodule "datasets/pharmacy/pharmacy"]
 	path = datasets/pharmacy/pharmacy
 	url = git@github.com:rokinmaharjan/pharmacy.git
+[submodule "datasets/autocare/autocare-nepal"]
+	path = datasets/autocare/autocare-nepal
+	url = git@github.com:rokinmaharjan/autocare-nepal.git

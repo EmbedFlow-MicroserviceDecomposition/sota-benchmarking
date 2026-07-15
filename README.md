@@ -116,6 +116,7 @@ graph TD
 * **[Bear Board](https://github.com/rokinmaharjan/bear-board)** - `datasets/bear-board/`
 * **[CICS Genapp](https://github.com/cicsdev/cics-genapp)** - `datasets/genapp/`
 * **[Pharmacy](https://github.com/rokinmaharjan/pharmacy)** - `datasets/pharmacy/`
+* **[AutoCare Nepal](https://github.com/rokinmaharjan/autocare-nepal)** - `datasets/autocare/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`
