@@ -25,3 +25,6 @@
 [submodule "datasets/spring-blog/SpringBlog"]
 	path = datasets/spring-blog/SpringBlog
 	url = git@github.com:Raysmond/SpringBlog.git
+[submodule "datasets/apache-roller/roller"]
+	path = datasets/apache-roller/roller
+	url = git@github.com:apache/roller.git

@@ -112,6 +112,7 @@ graph TD
 * **[JForum](https://github.com/jforum/jakartaEE)** - `datasets/jforum/`
 * **[JavaFX Point of Sales](https://github.com/sadatrafsanjani/JavaFX-Point-of-Sales)** - `datasets/javafx-pos/`
 * **[SpringBlog](https://github.com/Raysmond/SpringBlog)** - `datasets/spring-blog/`
+* **[Apache Roller](https://github.com/apache/roller)** - `datasets/apache-roller/`
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`
