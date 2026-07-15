@@ -31,3 +31,6 @@
 [submodule "datasets/bear-board/bear-board"]
 	path = datasets/bear-board/bear-board
 	url = git@github.com:rokinmaharjan/bear-board.git
+[submodule "datasets/genapp/cics-genapp"]
+	path = datasets/genapp/cics-genapp
+	url = git@github.com:cicsdev/cics-genapp.git
