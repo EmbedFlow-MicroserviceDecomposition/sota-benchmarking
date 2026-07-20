@@ -85,6 +85,7 @@ def generate_universal_json(source_dir, output_file):
     output_data = {
         "dataset": "Spring PetClinic",
         "source_path": os.path.relpath(source_dir),
+        "build_path": "spring-petclinic/target/spring-petclinic-1.5.1.jar",
         "xmi_path": os.path.relpath(xmi_path),
         "methods": all_methods
     }
