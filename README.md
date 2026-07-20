@@ -19,6 +19,7 @@ To ensure reproducible, fair, and scalable evaluations, we adopt the following m
   {
     "dataset": "Dataset Name",
     "source_path": "path/to/source",
+    "build_path": "path/to/target/monolith.jar",
     "xmi_path": "path/to/kdm.xmi",
     "methods": {
       "com.example.Class.method": {
@@ -102,6 +103,7 @@ graph TD
 
 ### Tools (Methods)
 * **[MAGNET](https://github.com/magnetmicro/MAGNET)** - `tools/magnet/`
+* **[IBM Mono2Micro](https://www.ibm.com/cloud/mono2micro)** - `tools/mono2micro/`
 
 ### Datasets (Monoliths)
 * **[Acme Air](https://github.com/acmeair/acmeair)** - `datasets/acme-air/`

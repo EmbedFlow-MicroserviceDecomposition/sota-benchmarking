@@ -40,3 +40,6 @@
 [submodule "datasets/autocare/autocare-nepal"]
 	path = datasets/autocare/autocare-nepal
 	url = git@github.com:rokinmaharjan/autocare-nepal.git
+[submodule "tools/mono2micro/Mono2Micro-FSE-2021"]
+	path = tools/mono2micro/Mono2Micro-FSE-2021
+	url = git@github.com:kaliaanup/Mono2Micro-FSE-2021.git

@@ -1,0 +1,5 @@
+# Ignore the extracted proprietary IBM Mono2Micro binaries
+Mono2Micro-CLI/
+ibm-mono2micro*/
+*.zip
+*.tar.gz
