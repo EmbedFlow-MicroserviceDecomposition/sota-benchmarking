@@ -32,15 +32,7 @@ def get_dataset_files(dataset_path, output_json_path):
     if not os.path.exists(abs_source):
         write_error(output_json_path, f"Source path does not exist: {abs_source}")
         
-    build_path = data.get("build_path")
-    if not build_path:
-        write_error(output_json_path, "build_path missing in dataset.json")
-        
-    jar_path = os.path.abspath(os.path.join(dataset_path, build_path))
-    if not os.path.exists(jar_path):
-        write_error(output_json_path, f"Build path does not exist: {jar_path}")
-
-    return abs_source, jar_path
+    return abs_source
 
 def parse_mono2micro_output(oriole_json_path, dataset_json_path, output_json_path):
     if not os.path.exists(oriole_json_path):
@@ -108,7 +100,7 @@ def run_mono2micro(dataset_path, output_path):
     os.makedirs(output_path, exist_ok=True)
     json_out = os.path.join(output_path, "output.json")
     
-    source_dir, jar_path = get_dataset_files(dataset_path, json_out)
+    source_dir = get_dataset_files(dataset_path, json_out)
     
     tool_dir = os.path.dirname(os.path.abspath(__file__))
     cli_dir = os.path.join(tool_dir, "Mono2Micro-CLI")
@@ -145,18 +137,17 @@ def run_mono2micro(dataset_path, output_path):
     print("="*80)
     print("Mono2Micro requires dynamic traces. Please open a new terminal and run the instrumented monolith.")
     
-    print("\nCommand 1 (Start Monolith):")
-    print("If your monolith is an executable JAR/WAR (e.g., Spring Boot), run:")
-    print(f"  java -javaagent:{agent_jar}={tables_dir} -jar {jar_path} > {logs_dir}/console.log 2>&1")
+    print(f"\n1. Attach the Minerva agent to your application JVM (via JAVA_OPTS, JVM_ARGS, or direct argument):")
+    print(f"   -javaagent:{agent_jar}={tables_dir}")
+    print(f"\n2. Pipe or save your application's intercepted runtime traces (stderr/stdout logs) to:")
+    print(f"   {logs_dir}/console.log")
     
-    print("\nIf your monolith requires an application server (e.g., Tomcat, WebSphere Liberty):")
-    print(f"  1. Add this to your server's JVM arguments (e.g., JAVA_OPTS or jvm.options):")
-    print(f"     -javaagent:{agent_jar}={tables_dir}")
-    print(f"  2. Deploy {jar_path} to your server and start it.")
-
+    print("\nPlease follow the build, deployment, and execution instructions specified in the dataset's README.md.")
+    
     print("\nOnce the application is running, run the following command in another terminal to start recording traces:")
-    print(f"\nCommand 2 (Record Use Cases):\n  {mono2micro_bin} usecase -o {contexts_dir}/usecases.json")
-    print("\nFollow the interactive instructions in the usecase command's prompt to execute and record your business use cases.")
+    print(f"\n3. Command (Record Use Cases):")
+    print(f"   {mono2micro_bin} usecase -o {contexts_dir}/usecases.json")
+    print("\nFollow the interactive instructions to execute and record your business use cases.")
     print("="*80 + "\n")
     
     # 3. Wait for User
