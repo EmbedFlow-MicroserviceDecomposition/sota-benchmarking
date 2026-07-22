@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    networks:
+      - acmeair-net
+
+  acmeair-liberty:
+    build: .
+    ports:
+      - "9080:9080"
+    environment:
+      # Inject the Minerva Agent automatically!
+      - JVM_ARGS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
+      - WLP_LOGGING_CONSOLE_LOGLEVEL=info
+    volumes:
+      # Mount the Mono2Micro instrumenter and tables output directories
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/acme-air/tables:/tables:rw
+    depends_on:
+      - mongodb
+    networks:
+      - acmeair-net
+
+networks:
+  acmeair-net:

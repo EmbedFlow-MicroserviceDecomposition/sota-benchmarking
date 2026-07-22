@@ -85,6 +85,7 @@ def generate_universal_json(source_dir, output_file):
     output_data = {
         "dataset": "Acme Air",
         "source_path": os.path.relpath(source_dir),
+        "build_path": "acmeair/acmeair-webapp/build/libs/acmeair-webapp-2.0.0-SNAPSHOT.war",
         "xmi_path": xmi_path,
         "methods": all_methods
     }

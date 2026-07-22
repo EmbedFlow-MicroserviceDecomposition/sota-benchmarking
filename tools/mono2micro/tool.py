@@ -143,10 +143,19 @@ def run_mono2micro(dataset_path, output_path):
     print("\n" + "="*80)
     print("ACTION REQUIRED: RUNTIME DATA COLLECTION")
     print("="*80)
-    print("Mono2Micro requires dynamic traces. Please open a new terminal and run the instrumented monolith:")
-    print(f"\nCommand 1 (Start Monolith):\njava -javaagent:{agent_jar}={tables_dir} -jar {jar_path} > {logs_dir}/console.log 2>&1")
+    print("Mono2Micro requires dynamic traces. Please open a new terminal and run the instrumented monolith.")
+    
+    print("\nCommand 1 (Start Monolith):")
+    print("If your monolith is an executable JAR/WAR (e.g., Spring Boot), run:")
+    print(f"  java -javaagent:{agent_jar}={tables_dir} -jar {jar_path} > {logs_dir}/console.log 2>&1")
+    
+    print("\nIf your monolith requires an application server (e.g., Tomcat, WebSphere Liberty):")
+    print(f"  1. Add this to your server's JVM arguments (e.g., JAVA_OPTS or jvm.options):")
+    print(f"     -javaagent:{agent_jar}={tables_dir}")
+    print(f"  2. Deploy {jar_path} to your server and start it.")
+
     print("\nOnce the application is running, run the following command in another terminal to start recording traces:")
-    print(f"\nCommand 2 (Record Use Cases):\n{mono2micro_bin} usecase -o {contexts_dir}/usecases.json")
+    print(f"\nCommand 2 (Record Use Cases):\n  {mono2micro_bin} usecase -o {contexts_dir}/usecases.json")
     print("\nFollow the interactive instructions in the usecase command's prompt to execute and record your business use cases.")
     print("="*80 + "\n")
     

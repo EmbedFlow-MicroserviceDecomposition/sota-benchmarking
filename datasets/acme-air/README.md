@@ -30,3 +30,24 @@ uv run create_unified.py
 ```bash
 uv run dataset.py
 ```
+
+## Building and Running
+
+**1. Build the Monolithic WebApp:**
+To compile Acme Air and generate the deployable `.war` archive, run the following Gradle command inside the submodule:
+```bash
+cd acmeair
+./gradlew :acmeair-webapp:build -Pservice=morphia
+cd ..
+```
+
+**2. Note on Code Fixes:**
+The original Acme Air codebase expects to be deployed to WebSphere Liberty. However, it had a bug in `RESTCookieSessionFilter.java` where it eagerly looked up the `CustomerService` during the filter's instantiation phase. Because the CDI `BeanManager` is not fully bound to JNDI during Liberty's early startup phase, this caused a `NullPointerException` wrapped in an `InjectionException`. 
+We modified `RESTCookieSessionFilter.java` to lazily instantiate the services upon the first `doFilter` request, ensuring Liberty finishes its startup sequence cleanly.
+
+**3. Run via Docker Compose (with Mono2Micro):**
+To launch Acme Air with MongoDB and an injected Mono2Micro Minerva agent, use the provided Docker Compose configuration:
+```bash
+docker-compose up --build
+```
+Once the Liberty server indicates it is ready, initialize the database by navigating to `http://localhost:9080/loader.html` and clicking "Load the Database". After that, you can log in on the main page.

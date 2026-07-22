@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Acme Air Liberty Server">
+    <featureManager>
+        <!-- Use Java EE 7 webProfile as per Acme Air requirements -->
+        <feature>webProfile-7.0</feature>
+        <feature>mongodb-2.0</feature>
+        <feature>jndi-1.0</feature>
+    </featureManager>
+
+    <!-- Bind to all interfaces inside the container -->
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443" />
+
+    <!-- Define the MongoDB Java Driver Library -->
+    <library id="mongo-lib">
+        <file name="${shared.resource.dir}/mongodb/mongo-java-driver-2.12.2.jar" />
+    </library>
+
+    <!-- Define the Acme Air application -->
+    <application id="acmeair-webapp" name="acmeair-webapp" type="war" location="acmeair-webapp.war" contextRoot="/">
+        <classloader commonLibraryRef="mongo-lib" />
+    </application>
+
+    <!-- Map the Mongo connection to the mongodb container -->
+    <mongo id="mongo" libraryRef="mongo-lib" hostNames="mongodb" ports="27017"/>
+    <mongoDB jndiName="mongo/acmeairMongodb" mongoRef="mongo" databaseName="acmeair"/>
+
+    <jndiEntry jndiName="com/acmeair/repository/type" value="morphia"/>
+</server>
