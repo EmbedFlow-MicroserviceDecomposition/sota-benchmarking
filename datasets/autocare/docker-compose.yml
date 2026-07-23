@@ -1,0 +1,27 @@
+services:
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: autocare
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+
+  autocare:
+    image: eclipse-temurin:8-jre
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - AWS_S3_BASE_URL=https://s3.amazonaws.com
+      - AWS_S3_REGION=us-east-1
+    volumes:
+      - ./autocare-nepal/build/libs/autocare-0.0.1-SNAPSHOT.jar:/app.jar:ro
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/autocare/tables:/tables:rw
+    command: java -javaagent:/minerva/minerva-agent-1.0.jar=/tables -jar /app.jar
+    depends_on:
+      - mongodb
