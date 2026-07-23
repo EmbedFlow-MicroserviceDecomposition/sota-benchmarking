@@ -36,9 +36,65 @@ This will automatically extract all `.java` files from all submodules and genera
 ## Usage
 
 Once the `roller-unified_kdm.xmi` is in place, run the adapter script:
-
 ```bash
 uv run dataset.py
 ```
-
 This will parse the unified directory and output the standardized `dataset.json` file for the evaluation pipeline.
+
+### Mono2Micro Integration and Docker Execution
+
+The `roller` submodule provides native Docker support, but to successfully deploy it and run the Mono2Micro Minerva agent, several modifications must be made to the Docker configurations.
+
+**1. Modify the `Dockerfile`:**
+- **Local Build Source:** The original Dockerfile clones the code from GitHub, bypassing your local source. Modify the build stage to copy the local directory instead:
+  ```dockerfile
+  # Remove: RUN git clone https://github.com/apache/roller.git
+  # Remove: RUN git checkout tags/roller-6.1.0; \
+  COPY . /tmp/roller
+  RUN mvn -Duser.home=/builder/home -DskipTests=true -B clean install
+  ```
+- **PostgreSQL Port Fix:** Change `ARG DATABASE_HOST=postgresql:5434` to `ARG DATABASE_HOST=postgresql:5432` to match the default port exposed in `docker-compose.yml`.
+- **JDK Bug Fix:** The original base image `tomcat:9-jdk17-openjdk-slim` contains an ancient Java 17 build with a fatal `cgroup v2` bug that crashes Tomcat during initialization. Change the base image to `tomcat:9.0-jdk17-temurin-jammy`.
+
+**2. Optimize Docker Cache (Optional):**
+To prevent Docker from downloading Maven dependencies on every build, add a `.dockerignore` file in the `roller/` directory:
+```text
+docker-compose.yml
+.git
+.github
+target/
+app/target/
+**/*.war
+**/*.jar
+docker/roller-data/
+```
+*Tip: You can also use `--mount=type=cache,target=/builder/home/.m2` in the `RUN mvn` command to cache Maven dependencies across builds.*
+
+**3. Modify `docker-compose.yml` (Inject Minerva):**
+To trace the application, map the Minerva tools into the Tomcat container and append the JVM arguments. Add the following to the `roller` service:
+```yaml
+      volumes:
+         # ... existing volumes ...
+         - ../../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+         - ../../../tools/mono2micro/outputs/apache-roller/tables:/tables:rw
+      environment:
+         - JAVA_OPTS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
+```
+
+**4. Build and Start Roller:**
+```bash
+cd roller
+docker-compose up --build
+```
+
+**5. Extract Runtime Traces:**
+Mono2Micro's `usecase` tool requires you to capture the real-time standard error output from the container. In a new terminal window, pipe the container logs into the output directory:
+```bash
+docker logs -f roller-roller-1 > ../../../tools/mono2micro/outputs/apache-roller/logs/console.log 2>&1
+```
+
+**6. Record Use Cases:**
+In a third terminal, run the orchestrator's `usecase` CLI:
+```bash
+../../../tools/mono2micro/Mono2Micro-CLI/mono2micro usecase -o ../../../tools/mono2micro/outputs/apache-roller/contexts/usecases.json
+```
