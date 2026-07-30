@@ -1,0 +1,50 @@
+services:
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+
+  bear-board:
+    image: eclipse-temurin:8-jre
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/bearboard
+      - KAFKA_HOST=kafka
+      - KAFKA_PORT=9092
+      - KAFKA_TWEETTOPIC=baylorboard.tweets.topic
+      - TWITTER_CONSUMER_KEY=dummy
+      - TWITTER_CONSUMER_SECRET=dummy
+      - TWITTER_ACCESS_TOKEN=dummy
+      - TWITTER_ACCESS_SECRET=dummy
+    volumes:
+      - ./bear-board/target/Maharjan_Rokin-0.0.1-SNAPSHOT.jar:/app.jar:ro
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/bear-board/tables:/tables:rw
+    command: java -javaagent:/minerva/minerva-agent-1.0.jar=/tables -jar /app.jar --spring.data.mongodb.uri=mongodb://mongodb:27017/bearboard --kafka.host=kafka --kafka.port=9092 --twitter.consumer.key=dummy --twitter.consumer.secret=dummy --twitter.access.token=dummy --twitter.access.secret=dummy
+    depends_on:
+      - mongodb
+      - kafka
