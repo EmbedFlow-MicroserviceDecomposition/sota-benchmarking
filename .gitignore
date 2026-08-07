@@ -6,3 +6,7 @@ dataset.json
 
 # Ignore tool outputs directories
 outputs/
+
+# Ignore Python cache
+__pycache__/
+*.pyc

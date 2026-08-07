@@ -122,6 +122,13 @@ graph TD
 
 ### Metrics
 * **CHM (Cohesion at Message level)** - `metrics/chm/`
+* **CHD (Cohesion at Domain level)** - `metrics/chd/`
+* **SM (Structural Modularity)** - `metrics/sm/`
+* **ICP (Inter-Call Percentage)** - `metrics/icp/`
+* **IFN (Interface Number)** - `metrics/ifn/`
+* **NED (Non-Extreme Distribution)** - `metrics/ned/`
+* **BCP (Business Context Purity)** - `metrics/bcp/`
+* **Unified Metrics Runner** - `metrics/compute_all.py`
 
 ## Repository Structure
 
