@@ -58,8 +58,10 @@ def parse_mono2micro_output(oriole_json_path, dataset_json_path, output_json_pat
                 class_to_methods[fqcn].append(method_id)
 
     # Prefer the business logic partition (generated when logs are present)
-    # Fallback to the mono_run_time_call_graph if run without logs
+    # Fallback to static analysis partition or mono_run_time_call_graph
     graph = data.get("micro_detail_partition_by_business_logic")
+    if not graph:
+        graph = data.get("micro_detail_partition_by_static_analysis")
     if not graph:
         graph = data.get("mono_run_time_call_graph", {})
         
