@@ -1,0 +1,1713 @@
+{
+    "RollerTaskWithLeasing": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WebloggerFactory": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "GuiceWebloggerProvider": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WebloggerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "RollerTask": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAThreadManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAPersistenceStrategy": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "TaskLock": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "UUIDGenerator": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "PingQueueTask": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "DateUtil": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "PingQueueProcessor": [
+        "Comment_on_article",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "PingConfig": [
+        "New_blog_entry",
+        "Comment_on_article",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "WebloggerRuntimeConfig": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAPropertiesManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "RuntimeConfigProperty": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAPingQueueManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAWebloggerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAAutoPingManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPABookmarkManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAMediaFileManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "FileContentManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAPingTargetManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "PluginManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "ThreadManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAUserManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAWeblogManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "ScheduledEntriesTask": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogEntrySearchCriteria": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "JPAWeblogEntryManagerImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "CharEncodingFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "SpringFirewallExceptionFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "BootstrapFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WebloggerConfig": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "PersistenceSessionFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "InitFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "RequestMappingFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogRequestMapper": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "RollerUserDetailsService": [
+        "Login"
+    ],
+    "User": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "HTMLSanitizer": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "UserRole": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role"
+    ],
+    "Weblog": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogCategory": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "Utilities": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "LoadSaltFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "RollerSession": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "RollerLoginSessionManager": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "ExpiringLRUCacheImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "LRUCacheImpl": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "ExpiringCacheEntry": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "SaltCache": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "PageServlet": [
+        "Comment_on_article",
+        "Unknown",
+        "View_article"
+    ],
+    "WeblogPageRequest": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "WeblogRequest": [
+        "Comment_on_article",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "ParsedRequest": [
+        "Comment_on_article",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "MobileDeviceRepository": [
+        "Comment_on_article",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogPageCache": [
+        "Comment_on_article",
+        "Unknown",
+        "View_article"
+    ],
+    "ThemeManagerImpl": [
+        "Comment_on_article",
+        "First_setup",
+        "Create_weblog",
+        "View_article"
+    ],
+    "WeblogSharedTheme": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "WeblogTheme": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "SharedThemeFromDir": [
+        "Comment_on_article",
+        "First_setup",
+        "Create_weblog",
+        "View_article"
+    ],
+    "SharedThemeTemplate": [
+        "Comment_on_article",
+        "First_setup",
+        "View_article"
+    ],
+    "RollerContext": [
+        "New_blog_entry",
+        "Comment_on_article",
+        "Global_admin_creation",
+        "Unknown",
+        "View_article"
+    ],
+    "ModelLoader": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "Reflection": [
+        "New_blog_entry",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "View_article"
+    ],
+    "PageModel": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "ConfigModel": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "UtilitiesModel": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "URLModel": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "MessageModel": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "I18nUtils": [
+        "Comment_on_article",
+        "New_blog_entry",
+        "View_article"
+    ],
+    "I18nMessages": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "CalendarModel": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "MenuModel": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "RendererManager": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "VelocityRendererFactory": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "SharedThemeTemplateRendition": [
+        "Comment_on_article",
+        "First_setup",
+        "View_article"
+    ],
+    "VelocityRenderer": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "RollerVelocity": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "WebappResourceLoader": [
+        "Comment_on_article",
+        "Unknown",
+        "View_article"
+    ],
+    "ThemeResourceLoader": [
+        "Comment_on_article",
+        "Unknown",
+        "View_article"
+    ],
+    "CachedContent": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "LazyExpiringCacheEntry": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "CommentAuthenticatorServlet": [
+        "Comment_on_article",
+        "Unknown",
+        "View_article"
+    ],
+    "MathCommentAuthenticator": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "CommentAuthenticatorUtils": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "ResourceServlet": [
+        "Comment_on_article",
+        "Unknown",
+        "View_article"
+    ],
+    "WeblogResourceRequest": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "URLUtilities": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "SharedThemeResourceFromDir": [
+        "Comment_on_article",
+        "First_setup",
+        "Create_weblog",
+        "View_article"
+    ],
+    "ModDateHeaderUtil": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "HitCountQueue": [
+        "Comment_on_article",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogWrapper": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "ThemeTemplateWrapper": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "MultiWeblogURLStrategy": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogCategoryWrapper": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "WeblogPermission": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "View_article"
+    ],
+    "ObjectPermission": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "View_article"
+    ],
+    "RollerPermission": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "AbstractURLStrategy": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogEntriesLatestPager": [
+        "Comment_on_article"
+    ],
+    "AbstractWeblogEntriesPager": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "WeblogEntry": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogEntryWrapper": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "UserWrapper": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "ConvertLineBreaksPlugin": [
+        "New_blog_entry",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "View_article"
+    ],
+    "ObfuscateEmailPlugin": [
+        "New_blog_entry",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "View_article"
+    ],
+    "SmileysPlugin": [
+        "New_blog_entry",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "View_article"
+    ],
+    "EncodePreTagsPlugin": [
+        "New_blog_entry",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "View_article"
+    ],
+    "CommentSearchCriteria": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogEntryComment": [
+        "Approve_comment",
+        "Comment_on_article",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "WeblogEntryTag": [
+        "Comment_on_article",
+        "View_article",
+        "New_blog_entry",
+        "First_setup"
+    ],
+    "WeblogEntryTagComparator": [
+        "Comment_on_article",
+        "New_blog_entry",
+        "View_article"
+    ],
+    "WeblogEntryTagWrapper": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "ValidateSaltFilter": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "First_setup",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role"
+    ],
+    "EntryEdit": [
+        "New_blog_entry",
+        "Unknown"
+    ],
+    "UIAction": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role"
+    ],
+    "UIActionInterceptor": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role"
+    ],
+    "UISecurityInterceptor": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role"
+    ],
+    "GlobalPermission": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "UIActionPrepareInterceptor": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role"
+    ],
+    "EntryBean": [
+        "New_blog_entry",
+        "Unknown"
+    ],
+    "MenuHelper": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Unknown",
+        "Global_admin_creation",
+        "Site_admin_role"
+    ],
+    "ParsedMenu": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "First_setup",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "ParsedTab": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "First_setup",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "MenuTab": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "ParsedTabItem": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "First_setup",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "MenuTabItem": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "Menu": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Planet_admin_role",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "TruncateNicelyTag": [
+        "Site_admin_role",
+        "New_blog_entry",
+        "Unknown",
+        "Approve_comment"
+    ],
+    "StringTagSupport": [
+        "Site_admin_role",
+        "New_blog_entry",
+        "Unknown",
+        "Approve_comment"
+    ],
+    "UIPluginManagerImpl": [
+        "New_blog_entry",
+        "Unknown"
+    ],
+    "TextEditor": [
+        "New_blog_entry",
+        "Unknown"
+    ],
+    "KeyValueObject": [
+        "Site_admin_role",
+        "New_blog_entry",
+        "Unknown",
+        "Approve_comment"
+    ],
+    "PreviewURLStrategy": [
+        "New_blog_entry",
+        "Unknown"
+    ],
+    "Comments": [
+        "Unknown",
+        "Approve_comment"
+    ],
+    "CommentsBean": [
+        "Unknown",
+        "Approve_comment"
+    ],
+    "CacheManager": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Login",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "SiteWideCache": [
+        "Comment_on_article",
+        "New_blog_entry",
+        "Unknown",
+        "Approve_comment"
+    ],
+    "MailUtil": [
+        "Comment_on_article",
+        "Approve_comment"
+    ],
+    "WebloggerStartup": [
+        "First_setup",
+        "Unknown",
+        "Approve_comment"
+    ],
+    "LuceneIndexManager": [
+        "Comment_on_article",
+        "First_setup",
+        "New_blog_entry",
+        "Approve_comment"
+    ],
+    "ReIndexEntryOperation": [
+        "New_blog_entry",
+        "Approve_comment"
+    ],
+    "WriteToIndexOperation": [
+        "Comment_on_article",
+        "First_setup",
+        "New_blog_entry",
+        "Approve_comment"
+    ],
+    "IndexOperation": [
+        "Comment_on_article",
+        "First_setup",
+        "New_blog_entry",
+        "Approve_comment"
+    ],
+    "CommentsPager": [
+        "Site_admin_role",
+        "Unknown",
+        "Approve_comment"
+    ],
+    "MainMenu": [
+        "Login",
+        "Create_weblog",
+        "Unknown"
+    ],
+    "ThemeDataServlet": [
+        "Create_weblog"
+    ],
+    "SharedTheme": [
+        "Create_weblog",
+        "First_setup"
+    ],
+    "PlanetConfig": [
+        "Planet_admin_role"
+    ],
+    "PlanetRuntimeConfig": [
+        "Planet_admin_role"
+    ],
+    "RuntimeConfigDefsParser": [
+        "Planet_admin_role",
+        "First_setup"
+    ],
+    "RuntimeConfigDefs": [
+        "Planet_admin_role",
+        "Edit_site_settings",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "ConfigDef": [
+        "Planet_admin_role",
+        "Edit_site_settings",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "DisplayGroup": [
+        "Planet_admin_role",
+        "Edit_site_settings",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "PropertyDef": [
+        "Planet_admin_role",
+        "Edit_site_settings",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "PropertyExpander": [
+        "Unknown"
+    ],
+    "RollerRememberMeAuthenticationProvider": [
+        "Unknown"
+    ],
+    "RollerRememberMeServices": [
+        "Unknown"
+    ],
+    "DatabaseProvider": [
+        "Unknown",
+        "First_setup"
+    ],
+    "MailProvider": [
+        "Unknown",
+        "First_setup"
+    ],
+    "StartupException": [
+        "Unknown",
+        "First_setup"
+    ],
+    "WebloggerException": [
+        "View_article",
+        "Unknown",
+        "First_setup"
+    ],
+    "RollerException": [
+        "View_article",
+        "Unknown",
+        "First_setup"
+    ],
+    "DatabaseInstaller": [
+        "Unknown",
+        "First_setup"
+    ],
+    "RollerResourceLoader": [
+        "Unknown",
+        "View_article"
+    ],
+    "DebugFilter": [
+        "Unknown"
+    ],
+    "IPBanFilter": [
+        "Comment_on_article",
+        "Unknown"
+    ],
+    "SearchServlet": [
+        "Unknown"
+    ],
+    "FeedServlet": [
+        "Unknown"
+    ],
+    "WeblogFeedCache": [
+        "Unknown"
+    ],
+    "ExpiringLRUCacheFactoryImpl": [
+        "Login",
+        "Unknown"
+    ],
+    "MediaResourceServlet": [
+        "Unknown"
+    ],
+    "CommentServlet": [
+        "Comment_on_article",
+        "Unknown"
+    ],
+    "CommentValidationManager": [
+        "Comment_on_article",
+        "Unknown"
+    ],
+    "ExcessLinksCommentValidator": [
+        "Comment_on_article",
+        "Unknown"
+    ],
+    "ExcessSizeCommentValidator": [
+        "Comment_on_article",
+        "Unknown"
+    ],
+    "PlanetFeedServlet": [
+        "Unknown"
+    ],
+    "PlanetCache": [
+        "Unknown"
+    ],
+    "RSDServlet": [
+        "Unknown"
+    ],
+    "TrackbackServlet": [
+        "Unknown"
+    ],
+    "PreviewServlet": [
+        "Unknown"
+    ],
+    "PreviewResourceServlet": [
+        "Unknown"
+    ],
+    "Install": [
+        "Unknown",
+        "First_setup"
+    ],
+    "JPAWebloggerModule": [
+        "First_setup"
+    ],
+    "LinkMarkupPlugin": [
+        "Comment_on_article",
+        "Edit_site_settings",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "AutoformatPlugin": [
+        "Comment_on_article",
+        "Edit_site_settings",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "HTMLSubsetPlugin": [
+        "Comment_on_article",
+        "Edit_site_settings",
+        "First_setup",
+        "Unknown",
+        "Site_admin_role"
+    ],
+    "StatCountCountComparator": [
+        "First_setup"
+    ],
+    "TagStatComparator": [
+        "First_setup"
+    ],
+    "TagStatCountComparator": [
+        "First_setup"
+    ],
+    "JPAOAuthManagerImpl": [
+        "First_setup"
+    ],
+    "WebloggerRomeFeedFetcher": [
+        "First_setup"
+    ],
+    "RomeFeedFetcher": [
+        "First_setup"
+    ],
+    "JPAPlanetManagerImpl": [
+        "Planet_admin_role",
+        "First_setup"
+    ],
+    "WeblogEntryAttribute": [
+        "First_setup"
+    ],
+    "MediaFileDirectory": [
+        "Create_weblog",
+        "First_setup"
+    ],
+    "CustomTemplateRendition": [
+        "First_setup"
+    ],
+    "MediaFile": [
+        "First_setup"
+    ],
+    "PingQueueEntry": [
+        "First_setup"
+    ],
+    "PlanetGroup": [
+        "Planet_admin_role",
+        "First_setup"
+    ],
+    "WeblogEntryTagAggregate": [
+        "New_blog_entry",
+        "First_setup"
+    ],
+    "WeblogHitCount": [
+        "Comment_on_article",
+        "View_article",
+        "Unknown",
+        "First_setup"
+    ],
+    "MediaFileTag": [
+        "First_setup"
+    ],
+    "WeblogTemplate": [
+        "First_setup"
+    ],
+    "SubscriptionEntry": [
+        "First_setup"
+    ],
+    "WeblogBookmark": [
+        "Create_weblog",
+        "Unknown",
+        "First_setup"
+    ],
+    "OAuthAccessorRecord": [
+        "First_setup"
+    ],
+    "AutoPing": [
+        "First_setup"
+    ],
+    "WeblogBookmarkFolder": [
+        "Create_weblog",
+        "Unknown",
+        "First_setup"
+    ],
+    "Subscription": [
+        "First_setup"
+    ],
+    "PingTarget": [
+        "Site_admin_role",
+        "Create_weblog",
+        "First_setup"
+    ],
+    "OAuthConsumerRecord": [
+        "First_setup"
+    ],
+    "Planet": [
+        "Planet_admin_role",
+        "First_setup"
+    ],
+    "ThemeMetadataParser": [
+        "First_setup"
+    ],
+    "ThemeMetadata": [
+        "First_setup"
+    ],
+    "ThemeMetadataTemplate": [
+        "First_setup"
+    ],
+    "ThemeMetadataTemplateRendition": [
+        "First_setup"
+    ],
+    "ResetHitCountsTask": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "TaskScheduler": [
+        "New_blog_entry",
+        "Approve_comment",
+        "Comment_on_article",
+        "Planet_admin_role",
+        "Login",
+        "First_setup",
+        "Edit_site_settings",
+        "Create_weblog",
+        "Global_admin_creation",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "RebuildWebsiteIndexOperation": [
+        "First_setup"
+    ],
+    "GlobalConfig": [
+        "Site_admin_role",
+        "Unknown",
+        "Edit_site_settings"
+    ],
+    "GlobalCommentManagement": [
+        "Site_admin_role"
+    ],
+    "GlobalCommentManagementBean": [
+        "Site_admin_role"
+    ],
+    "CacheInfo": [
+        "Site_admin_role"
+    ],
+    "Setup": [
+        "First_setup"
+    ],
+    "Summernote": [
+        "New_blog_entry",
+        "Unknown"
+    ],
+    "HitCountProcessingJob": [
+        "Comment_on_article",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "ContinuousWorkerThread": [
+        "Comment_on_article",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WorkerThread": [
+        "Comment_on_article",
+        "Edit_site_settings",
+        "Unknown",
+        "Site_admin_role",
+        "View_article"
+    ],
+    "WeblogEntriesPermalinkPager": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "WeblogEntryCommentForm": [
+        "Comment_on_article",
+        "View_article"
+    ],
+    "IPBanList": [
+        "Comment_on_article"
+    ],
+    "RollerMessages": [
+        "Comment_on_article"
+    ],
+    "WeblogCommentRequest": [
+        "Comment_on_article"
+    ],
+    "BannedwordslistCommentValidator": [
+        "Comment_on_article"
+    ],
+    "BannedwordslistChecker": [
+        "Comment_on_article"
+    ],
+    "Bannedwordslist": [
+        "Comment_on_article"
+    ],
+    "WeblogEntryCommentWrapper": [
+        "Comment_on_article"
+    ],
+    "ClasspathDatabaseScriptProvider": [
+        "First_setup"
+    ],
+    "SQLScriptRunner": [
+        "First_setup"
+    ],
+    "Login": [
+        "Global_admin_creation"
+    ],
+    "CreateWeblog": [
+        "Create_weblog"
+    ],
+    "CreateWeblogBean": [
+        "Create_weblog"
+    ],
+    "UIUtils": [
+        "Global_admin_creation",
+        "Create_weblog",
+        "Unknown"
+    ],
+    "WeblogConfig": [
+        "Unknown"
+    ],
+    "WeblogConfigBean": [
+        "Unknown"
+    ],
+    "PlanetGroupSubs": [
+        "Planet_admin_role"
+    ],
+    "PlanetUIAction": [
+        "Planet_admin_role"
+    ],
+    "TagDataServlet": [
+        "New_blog_entry"
+    ],
+    "UserAdmin": [
+        "Site_admin_role"
+    ],
+    "CreateUserBean": [
+        "Site_admin_role"
+    ],
+    "PlanetGroups": [
+        "Planet_admin_role"
+    ],
+    "Register": [
+        "Global_admin_creation"
+    ],
+    "ProfileBean": [
+        "Global_admin_creation"
+    ],
+    "IndexUtil": [
+        "First_setup"
+    ],
+    "RemoveEntryOperation": [
+        "Comment_on_article"
+    ],
+    "AddEntryOperation": [
+        "Comment_on_article"
+    ],
+    "Bookmarks": [
+        "Unknown"
+    ],
+    "UserDataServlet": [
+        "Site_admin_role"
+    ],
+    "PingTargets": [
+        "Site_admin_role"
+    ]
+}

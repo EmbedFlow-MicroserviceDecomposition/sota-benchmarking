@@ -1,0 +1,53 @@
+{
+    "EventService": [
+        "GetEvents",
+        "Unknown",
+        "CreateEvent",
+        "GetEvent"
+    ],
+    "UserController": [
+        "GetUser",
+        "Unknown",
+        "GetAllUsers"
+    ],
+    "UserService": [
+        "GetUser",
+        "Unknown",
+        "GetAllUsers"
+    ],
+    "AwardService": [
+        "CreateAward",
+        "GetAward",
+        "Unknown",
+        "GetAwards"
+    ],
+    "WhitelistUserController": [
+        "CreateWhitelistUser",
+        "GetWhitelistUsers",
+        "Unknown"
+    ],
+    "WhitelistUserService": [
+        "CreateWhitelistUser",
+        "GetWhitelistUsers",
+        "Unknown"
+    ],
+    "BaylorBoardApplication": [
+        "Unknown"
+    ],
+    "TwitterConfig": [
+        "Unknown"
+    ],
+    "WebSocketConfig": [
+        "Unknown"
+    ],
+    "TweetService": [
+        "GetTweets",
+        "Unknown"
+    ],
+    "KafkaConfig": [
+        "Unknown"
+    ],
+    "WebConfig": [
+        "Unknown"
+    ]
+}

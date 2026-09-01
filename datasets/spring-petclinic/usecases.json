@@ -1,0 +1,78 @@
+{
+    "OwnerController": [
+        "Add_Visit",
+        "Unknown",
+        "Add_Owner",
+        "Find_Owner",
+        "Add_Pet"
+    ],
+    "Person": [
+        "Add_Visit",
+        "Add_Vet",
+        "Add_Owner",
+        "Find_Owner",
+        "Add_Pet"
+    ],
+    "Owner": [
+        "Add_Visit",
+        "Find_Owner",
+        "Add_Pet",
+        "Add_Owner"
+    ],
+    "BaseEntity": [
+        "Add_Visit",
+        "Find_Owner",
+        "Add_Pet",
+        "Add_Owner"
+    ],
+    "NamedEntity": [
+        "Add_Visit",
+        "Find_Owner",
+        "Add_Pet",
+        "Add_Vet"
+    ],
+    "Pet": [
+        "Add_Visit",
+        "Find_Owner",
+        "Add_Pet"
+    ],
+    "Visit": [
+        "Add_Visit",
+        "Find_Owner",
+        "Unknown"
+    ],
+    "PetClinicApplication": [
+        "Unknown"
+    ],
+    "CacheConfig": [
+        "Unknown"
+    ],
+    "VetController": [
+        "Add_Vet",
+        "Unknown"
+    ],
+    "PetTypeFormatter": [
+        "Add_Pet",
+        "Unknown"
+    ],
+    "VisitController": [
+        "Add_Visit",
+        "Unknown"
+    ],
+    "PetController": [
+        "Add_Pet",
+        "Unknown"
+    ],
+    "WelcomeController": [
+        "Initial_Load"
+    ],
+    "Vets": [
+        "Add_Vet"
+    ],
+    "Vet": [
+        "Add_Vet"
+    ],
+    "PetValidator": [
+        "Add_Pet"
+    ]
+}

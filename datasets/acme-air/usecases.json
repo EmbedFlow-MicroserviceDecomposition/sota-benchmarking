@@ -1,0 +1,219 @@
+{
+    "RESTCookieSessionFilter": [
+        "Update_profile",
+        "View_checkins",
+        "View_account",
+        "Login",
+        "Cancel_checkin",
+        "Search_flights",
+        "Unknown",
+        "Book_flight",
+        "Browse_filghts",
+        "Logout"
+    ],
+    "CustomerService": [
+        "Update_profile",
+        "View_checkins",
+        "View_account",
+        "Login",
+        "Cancel_checkin",
+        "Search_flights",
+        "Unknown",
+        "Book_flight",
+        "Browse_filghts"
+    ],
+    "CustomerServiceImpl": [
+        "Update_profile",
+        "View_checkins",
+        "View_account",
+        "Login",
+        "Cancel_checkin",
+        "Search_flights",
+        "Unknown",
+        "Book_flight",
+        "Browse_filghts",
+        "Logout"
+    ],
+    "CustomerSessionImpl": [
+        "Update_profile",
+        "View_checkins",
+        "View_account",
+        "Login",
+        "Cancel_checkin",
+        "Search_flights",
+        "Unknown",
+        "Book_flight",
+        "Browse_filghts"
+    ],
+    "ServiceLocator": [
+        "Update_profile",
+        "View_checkins",
+        "View_account",
+        "Login",
+        "Cancel_checkin",
+        "Search_flights",
+        "Unknown",
+        "Book_flight",
+        "Browse_filghts",
+        "Logout"
+    ],
+    "FlightServiceImpl": [
+        "View_checkins",
+        "Cancel_checkin",
+        "Search_flights",
+        "Unknown",
+        "Book_flight",
+        "Browse_filghts"
+    ],
+    "MongoConnectionManager": [
+        "Update_profile",
+        "View_checkins",
+        "View_account",
+        "Login",
+        "Cancel_checkin",
+        "Search_flights",
+        "Unknown",
+        "Book_flight",
+        "Browse_filghts",
+        "Logout"
+    ],
+    "BookingServiceImpl": [
+        "View_checkins",
+        "Book_flight",
+        "Cancel_checkin",
+        "Unknown"
+    ],
+    "BookingsREST": [
+        "View_checkins",
+        "Book_flight",
+        "Unknown",
+        "Cancel_checkin"
+    ],
+    "FlightService": [
+        "Book_flight",
+        "Search_flights",
+        "Browse_filghts"
+    ],
+    "FlightImpl": [
+        "Book_flight",
+        "Browse_filghts",
+        "Unknown"
+    ],
+    "BigDecimalConverter": [
+        "Book_flight",
+        "Browse_filghts",
+        "Unknown"
+    ],
+    "CustomerImpl": [
+        "Update_profile",
+        "View_account",
+        "Login",
+        "Unknown",
+        "Book_flight"
+    ],
+    "CustomerAddressImpl": [
+        "Update_profile",
+        "View_account",
+        "Login",
+        "Unknown",
+        "Book_flight"
+    ],
+    "KeyGenerator": [
+        "Book_flight",
+        "Login",
+        "Unknown"
+    ],
+    "BookingImpl": [
+        "View_checkins",
+        "Book_flight",
+        "Unknown"
+    ],
+    "BookingReceiptInfo": [
+        "Book_flight"
+    ],
+    "LoaderREST": [
+        "Unknown"
+    ],
+    "Loader": [
+        "Unknown"
+    ],
+    "FlightLoader": [
+        "Unknown"
+    ],
+    "AirportCodeMappingImpl": [
+        "Unknown"
+    ],
+    "FlightSegmentImpl": [
+        "Book_flight",
+        "Search_flights",
+        "Browse_filghts",
+        "Unknown"
+    ],
+    "CustomerLoader": [
+        "Unknown"
+    ],
+    "FlightsREST": [
+        "Book_flight",
+        "Search_flights",
+        "Browse_filghts"
+    ],
+    "TripLegInfo": [
+        "Book_flight",
+        "Search_flights",
+        "Browse_filghts"
+    ],
+    "TripFlightOptions": [
+        "Book_flight",
+        "Search_flights",
+        "Browse_filghts"
+    ],
+    "BookingInfo": [
+        "View_checkins",
+        "Unknown"
+    ],
+    "BookingPKInfo": [
+        "View_checkins",
+        "Unknown"
+    ],
+    "AcmeAirConfiguration": [
+        "Unknown"
+    ],
+    "FlightInfo": [
+        "Book_flight",
+        "Browse_filghts"
+    ],
+    "FlightSegmentInfo": [
+        "Book_flight",
+        "Browse_filghts"
+    ],
+    "FlightPKInfo": [
+        "Book_flight",
+        "Browse_filghts"
+    ],
+    "LoginREST": [
+        "Login",
+        "Unknown",
+        "Logout"
+    ],
+    "CustomerInfo": [
+        "View_account",
+        "Unknown",
+        "Update_profile"
+    ],
+    "AddressInfo": [
+        "View_account",
+        "Unknown",
+        "Update_profile"
+    ],
+    "CustomerREST": [
+        "View_account",
+        "Unknown",
+        "Update_profile"
+    ],
+    "AppConfig": [
+        "Unknown"
+    ],
+    "AcmeAirApp": [
+        "Unknown"
+    ]
+}

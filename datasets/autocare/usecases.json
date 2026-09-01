@@ -1,0 +1,135 @@
+{
+    "CorsFilter": [
+        "SearchVehicles",
+        "GetUser",
+        "CreateComment",
+        "GetVehicles",
+        "Unknown",
+        "CreateUser",
+        "GetComments",
+        "Authenticate",
+        "CreateVehicle"
+    ],
+    "CustomUserDetailsService": [
+        "Authenticate"
+    ],
+    "User": [
+        "GetUser",
+        "CreateComment",
+        "Unknown",
+        "CreateUser",
+        "Authenticate",
+        "CreateVehicle"
+    ],
+    "CustomTokenEnhancer": [
+        "Authenticate"
+    ],
+    "VehicleDto": [
+        "CreateVehicle"
+    ],
+    "VehicleController": [
+        "SearchVehicles",
+        "GetVehicles",
+        "CreateVehicle"
+    ],
+    "VehicleService": [
+        "SearchVehicles",
+        "GetVehicles",
+        "CreateVehicle"
+    ],
+    "Vehicle": [
+        "SearchVehicles",
+        "GetVehicles",
+        "CreateVehicle"
+    ],
+    "CustomBeanUtils": [
+        "CreateComment",
+        "CreateUser",
+        "Unknown",
+        "CreateVehicle"
+    ],
+    "AuthenticationUtils": [
+        "CreateComment",
+        "CreateVehicle"
+    ],
+    "UserService": [
+        "GetUser",
+        "CreateComment",
+        "Unknown",
+        "CreateUser",
+        "CreateVehicle"
+    ],
+    "AutocareApplication": [
+        "Unknown"
+    ],
+    "SecurityConfiguration": [
+        "Unknown"
+    ],
+    "AwsCredential": [
+        "Unknown"
+    ],
+    "AwsConfiguration": [
+        "Unknown"
+    ],
+    "AuthorizationServerConfiguration": [
+        "Unknown"
+    ],
+    "SwaggerConfiguration": [
+        "Unknown"
+    ],
+    "ResourceServerConfiguration": [
+        "Unknown"
+    ],
+    "WebConfiguration": [
+        "Unknown"
+    ],
+    "Organization": [
+        "GetUser",
+        "CreateUser",
+        "Unknown"
+    ],
+    "UserDto": [
+        "CreateUser",
+        "Unknown"
+    ],
+    "UserController": [
+        "GetUser",
+        "CreateUser",
+        "Unknown"
+    ],
+    "PageDto": [
+        "SearchVehicles",
+        "GetComments",
+        "GetVehicles"
+    ],
+    "CommentDto": [
+        "CreateComment"
+    ],
+    "CommentController": [
+        "GetComments",
+        "CreateComment"
+    ],
+    "CommentService": [
+        "GetComments",
+        "CreateComment"
+    ],
+    "Comment": [
+        "GetComments",
+        "CreateComment"
+    ],
+    "GlobalException": [
+        "Unknown"
+    ],
+    "GlobalExceptionHandler": [
+        "Unknown"
+    ],
+    "ErrorResponse": [
+        "Unknown"
+    ],
+    "SearchVehiclesDto": [
+        "SearchVehicles"
+    ],
+    "CustomVehicleRepositoryImpl": [
+        "SearchVehicles"
+    ]
+}
