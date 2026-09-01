@@ -16,12 +16,26 @@ While the exact nature of the failure may vary (often related to unresolved Java
 
 Because MoDisco cannot process the source code into a valid KDM model, decomposition tools that strictly rely on MoDisco's KDM schema (like MAGNET) cannot natively evaluate this dataset. Any evaluation requires an alternative Call Graph generator to artificially synthesize the required `javafx-pos_kdm.xmi`.
 
-## Usage
+## Setup & Runtime Execution
 
-You can still run the adapter script to extract the method dataset via `javalang`:
+### 1. Database (Docker Compose)
+Start the MariaDB database service pre-seeded with `inventory.sql`:
+```bash
+docker compose -f datasets/javafx-pos/docker-compose.yml up -d mysql
+```
 
+### 2. Compilation & Build
+The application runs on Java 11. The build uses Maven with `maven-shade-plugin` to produce a runnable JAR (`target/inventory-1.0.jar`), including OpenJFX 11 and JAXB API (`javax.xml.bind:jaxb-api:2.3.1`, `org.glassfish.jaxb:jaxb-runtime:2.3.1`).
+```bash
+mvn package -f datasets/javafx-pos/JavaFX-Point-of-Sales/pom.xml -DskipTests
+```
+
+### 3. Use Case Transactions
+Domain transactions are executed via `com.rafsan.inventory.UseCaseRunner` across the supported use cases: `Login`, `ManageCategory`, `ManageProduct`, `ManageSupplier`, `ManageEmployee`, `CreateSale`, `CreatePurchase`, and `GenerateInvoice`.
+
+## Dataset Adapter
+
+Generate the universal `dataset.json` mapping methods, static call graph edges, and ground-truth use cases:
 ```bash
 uv run dataset.py
 ```
-
-This will parse the raw Java files and output `dataset.json`, which can be used by tools that do not require KDM input.
