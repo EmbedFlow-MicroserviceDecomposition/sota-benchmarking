@@ -8,7 +8,6 @@ import csv
 import json
 import argparse
 from dataclasses import dataclass
-from itertools import combinations
 
 @dataclass(frozen=True)
 class Edge:
@@ -40,7 +39,6 @@ def resolve_partition(microservices, dataset_methods=None):
 
             class_member_counts.setdefault(class_fqn, {})
             class_member_counts[class_fqn][cid] = class_member_counts[class_fqn].get(cid, 0) + 1
-            # Also store short class name
             short_name = class_fqn.split(".")[-1]
             class_member_counts.setdefault(short_name, {})
             class_member_counts[short_name][cid] = class_member_counts[short_name].get(cid, 0) + 1
@@ -120,19 +118,14 @@ def calculate_sm(partition_func, clusters, edges, undirected=False):
     overall_sm = sum(microservice_scores.values()) / K
     return overall_sm, microservice_scores
 
-def load_edges(dataset_path, output_path):
+def load_edges(dataset_path):
     edges = []
-    edges_csv = os.path.join(dataset_path, "edges.csv")
     dataset_json = os.path.join(dataset_path, "dataset.json")
 
-    if os.path.exists(edges_csv):
-        with open(edges_csv, newline="", encoding="utf-8") as f:
-            for row in csv.DictReader(f):
-                edges.append(Edge(row["src"], row["dst"], row.get("type", "CALL"), float(row.get("weight", 1.0))))
-    elif os.path.exists(dataset_json):
+    if os.path.exists(dataset_json):
         with open(dataset_json, "r", encoding="utf-8") as f:
             data = json.load(f)
-            if "edges" in data:
+            if "edges" in data and data["edges"]:
                 for e in data["edges"]:
                     edges.append(Edge(e["src"], e["dst"], e.get("type", "CALL"), float(e.get("weight", 1.0))))
             elif "methods" in data:
@@ -141,37 +134,9 @@ def load_edges(dataset_path, output_path):
                     caller_cls = mdata.get("class", caller_id.rsplit(".", 1)[0] if "." in caller_id else caller_id)
                     calls = mdata.get("calls", [])
                     for callee_id in calls:
-                        callee_data = methods.get(callee_id, {})
-                        callee_cls = callee_data.get("class", callee_id.rsplit(".", 1)[0] if "." in callee_id else callee_id)
-                        edges.append(Edge(caller_id, callee_id, "CALL", 1.0))
+                        callee_cls = callee_id.rsplit(".", 1)[0] if "." in callee_id else callee_id
                         edges.append(Edge(caller_cls, callee_cls, "CALL", 1.0))
-
-    # Auto-discover call graph edges from Mono2Micro output files if empty
-    if not edges:
-        class_run_files = [
-            os.path.join(output_path, "mono2micro", "mono2micro-output", "cardinal", "class_run.json"),
-            os.path.join(output_path, "mono2micro", "mono2micro-output", "oriole", "class_run.json")
-        ]
-        for crf in class_run_files:
-            if os.path.exists(crf):
-                try:
-                    with open(crf, "r", encoding="utf-8") as f:
-                        cdata = json.load(f)
-                        for caller_cls, cinfo in cdata.items():
-                            if caller_cls == "$Root$":
-                                continue
-                            clean_caller = caller_cls.split(" [")[0].strip()
-                            to_dict = cinfo.get("To", {})
-                            for callee_cls, mdict in to_dict.items():
-                                clean_callee = callee_cls.split(" [")[0].strip()
-                                if isinstance(mdict, dict):
-                                    for callee_method, weight in mdict.items():
-                                        w = float(weight)
-                                        edges.append(Edge(clean_caller, clean_callee, "CALL", w))
-                                        edges.append(Edge(caller_cls, callee_cls, "CALL", w))
-                                        edges.append(Edge(f"{clean_caller}.{callee_method}", f"{clean_callee}.{callee_method}", "CALL", w))
-                except Exception:
-                    pass
+                        edges.append(Edge(caller_id, callee_id, "CALL", 1.0))
 
     return edges
 
@@ -193,7 +158,7 @@ def evaluate_sm(dataset_path, output_path):
 
     unified_partition, get_cluster = resolve_partition(microservices, dataset_methods)
     clusters = get_clusters(unified_partition)
-    edges = load_edges(dataset_path, output_path)
+    edges = load_edges(dataset_path)
 
     score, ms_scores = calculate_sm(get_cluster, clusters, edges)
 

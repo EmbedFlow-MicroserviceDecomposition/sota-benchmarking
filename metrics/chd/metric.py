@@ -122,7 +122,7 @@ def calculate_chd(get_cluster, clusters, calls):
     overall_chd = sum(microservice_scores.values()) / len(clusters)
     return overall_chd, microservice_scores
 
-def load_calls(dataset_path, output_path):
+def load_calls(dataset_path):
     calls = []
     dataset_methods = {}
     dataset_json = os.path.join(dataset_path, "dataset.json")
@@ -145,37 +145,6 @@ def load_calls(dataset_path, output_path):
                     op = Operation(cls=callee_cls, name=callee_name, params=callee_params, returns=callee_returns)
                     calls.append((caller_cls, op))
 
-    if not calls:
-        class_run_files = [
-            os.path.join(output_path, "mono2micro", "mono2micro-output", "cardinal", "class_run.json"),
-            os.path.join(output_path, "mono2micro", "mono2micro-output", "oriole", "class_run.json")
-        ]
-        for crf in class_run_files:
-            if os.path.exists(crf):
-                try:
-                    with open(crf, "r", encoding="utf-8") as f:
-                        cdata = json.load(f)
-                        for caller_cls, cinfo in cdata.items():
-                            if caller_cls == "$Root$":
-                                continue
-                            clean_caller = caller_cls.split(" [")[0].strip()
-                            to_dict = cinfo.get("To", {})
-                            for callee_cls, mdict in to_dict.items():
-                                clean_callee = callee_cls.split(" [")[0].strip()
-                                if isinstance(mdict, dict):
-                                    for callee_method, _ in mdict.items():
-                                        params = ()
-                                        returns = "void"
-                                        for m_id, mdata in dataset_methods.items():
-                                            if mdata.get("method_name") == callee_method and (mdata.get("class") == clean_callee or mdata.get("class") in callee_cls):
-                                                params = tuple(mdata.get("parameters", []))
-                                                returns = mdata.get("return_type", "void")
-                                                break
-                                        op = Operation(cls=clean_callee, name=callee_method, params=params, returns=returns)
-                                        calls.append((clean_caller, op))
-                except Exception:
-                    pass
-
     return calls, dataset_methods
 
 def evaluate_chd(dataset_path, output_path):
@@ -187,7 +156,7 @@ def evaluate_chd(dataset_path, output_path):
         result_data = json.load(f)
         microservices = result_data.get("microservices", {})
 
-    calls, dataset_methods = load_calls(dataset_path, output_path)
+    calls, dataset_methods = load_calls(dataset_path)
     get_cluster = resolve_partition(microservices, dataset_methods)
     clusters = set(microservices.keys())
 

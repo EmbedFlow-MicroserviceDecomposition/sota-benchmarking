@@ -26,79 +26,30 @@ def calculate_bcp(partition, class_usecases, log=math.log):
     for cid, members in clusters.items():
         labels = set()
         for c in members:
-            # 1. Exact match
-            if c in class_usecases:
+            clean_c = c.split(" [")[0].strip()
+            if clean_c in class_usecases:
+                labels |= set(class_usecases[clean_c])
+            elif c in class_usecases:
                 labels |= set(class_usecases[c])
             else:
-                # 2. Parent class FQN and short class name
-                if "." in c:
-                    parent_cls = c.rsplit(".", 1)[0]
+                if "." in clean_c:
+                    parent_cls = clean_c.rsplit(".", 1)[0]
                     if parent_cls in class_usecases:
                         labels |= set(class_usecases[parent_cls])
                     else:
                         short_parent = parent_cls.split(".")[-1]
                         if short_parent in class_usecases:
                             labels |= set(class_usecases[short_parent])
-                else:
-                    if c in class_usecases:
-                        labels |= set(class_usecases[c])
 
-        # Exclude internal "Unknown" usecase if present
         labels.discard("Unknown")
         microservice_scores[cid] = log(len(labels)) if labels else 0.0
 
     overall_bcp = sum(microservice_scores.values()) / K
     return overall_bcp, microservice_scores
 
-def load_class_usecases(dataset_path, output_path):
+def load_class_usecases(dataset_path):
     class_usecases = {}
 
-    # 1. Check final_graph.json / cardinal_graph.json in Mono2Micro output
-    oriole_graph = os.path.join(output_path, "mono2micro", "mono2micro-output", "oriole", "final_graph.json")
-    cardinal_graph = os.path.join(output_path, "mono2micro", "mono2micro-output", "cardinal", "final_graph.json")
-    for gf in [oriole_graph, cardinal_graph]:
-        if os.path.exists(gf):
-            try:
-                with open(gf, "r", encoding="utf-8") as f:
-                    gdata = json.load(f)
-                    cg = gdata.get("mono_run_time_call_graph", {})
-                    nodes = cg.get("nodes", [])
-                    for node in nodes:
-                        name = node.get("name", "")
-                        semantics = node.get("semantics", [])
-                        if name and semantics:
-                            clean_name = name.split(" [")[0].strip()
-                            class_usecases.setdefault(clean_name, set()).update(semantics)
-                            class_usecases.setdefault(name, set()).update(semantics)
-                            filepath = node.get("filepath", "")
-                            if "Class," in filepath:
-                                path_part = filepath.split("Class,")[-1].strip()
-                                cls_name = os.path.splitext(os.path.basename(path_part))[0]
-                                class_usecases.setdefault(cls_name, set()).update(semantics)
-            except Exception:
-                pass
-
-    # 2. Check usecases.json files
-    usecase_files = [
-        os.path.join(output_path, "usecases.json"),
-        os.path.join(output_path, "contexts", "usecases.json"),
-        os.path.join(dataset_path, "usecases.json")
-    ]
-    for uf in usecase_files:
-        if os.path.exists(uf):
-            try:
-                with open(uf, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                    if isinstance(data, dict):
-                        for k, v in data.items():
-                            if isinstance(v, list):
-                                for item in v:
-                                    class_usecases.setdefault(item, set()).add(k)
-                                    class_usecases.setdefault(k, set()).update(v)
-            except Exception:
-                pass
-
-    # 3. Check dataset.json
     dataset_json = os.path.join(dataset_path, "dataset.json")
     if os.path.exists(dataset_json):
         try:
@@ -126,7 +77,7 @@ def evaluate_bcp(dataset_path, output_path):
         for m in members:
             partition[m] = cid
 
-    class_usecases = load_class_usecases(dataset_path, output_path)
+    class_usecases = load_class_usecases(dataset_path)
     score, ms_scores = calculate_bcp(partition, class_usecases)
 
     print(f"Final BCP Score: {score:.4f}")
