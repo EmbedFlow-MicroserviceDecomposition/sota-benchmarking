@@ -1,0 +1,24 @@
+services:
+  mysql:
+    image: mariadb:10.5
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: inventory
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./JavaFX-Point-of-Sales/inventory.sql:/docker-entrypoint-initdb.d/inventory.sql:ro
+
+  javafx-pos:
+    image: eclipse-temurin:11-jdk
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+    volumes:
+      - ./JavaFX-Point-of-Sales:/app:rw
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/javafx-pos/tables:/tables:rw
+      - ../../tools/mono2micro/outputs/javafx-pos/logs:/logs:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    working_dir: /app
+    depends_on:
+      - mysql
