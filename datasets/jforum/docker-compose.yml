@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mariadb:10.5
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=jforum
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./jakartaEE/src/main/config/database/mysql/mysql_db_struct.sql:/docker-entrypoint-initdb.d/01_struct.sql:ro
+      - ./jakartaEE/src/main/config/database/mysql/mysql_data_dump.sql:/docker-entrypoint-initdb.d/02_data.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
