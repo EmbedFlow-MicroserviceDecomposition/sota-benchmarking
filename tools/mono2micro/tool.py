@@ -176,6 +176,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tool orchestrator for Mono2Micro")
     parser.add_argument("--dataset-path", type=str, required=True, help="Path to the dataset directory")
     parser.add_argument("--output-path", type=str, required=True, help="Path to the tool output directory")
+    parser.add_argument("--parse-only", action="store_true", help="Only parse final_graph.json to output.json")
     
     args = parser.parse_args()
-    run_mono2micro(args.dataset_path, args.output_path)
+    if args.parse_only:
+        oriole_json = os.path.join(os.path.abspath(args.output_path), "mono2micro", "mono2micro-output", "oriole", "final_graph.json")
+        dataset_json_path = os.path.join(args.dataset_path, "dataset.json")
+        json_out = os.path.join(args.output_path, "output.json")
+        parse_mono2micro_output(oriole_json, dataset_json_path, json_out)
+    else:
+        run_mono2micro(args.dataset_path, args.output_path)
+
