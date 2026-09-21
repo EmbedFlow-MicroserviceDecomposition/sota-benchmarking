@@ -16,12 +16,6 @@ class Edge:
     type: str
     weight: float = 1.0
 
-def get_clusters(partition):
-    clusters = {}
-    for cls, cid in partition.items():
-        clusters.setdefault(cid, set()).add(cls)
-    return clusters
-
 def resolve_partition(microservices, dataset_methods=None):
     method_partition = {}
     class_member_counts = {}
@@ -39,42 +33,43 @@ def resolve_partition(microservices, dataset_methods=None):
 
             class_member_counts.setdefault(class_fqn, {})
             class_member_counts[class_fqn][cid] = class_member_counts[class_fqn].get(cid, 0) + 1
-            short_name = class_fqn.split(".")[-1]
-            class_member_counts.setdefault(short_name, {})
-            class_member_counts[short_name][cid] = class_member_counts[short_name].get(cid, 0) + 1
 
     class_partition = {}
-    for class_name, counts in class_member_counts.items():
+    for class_fqn, counts in class_member_counts.items():
         majority_cid = max(counts.items(), key=lambda x: x[1])[0]
-        class_partition[class_name] = majority_cid
+        class_partition[class_fqn] = majority_cid
+
+    short_lookup = {}
+    for fqn, cid in class_partition.items():
+        short_lookup[fqn.split(".")[-1]] = cid
 
     def get_cluster(node_id):
         clean_node = node_id.split(" [")[0].strip()
-        if clean_node in method_partition:
-            return method_partition[clean_node]
-        if node_id in method_partition:
-            return method_partition[node_id]
         if clean_node in class_partition:
             return class_partition[clean_node]
+        if clean_node in short_lookup:
+            return short_lookup[clean_node]
+        if clean_node in method_partition:
+            return method_partition[clean_node]
         if node_id in class_partition:
             return class_partition[node_id]
+        if node_id in short_lookup:
+            return short_lookup[node_id]
+        if node_id in method_partition:
+            return method_partition[node_id]
         if "." in clean_node:
             parent_cls = clean_node.rsplit(".", 1)[0]
             if parent_cls in class_partition:
                 return class_partition[parent_cls]
-            short_parent = parent_cls.split(".")[-1]
-            if short_parent in class_partition:
-                return class_partition[short_parent]
+            if parent_cls.split(".")[-1] in short_lookup:
+                return short_lookup[parent_cls.split(".")[-1]]
         return None
 
-    unified_partition = {}
-    for m in method_partition:
-        unified_partition[m] = method_partition[m]
+    class_clusters = {cid: set() for cid in microservices}
     for c, cid in class_partition.items():
-        if c not in unified_partition:
-            unified_partition[c] = cid
+        class_clusters.setdefault(cid, set()).add(c)
 
-    return unified_partition, get_cluster
+    return class_clusters, get_cluster
 
 def calculate_sm(partition_func, clusters, edges, undirected=False):
     K = len(clusters)
@@ -108,7 +103,7 @@ def calculate_sm(partition_func, clusters, edges, undirected=False):
         if K > 1:
             inter_k = sum(
                 sigma.get(frozenset((cid, j)), 0) / (2 * n_k * len(clusters[j]))
-                for j in clusters if j != cid
+                for j in clusters if j != cid and len(clusters[j]) > 0
             ) / (K - 1)
         else:
             inter_k = 0.0
@@ -156,8 +151,7 @@ def evaluate_sm(dataset_path, output_path):
             data = json.load(f)
             dataset_methods = data.get("methods")
 
-    unified_partition, get_cluster = resolve_partition(microservices, dataset_methods)
-    clusters = get_clusters(unified_partition)
+    clusters, get_cluster = resolve_partition(microservices, dataset_methods)
     edges = load_edges(dataset_path)
 
     score, ms_scores = calculate_sm(get_cluster, clusters, edges)

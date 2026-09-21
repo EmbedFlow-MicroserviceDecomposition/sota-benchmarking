@@ -50,6 +50,16 @@ def calculate_bcp(partition, class_usecases, log=math.log):
 def load_class_usecases(dataset_path):
     class_usecases = {}
 
+    usecases_json = os.path.join(dataset_path, "usecases.json")
+    if os.path.exists(usecases_json):
+        try:
+            with open(usecases_json, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                for cls, ucs in data.items():
+                    class_usecases.setdefault(cls, set()).update(ucs)
+        except Exception:
+            pass
+
     dataset_json = os.path.join(dataset_path, "dataset.json")
     if os.path.exists(dataset_json):
         try:
