@@ -1,14 +1,16 @@
 services:
   daytrader:
+    container_name: daytrader-app
     image: openliberty/open-liberty:kernel-java8-openj9
     ports:
       - "9082:9082"
       - "9443:9443"
     environment:
-      - JVM_ARGS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
+      - WLP_JVM_OPTIONS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
     volumes:
       - ./sample.daytrader7/daytrader-ee7/target/daytrader-ee7.ear:/config/apps/daytrader-ee7.ear:ro
       - ./sample.daytrader7/daytrader-ee7/src/main/liberty/config/server.xml:/config/server.xml:ro
+      - ./sample.daytrader7/daytrader-ee7/src/main/liberty/config/jvm.options:/config/jvm.options:ro
       - ./sample.daytrader7/daytrader-ee7/target/liberty/wlp/usr/shared/resources/DerbyLibs/derby-10.14.2.0.jar:/opt/ol/wlp/usr/shared/resources/DerbyLibs/derby-10.14.2.0.jar:ro
       - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
       - ../../tools/mono2micro/outputs/daytrader/tables:/tables:rw

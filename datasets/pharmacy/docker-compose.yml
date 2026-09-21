@@ -1,0 +1,26 @@
+services:
+  mysql:
+    image: mariadb:10.5
+    environment:
+      MYSQL_DATABASE: pharmacy
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+
+  pharmacy:
+    container_name: pharmacy-app
+    image: eclipse-temurin:8-jre
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./pharmacy/build/libs/upachar.war:/app/upachar.war:ro
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/pharmacy/tables:/tables:rw
+    command: >
+      java -javaagent:/minerva/minerva-agent-1.0.jar=/tables
+      -jar /app/upachar.war
+      --spring.datasource.url=jdbc:mysql://mysql:3306/pharmacy?useSSL=false&createDatabaseIfNotExist=true
+      --spring.datasource.username=username
+      --spring.datasource.password=password

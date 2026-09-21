@@ -1,0 +1,90 @@
+{
+    "TradeConfigServlet": [
+        "TradeConfig",
+        "BuildDB",
+        "Unknown"
+    ],
+    "TradeConfig": [
+        "TradeConfig",
+        "MarketSummary",
+        "TradeApp",
+        "Unknown",
+        "ViewQuotes",
+        "BuildDB"
+    ],
+    "OrdersAlertFilter": [
+        "MarketSummary",
+        "TradeApp",
+        "ViewQuotes",
+        "Unknown"
+    ],
+    "TradeAppServlet": [
+        "MarketSummary",
+        "TradeApp",
+        "ViewQuotes"
+    ],
+    "TradeServletAction": [
+        "MarketSummary",
+        "TradeApp",
+        "ViewQuotes"
+    ],
+    "TradeAction": [
+        "MarketSummary",
+        "TradeApp",
+        "ViewQuotes"
+    ],
+    "Log": [
+        "MarketSummary",
+        "TradeApp",
+        "Unknown",
+        "ViewQuotes",
+        "BuildDB"
+    ],
+    "MarketSummaryDataBean": [
+        "TradeApp"
+    ],
+    "QuoteDataBean": [
+        "TradeApp",
+        "Unknown"
+    ],
+    "FinancialUtils": [
+        "TradeApp"
+    ],
+    "MarketSummarySingleton": [
+        "Unknown"
+    ],
+    "AccountProfileDataBean": [
+        "Unknown"
+    ],
+    "HoldingDataBean": [
+        "Unknown"
+    ],
+    "OrderDataBean": [
+        "Unknown"
+    ],
+    "AccountDataBean": [
+        "Unknown"
+    ],
+    "TradeBuildDB": [
+        "BuildDB",
+        "Unknown"
+    ],
+    "TradeDirect": [
+        "BuildDB",
+        "Unknown"
+    ],
+    "MDBStats": [
+        "BuildDB",
+        "Unknown"
+    ],
+    "RunStatsDataBean": [
+        "BuildDB",
+        "Unknown"
+    ],
+    "TradeWebContextListener": [
+        "Unknown"
+    ],
+    "JSFLoginFilter": [
+        "Unknown"
+    ]
+}

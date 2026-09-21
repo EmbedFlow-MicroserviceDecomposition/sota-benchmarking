@@ -1,0 +1,94 @@
+{
+    "SpringBlogApplication": [
+        "Unknown"
+    ],
+    "Tag": [
+        "Unknown"
+    ],
+    "User": [
+        "Unknown"
+    ],
+    "CacheSettingService": [
+        "Unknown",
+        "ViewHome"
+    ],
+    "ViewHelper": [
+        "Unknown",
+        "AdminViewPosts",
+        "ViewPostsArchive",
+        "AdminViewSettings",
+        "ViewAbout",
+        "ViewTags",
+        "UserLogin",
+        "ViewHome",
+        "AdminViewUsers",
+        "AdminCreatePost"
+    ],
+    "WebConfig": [
+        "Unknown"
+    ],
+    "TagService": [
+        "Unknown"
+    ],
+    "SecurityConfig": [
+        "Unknown"
+    ],
+    "UserService": [
+        "Unknown"
+    ],
+    "BaseModel": [
+        "Unknown"
+    ],
+    "PegDownMarkdownService": [
+        "Unknown"
+    ],
+    "UserController [Duplicate_#001]": [
+        "Unknown"
+    ],
+    "AdminController": [
+        "Unknown"
+    ],
+    "CacheConfiguration": [
+        "Unknown"
+    ],
+    "UserController": [
+        "AdminViewPosts",
+        "AdminViewSettings",
+        "AdminViewUsers",
+        "UserLogin"
+    ],
+    "AppSetting": [
+        "AdminViewPosts",
+        "ViewPostsArchive",
+        "AdminViewSettings",
+        "ViewAbout",
+        "ViewTags",
+        "ViewHome",
+        "AdminViewUsers",
+        "UserLogin"
+    ],
+    "PostController": [
+        "ViewPostsArchive",
+        "ViewAbout"
+    ],
+    "PostService": [
+        "ViewPostsArchive",
+        "ViewAbout",
+        "ViewTags",
+        "ViewHome"
+    ],
+    "NotFoundException": [
+        "ViewAbout"
+    ],
+    "ExceptionHandlerController": [
+        "ViewAbout",
+        "UserLogin",
+        "AdminCreatePost"
+    ],
+    "TagController": [
+        "ViewTags"
+    ],
+    "HomeController": [
+        "ViewHome"
+    ]
+}

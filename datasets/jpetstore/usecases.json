@@ -1,0 +1,80 @@
+{
+    "AbstractActionBean": [
+        "ViewItem",
+        "Signon",
+        "SearchProducts",
+        "AddToCart",
+        "ListOrders",
+        "ViewMain",
+        "ViewCart",
+        "ViewCategory",
+        "ViewProduct"
+    ],
+    "CatalogActionBean": [
+        "ViewItem",
+        "Signon",
+        "SearchProducts",
+        "AddToCart",
+        "ListOrders",
+        "ViewMain",
+        "ViewCart",
+        "ViewCategory",
+        "ViewProduct"
+    ],
+    "CatalogService": [
+        "ViewItem",
+        "Unknown",
+        "SearchProducts",
+        "AddToCart",
+        "ViewCategory",
+        "ViewProduct"
+    ],
+    "Item": [
+        "ViewItem",
+        "AddToCart",
+        "ViewCart",
+        "ViewProduct"
+    ],
+    "Product": [
+        "ViewItem",
+        "SearchProducts",
+        "AddToCart",
+        "ViewCart",
+        "ViewCategory",
+        "ViewProduct"
+    ],
+    "AccountActionBean": [
+        "Signon",
+        "ListOrders"
+    ],
+    "Account": [
+        "Signon",
+        "ListOrders"
+    ],
+    "AccountService": [
+        "Signon",
+        "Unknown"
+    ],
+    "OrderService": [
+        "Unknown",
+        "ListOrders"
+    ],
+    "CartActionBean": [
+        "AddToCart",
+        "ViewCart"
+    ],
+    "Cart": [
+        "AddToCart",
+        "ViewCart"
+    ],
+    "CartItem": [
+        "AddToCart",
+        "ViewCart"
+    ],
+    "OrderActionBean": [
+        "ListOrders"
+    ],
+    "Category": [
+        "ViewCategory"
+    ]
+}

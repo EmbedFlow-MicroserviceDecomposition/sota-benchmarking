@@ -1,0 +1,55 @@
+{
+    "CorsFilter": [
+        "CreateDosageForm",
+        "Unknown",
+        "GetDrugs",
+        "GetOrders",
+        "GetCategories",
+        "GetUsers",
+        "CreateCategory",
+        "GetDosageForms"
+    ],
+    "GlobalExceptionHandler": [
+        "CreateDosageForm"
+    ],
+    "ErrorResponse": [
+        "CreateDosageForm"
+    ],
+    "UpacharWebApplication": [
+        "Unknown"
+    ],
+    "UserRole": [
+        "Unknown"
+    ],
+    "SecurityConfiguration": [
+        "Unknown"
+    ],
+    "AuthorizationServerConfiguration": [
+        "Unknown"
+    ],
+    "SwaggerConfiguration": [
+        "Unknown"
+    ],
+    "ResourceServerConfiguration": [
+        "Unknown"
+    ],
+    "UserService": [
+        "Unknown"
+    ],
+    "DosageFormService": [
+        "Unknown",
+        "GetDosageForms"
+    ],
+    "DosageForm": [
+        "Unknown"
+    ],
+    "CategoryController": [
+        "GetCategories"
+    ],
+    "CategoryService": [
+        "GetCategories"
+    ],
+    "DosageFormController": [
+        "GetDosageForms"
+    ]
+}

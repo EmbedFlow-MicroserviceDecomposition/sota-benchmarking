@@ -1,0 +1,62 @@
+{
+    "ImageServlet": [
+        "ViewImage"
+    ],
+    "Util": [
+        "ViewImage",
+        "Unknown"
+    ],
+    "ShoppingBean": [
+        "Unknown",
+        "ViewAccount",
+        "ViewHome",
+        "ViewShopping",
+        "ViewCart"
+    ],
+    "ShoppingCartBean": [
+        "Unknown",
+        "ViewAccount",
+        "ViewHome",
+        "ViewShopping",
+        "ViewCart"
+    ],
+    "AccountBean": [
+        "ViewAccount"
+    ],
+    "PopulateDBBean": [
+        "Unknown"
+    ],
+    "ResetDBBean": [
+        "Unknown"
+    ],
+    "ListProperties": [
+        "Unknown"
+    ],
+    "Inventory": [
+        "Unknown"
+    ],
+    "CatalogMgr": [
+        "Unknown"
+    ],
+    "Supplier": [
+        "Unknown"
+    ],
+    "Customer": [
+        "Unknown"
+    ],
+    "BackOrder": [
+        "Unknown"
+    ],
+    "OrderItem": [
+        "Unknown"
+    ],
+    "Order": [
+        "Unknown"
+    ],
+    "CustomerMgr": [
+        "Unknown"
+    ],
+    "SuppliersBean": [
+        "Unknown"
+    ]
+}

@@ -1,1318 +1,784 @@
 {
-    "RollerTaskWithLeasing": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "WebloggerFactory": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "GuiceWebloggerProvider": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "WebloggerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "RollerTask": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAThreadManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAPersistenceStrategy": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "TaskLock": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "UUIDGenerator": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "PingQueueTask": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "DateUtil": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "PingQueueProcessor": [
-        "Comment_on_article",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "PingConfig": [
-        "New_blog_entry",
-        "Comment_on_article",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "WebloggerRuntimeConfig": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAPropertiesManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "RuntimeConfigProperty": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAPingQueueManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAWebloggerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAAutoPingManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPABookmarkManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAMediaFileManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "FileContentManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAPingTargetManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "PluginManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "ThreadManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAUserManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAWeblogManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "ScheduledEntriesTask": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "WeblogEntrySearchCriteria": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "JPAWeblogEntryManagerImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
     "CharEncodingFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewLogin",
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "SpringFirewallExceptionFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewLogin",
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "BootstrapFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WebloggerConfig": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "WebloggerFactory": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "PersistenceSessionFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "InitFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "RequestMappingFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WeblogRequestMapper": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "RollerUserDetailsService": [
-        "Login"
-    ],
-    "User": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
+    "GuiceWebloggerProvider": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "HTMLSanitizer": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "Create_weblog",
+    "WebloggerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "UserRole": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+    "JPAWeblogManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "JPAPersistenceStrategy": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "Weblog": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WeblogCategory": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "UUIDGenerator": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "Utilities": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "LoadSaltFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "RollerSession": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "RollerLoginSessionManager": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "ExpiringLRUCacheImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "LRUCacheImpl": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "ExpiringCacheEntry": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "SaltCache": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role",
-        "View_article"
+        "ViewLogin",
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "PageServlet": [
-        "Comment_on_article",
+        "ViewCategory",
         "Unknown",
-        "View_article"
+        "ViewHome",
+        "ViewTags",
+        "ViewEntry"
     ],
     "WeblogPageRequest": [
-        "Comment_on_article",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
     ],
     "WeblogRequest": [
-        "Comment_on_article",
-        "Site_admin_role",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "ParsedRequest": [
-        "Comment_on_article",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "MobileDeviceRepository": [
-        "Comment_on_article",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "WeblogPageCache": [
-        "Comment_on_article",
+        "ViewCategory",
         "Unknown",
-        "View_article"
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "ThemeManagerImpl": [
-        "Comment_on_article",
-        "First_setup",
-        "Create_weblog",
-        "View_article"
-    ],
-    "WeblogSharedTheme": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "WeblogTheme": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "SharedThemeFromDir": [
-        "Comment_on_article",
-        "First_setup",
-        "Create_weblog",
-        "View_article"
-    ],
-    "SharedThemeTemplate": [
-        "Comment_on_article",
-        "First_setup",
-        "View_article"
-    ],
-    "RollerContext": [
-        "New_blog_entry",
-        "Comment_on_article",
-        "Global_admin_creation",
+    "MobileDeviceRepository [Duplicate_#001]": [
+        "ViewCategory",
         "Unknown",
-        "View_article"
-    ],
-    "ModelLoader": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "Reflection": [
-        "New_blog_entry",
-        "Comment_on_article",
-        "First_setup",
-        "Unknown",
-        "View_article"
-    ],
-    "PageModel": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "ConfigModel": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "UtilitiesModel": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "URLModel": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "MessageModel": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "I18nUtils": [
-        "Comment_on_article",
-        "New_blog_entry",
-        "View_article"
-    ],
-    "I18nMessages": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "CalendarModel": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "MenuModel": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "RendererManager": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "VelocityRendererFactory": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "SharedThemeTemplateRendition": [
-        "Comment_on_article",
-        "First_setup",
-        "View_article"
-    ],
-    "VelocityRenderer": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "RollerVelocity": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "WebappResourceLoader": [
-        "Comment_on_article",
-        "Unknown",
-        "View_article"
-    ],
-    "ThemeResourceLoader": [
-        "Comment_on_article",
-        "Unknown",
-        "View_article"
-    ],
-    "CachedContent": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "LazyExpiringCacheEntry": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "CommentAuthenticatorServlet": [
-        "Comment_on_article",
-        "Unknown",
-        "View_article"
-    ],
-    "MathCommentAuthenticator": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "CommentAuthenticatorUtils": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "ResourceServlet": [
-        "Comment_on_article",
-        "Unknown",
-        "View_article"
-    ],
-    "WeblogResourceRequest": [
-        "Comment_on_article",
-        "View_article"
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "URLUtilities": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "SharedThemeResourceFromDir": [
-        "Comment_on_article",
-        "First_setup",
-        "Create_weblog",
-        "View_article"
+    "WebloggerRuntimeConfig": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "JPAPropertiesManagerImpl": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "RuntimeConfigProperty": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "ModDateHeaderUtil": [
-        "Comment_on_article",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "WeblogPageCache": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "ExpiringLRUCacheImpl": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "LRUCacheImpl": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "ThemeManagerImpl": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "WeblogSharedTheme": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "WeblogTheme": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "SharedThemeFromDir": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "JPAWeblogEntryManagerImpl": [
+        "ViewCategory",
+        "Unknown",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "HitCountQueue": [
-        "Comment_on_article",
-        "Edit_site_settings",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "ViewHome",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "SharedThemeTemplate": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "ModelLoader": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "Reflection": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "PageModel": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "ConfigModel": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "UtilitiesModel": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "URLModel": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "MessageModel": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "I18nUtils": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "I18nMessages": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "CalendarModel": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "MenuModel": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "RendererManager": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "VelocityRendererFactory": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "SharedThemeTemplateRendition": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "VelocityRenderer": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "RollerVelocity": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "WebappResourceLoader": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "ThemeResourceLoader": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "CachedContent": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WeblogWrapper": [
-        "Comment_on_article",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "ThemeTemplateWrapper": [
-        "Comment_on_article",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "HTMLSanitizer": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "MultiWeblogURLStrategy": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WeblogCategoryWrapper": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "WeblogPermission": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "View_article"
-    ],
-    "ObjectPermission": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
-        "Create_weblog",
-        "Unknown",
-        "View_article"
-    ],
-    "RollerPermission": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "AbstractURLStrategy": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "SearchBlog",
+        "ViewTags",
+        "ViewEntry"
     ],
     "WeblogEntriesLatestPager": [
-        "Comment_on_article"
+        "ViewCategory",
+        "Unknown",
+        "ViewTags"
     ],
     "AbstractWeblogEntriesPager": [
-        "Comment_on_article",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "ViewTags",
+        "ViewEntry"
+    ],
+    "WeblogEntrySearchCriteria": [
+        "ViewCategory",
+        "Unknown",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WeblogEntry": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "DateUtil": [
+        "ViewCategory",
+        "Unknown",
+        "ViewTags",
+        "ViewFeed"
     ],
     "WeblogEntryWrapper": [
-        "Comment_on_article",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "JPAUserManagerImpl": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "User": [
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "UserWrapper": [
-        "Comment_on_article",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
+    ],
+    "PluginManagerImpl": [
+        "ViewCategory",
+        "Unknown",
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "ConvertLineBreaksPlugin": [
-        "New_blog_entry",
-        "Comment_on_article",
-        "First_setup",
+        "ViewCategory",
         "Unknown",
-        "View_article"
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "ObfuscateEmailPlugin": [
-        "New_blog_entry",
-        "Comment_on_article",
-        "First_setup",
+        "ViewCategory",
         "Unknown",
-        "View_article"
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "SmileysPlugin": [
-        "New_blog_entry",
-        "Comment_on_article",
-        "First_setup",
+        "ViewCategory",
         "Unknown",
-        "View_article"
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "EncodePreTagsPlugin": [
-        "New_blog_entry",
-        "Comment_on_article",
-        "First_setup",
+        "ViewCategory",
         "Unknown",
-        "View_article"
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "CommentSearchCriteria": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "ViewTags",
+        "ViewEntry"
     ],
     "WeblogEntryComment": [
-        "Approve_comment",
-        "Comment_on_article",
-        "First_setup",
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role"
+        "ViewTags",
+        "ViewEntry"
     ],
     "WeblogEntryTag": [
-        "Comment_on_article",
-        "View_article",
-        "New_blog_entry",
-        "First_setup"
+        "ViewCategory",
+        "Unknown",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WeblogEntryTagComparator": [
-        "Comment_on_article",
-        "New_blog_entry",
-        "View_article"
+        "ViewCategory",
+        "Unknown",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "WeblogEntryTagWrapper": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "ValidateSaltFilter": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "First_setup",
-        "Create_weblog",
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role"
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "EntryEdit": [
-        "New_blog_entry",
-        "Unknown"
-    ],
-    "UIAction": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+    "LazyExpiringCacheEntry": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "UIActionInterceptor": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+    "ExpiringCacheEntry": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "UISecurityInterceptor": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+    "JPAWebloggerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "GlobalPermission": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "Edit_site_settings",
-        "Create_weblog",
+    "JPAAutoPingManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "UIActionPrepareInterceptor": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+    "JPABookmarkManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "EntryBean": [
-        "New_blog_entry",
-        "Unknown"
-    ],
-    "MenuHelper": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
+    "JPAMediaFileManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Global_admin_creation",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "ParsedMenu": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "First_setup",
-        "Edit_site_settings",
+    "FileContentManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "ParsedTab": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "First_setup",
-        "Edit_site_settings",
+    "JPAPingTargetManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "MenuTab": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Edit_site_settings",
+    "JPAPingQueueManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
-    "ParsedTabItem": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "First_setup",
-        "Edit_site_settings",
+    "ThreadManagerImpl": [
+        "ViewCategory",
         "Unknown",
-        "Site_admin_role"
-    ],
-    "MenuTabItem": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Edit_site_settings",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "Menu": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Planet_admin_role",
-        "Edit_site_settings",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "TruncateNicelyTag": [
-        "Site_admin_role",
-        "New_blog_entry",
-        "Unknown",
-        "Approve_comment"
-    ],
-    "StringTagSupport": [
-        "Site_admin_role",
-        "New_blog_entry",
-        "Unknown",
-        "Approve_comment"
-    ],
-    "UIPluginManagerImpl": [
-        "New_blog_entry",
-        "Unknown"
-    ],
-    "TextEditor": [
-        "New_blog_entry",
-        "Unknown"
-    ],
-    "KeyValueObject": [
-        "Site_admin_role",
-        "New_blog_entry",
-        "Unknown",
-        "Approve_comment"
-    ],
-    "PreviewURLStrategy": [
-        "New_blog_entry",
-        "Unknown"
-    ],
-    "Comments": [
-        "Unknown",
-        "Approve_comment"
-    ],
-    "CommentsBean": [
-        "Unknown",
-        "Approve_comment"
-    ],
-    "CacheManager": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Login",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "SiteWideCache": [
-        "Comment_on_article",
-        "New_blog_entry",
-        "Unknown",
-        "Approve_comment"
-    ],
-    "MailUtil": [
-        "Comment_on_article",
-        "Approve_comment"
-    ],
-    "WebloggerStartup": [
-        "First_setup",
-        "Unknown",
-        "Approve_comment"
-    ],
-    "LuceneIndexManager": [
-        "Comment_on_article",
-        "First_setup",
-        "New_blog_entry",
-        "Approve_comment"
-    ],
-    "ReIndexEntryOperation": [
-        "New_blog_entry",
-        "Approve_comment"
-    ],
-    "WriteToIndexOperation": [
-        "Comment_on_article",
-        "First_setup",
-        "New_blog_entry",
-        "Approve_comment"
-    ],
-    "IndexOperation": [
-        "Comment_on_article",
-        "First_setup",
-        "New_blog_entry",
-        "Approve_comment"
-    ],
-    "CommentsPager": [
-        "Site_admin_role",
-        "Unknown",
-        "Approve_comment"
-    ],
-    "MainMenu": [
-        "Login",
-        "Create_weblog",
-        "Unknown"
-    ],
-    "ThemeDataServlet": [
-        "Create_weblog"
-    ],
-    "SharedTheme": [
-        "Create_weblog",
-        "First_setup"
-    ],
-    "PlanetConfig": [
-        "Planet_admin_role"
-    ],
-    "PlanetRuntimeConfig": [
-        "Planet_admin_role"
-    ],
-    "RuntimeConfigDefsParser": [
-        "Planet_admin_role",
-        "First_setup"
-    ],
-    "RuntimeConfigDefs": [
-        "Planet_admin_role",
-        "Edit_site_settings",
-        "First_setup",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "ConfigDef": [
-        "Planet_admin_role",
-        "Edit_site_settings",
-        "First_setup",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "DisplayGroup": [
-        "Planet_admin_role",
-        "Edit_site_settings",
-        "First_setup",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "PropertyDef": [
-        "Planet_admin_role",
-        "Edit_site_settings",
-        "First_setup",
-        "Unknown",
-        "Site_admin_role"
+        "ViewHome",
+        "ViewLogin",
+        "SearchBlog",
+        "ViewTags",
+        "ViewFeed",
+        "ViewEntry"
     ],
     "PropertyExpander": [
+        "Unknown"
+    ],
+    "RollerContext": [
         "Unknown"
     ],
     "RollerRememberMeAuthenticationProvider": [
@@ -1321,73 +787,263 @@
     "RollerRememberMeServices": [
         "Unknown"
     ],
+    "WebloggerStartup": [
+        "Unknown"
+    ],
     "DatabaseProvider": [
-        "Unknown",
-        "First_setup"
+        "Unknown"
     ],
     "MailProvider": [
-        "Unknown",
-        "First_setup"
+        "Unknown"
     ],
     "StartupException": [
-        "Unknown",
-        "First_setup"
+        "Unknown"
     ],
     "WebloggerException": [
-        "View_article",
         "Unknown",
-        "First_setup"
+        "ViewHome"
     ],
     "RollerException": [
-        "View_article",
         "Unknown",
-        "First_setup"
+        "ViewHome"
     ],
     "DatabaseInstaller": [
+        "Unknown"
+    ],
+    "JPAWebloggerModule": [
+        "Unknown"
+    ],
+    "LuceneIndexManager": [
         "Unknown",
-        "First_setup"
+        "SearchBlog"
+    ],
+    "LinkMarkupPlugin": [
+        "Unknown",
+        "ViewEntry"
+    ],
+    "AutoformatPlugin": [
+        "Unknown",
+        "ViewEntry"
+    ],
+    "HTMLSubsetPlugin": [
+        "Unknown",
+        "ViewEntry"
+    ],
+    "JPAThreadManagerImpl": [
+        "Unknown"
+    ],
+    "StatCountCountComparator": [
+        "Unknown"
+    ],
+    "TagStatComparator": [
+        "Unknown"
+    ],
+    "TagStatCountComparator": [
+        "Unknown"
+    ],
+    "JPAOAuthManagerImpl": [
+        "Unknown"
+    ],
+    "WebloggerRomeFeedFetcher": [
+        "Unknown"
+    ],
+    "RomeFeedFetcher": [
+        "Unknown"
+    ],
+    "JPAPlanetManagerImpl": [
+        "Unknown"
+    ],
+    "WeblogHitCount": [
+        "Unknown"
+    ],
+    "TaskLock": [
+        "Unknown"
+    ],
+    "AutoPing": [
+        "Unknown"
+    ],
+    "SubscriptionEntry": [
+        "Unknown"
+    ],
+    "Subscription": [
+        "Unknown"
+    ],
+    "CustomTemplateRendition": [
+        "Unknown"
+    ],
+    "WeblogEntryTagAggregate": [
+        "Unknown"
+    ],
+    "WeblogPermission": [
+        "Unknown"
+    ],
+    "ObjectPermission": [
+        "Unknown"
+    ],
+    "RollerPermission": [
+        "Unknown"
+    ],
+    "MediaFileDirectory": [
+        "Unknown"
+    ],
+    "MediaFileTag": [
+        "Unknown"
+    ],
+    "WeblogTemplate": [
+        "Unknown"
+    ],
+    "UserRole": [
+        "Unknown"
+    ],
+    "PlanetGroup": [
+        "Unknown"
+    ],
+    "WeblogEntryAttribute": [
+        "Unknown"
+    ],
+    "PingQueueEntry": [
+        "Unknown"
+    ],
+    "OAuthAccessorRecord": [
+        "Unknown"
+    ],
+    "PingTarget": [
+        "Unknown"
+    ],
+    "MediaFile": [
+        "Unknown"
+    ],
+    "WeblogBookmarkFolder": [
+        "Unknown"
+    ],
+    "WeblogBookmark": [
+        "Unknown"
+    ],
+    "Planet": [
+        "Unknown"
+    ],
+    "OAuthConsumerRecord": [
+        "Unknown"
+    ],
+    "RuntimeConfigDefsParser": [
+        "Unknown"
+    ],
+    "RuntimeConfigDefs": [
+        "Unknown"
+    ],
+    "ConfigDef": [
+        "Unknown"
+    ],
+    "DisplayGroup": [
+        "Unknown"
+    ],
+    "PropertyDef": [
+        "Unknown"
+    ],
+    "ThemeMetadataParser": [
+        "Unknown"
+    ],
+    "ThemeMetadata": [
+        "Unknown"
+    ],
+    "ThemeMetadataTemplate": [
+        "Unknown"
+    ],
+    "ThemeMetadataTemplateRendition": [
+        "Unknown"
+    ],
+    "SharedTheme": [
+        "Unknown"
+    ],
+    "SharedThemeResourceFromDir": [
+        "Unknown"
+    ],
+    "ScheduledEntriesTask": [
+        "Unknown"
+    ],
+    "RollerTask": [
+        "Unknown"
+    ],
+    "ResetHitCountsTask": [
+        "Unknown"
+    ],
+    "PingQueueTask": [
+        "Unknown"
+    ],
+    "PingQueueProcessor": [
+        "Unknown"
+    ],
+    "TaskScheduler": [
+        "Unknown"
+    ],
+    "RebuildWebsiteIndexOperation": [
+        "Unknown"
+    ],
+    "WriteToIndexOperation": [
+        "Unknown"
+    ],
+    "IndexOperation": [
+        "Unknown",
+        "SearchBlog"
+    ],
+    "PingConfig": [
+        "Unknown"
     ],
     "RollerResourceLoader": [
+        "Unknown"
+    ],
+    "ValidateSaltFilter": [
         "Unknown",
-        "View_article"
+        "ViewLogin"
     ],
     "DebugFilter": [
         "Unknown"
     ],
     "IPBanFilter": [
-        "Comment_on_article",
         "Unknown"
     ],
     "SearchServlet": [
-        "Unknown"
+        "Unknown",
+        "SearchBlog"
     ],
     "FeedServlet": [
-        "Unknown"
+        "Unknown",
+        "ViewFeed"
     ],
     "WeblogFeedCache": [
-        "Unknown"
+        "Unknown",
+        "ViewFeed"
     ],
     "ExpiringLRUCacheFactoryImpl": [
-        "Login",
+        "Unknown",
+        "ViewLogin"
+    ],
+    "CacheManager": [
+        "Unknown",
+        "ViewLogin"
+    ],
+    "SiteWideCache": [
+        "Unknown"
+    ],
+    "ResourceServlet": [
         "Unknown"
     ],
     "MediaResourceServlet": [
         "Unknown"
     ],
     "CommentServlet": [
-        "Comment_on_article",
         "Unknown"
     ],
     "CommentValidationManager": [
-        "Comment_on_article",
         "Unknown"
     ],
     "ExcessLinksCommentValidator": [
-        "Comment_on_article",
         "Unknown"
     ],
     "ExcessSizeCommentValidator": [
-        "Comment_on_article",
+        "Unknown"
+    ],
+    "CommentAuthenticatorServlet": [
         "Unknown"
     ],
     "PlanetFeedServlet": [
@@ -1408,306 +1064,95 @@
     "PreviewResourceServlet": [
         "Unknown"
     ],
-    "Install": [
-        "Unknown",
-        "First_setup"
-    ],
-    "JPAWebloggerModule": [
-        "First_setup"
-    ],
-    "LinkMarkupPlugin": [
-        "Comment_on_article",
-        "Edit_site_settings",
-        "First_setup",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "AutoformatPlugin": [
-        "Comment_on_article",
-        "Edit_site_settings",
-        "First_setup",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "HTMLSubsetPlugin": [
-        "Comment_on_article",
-        "Edit_site_settings",
-        "First_setup",
-        "Unknown",
-        "Site_admin_role"
-    ],
-    "StatCountCountComparator": [
-        "First_setup"
-    ],
-    "TagStatComparator": [
-        "First_setup"
-    ],
-    "TagStatCountComparator": [
-        "First_setup"
-    ],
-    "JPAOAuthManagerImpl": [
-        "First_setup"
-    ],
-    "WebloggerRomeFeedFetcher": [
-        "First_setup"
-    ],
-    "RomeFeedFetcher": [
-        "First_setup"
-    ],
-    "JPAPlanetManagerImpl": [
-        "Planet_admin_role",
-        "First_setup"
-    ],
-    "WeblogEntryAttribute": [
-        "First_setup"
-    ],
-    "MediaFileDirectory": [
-        "Create_weblog",
-        "First_setup"
-    ],
-    "CustomTemplateRendition": [
-        "First_setup"
-    ],
-    "MediaFile": [
-        "First_setup"
-    ],
-    "PingQueueEntry": [
-        "First_setup"
-    ],
-    "PlanetGroup": [
-        "Planet_admin_role",
-        "First_setup"
-    ],
-    "WeblogEntryTagAggregate": [
-        "New_blog_entry",
-        "First_setup"
-    ],
-    "WeblogHitCount": [
-        "Comment_on_article",
-        "View_article",
-        "Unknown",
-        "First_setup"
-    ],
-    "MediaFileTag": [
-        "First_setup"
-    ],
-    "WeblogTemplate": [
-        "First_setup"
-    ],
-    "SubscriptionEntry": [
-        "First_setup"
-    ],
-    "WeblogBookmark": [
-        "Create_weblog",
-        "Unknown",
-        "First_setup"
-    ],
-    "OAuthAccessorRecord": [
-        "First_setup"
-    ],
-    "AutoPing": [
-        "First_setup"
-    ],
-    "WeblogBookmarkFolder": [
-        "Create_weblog",
-        "Unknown",
-        "First_setup"
-    ],
-    "Subscription": [
-        "First_setup"
-    ],
-    "PingTarget": [
-        "Site_admin_role",
-        "Create_weblog",
-        "First_setup"
-    ],
-    "OAuthConsumerRecord": [
-        "First_setup"
-    ],
-    "Planet": [
-        "Planet_admin_role",
-        "First_setup"
-    ],
-    "ThemeMetadataParser": [
-        "First_setup"
-    ],
-    "ThemeMetadata": [
-        "First_setup"
-    ],
-    "ThemeMetadataTemplate": [
-        "First_setup"
-    ],
-    "ThemeMetadataTemplateRendition": [
-        "First_setup"
-    ],
-    "ResetHitCountsTask": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "TaskScheduler": [
-        "New_blog_entry",
-        "Approve_comment",
-        "Comment_on_article",
-        "Planet_admin_role",
-        "Login",
-        "First_setup",
-        "Edit_site_settings",
-        "Create_weblog",
-        "Global_admin_creation",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
-    ],
-    "RebuildWebsiteIndexOperation": [
-        "First_setup"
-    ],
-    "GlobalConfig": [
-        "Site_admin_role",
-        "Unknown",
-        "Edit_site_settings"
-    ],
-    "GlobalCommentManagement": [
-        "Site_admin_role"
-    ],
-    "GlobalCommentManagementBean": [
-        "Site_admin_role"
-    ],
-    "CacheInfo": [
-        "Site_admin_role"
-    ],
-    "Setup": [
-        "First_setup"
-    ],
-    "Summernote": [
-        "New_blog_entry",
-        "Unknown"
-    ],
     "HitCountProcessingJob": [
-        "Comment_on_article",
-        "Edit_site_settings",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "Unknown"
     ],
     "ContinuousWorkerThread": [
-        "Comment_on_article",
-        "Edit_site_settings",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "Unknown"
     ],
     "WorkerThread": [
-        "Comment_on_article",
-        "Edit_site_settings",
-        "Unknown",
-        "Site_admin_role",
-        "View_article"
+        "Unknown"
     ],
-    "WeblogEntriesPermalinkPager": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "WeblogEntryCommentForm": [
-        "Comment_on_article",
-        "View_article"
-    ],
-    "IPBanList": [
-        "Comment_on_article"
-    ],
-    "RollerMessages": [
-        "Comment_on_article"
-    ],
-    "WeblogCommentRequest": [
-        "Comment_on_article"
-    ],
-    "BannedwordslistCommentValidator": [
-        "Comment_on_article"
-    ],
-    "BannedwordslistChecker": [
-        "Comment_on_article"
-    ],
-    "Bannedwordslist": [
-        "Comment_on_article"
-    ],
-    "WeblogEntryCommentWrapper": [
-        "Comment_on_article"
-    ],
-    "ClasspathDatabaseScriptProvider": [
-        "First_setup"
-    ],
-    "SQLScriptRunner": [
-        "First_setup"
+    "SaltCache": [
+        "ViewLogin"
     ],
     "Login": [
-        "Global_admin_creation"
+        "ViewLogin"
     ],
-    "CreateWeblog": [
-        "Create_weblog"
+    "UIAction": [
+        "ViewLogin"
     ],
-    "CreateWeblogBean": [
-        "Create_weblog"
+    "UIActionInterceptor": [
+        "ViewLogin"
     ],
-    "UIUtils": [
-        "Global_admin_creation",
-        "Create_weblog",
+    "UISecurityInterceptor": [
+        "ViewLogin"
+    ],
+    "UIActionPrepareInterceptor": [
+        "ViewLogin"
+    ],
+    "MenuHelper": [
+        "ViewLogin"
+    ],
+    "ParsedTab": [
+        "ViewLogin"
+    ],
+    "ParsedTabItem": [
+        "ViewLogin"
+    ],
+    "ParsedMenu": [
+        "ViewLogin"
+    ],
+    "RollerTaskWithLeasing": [
         "Unknown"
     ],
-    "WeblogConfig": [
-        "Unknown"
+    "WeblogSearchRequest": [
+        "SearchBlog"
     ],
-    "WeblogConfigBean": [
-        "Unknown"
+    "SearchResultsModel": [
+        "SearchBlog"
     ],
-    "PlanetGroupSubs": [
-        "Planet_admin_role"
+    "SearchOperation": [
+        "SearchBlog"
     ],
-    "PlanetUIAction": [
-        "Planet_admin_role"
+    "ReadFromIndexOperation": [
+        "SearchBlog"
     ],
-    "TagDataServlet": [
-        "New_blog_entry"
+    "SearchResultList": [
+        "SearchBlog"
     ],
-    "UserAdmin": [
-        "Site_admin_role"
+    "SearchResultsPager": [
+        "SearchBlog"
     ],
-    "CreateUserBean": [
-        "Site_admin_role"
-    ],
-    "PlanetGroups": [
-        "Planet_admin_role"
-    ],
-    "Register": [
-        "Global_admin_creation"
-    ],
-    "ProfileBean": [
-        "Global_admin_creation"
+    "TagStat": [
+        "ViewTags"
     ],
     "IndexUtil": [
-        "First_setup"
+        "Unknown",
+        "SearchBlog"
     ],
-    "RemoveEntryOperation": [
-        "Comment_on_article"
+    "WeblogFeedRequest": [
+        "ViewFeed"
     ],
-    "AddEntryOperation": [
-        "Comment_on_article"
+    "FeedModel": [
+        "ViewFeed"
     ],
-    "Bookmarks": [
-        "Unknown"
+    "StaticTemplate [Duplicate_#001]": [
+        "ViewFeed"
     ],
-    "UserDataServlet": [
-        "Site_admin_role"
+    "WeblogEntriesListPager": [
+        "ViewFeed"
     ],
-    "PingTargets": [
-        "Site_admin_role"
+    "AbstractPager": [
+        "ViewFeed"
+    ],
+    "WeblogEntriesPermalinkPager": [
+        "ViewEntry"
+    ],
+    "WeblogEntryCommentForm": [
+        "ViewEntry"
+    ],
+    "WeblogEntryCommentWrapper": [
+        "ViewEntry"
     ]
 }

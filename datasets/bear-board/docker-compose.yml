@@ -28,7 +28,8 @@ services:
       - zookeeper
 
   bear-board:
-    image: eclipse-temurin:8-jre
+    container_name: bear-board-app
+    image: eclipse-temurin:11-jre
     ports:
       - "8080:8080"
     environment:

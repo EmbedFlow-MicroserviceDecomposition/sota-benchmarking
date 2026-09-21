@@ -1,0 +1,13 @@
+services:
+  plants:
+    container_name: plants-app
+    image: eclipse-temurin:8-jre
+    ports:
+      - "9080:9080"
+    environment:
+      - WLP_JVM_OPTIONS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
+    volumes:
+      - ./sample.plantsbywebsphere/target/liberty/wlp:/wlp:rw
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/plants/tables:/tables:rw
+    command: /wlp/bin/server run PlantsByWebSphereServer

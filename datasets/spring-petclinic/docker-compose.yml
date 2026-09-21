@@ -1,0 +1,11 @@
+services:
+  spring-petclinic:
+    container_name: spring-petclinic-app
+    image: eclipse-temurin:8-jre
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./spring-petclinic/target/spring-petclinic-1.5.1.jar:/app.jar:ro
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/spring-petclinic/tables:/tables:rw
+    command: java -javaagent:/minerva/minerva-agent-1.0.jar=/tables -jar /app.jar
