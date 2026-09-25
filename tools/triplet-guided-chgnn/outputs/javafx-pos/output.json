@@ -1,0 +1,59 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "AddController",
+            "EmployeeModel",
+            "InvoiceController",
+            "ProductModel",
+            "UseCaseRunner"
+        ],
+        "microservice_2": [
+            "HibernateUtil"
+        ],
+        "microservice_3": [
+            "PurchaseModel",
+            "ReportController",
+            "SalesModel"
+        ],
+        "microservice_4": [
+            "CategoryModel",
+            "SupplierModel",
+            "ViewController"
+        ],
+        "microservice_5": [
+            "EditController",
+            "InvoiceModel"
+        ],
+        "microservice_6": [
+            "AdminController",
+            "LoginController",
+            "MainApp",
+            "PosController",
+            "SalesController"
+        ],
+        "microservice_7": [
+            "CategoryDao",
+            "ConfirmController",
+            "EmployeeDao",
+            "ProductDao",
+            "Purchase",
+            "PurchaseController",
+            "SaleDao",
+            "SupplierDao",
+            "category\"\"-res-res",
+            "employee\"\"-res-res",
+            "product\"\"-res-res",
+            "sale\"\"-res-res",
+            "supplier\"\"-res-res"
+        ],
+        "microservice_8": [
+            "CategoryController",
+            "ProductController",
+            "SupplierController"
+        ],
+        "microservice_9": [
+            "EmployeeController"
+        ]
+    }
+}

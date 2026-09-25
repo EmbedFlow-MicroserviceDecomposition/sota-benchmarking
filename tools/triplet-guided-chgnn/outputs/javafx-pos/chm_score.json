@@ -1,0 +1,15 @@
+{
+    "metric": "CHM",
+    "score": 0.5409652076318743,
+    "microservice_scores": {
+        "microservice_7": 0.5,
+        "microservice_6": 1.0,
+        "microservice_8": 1.0,
+        "microservice_1": 0.19444444444444445,
+        "microservice_5": 0.0,
+        "microservice_3": 0.25,
+        "microservice_2": 0.6666666666666666,
+        "microservice_4": 0.25757575757575757,
+        "microservice_9": 1.0
+    }
+}
