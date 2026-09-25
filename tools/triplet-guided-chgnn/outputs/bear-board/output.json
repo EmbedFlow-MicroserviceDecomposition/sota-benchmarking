@@ -1,0 +1,26 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "CustomBeanUtils",
+            "EventService"
+        ],
+        "microservice_2": [
+            "MessageBean",
+            "Tweet"
+        ],
+        "microservice_3": [
+            "TweetService"
+        ],
+        "microservice_4": [
+            "RoleRepository",
+            "TweetRepository",
+            "UserRepository"
+        ],
+        "microservice_5": [
+            "role\"\"-res-res",
+            "tweet\"\"-res-res",
+            "user\"\"-res-res"
+        ]
+    }
+}
