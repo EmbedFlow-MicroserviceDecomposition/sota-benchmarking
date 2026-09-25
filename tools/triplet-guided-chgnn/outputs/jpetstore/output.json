@@ -1,0 +1,20 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "Account",
+            "AccountActionBean",
+            "Order",
+            "OrderActionBean"
+        ],
+        "microservice_2": [
+            "CartActionBean"
+        ],
+        "microservice_3": [
+            "Cart"
+        ],
+        "microservice_4": [
+            "CartItem"
+        ]
+    }
+}
