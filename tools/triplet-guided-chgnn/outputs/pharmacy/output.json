@@ -1,0 +1,38 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "GlobalException"
+        ],
+        "microservice_2": [
+            "CategoryService"
+        ],
+        "microservice_3": [
+            "DataService"
+        ],
+        "microservice_4": [
+            "com.upachar.web.drug.repository.DrugRepository",
+            "com.upachar.web.drug.repository.SubCategoryRepository",
+            "com.upachar.web.user.repository.UserRepository"
+        ],
+        "microservice_5": [
+            "com.upachar.web.drug.repository.drug\"\"-res-res",
+            "com.upachar.web.drug.repository.subcategory\"\"-res-res",
+            "com.upachar.web.user.repository.user\"\"-res-res"
+        ],
+        "microservice_6": [
+            "Category",
+            "CustomBeanUtils"
+        ],
+        "microservice_7": [
+            "DosageForm",
+            "DosageForm$DosageFormBuilder"
+        ],
+        "microservice_8": [
+            "com.upachar.web.order.repository.DrugQuantityRepository"
+        ],
+        "microservice_9": [
+            "com.upachar.web.order.repository.drugquantity\"\"-res-res"
+        ]
+    }
+}
