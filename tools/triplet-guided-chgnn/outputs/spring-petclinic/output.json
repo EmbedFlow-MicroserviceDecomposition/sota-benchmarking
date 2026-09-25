@@ -1,0 +1,21 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "org.springframework.samples.petclinic.model.NamedEntity",
+            "org.springframework.samples.petclinic.owner.PetRepository"
+        ],
+        "microservice_2": [
+            "org.springframework.samples.petclinic.model.named\"\"-res-res",
+            "org.springframework.samples.petclinic.owner.pet\"\"-res-res"
+        ],
+        "microservice_3": [
+            "Pet",
+            "PetController"
+        ],
+        "microservice_4": [
+            "VetController",
+            "Vets"
+        ]
+    }
+}

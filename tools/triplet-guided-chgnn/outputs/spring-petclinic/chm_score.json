@@ -1,0 +1,10 @@
+{
+    "metric": "CHM",
+    "score": 1.0,
+    "microservice_scores": {
+        "microservice_2": 1.0,
+        "microservice_3": 1.0,
+        "microservice_4": 1.0,
+        "microservice_1": 1.0
+    }
+}
