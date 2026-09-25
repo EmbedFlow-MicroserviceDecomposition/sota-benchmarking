@@ -32,7 +32,10 @@ def calculate_bcp(partition, class_usecases, log=math.log):
             elif c in class_usecases:
                 labels |= set(class_usecases[c])
             else:
-                if "." in clean_c:
+                short_name = clean_c.split(".")[-1]
+                if short_name in class_usecases:
+                    labels |= set(class_usecases[short_name])
+                elif "." in clean_c:
                     parent_cls = clean_c.rsplit(".", 1)[0]
                     if parent_cls in class_usecases:
                         labels |= set(class_usecases[parent_cls])

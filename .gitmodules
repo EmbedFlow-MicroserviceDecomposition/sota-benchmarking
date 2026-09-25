@@ -43,3 +43,6 @@
 [submodule "tools/mono2micro/Mono2Micro-FSE-2021"]
 	path = tools/mono2micro/Mono2Micro-FSE-2021
 	url = git@github.com:kaliaanup/Mono2Micro-FSE-2021.git
+[submodule "tools/triplet-guided-chgnn/triplet-guided-chgnn"]
+	path = tools/triplet-guided-chgnn/triplet-guided-chgnn
+	url = git@github.com:Mono2Distributed/triplet-guided-chgnn.git

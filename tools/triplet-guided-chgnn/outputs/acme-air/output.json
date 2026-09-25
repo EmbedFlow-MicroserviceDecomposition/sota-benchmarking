@@ -1,0 +1,41 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "BookingServiceImpl",
+            "CustomerInfo",
+            "CustomerREST",
+            "MongoConnectionManager"
+        ],
+        "microservice_2": [
+            "BookingInfo",
+            "BookingsREST"
+        ],
+        "microservice_3": [
+            "BookingPKInfo",
+            "BookingReceiptInfo"
+        ],
+        "microservice_4": [
+            "com.acmeair.config.AcmeAirConfiguration$ServiceData",
+            "com.acmeair.morphia.DatastoreFactory"
+        ],
+        "microservice_5": [
+            "com.acmeair.config.acmeairconfiguration$servicedata\"\"-res-res",
+            "com.acmeair.morphia.datastorefactory\"\"-res-res"
+        ],
+        "microservice_6": [
+            "ReportGenerator"
+        ],
+        "microservice_7": [
+            "ResultParserHelper"
+        ],
+        "microservice_8": [
+            "NmonParser"
+        ],
+        "microservice_9": [
+            "IndividualChartResults",
+            "Messages",
+            "StatResult"
+        ]
+    }
+}
