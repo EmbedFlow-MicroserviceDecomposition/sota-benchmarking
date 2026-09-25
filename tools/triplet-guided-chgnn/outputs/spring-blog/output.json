@@ -1,0 +1,42 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "AdminController",
+            "com.raysmond.blog.repositories.PostRepository",
+            "com.raysmond.blog.repositories.TagRepository"
+        ],
+        "microservice_2": [
+            "CacheSettingService",
+            "DTOUtil",
+            "Setting"
+        ],
+        "microservice_3": [
+            "admincontroller\"\"-res-res",
+            "com.raysmond.blog.repositories.post\"\"-res-res",
+            "com.raysmond.blog.repositories.tag\"\"-res-res"
+        ],
+        "microservice_4": [
+            "Post",
+            "PygmentsService",
+            "syntaxHighlightService"
+        ],
+        "microservice_5": [
+            "PygmentsVerbatimSerializer"
+        ],
+        "microservice_6": [
+            "NotFoundException",
+            "PostService"
+        ],
+        "microservice_7": [
+            "TagController",
+            "UserController"
+        ],
+        "microservice_8": [
+            "SettingRepository"
+        ],
+        "microservice_9": [
+            "setting\"\"-res-res"
+        ]
+    }
+}
