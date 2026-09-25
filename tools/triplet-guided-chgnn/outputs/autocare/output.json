@@ -1,0 +1,41 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "AutocareApplication"
+        ],
+        "microservice_2": [
+            "Organization"
+        ],
+        "microservice_3": [
+            "CommentService",
+            "User",
+            "VehicleService"
+        ],
+        "microservice_4": [
+            "CustomBeanUtils",
+            "GlobalException"
+        ],
+        "microservice_5": [
+            "UserService"
+        ],
+        "microservice_6": [
+            "Comment",
+            "DeletedComment",
+            "DeletedUser",
+            "DeletedVehicle",
+            "User$1",
+            "User$Builder",
+            "Vehicle"
+        ],
+        "microservice_7": [
+            "PageDto"
+        ],
+        "microservice_8": [
+            "CustomVehicleRepositoryImpl"
+        ],
+        "microservice_9": [
+            "customvehiclerepository\"\"-res-res"
+        ]
+    }
+}
