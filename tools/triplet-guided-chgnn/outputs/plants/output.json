@@ -1,0 +1,51 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "BackOrderItem",
+            "CatalogMgr",
+            "HelpBean",
+            "MailAction",
+            "OrderInfo",
+            "OrderItem$PK",
+            "PopulateDBBean",
+            "ProductBean"
+        ],
+        "microservice_2": [
+            "Util"
+        ],
+        "microservice_3": [
+            "AccountBean",
+            "AdminServlet",
+            "ShoppingCartBean",
+            "SuppliersBean"
+        ],
+        "microservice_4": [
+            "CustomerMgr",
+            "ListProperties",
+            "LoginInfo"
+        ],
+        "microservice_5": [
+            "BackOrderMgr",
+            "Customer",
+            "MailerAppException",
+            "MailerBean"
+        ],
+        "microservice_6": [
+            "BackOrder",
+            "Order",
+            "Populate",
+            "ShoppingItem"
+        ],
+        "microservice_7": [
+            "Inventory"
+        ],
+        "microservice_8": [
+            "ResetDBBean",
+            "Supplier"
+        ],
+        "microservice_9": [
+            "OrderItem"
+        ]
+    }
+}
