@@ -1,0 +1,103 @@
+{
+    "tool": "TripletGuidedCHGNN",
+    "microservices": {
+        "microservice_1": [
+            "MarketSummaryDataBean",
+            "QuoteDataBean",
+            "TradeAction",
+            "TradeAppJSF",
+            "TradeConfig",
+            "TradeConfigJSF",
+            "TradeConfigServlet",
+            "TradeDirect",
+            "TradeSLSBBean",
+            "TradeServletAction"
+        ],
+        "microservice_2": [
+            "ActionMessage",
+            "CompleteOrderThread",
+            "HoldingDataBean",
+            "MDBStats",
+            "MarketSummarySingleton",
+            "OrdersAlertFilter",
+            "PingJDBCRead2JSP",
+            "PingServlet2DB",
+            "PingServlet2Session2Entity2JSP",
+            "PingServlet2SessionLocal",
+            "PingServlet2SessionRemote"
+        ],
+        "microservice_3": [
+            "AccountDataBean",
+            "DTBroker3MDB",
+            "DTStreamer3MDB",
+            "MarketSummaryWebSocket",
+            "OrderDataBean",
+            "PingServlet2Entity",
+            "PingServlet2Session2Entity",
+            "PingSession2",
+            "PingSession3",
+            "PortfolioJSF",
+            "RunStatsDataBean"
+        ],
+        "microservice_4": [
+            "OrderDataJSF",
+            "PingServlet2JNDI",
+            "PingUpgradeServlet",
+            "PingUpgradeServlet$1",
+            "PingUpgradeServlet$Handler",
+            "PingUpgradeServlet$Listener",
+            "QuoteJSF",
+            "TradeActionProducer",
+            "TradeAppServlet",
+            "accountprofiledatabean\"\"-res-res",
+            "holdingdatabean\"\"-res-res"
+        ],
+        "microservice_5": [
+            "AccountProfileDataBean",
+            "FinancialUtils",
+            "Log",
+            "PingJDBCRead",
+            "PingJDBCWrite",
+            "PingServlet2MDBQueue",
+            "PingServlet2MDBTopic",
+            "PingServlet2Session2CMROne2Many",
+            "PingServlet2Session2CMROne2One",
+            "PingServlet2Session2EntityCollection",
+            "PingServlet2TwoPhase",
+            "TradeBuildDB",
+            "TradeScenarioServlet",
+            "TradeWebContextListener"
+        ],
+        "microservice_6": [
+            "ActionDecoder",
+            "JsonDecoder",
+            "KeyBlock$KeyBlockIterator",
+            "KeySequenceDirect",
+            "MarketSummaryJSF",
+            "PingServlet2Jsp",
+            "PingServlet2PDF",
+            "PingServlet2Servlet",
+            "PingSession3Object",
+            "PingWebSocketJson",
+            "PingWebSocketJson$1",
+            "QuoteData",
+            "RecentStockChangeList",
+            "TimerStat"
+        ],
+        "microservice_7": [
+            "AccountDataJSF",
+            "ActionMessage$1",
+            "HoldingData",
+            "JsonMessage",
+            "PingBean"
+        ],
+        "microservice_8": [
+            "KeyBlock"
+        ],
+        "microservice_9": [
+            "accountdatabean\"\"-res-res",
+            "pingservlet2\"\"-res-res",
+            "pingservlet2session2\"\"-res-res"
+        ]
+    }
+}
