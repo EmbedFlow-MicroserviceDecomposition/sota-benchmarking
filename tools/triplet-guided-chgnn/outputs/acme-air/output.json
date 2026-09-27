@@ -2,40 +2,36 @@
     "tool": "TripletGuidedCHGNN",
     "microservices": {
         "microservice_1": [
-            "BookingServiceImpl",
-            "CustomerInfo",
-            "CustomerREST",
-            "MongoConnectionManager"
+            "com.acmeair.morphia.services.BookingServiceImpl",
+            "com.acmeair.morphia.services.util.MongoConnectionManager",
+            "com.acmeair.web.CustomerInfo",
+            "com.acmeair.web.CustomerREST"
         ],
         "microservice_2": [
-            "BookingInfo",
-            "BookingsREST"
+            "com.acmeair.web.BookingsREST",
+            "com.acmeair.web.dto.BookingInfo"
         ],
         "microservice_3": [
-            "BookingPKInfo",
-            "BookingReceiptInfo"
+            "com.acmeair.web.dto.BookingPKInfo",
+            "com.acmeair.web.dto.BookingReceiptInfo"
         ],
         "microservice_4": [
             "com.acmeair.config.AcmeAirConfiguration$ServiceData",
             "com.acmeair.morphia.DatastoreFactory"
         ],
         "microservice_5": [
-            "com.acmeair.config.acmeairconfiguration$servicedata\"\"-res-res",
-            "com.acmeair.morphia.datastorefactory\"\"-res-res"
+            "com.acmeair.reporter.ReportGenerator"
         ],
         "microservice_6": [
-            "ReportGenerator"
+            "com.acmeair.reporter.parser.ResultParserHelper"
         ],
         "microservice_7": [
-            "ResultParserHelper"
+            "com.acmeair.reporter.parser.component.NmonParser"
         ],
         "microservice_8": [
-            "NmonParser"
-        ],
-        "microservice_9": [
-            "IndividualChartResults",
-            "Messages",
-            "StatResult"
+            "com.acmeair.reporter.parser.IndividualChartResults",
+            "com.acmeair.reporter.util.Messages",
+            "com.acmeair.reporter.util.StatResult"
         ]
     }
 }
