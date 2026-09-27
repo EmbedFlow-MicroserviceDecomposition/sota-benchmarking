@@ -6,16 +6,12 @@
             "org.springframework.samples.petclinic.owner.PetRepository"
         ],
         "microservice_2": [
-            "org.springframework.samples.petclinic.model.named\"\"-res-res",
-            "org.springframework.samples.petclinic.owner.pet\"\"-res-res"
+            "org.springframework.samples.petclinic.owner.Pet",
+            "org.springframework.samples.petclinic.owner.PetController"
         ],
         "microservice_3": [
-            "Pet",
-            "PetController"
-        ],
-        "microservice_4": [
-            "VetController",
-            "Vets"
+            "org.springframework.samples.petclinic.vet.VetController",
+            "org.springframework.samples.petclinic.vet.Vets"
         ]
     }
 }
