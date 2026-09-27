@@ -3,13 +3,13 @@
     "score": 0.10593511882009027,
     "microservice_scores": {
         "microservice_7": 0.05555555555555555,
-        "microservice_3": 0.07498048399687744,
-        "microservice_1": 0.06393143893143893,
-        "microservice_2": 0.12052631578947368,
-        "microservice_4": 0.0811970402195966,
         "microservice_5": 0.01865079365079365,
         "microservice_8": 0.224036386062288,
+        "microservice_4": 0.0811970402195966,
+        "microservice_9": 0.15206971677559913,
+        "microservice_1": 0.06393143893143893,
         "microservice_6": 0.16246833839918945,
-        "microservice_9": 0.15206971677559913
+        "microservice_3": 0.07498048399687744,
+        "microservice_2": 0.12052631578947368
     }
 }
