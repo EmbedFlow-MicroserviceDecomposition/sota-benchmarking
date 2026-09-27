@@ -18,9 +18,68 @@ def write_error(output_json_path, message):
     print(f"Error written to {output_json_path}: {message}")
     sys.exit(1)
 
-def parse_cma_output(cma_json_path, output_json_path):
+def build_class_lookup(dataset_path):
+    class_map = {}
+    if not dataset_path or not os.path.exists(dataset_path):
+        return class_map
+
+    ds_json = os.path.join(dataset_path, "dataset.json")
+    if os.path.exists(ds_json):
+        try:
+            with open(ds_json, "r", encoding="utf-8") as f:
+                d = json.load(f)
+            for mid, mdata in d.get("methods", {}).items():
+                pkg = mdata.get("package", "")
+                cls = mdata.get("class", "")
+                if cls and pkg:
+                    class_map.setdefault(cls, set()).add(f"{pkg}.{cls}")
+            for e in d.get("edges", []):
+                for node in [e.get("src"), e.get("dst")]:
+                    if node and "." in node and not node.startswith("java.") and not node.startswith("org.spring"):
+                        simple = node.split(".")[-1]
+                        class_map.setdefault(simple, set()).add(node)
+        except Exception as e:
+            print(f"Warning: could not read {ds_json}: {e}")
+
+    for root, _, files in os.walk(dataset_path):
+        for f in files:
+            if f.endswith(".java"):
+                full_path = os.path.join(root, f)
+                simple = f[:-5]
+                try:
+                    with open(full_path, "r", encoding="utf-8", errors="ignore") as jf:
+                        for line in jf:
+                            line = line.strip()
+                            if line.startswith("package ") and line.endswith(";"):
+                                pkg = line[8:-1].strip()
+                                class_map.setdefault(simple, set()).add(f"{pkg}.{simple}")
+                                break
+                except Exception:
+                    pass
+    return class_map
+
+def map_label_to_fqn(label, class_map):
+    label = label.replace('"', '').strip()
+    if not label or "-res" in label.lower():
+        return None
+    if "." in label:
+        return label
+    if label in class_map and len(class_map[label]) == 1:
+        return list(class_map[label])[0]
+    if "$" in label:
+        outer = label.split("$")[0]
+        if outer in class_map and len(class_map[outer]) == 1:
+            return f"{list(class_map[outer])[0]}{label[len(outer):]}"
+    if label in class_map:
+        candidates = sorted(list(class_map[label]))
+        prod = [c for c in candidates if "test" not in c.lower()]
+        return prod[0] if prod else candidates[0]
+    return label
+
+def parse_cma_output(cma_json_path, output_json_path, dataset_path=None):
     """
     Parses CMA-format cluster output from Triplet-Guided CHGNN into standardized output.json.
+    Filters out resource nodes and maps simple class names to canonical FQNs.
     """
     if not os.path.exists(cma_json_path):
         write_error(output_json_path, f"CMA output file not found at {cma_json_path}")
@@ -32,20 +91,23 @@ def parse_cma_output(cma_json_path, output_json_path):
     clusters = cma_data.get("clusters", [])
 
     id_to_label = {str(n["id"]): str(n["label"]) for n in nodes if "id" in n and "label" in n}
+    class_map = build_class_lookup(dataset_path) if dataset_path else {}
 
     microservices = {}
-    for idx, cluster in enumerate(clusters):
-        cluster_label = cluster.get("label", f"microservice_{idx+1}")
-        cluster_key = f"microservice_{idx+1}" if not cluster_label.startswith("microservice_") else cluster_label
-
+    valid_idx = 1
+    for cluster in clusters:
         node_ids = cluster.get("nodes", [])
         classes = []
         for nid in node_ids:
-            label = id_to_label.get(str(nid), str(nid))
-            classes.append(label)
+            raw_label = id_to_label.get(str(nid), str(nid))
+            canonical = map_label_to_fqn(raw_label, class_map)
+            if canonical:
+                classes.append(canonical)
 
         if classes:
-            microservices[cluster_key] = sorted(classes)
+            cluster_key = f"microservice_{valid_idx}"
+            microservices[cluster_key] = sorted(list(set(classes)))
+            valid_idx += 1
 
     os.makedirs(os.path.dirname(output_json_path) or '.', exist_ok=True)
     out_payload = {
@@ -263,7 +325,7 @@ def run_decomposition(dataset_path, output_path=None, model="AE_EGCN_Separate", 
             write_error(output_json_path, f"No CMA-format cluster output found in {output_path} or {triplebound_results_dir}")
         latest_cma = max(candidates, key=os.path.getmtime)
         print(f"Found CMA cluster output: {latest_cma}")
-        parse_cma_output(latest_cma, output_json_path)
+        parse_cma_output(latest_cma, output_json_path, dataset_path=dataset_path)
         return
 
     # Check if CHGNN data directory exists; if not or if forced, build dynamically from source monolith
@@ -312,7 +374,7 @@ def run_decomposition(dataset_path, output_path=None, model="AE_EGCN_Separate", 
 
     latest_cma = max(candidates, key=os.path.getmtime)
     print(f"Converting latest CMA output: {latest_cma} -> {output_json_path}")
-    parse_cma_output(latest_cma, output_json_path)
+    parse_cma_output(latest_cma, output_json_path, dataset_path=dataset_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Triplet-Guided CHGNN Tool Runner")

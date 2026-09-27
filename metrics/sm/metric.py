@@ -19,55 +19,91 @@ class Edge:
 def resolve_partition(microservices, dataset_methods=None):
     method_partition = {}
     class_member_counts = {}
+    class_clusters = {cid: set() for cid in microservices}
+
+    class_fqn_to_simple = {}
+    simple_to_class_fqn = {}
+    if dataset_methods:
+        for mid, mdata in dataset_methods.items():
+            pkg = mdata.get("package", "")
+            cls = mdata.get("class", "")
+            if cls:
+                fqn = f"{pkg}.{cls}" if pkg else cls
+                class_fqn_to_simple[fqn] = cls
+                simple_to_class_fqn.setdefault(cls, set()).add(fqn)
 
     for cid, members in microservices.items():
         for m in members:
-            method_partition[m] = cid
-            if dataset_methods and m in dataset_methods:
-                m_info = dataset_methods[m]
+            if "-res" in m:
+                continue
+            clean_m = m.split(" [")[0].strip()
+            method_partition[clean_m] = cid
+            if m != clean_m:
+                method_partition[m] = cid
+
+            if dataset_methods and clean_m in dataset_methods:
+                m_info = dataset_methods[clean_m]
                 pkg = m_info.get("package", "")
                 cls = m_info.get("class", "")
                 class_fqn = f"{pkg}.{cls}" if pkg else cls
+                simple_cls = cls
+            elif clean_m in class_fqn_to_simple:
+                class_fqn = clean_m
+                simple_cls = class_fqn_to_simple[clean_m]
+            elif clean_m in simple_to_class_fqn:
+                simple_cls = clean_m
+                fqns = simple_to_class_fqn[clean_m]
+                class_fqn = list(fqns)[0] if len(fqns) == 1 else clean_m
+            elif "." in clean_m:
+                last_seg = clean_m.split(".")[-1]
+                if last_seg and last_seg[0].isupper():
+                    class_fqn = clean_m
+                    simple_cls = last_seg
+                else:
+                    class_fqn = clean_m.rsplit(".", 1)[0]
+                    simple_cls = class_fqn.split(".")[-1]
             else:
-                class_fqn = m.rsplit(".", 1)[0] if "." in m else m
+                class_fqn = clean_m
+                simple_cls = clean_m
 
             class_member_counts.setdefault(class_fqn, {})
             class_member_counts[class_fqn][cid] = class_member_counts[class_fqn].get(cid, 0) + 1
+            if simple_cls != class_fqn:
+                class_member_counts.setdefault(simple_cls, {})
+                class_member_counts[simple_cls][cid] = class_member_counts[simple_cls].get(cid, 0) + 1
 
     class_partition = {}
-    for class_fqn, counts in class_member_counts.items():
+    for class_name, counts in class_member_counts.items():
         majority_cid = max(counts.items(), key=lambda x: x[1])[0]
-        class_partition[class_fqn] = majority_cid
+        class_partition[class_name] = majority_cid
 
-    short_lookup = {}
-    for fqn, cid in class_partition.items():
-        short_lookup[fqn.split(".")[-1]] = cid
+    for c, cid in class_partition.items():
+        if "." in c or c not in simple_to_class_fqn:
+            class_clusters.setdefault(cid, set()).add(c)
 
     def get_cluster(node_id):
+        if not node_id:
+            return None
         clean_node = node_id.split(" [")[0].strip()
-        if clean_node in class_partition:
-            return class_partition[clean_node]
-        if clean_node in short_lookup:
-            return short_lookup[clean_node]
         if clean_node in method_partition:
             return method_partition[clean_node]
-        if node_id in class_partition:
-            return class_partition[node_id]
-        if node_id in short_lookup:
-            return short_lookup[node_id]
         if node_id in method_partition:
             return method_partition[node_id]
+        if clean_node in class_partition:
+            return class_partition[clean_node]
+        if node_id in class_partition:
+            return class_partition[node_id]
+        simple_name = clean_node.split(".")[-1]
+        if simple_name in class_partition:
+            return class_partition[simple_name]
         if "." in clean_node:
             parent_cls = clean_node.rsplit(".", 1)[0]
             if parent_cls in class_partition:
                 return class_partition[parent_cls]
-            if parent_cls.split(".")[-1] in short_lookup:
-                return short_lookup[parent_cls.split(".")[-1]]
+            short_parent = parent_cls.split(".")[-1]
+            if short_parent in class_partition:
+                return class_partition[short_parent]
         return None
-
-    class_clusters = {cid: set() for cid in microservices}
-    for c, cid in class_partition.items():
-        class_clusters.setdefault(cid, set()).add(c)
 
     return class_clusters, get_cluster
 
