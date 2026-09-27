@@ -2,14 +2,14 @@
     "metric": "CHD",
     "score": 0.5224520335631446,
     "microservice_scores": {
-        "microservice_7": 0.3333333333333333,
-        "microservice_6": 1.0,
-        "microservice_8": 1.0,
-        "microservice_1": 0.08518518518518518,
-        "microservice_5": 0.19444444444444442,
-        "microservice_3": 0.15476190476190474,
-        "microservice_2": 0.7777777777777777,
         "microservice_4": 0.15656565656565657,
-        "microservice_9": 1.0
+        "microservice_7": 0.3333333333333333,
+        "microservice_9": 1.0,
+        "microservice_3": 0.15476190476190474,
+        "microservice_1": 0.08518518518518518,
+        "microservice_2": 0.7777777777777777,
+        "microservice_5": 0.19444444444444442,
+        "microservice_8": 1.0,
+        "microservice_6": 1.0
     }
 }
