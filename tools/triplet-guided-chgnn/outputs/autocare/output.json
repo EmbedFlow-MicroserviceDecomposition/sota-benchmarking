@@ -2,40 +2,37 @@
     "tool": "TripletGuidedCHGNN",
     "microservices": {
         "microservice_1": [
-            "AutocareApplication"
+            "com.policynepal.autocare.AutocareApplication"
         ],
         "microservice_2": [
-            "Organization"
+            "com.policynepal.autocare.user.model.Organization"
         ],
         "microservice_3": [
-            "CommentService",
-            "User",
-            "VehicleService"
+            "com.policynepal.autocare.comment.service.CommentService",
+            "com.policynepal.autocare.user.model.User",
+            "com.policynepal.autocare.vehicle.service.VehicleService"
         ],
         "microservice_4": [
-            "CustomBeanUtils",
-            "GlobalException"
+            "com.policynepal.autocare.exceptionhandler.GlobalException",
+            "com.policynepal.autocare.utils.CustomBeanUtils"
         ],
         "microservice_5": [
-            "UserService"
+            "com.policynepal.autocare.user.service.UserService"
         ],
         "microservice_6": [
-            "Comment",
-            "DeletedComment",
-            "DeletedUser",
-            "DeletedVehicle",
-            "User$1",
-            "User$Builder",
-            "Vehicle"
+            "com.policynepal.autocare.comment.model.Comment",
+            "com.policynepal.autocare.comment.model.DeletedComment",
+            "com.policynepal.autocare.user.model.DeletedUser",
+            "com.policynepal.autocare.user.model.User$1",
+            "com.policynepal.autocare.user.model.User$Builder",
+            "com.policynepal.autocare.vehicle.model.DeletedVehicle",
+            "com.policynepal.autocare.vehicle.model.Vehicle"
         ],
         "microservice_7": [
-            "PageDto"
+            "com.policynepal.autocare.common.dto.PageDto"
         ],
         "microservice_8": [
-            "CustomVehicleRepositoryImpl"
-        ],
-        "microservice_9": [
-            "customvehiclerepository\"\"-res-res"
+            "com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl"
         ]
     }
 }
