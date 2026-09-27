@@ -2,19 +2,19 @@
     "tool": "TripletGuidedCHGNN",
     "microservices": {
         "microservice_1": [
-            "Account",
-            "AccountActionBean",
-            "Order",
-            "OrderActionBean"
+            "org.mybatis.jpetstore.domain.Account",
+            "org.mybatis.jpetstore.domain.Order",
+            "org.mybatis.jpetstore.web.actions.AccountActionBean",
+            "org.mybatis.jpetstore.web.actions.OrderActionBean"
         ],
         "microservice_2": [
-            "CartActionBean"
+            "org.mybatis.jpetstore.web.actions.CartActionBean"
         ],
         "microservice_3": [
-            "Cart"
+            "org.mybatis.jpetstore.domain.Cart"
         ],
         "microservice_4": [
-            "CartItem"
+            "org.mybatis.jpetstore.domain.CartItem"
         ]
     }
 }

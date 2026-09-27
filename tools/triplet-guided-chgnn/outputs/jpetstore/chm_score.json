@@ -2,8 +2,8 @@
     "metric": "CHM",
     "score": 0.7916666666666666,
     "microservice_scores": {
-        "microservice_4": 1.0,
         "microservice_2": 1.0,
+        "microservice_4": 1.0,
         "microservice_3": 0.16666666666666666,
         "microservice_1": 1.0
     }
