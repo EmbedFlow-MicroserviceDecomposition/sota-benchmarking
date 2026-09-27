@@ -2,25 +2,20 @@
     "tool": "TripletGuidedCHGNN",
     "microservices": {
         "microservice_1": [
-            "CustomBeanUtils",
-            "EventService"
+            "com.rokin.baylorboard.service.EventService",
+            "com.rokin.baylorboard.utils.CustomBeanUtils"
         ],
         "microservice_2": [
-            "MessageBean",
-            "Tweet"
+            "com.rokin.baylorboard.domain.MessageBean",
+            "com.rokin.baylorboard.domain.Tweet"
         ],
         "microservice_3": [
-            "TweetService"
+            "com.rokin.baylorboard.service.TweetService"
         ],
         "microservice_4": [
-            "RoleRepository",
-            "TweetRepository",
-            "UserRepository"
-        ],
-        "microservice_5": [
-            "role\"\"-res-res",
-            "tweet\"\"-res-res",
-            "user\"\"-res-res"
+            "com.rokin.baylorboard.repository.RoleRepository",
+            "com.rokin.baylorboard.repository.TweetRepository",
+            "com.rokin.baylorboard.repository.UserRepository"
         ]
     }
 }
