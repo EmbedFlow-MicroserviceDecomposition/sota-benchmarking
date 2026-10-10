@@ -1,15 +1,11 @@
 {
     "metric": "ICP",
-    "score": 0.9347826086956522,
+    "score": 0.6363636363636364,
     "microservice_scores": {
-        "microservice_8": 1.0,
-        "microservice_5": 0.6666666666666666,
+        "microservice_1": 0.9047619047619048,
+        "microservice_2": 0.32,
+        "microservice_3": 0.0,
         "microservice_4": 1.0,
-        "microservice_6": 1.0,
-        "microservice_7": 0.0,
-        "microservice_3": 0.8571428571428571,
-        "microservice_2": 1.0,
-        "microservice_9": 1.0,
-        "microservice_1": 1.0
+        "microservice_5": 1.0
     }
 }

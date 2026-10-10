@@ -10,6 +10,7 @@ import json
 import shutil
 import argparse
 import subprocess
+from generate_chgnn_graph import generate_chgnn_graph
 
 def write_error(output_json_path, message):
     os.makedirs(os.path.dirname(output_json_path) or '.', exist_ok=True)
@@ -158,9 +159,7 @@ def resolve_dataset_info(dataset_path, root_dir):
 def resolve_data_folder(repo_dir, dataset_name, model, force_recompute=False):
     """
     Locates the CHGNN data folder under data_layer/utilities/data/.
-    Checks direct match '{dataset_name}_{model}'.
-    If absent, checks for legacy/author cached directory (e.g. acme_..., dayTrader_..., pbw_...)
-    and automatically symlinks it so dataset_name works directly.
+    Uses dedicated '{dataset_name}_{model}'.
     If force_recompute is True, unlinks symlinks or clears existing data folder so it gets rebuilt.
     """
     data_base = os.path.join(repo_dir, "data_layer/utilities/data")
@@ -175,26 +174,6 @@ def resolve_data_folder(repo_dir, dataset_name, model, force_recompute=False):
             shutil.rmtree(target_path, ignore_errors=True)
             print(f"Cleared existing data directory: {target_path}")
         return target_path, dataset_name
-
-    if os.path.exists(target_path):
-        return target_path, dataset_name
-
-    # Check for normalized match among existing author folders
-    clean_target = dataset_name.lower().replace("-", "").replace("_", "")
-    if os.path.exists(data_base):
-        for entry in os.listdir(data_base):
-            if not entry.endswith(f"_{model}"):
-                continue
-            prefix = entry[:-len(f"_{model}")]
-            clean_prefix = prefix.lower().replace("-", "").replace("_", "").replace("sample.", "")
-            if clean_target == clean_prefix or clean_target in clean_prefix or clean_prefix in clean_target:
-                matched_folder = os.path.join(data_base, entry)
-                try:
-                    os.symlink(entry, target_path)
-                    print(f"Linked author-cached folder {entry} -> {target_name}")
-                    return target_path, dataset_name
-                except Exception:
-                    return matched_folder, prefix
 
     return target_path, dataset_name
 
@@ -211,92 +190,17 @@ def run_cmd(cmd, cwd, root_dir, docker_image=None):
     else:
         return subprocess.run(cmd, cwd=cwd)
 
-def build_chgnn_data_from_monolith(repo_dir, root_dir, dataset_name, monolith_path, data_folder,
-                                   model="AE_EGCN_Separate", triplet_num=100, python_bin=None,
-                                   docker_image=None):
+def build_chgnn_data(dataset_path, data_folder, num_clusters=None):
     """
-    Runs parser pipeline (parser/main.py --to-chgnn and generate_servlet_services.py)
-    to dynamically construct all required CHGNN input data for an arbitrary dataset.
+    Constructs recommended heterogeneous graph representation anew
+    directly from source code and dataset.json using generate_chgnn_graph.
     """
     print(f"\n{'='*60}")
-    print(f"Constructing CHGNN graph data for {dataset_name}")
-    print(f"Source: {monolith_path}")
-    print(f"Target: {data_folder}")
+    print(f"Constructing Recommended CHGNN graph data for {os.path.basename(dataset_path)}")
+    print(f"Dataset path: {dataset_path}")
+    print(f"Target folder: {data_folder}")
     print(f"{'='*60}\n")
-
-    parser_dir = os.path.join(repo_dir, "parser")
-    temp_convert_dir = os.path.join(data_folder, "_convert_tmp")
-    os.makedirs(temp_convert_dir, exist_ok=True)
-    vertices_file = os.path.join(temp_convert_dir, "vertices.json")
-
-    py_bin = python_bin if python_bin else ("python3" if docker_image else sys.executable)
-
-    # Step 1: Run parser/main.py with --to-chgnn --improved-converter
-    cmd1 = [
-        py_bin,
-        os.path.join(parser_dir, "main.py"),
-        monolith_path,
-        "--out", vertices_file,
-        "--repo-name", dataset_name,
-        "--multi-service",
-        "--generate-triplets",
-        "--num-triplets", str(triplet_num),
-        "--to-chgnn",
-        "--improved-converter",
-        "--chgnn-output-dir", temp_convert_dir
-    ]
-    print("Executing parser pipeline (Step 1/2):")
-    print(" ".join(cmd1))
-    proc = run_cmd(cmd1, cwd=parser_dir, root_dir=root_dir, docker_image=docker_image)
-    if proc.returncode != 0:
-        raise RuntimeError(f"Parser failed with exit code {proc.returncode}")
-
-    if not os.path.exists(vertices_file):
-        raise RuntimeError(f"Parser succeeded but vertices.json not found at {vertices_file}")
-
-    # Step 2: Run parser/generate_servlet_services.py
-    service_triplets_file = os.path.join(temp_convert_dir, "service_triplets.json")
-    cmd2 = [
-        py_bin,
-        os.path.join(parser_dir, "generate_servlet_services.py"),
-        "--input", vertices_file,
-        "--output", service_triplets_file
-    ]
-    print("\nGenerating service triplets (Step 2/2):")
-    print(" ".join(cmd2))
-    proc = run_cmd(cmd2, cwd=parser_dir, root_dir=root_dir, docker_image=docker_image)
-    if proc.returncode != 0:
-        raise RuntimeError(f"generate_servlet_services failed with exit code {proc.returncode}")
-
-    # Step 3: Organize into standard CHGNN directory layout (temp/ and custom/)
-    temp_dir = os.path.join(data_folder, "temp")
-    custom_dir = os.path.join(data_folder, "custom")
-    os.makedirs(temp_dir, exist_ok=True)
-    os.makedirs(custom_dir, exist_ok=True)
-
-    temp_files = [
-        "inter_class_usage.json", "callgraph.dot", "service.json",
-        "db.json", "content.csv", "struct.csv", "service_triplets.json"
-    ]
-    for fname in temp_files:
-        src = os.path.join(temp_convert_dir, fname)
-        if os.path.exists(src):
-            shutil.copy2(src, os.path.join(temp_dir, fname))
-
-    custom_files = [
-        "gcnconfig_with_edge_loss.json", "gcnconfig_without_edge_loss.json", "seeds.txt"
-    ]
-    for fname in custom_files:
-        src = os.path.join(temp_convert_dir, fname)
-        if os.path.exists(src):
-            shutil.copy2(src, os.path.join(custom_dir, fname))
-
-    ignore_file = os.path.join(custom_dir, "ignore_classes.txt")
-    if not os.path.exists(ignore_file):
-        open(ignore_file, 'w').close()
-
-    shutil.rmtree(temp_convert_dir, ignore_errors=True)
-    print(f"\nCHGNN data folder successfully prepared at: {data_folder}\n")
+    generate_chgnn_graph(dataset_path=dataset_path, output_data_dir=data_folder, num_clusters=num_clusters)
 
 def run_decomposition(dataset_path, output_path=None, model="AE_EGCN_Separate", code="with_edge_loss",
                       epochs=100, alpha=0.7, triplet_num=100, parse_only=False, python_bin=None,
@@ -328,20 +232,11 @@ def run_decomposition(dataset_path, output_path=None, model="AE_EGCN_Separate", 
         parse_cma_output(latest_cma, output_json_path, dataset_path=dataset_path)
         return
 
-    # Check if CHGNN data directory exists; if not or if forced, build dynamically from source monolith
-    if not os.path.exists(data_folder) or force_recompute:
-        print(f"Data folder {data_folder} not found or force_recompute=True. Running parser pipeline on {monolith_path}...")
-        build_chgnn_data_from_monolith(
-            repo_dir=repo_dir,
-            root_dir=root_dir,
-            dataset_name=dataset_name,
-            monolith_path=monolith_path,
-            data_folder=data_folder,
-            model=model,
-            triplet_num=triplet_num,
-            python_bin=python_bin,
-            docker_image=docker_image
-        )
+    # Check if CHGNN data directory exists and has ICU; if not or if forced, build dynamically from source
+    icu_path = os.path.join(data_folder, "temp", "inter_class_usage.json")
+    if not os.path.exists(icu_path) or force_recompute:
+        print(f"Data folder or ICU file not found in {data_folder} or force_recompute=True. Generating recommended graph...")
+        build_chgnn_data(dataset_path=dataset_path, data_folder=data_folder)
     else:
         print(f"Using prepared CHGNN data in {data_folder}...")
 

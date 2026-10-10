@@ -1,10 +1,10 @@
 {
     "metric": "BCP",
-    "score": 0.6931471805599453,
+    "score": 1.2718990838080961,
     "microservice_scores": {
         "microservice_1": 0.6931471805599453,
-        "microservice_2": 0.6931471805599453,
-        "microservice_3": 0.6931471805599453,
-        "microservice_4": 0.6931471805599453
+        "microservice_2": 2.1972245773362196,
+        "microservice_3": 0.0,
+        "microservice_4": 2.1972245773362196
     }
 }

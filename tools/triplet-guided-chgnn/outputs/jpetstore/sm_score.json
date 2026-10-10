@@ -1,10 +1,10 @@
 {
     "metric": "SM",
-    "score": -0.057291666666666664,
+    "score": 0.031712278106508875,
     "microservice_scores": {
-        "microservice_1": 0.14583333333333334,
-        "microservice_2": -0.16666666666666666,
-        "microservice_3": -0.20833333333333334,
-        "microservice_4": 0.0
+        "microservice_1": 0.10516826923076923,
+        "microservice_2": 0.029092702169625246,
+        "microservice_3": 0.0023036858974358997,
+        "microservice_4": -0.009715544871794869
     }
 }
