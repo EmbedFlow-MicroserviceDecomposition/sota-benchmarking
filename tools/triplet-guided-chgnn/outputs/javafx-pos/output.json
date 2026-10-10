@@ -2,53 +2,53 @@
     "tool": "TripletGuidedCHGNN",
     "microservices": {
         "microservice_1": [
+            "com.rafsan.inventory.HibernateUtil",
+            "com.rafsan.inventory.MainApp",
             "com.rafsan.inventory.UseCaseRunner",
+            "com.rafsan.inventory.controller.admin.AdminController",
             "com.rafsan.inventory.controller.category.AddController",
+            "com.rafsan.inventory.controller.employee.AddController",
+            "com.rafsan.inventory.controller.employee.EditController",
+            "com.rafsan.inventory.controller.login.LoginController",
             "com.rafsan.inventory.controller.pos.InvoiceController",
-            "com.rafsan.inventory.model.EmployeeModel",
-            "com.rafsan.inventory.model.ProductModel"
-        ],
-        "microservice_2": [
-            "com.rafsan.inventory.HibernateUtil"
-        ],
-        "microservice_3": [
-            "com.rafsan.inventory.controller.report.ReportController",
-            "com.rafsan.inventory.model.PurchaseModel",
-            "com.rafsan.inventory.model.SalesModel"
-        ],
-        "microservice_4": [
+            "com.rafsan.inventory.controller.product.AddController",
+            "com.rafsan.inventory.controller.product.EditController",
+            "com.rafsan.inventory.controller.purchase.AddController",
             "com.rafsan.inventory.controller.report.ViewController",
-            "com.rafsan.inventory.model.CategoryModel",
+            "com.rafsan.inventory.controller.supplier.AddController",
+            "com.rafsan.inventory.controller.supplier.EditController",
+            "com.rafsan.inventory.controller.supplier.SupplierController",
+            "com.rafsan.inventory.entity.Employee",
+            "com.rafsan.inventory.entity.Invoice",
+            "com.rafsan.inventory.entity.Product",
+            "com.rafsan.inventory.entity.Purchase",
+            "com.rafsan.inventory.entity.Sale",
+            "com.rafsan.inventory.entity.Supplier",
+            "com.rafsan.inventory.model.EmployeeModel",
+            "com.rafsan.inventory.model.InvoiceModel",
+            "com.rafsan.inventory.model.PurchaseModel",
+            "com.rafsan.inventory.model.SalesModel",
             "com.rafsan.inventory.model.SupplierModel"
         ],
-        "microservice_5": [
+        "microservice_2": [
             "com.rafsan.inventory.controller.category.EditController",
-            "com.rafsan.inventory.model.InvoiceModel"
-        ],
-        "microservice_6": [
-            "com.rafsan.inventory.MainApp",
-            "com.rafsan.inventory.controller.admin.AdminController",
-            "com.rafsan.inventory.controller.login.LoginController",
-            "com.rafsan.inventory.controller.pos.PosController",
-            "com.rafsan.inventory.controller.sales.SalesController"
-        ],
-        "microservice_7": [
-            "com.rafsan.inventory.controller.pos.ConfirmController",
+            "com.rafsan.inventory.controller.employee.EmployeeController",
             "com.rafsan.inventory.controller.purchase.PurchaseController",
-            "com.rafsan.inventory.dao.CategoryDao",
-            "com.rafsan.inventory.dao.EmployeeDao",
-            "com.rafsan.inventory.dao.ProductDao",
-            "com.rafsan.inventory.dao.SaleDao",
-            "com.rafsan.inventory.dao.SupplierDao",
-            "com.rafsan.inventory.entity.Purchase"
+            "com.rafsan.inventory.controller.report.ReportController",
+            "com.rafsan.inventory.controller.sales.SalesController",
+            "com.rafsan.inventory.entity.Category",
+            "com.rafsan.inventory.entity.Payment",
+            "com.rafsan.inventory.model.CategoryModel"
         ],
-        "microservice_8": [
-            "com.rafsan.inventory.controller.category.CategoryController",
+        "microservice_3": [
             "com.rafsan.inventory.controller.product.ProductController",
-            "com.rafsan.inventory.controller.supplier.SupplierController"
+            "com.rafsan.inventory.model.ProductModel"
         ],
-        "microservice_9": [
-            "com.rafsan.inventory.controller.employee.EmployeeController"
+        "microservice_4": [
+            "com.rafsan.inventory.controller.category.CategoryController"
+        ],
+        "microservice_5": [
+            "com.rafsan.inventory.controller.pos.PosController"
         ]
     }
 }

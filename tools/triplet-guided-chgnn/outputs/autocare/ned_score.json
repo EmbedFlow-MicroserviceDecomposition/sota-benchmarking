@@ -1,7 +1,7 @@
 {
     "metric": "NED",
-    "score": 0.4117647058823529,
-    "score_relative": 0.5882352941176471,
+    "score": 0.32432432432432434,
+    "score_relative": 0.32432432432432434,
     "bounds": {
         "lo": 5,
         "hi": 20,
@@ -9,12 +9,8 @@
     },
     "microservice_scores": {
         "microservice_1": 0.0,
-        "microservice_2": 0.0,
+        "microservice_2": 1.0,
         "microservice_3": 0.0,
-        "microservice_4": 0.0,
-        "microservice_5": 0.0,
-        "microservice_6": 1.0,
-        "microservice_7": 0.0,
-        "microservice_8": 0.0
+        "microservice_4": 1.0
     }
 }

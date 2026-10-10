@@ -2,16 +2,32 @@
     "tool": "TripletGuidedCHGNN",
     "microservices": {
         "microservice_1": [
-            "org.springframework.samples.petclinic.model.NamedEntity",
-            "org.springframework.samples.petclinic.owner.PetRepository"
+            "org.springframework.samples.petclinic.owner.Owner",
+            "org.springframework.samples.petclinic.owner.OwnerControllerTests",
+            "org.springframework.samples.petclinic.owner.OwnerRepository",
+            "org.springframework.samples.petclinic.owner.Pet",
+            "org.springframework.samples.petclinic.owner.PetType",
+            "org.springframework.samples.petclinic.owner.PetTypeFormatterTests",
+            "org.springframework.samples.petclinic.owner.VisitController",
+            "org.springframework.samples.petclinic.visit.VisitRepository"
         ],
         "microservice_2": [
-            "org.springframework.samples.petclinic.owner.Pet",
-            "org.springframework.samples.petclinic.owner.PetController"
+            "org.springframework.samples.petclinic.owner.OwnerController",
+            "org.springframework.samples.petclinic.vet.Specialty",
+            "org.springframework.samples.petclinic.vet.Vet",
+            "org.springframework.samples.petclinic.visit.Visit"
         ],
         "microservice_3": [
+            "org.springframework.samples.petclinic.owner.PetController",
+            "org.springframework.samples.petclinic.owner.PetRepository",
+            "org.springframework.samples.petclinic.owner.PetTypeFormatter",
+            "org.springframework.samples.petclinic.service.ClinicServiceTests",
+            "org.springframework.samples.petclinic.service.EntityUtils",
+            "org.springframework.samples.petclinic.system.ProductionConfigurationTests"
+        ],
+        "microservice_4": [
             "org.springframework.samples.petclinic.vet.VetController",
-            "org.springframework.samples.petclinic.vet.Vets"
+            "org.springframework.samples.petclinic.vet.VetRepository"
         ]
     }
 }

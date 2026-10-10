@@ -1,15 +1,11 @@
 {
     "metric": "IFN",
-    "score": 1.1111111111111112,
+    "score": 1.8,
     "microservice_scores": {
-        "microservice_4": 2.0,
-        "microservice_7": 1.0,
-        "microservice_9": 0.0,
-        "microservice_3": 2.0,
-        "microservice_1": 2.0,
+        "microservice_5": 0.0,
+        "microservice_3": 1.0,
         "microservice_2": 2.0,
-        "microservice_5": 1.0,
-        "microservice_8": 0.0,
-        "microservice_6": 0.0
+        "microservice_4": 0.0,
+        "microservice_1": 6.0
     }
 }

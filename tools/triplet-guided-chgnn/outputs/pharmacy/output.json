@@ -2,29 +2,65 @@
     "tool": "TripletGuidedCHGNN",
     "microservices": {
         "microservice_1": [
-            "com.upachar.web.exceptionhandler.GlobalException"
+            "com.upachar.web.UpacharWebApplication",
+            "com.upachar.web.config.security.CustomTokenEnhancer",
+            "com.upachar.web.drug.controller.DosageFormController",
+            "com.upachar.web.order.dto.OrderUpdateDto",
+            "com.upachar.web.user.domain.User"
         ],
         "microservice_2": [
-            "com.upachar.web.drug.service.CategoryService"
+            "com.upachar.web.common.utils.CustomBeanUtils",
+            "com.upachar.web.drug.dto.DosageFormDto",
+            "com.upachar.web.drug.repository.CategoryRepository",
+            "com.upachar.web.drug.service.DosageFormService",
+            "com.upachar.web.order.domain.Order",
+            "com.upachar.web.order.dto.OrderStatusDto",
+            "com.upachar.web.order.enums.OrderStatus",
+            "com.upachar.web.order.service.DrugQuantityService",
+            "com.upachar.web.order.service.OrderService",
+            "com.upachar.web.user.repository.UserRepository",
+            "com.upachar.web.user.service.UserService"
         ],
         "microservice_3": [
-            "com.upachar.web.data.service.DataService"
-        ],
-        "microservice_4": [
+            "com.upachar.web.common.utils.CustomStringUtils",
+            "com.upachar.web.common.utils.FileUtils",
             "com.upachar.web.drug.repository.DrugRepository",
             "com.upachar.web.drug.repository.SubCategoryRepository",
-            "com.upachar.web.user.repository.UserRepository"
+            "com.upachar.web.drug.service.CategoryService",
+            "com.upachar.web.drug.service.DrugService",
+            "com.upachar.web.drug.service.SubCategoryService",
+            "com.upachar.web.order.controller.OrderController",
+            "com.upachar.web.order.dto.OrderDto",
+            "com.upachar.web.order.repository.DrugQuantityRepository",
+            "com.upachar.web.user.controller.UserController",
+            "com.upachar.web.user.dto.UserSignupDto",
+            "com.upachar.web.user.dto.UserUpdateDto"
+        ],
+        "microservice_4": [
+            "com.upachar.web.config.security.AuthorizationServerConfiguration",
+            "com.upachar.web.config.security.CustomUserDetailsService",
+            "com.upachar.web.data.controller.DataController",
+            "com.upachar.web.data.service.DataService",
+            "com.upachar.web.drug.domain.Category",
+            "com.upachar.web.drug.domain.DosageForm",
+            "com.upachar.web.drug.domain.Drug",
+            "com.upachar.web.drug.domain.SubCategory",
+            "com.upachar.web.exceptionhandler.GlobalException",
+            "com.upachar.web.exceptionhandler.GlobalExceptionHandler",
+            "com.upachar.web.order.domain.DrugQuantity",
+            "com.upachar.web.user.domain.UserRole",
+            "com.upachar.web.user.enums.Role"
         ],
         "microservice_5": [
-            "com.upachar.web.common.utils.CustomBeanUtils",
-            "com.upachar.web.drug.domain.Category"
-        ],
-        "microservice_6": [
-            "com.upachar.web.drug.domain.DosageForm",
-            "com.upachar.web.drug.domain.DosageForm$DosageFormBuilder"
-        ],
-        "microservice_7": [
-            "com.upachar.web.order.repository.DrugQuantityRepository"
+            "com.upachar.web.drug.controller.CategoryController",
+            "com.upachar.web.drug.controller.DrugController",
+            "com.upachar.web.drug.controller.SubCategoryController",
+            "com.upachar.web.drug.dto.CategoryDto",
+            "com.upachar.web.drug.dto.DrugDto",
+            "com.upachar.web.drug.dto.SubCategoryDto",
+            "com.upachar.web.drug.repository.DosageFormRepository",
+            "com.upachar.web.order.repository.OrderRepository",
+            "com.upachar.web.user.dto.UserValidateDto"
         ]
     }
 }

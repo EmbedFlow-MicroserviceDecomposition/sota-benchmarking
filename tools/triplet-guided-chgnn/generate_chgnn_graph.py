@@ -572,55 +572,61 @@ def generate_chgnn_graph(dataset_path: str, output_data_dir: str, num_clusters: 
         seed_lines = [
             'owner-res, org.springframework.samples.petclinic.owner.OwnerController',
             'vet-res, org.springframework.samples.petclinic.vet.VetController',
-            'visit-res, org.springframework.samples.petclinic.visit.VisitController',
-            'system-res, org.springframework.samples.petclinic.system.WelcomeController'
+            'visit-res, org.springframework.samples.petclinic.owner.VisitController',
+            'pet-res, org.springframework.samples.petclinic.owner.PetController'
         ]
     elif "blog" in ds_name:
         seed_lines = [
             'post-res, com.raysmond.blog.controllers.PostController',
-            'user-res, com.raysmond.blog.admin.controllers.UserController',
+            'com.raysmond.blog.admin.controllers.AdminController',
             'tag-res, com.raysmond.blog.controllers.TagController',
-            'admin-res, com.raysmond.blog.admin.controllers.AdminController'
+            'appsetting-res, com.raysmond.blog.services.AppSetting'
         ]
     elif "pharmacy" in ds_name:
         seed_lines = [
             'drug-res, com.upachar.web.drug.controller.DrugController',
-            'category-res, com.upachar.web.drug.controller.CategoryController',
-            'data-res, com.upachar.web.data.controller.DataController',
-            'user-res, com.upachar.web.config.security.CustomUserDetailsService'
+            'dosageform-res, com.upachar.web.drug.controller.DosageFormController',
+            'order-res, com.upachar.web.order.controller.OrderController',
+            'user-res, com.upachar.web.user.service.UserService',
+            'data-res, com.upachar.web.data.service.DataService'
         ]
     elif "bear-board" in ds_name:
         seed_lines = [
             'tweet-res, com.rokin.baylorboard.controller.TweetController',
-            'event-res, com.rokin.baylorboard.controller.EventController',
             'user-res, com.rokin.baylorboard.controller.UserController',
-            'award-res, com.rokin.baylorboard.controller.AwardController'
+            'award-res, com.rokin.baylorboard.controller.AwardController',
+            'event-res, com.rokin.baylorboard.controller.EventController'
         ]
     elif "javafx" in ds_name or "pos" in ds_name:
         seed_lines = [
-            'admin-res, com.rafsan.inventory.controller.admin.AdminController',
-            'category-res, com.rafsan.inventory.controller.category.CategoryController',
-            'employee-res, com.rafsan.inventory.controller.employee.AddController'
+            'com.rafsan.inventory.controller.pos.PosController',
+            'com.rafsan.inventory.controller.product.ProductController',
+            'com.rafsan.inventory.controller.category.CategoryController',
+            'com.rafsan.inventory.controller.employee.EmployeeController',
+            'com.rafsan.inventory.controller.admin.AdminController'
         ]
     elif "roller" in ds_name:
         seed_lines = [
-            'planet-res, org.apache.roller.planet.business.jpa.JPAPlanetManagerImpl',
-            'file-res, org.apache.roller.weblogger.business.FileContentManagerImpl',
-            'weblog-res, org.apache.roller.weblogger.business.WeblogManager',
-            'user-res, org.apache.roller.weblogger.business.UserManager'
+            'org.apache.roller.weblogger.business.WeblogEntryManager',
+            'org.apache.roller.weblogger.business.WeblogManager',
+            'org.apache.roller.weblogger.business.search.lucene.LuceneIndexManager',
+            'rolleratomhandlerfactory-res, org.apache.roller.weblogger.webservices.xmlrpc.BloggerAPIHandler',
+            'bookmark-res, org.apache.roller.weblogger.business.BookmarkManager'
         ]
     elif "jforum" in ds_name:
         seed_lines = [
-            'forum-res, net.jforum.repository.ForumRepository',
-            'topic-res, net.jforum.repository.TopicRepository',
-            'post-res, net.jforum.repository.PostRepository',
-            'user-res, net.jforum.repository.UserRepository'
+            'forum-res, net.jforum.view.forum.ForumAction',
+            'post-res, net.jforum.view.forum.PostAction',
+            'net.jforum.view.admin.UserAction',
+            'net.jforum.search.LuceneManager',
+            'banner-res, net.jforum.view.forum.BannerAction'
         ]
     elif "autocare" in ds_name:
         seed_lines = [
-            'user-res, com.policynepal.autocare.user.controller.UserController',
-            'comment-res, com.policynepal.autocare.comment.controller.CommentController',
-            'system-res, com.policynepal.autocare.system.controller.SystemController'
+            'comment-res, com.policynepal.autocare.comment.service.CommentService',
+            'user-res, com.policynepal.autocare.user.service.UserService',
+            'vehicle-res, com.policynepal.autocare.vehicle.service.VehicleService',
+            's3-res, com.policynepal.autocare.aws.service.S3Service'
         ]
     else:
         # Dynamic seed discovery for other benchmark datasets:
