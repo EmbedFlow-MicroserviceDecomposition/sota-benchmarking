@@ -6,6 +6,8 @@
 import os
 import json
 import argparse
+import sys
+from partition import PartitionError, load_dataset, load_partition
 from chm.metric import evaluate_chm
 from chd.metric import evaluate_chd
 from sm.metric import evaluate_sm
@@ -20,6 +22,9 @@ def compute_all_metrics(dataset_path, output_path, ned_lo=5, ned_hi=20, eps=0.5)
     for a given dataset and tool output directory.
     """
     results = {}
+
+    # fail loudly on an error/unreadable output.json instead of scoring it
+    load_partition(output_path, load_dataset(dataset_path))
 
     print("=== Computing All Evaluation Metrics ===")
 
@@ -78,4 +83,8 @@ if __name__ == "__main__":
     parser.add_argument("--eps", type=float, default=0.5, help="Epsilon factor for NED relative")
     args = parser.parse_args()
 
-    compute_all_metrics(args.dataset_path, args.output_path, ned_lo=args.ned_lo, ned_hi=args.ned_hi, eps=args.eps)
+    try:
+        compute_all_metrics(args.dataset_path, args.output_path, ned_lo=args.ned_lo, ned_hi=args.ned_hi, eps=args.eps)
+    except (PartitionError, FileNotFoundError) as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        sys.exit(1)

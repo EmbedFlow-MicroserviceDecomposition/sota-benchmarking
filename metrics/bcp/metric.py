@@ -7,6 +7,9 @@ import os
 import json
 import math
 import argparse
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from partition import Edge, class_of, load_dataset, load_edges, load_partition  # noqa: E402
 
 def calculate_bcp(partition, class_usecases, log=math.log):
     """
@@ -77,33 +80,23 @@ def load_class_usecases(dataset_path):
     return class_usecases
 
 def evaluate_bcp(dataset_path, output_path):
-    output_json = os.path.join(output_path, "output.json")
-    if not os.path.exists(output_json):
-        raise FileNotFoundError(f"output.json not found at {output_json}")
-
-    with open(output_json, "r", encoding="utf-8") as f:
-        result_data = json.load(f)
-        microservices = result_data.get("microservices", {})
-
-    partition = {}
-    for cid, members in microservices.items():
-        for m in members:
-            partition[m] = cid
-
-    class_usecases = load_class_usecases(dataset_path)
-    score, ms_scores = calculate_bcp(partition, class_usecases)
+    dataset = load_dataset(dataset_path)
+    partition = load_partition(output_path, dataset)
+    score, ms_scores = calculate_bcp(partition.by_class, load_class_usecases(dataset_path))
 
     print(f"Final BCP Score: {score:.4f}")
 
-    bcp_score_json = os.path.join(output_path, "bcp_score.json")
-    with open(bcp_score_json, "w", encoding="utf-8") as f:
+    score_json = os.path.join(output_path, "bcp_score.json")
+    with open(score_json, "w", encoding="utf-8") as f:
         json.dump({
             "metric": "BCP",
             "score": score,
-            "microservice_scores": ms_scores
+            "microservice_scores": ms_scores,
+            "coverage": partition.coverage()
         }, f, indent=4)
-    print(f"Saved metric results to {bcp_score_json}")
+    print(f"Saved metric results to {score_json}")
     return score
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Metric: Evaluator for Business Context Purity (BCP)")

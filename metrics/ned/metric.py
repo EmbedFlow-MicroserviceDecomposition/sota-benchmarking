@@ -7,6 +7,9 @@ import os
 import json
 import math
 import argparse
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from partition import Edge, class_of, load_dataset, load_edges, load_partition  # noqa: E402
 
 def calculate_ned(partition, lo=5, hi=20, eps=0.5):
     """
@@ -44,20 +47,10 @@ def calculate_ned(partition, lo=5, hi=20, eps=0.5):
     return overall_ned, overall_ned_relative, microservice_scores
 
 def evaluate_ned(dataset_path, output_path, lo=5, hi=20, eps=0.5):
-    output_json = os.path.join(output_path, "output.json")
-    if not os.path.exists(output_json):
-        raise FileNotFoundError(f"output.json not found at {output_json}")
+    dataset = load_dataset(dataset_path)
+    resolved = load_partition(output_path, dataset)
 
-    with open(output_json, "r", encoding="utf-8") as f:
-        result_data = json.load(f)
-        microservices = result_data.get("microservices", {})
-
-    partition = {}
-    for cid, members in microservices.items():
-        for m in members:
-            partition[m] = cid
-
-    score, score_rel, ms_scores = calculate_ned(partition, lo=lo, hi=hi, eps=eps)
+    score, score_rel, ms_scores = calculate_ned(resolved.by_class, lo=lo, hi=hi, eps=eps)
 
     print(f"Final NED Score (Fixed [{lo},{hi}]): {score:.4f}")
     print(f"Final NED Relative Score (eps={eps}): {score_rel:.4f}")
@@ -69,7 +62,8 @@ def evaluate_ned(dataset_path, output_path, lo=5, hi=20, eps=0.5):
             "score": score,
             "score_relative": score_rel,
             "bounds": {"lo": lo, "hi": hi, "eps": eps},
-            "microservice_scores": ms_scores
+            "microservice_scores": ms_scores,
+            "coverage": resolved.coverage()
         }, f, indent=4)
     print(f"Saved metric results to {ned_score_json}")
     return score
