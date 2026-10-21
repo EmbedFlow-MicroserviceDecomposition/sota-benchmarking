@@ -49,3 +49,6 @@
 [submodule "tools/chgnn/Monolith-to-Microservices"]
 	path = tools/chgnn/Monolith-to-Microservices
 	url = git@github.com:Alex-Mathai-98/Monolith-to-Microservices.git
+[submodule "tools/ae-k/benchmarking-monolith-to-microservices"]
+	path = tools/ae-k/benchmarking-monolith-to-microservices
+	url = git@github.com:rokinmaharjan/benchmarking-monolith-to-microservices.git

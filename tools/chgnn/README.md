@@ -14,7 +14,7 @@ uv run ../../metrics/compute_all.py --dataset-path ../../datasets/jpetstore --ou
 ```
 
 1. `chgnn_adapter.py` turns `dataset.json` (class edges: CALL/FIELD weights, EXTENDS, IMPLEMENTS) plus
-   `configs/<dataset>/` into CHGNN's input folder (`inter_class_usage.json`, a synthesised `callgraph.dot` with
+   `configs/<dataset>/` and `datasets/<dataset>/entrypoints.txt` into CHGNN's input folder (`inter_class_usage.json`, a synthesised `callgraph.dot` with
    entrypoint annotations, `service.json`, `db.json`, `seeds.txt`, `ignore_classes.txt`, `gcnconfig_with_edge_loss.json`).
 2. `run_chgnn.py` runs the **unmodified** upstream `Graph.py` once (it hard-codes 30 runs; the launcher patches that to 1
    in memory) inside the `sota-chgnn` Docker image (built on first use; `--runner local` uses the current python instead).
@@ -25,9 +25,9 @@ The submodule is copied to a temp dir per run, so it stays clean. CHGNN is unsee
 
 ## Per-dataset config (`configs/<dataset>/`)
 
-CHGNN needs what its authors hand-curated per app: `entrypoints.txt` (web entrypoint classes), `dbmap.json`
-(`{class: {table: "CRUD"}}`), `seeds.txt` (one line per cluster seed: classes plus `<table>-res` resources) and an optional
-`ignore_classes.txt`. They were carried over from fyp-benchmarking. The adapter fails loudly if a config names a class that is
+CHGNN needs what its authors hand-curated per app: `dbmap.json` (`{class: {table: "CRUD"}}`), `seeds.txt` (one line per
+cluster seed: classes plus `<table>-res` resources) and an optional `ignore_classes.txt`. The web entrypoint classes live in
+`datasets/<dataset>/entrypoints.txt` because AE-K and VAE-C use them too. They were carried over from fyp-benchmarking. The adapter fails loudly if a config names a class that is
 not in `dataset.json`. Classes with no edges are excluded automatically (a zero usage row NaNs the GCN) and stale ignore
 entries are dropped with a note.
 

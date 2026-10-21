@@ -12,7 +12,8 @@ Generated files:
     custom/gcnconfig_<code>.json  template with num_clusters = #seed lines and
                                   node_dimension = 2*(#classes + #tables) + #entrypoints
 
-Per-dataset config (tools/chgnn/configs/<dataset>/): entrypoints.txt, dbmap.json, seeds.txt, [ignore_classes.txt].
+Per-dataset config (tools/chgnn/configs/<dataset>/): dbmap.json, seeds.txt, [ignore_classes.txt]. Entrypoints are dataset
+facts shared with other tools and come from datasets/<dataset>/entrypoints.txt (passed as entrypoints_file).
 """
 
 import json
@@ -146,11 +147,11 @@ def _require_classes(names, known, where):
         raise ValueError("%s lists classes that are not in dataset.json: %s" % (where, ", ".join(missing)))
 
 
-def build_chgnn_inputs(dataset, config_dir, out_dir, code="with_edge_loss", template=None):
+def build_chgnn_inputs(dataset, config_dir, out_dir, code="with_edge_loss", template=None, entrypoints_file=None):
     nodes, edges = load_graph(dataset)
     known = set(nodes)
 
-    entrypoints = _lines(os.path.join(config_dir, "entrypoints.txt"))
+    entrypoints = _lines(entrypoints_file or os.path.join(config_dir, "entrypoints.txt"))
     with open(os.path.join(config_dir, "dbmap.json")) as f:
         db_map = json.load(f)
     with open(os.path.join(config_dir, "seeds.txt")) as f:

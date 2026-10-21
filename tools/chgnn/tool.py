@@ -41,7 +41,7 @@ def clusters_to_microservices(raw):
     return microservices
 
 
-def prepare_repo(work, slug, dataset, config_dir):
+def prepare_repo(work, slug, dataset, config_dir, entrypoints_file):
     """Copy the pristine submodule into `work` and place this dataset's CHGNN inputs in its data dir."""
     repo = os.path.join(work, "repo")
     shutil.copytree(REPO, repo, ignore=shutil.ignore_patterns(".git"))
@@ -52,7 +52,7 @@ def prepare_repo(work, slug, dataset, config_dir):
         slug = open(bundled).read().strip()
     else:
         data_dir = os.path.join(repo, "data_layer", "utilities", "data", f"{slug}_{MODEL}")
-        build_chgnn_inputs(dataset, config_dir, data_dir, code=CODE)
+        build_chgnn_inputs(dataset, config_dir, data_dir, code=CODE, entrypoints_file=entrypoints_file)
     return repo, slug
 
 
@@ -85,7 +85,7 @@ def main(argv=None):
     config_dir = os.path.join(CONFIGS, name)
     if not os.path.isdir(config_dir):
         return write_error(out_path, f"no CHGNN config for dataset '{name}' (tools/chgnn/configs/{name}/): "
-                                     "CHGNN needs entrypoints, a DB map and seeds; cell is N/A")
+                                     "CHGNN needs a DB map and seeds; cell is N/A")
     if not os.path.isdir(os.path.join(REPO, "data_layer")):
         return write_error(out_path, "CHGNN submodule is empty: run `git submodule update --init`")
     with open(dataset_json, encoding="utf-8") as f:
@@ -94,7 +94,8 @@ def main(argv=None):
     os.makedirs(out_path, exist_ok=True)
     with tempfile.TemporaryDirectory() as work:
         try:
-            repo, slug = prepare_repo(work, name.replace("-", "_"), dataset, config_dir)
+            repo, slug = prepare_repo(work, name.replace("-", "_"), dataset, config_dir,
+                                      os.path.join(ds_path, "entrypoints.txt"))
         except ValueError as e:
             return write_error(out_path, str(e))
         proc = run_chgnn(repo, slug, args.runner)

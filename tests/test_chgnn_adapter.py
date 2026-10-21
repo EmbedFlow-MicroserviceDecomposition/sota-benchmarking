@@ -188,3 +188,13 @@ class TestIgnoreList:
         out = tmp_path / "out"
         build_chgnn_inputs(dataset, str(cfg), str(out))
         assert (out / "custom/ignore_classes.txt").read_text() == ""
+
+
+class TestEntrypointsFile:
+    def test_entrypoints_can_come_from_an_explicit_file(self, tmp_path):
+        cfg = write_config(tmp_path, entrypoints=("A",))  # config says A ...
+        (tmp_path / "entrypoints.txt").write_text("E\n")  # ... but the dataset-level file wins
+        out = tmp_path / "out"
+        build_chgnn_inputs(DATASET, str(cfg), str(out), entrypoints_file=str(tmp_path / "entrypoints.txt"))
+        service = json.loads((out / "temp/service.json").read_text())
+        assert [s["class_method_name"] for s in service] == [["E.call"]]
