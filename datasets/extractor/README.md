@@ -14,6 +14,6 @@ java -jar target/extractor.jar --source <dir> --out dataset.json \
   `calls` lists project callees, one entry per call site.
 - `edges`: class-level `CALL` (method and constructor calls), `EXTENDS`, `IMPLEMENTS` and `FIELD` edges between project
   classes, `weight` = number of occurrences. Each call is attributed to its nearest enclosing named type.
-- Only `*/src/main/java` roots are parsed (the repo root if there are none), so test sources are excluded.
+- Source roots: every `*/src/main/java`; if there is none, the repo's top-level `src/` (Eclipse layout, e.g. acme-air); else the repo root. Maven test sources are therefore excluded.
 - Any file that fails to parse aborts the run with exit code 1 and names the file; nothing is silently skipped.
 - Calls the symbol solver cannot resolve are counted (`calls_resolved=a/b` on stdout) and dropped.

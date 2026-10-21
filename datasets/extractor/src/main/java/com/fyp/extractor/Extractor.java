@@ -193,14 +193,16 @@ public class Extractor {
         return totalCalls;
     }
 
-    /** Source roots: every directory matching *&#47;src/main/java; the repo root if none. */
+    /** Source roots: every directory matching *&#47;src/main/java; else the repo's top-level src/ (Eclipse layout); else the repo root. */
     static List<Path> findSourceRoots(Path repo) {
         try (Stream<Path> dirs = Files.walk(repo)) {
             List<Path> roots = dirs
                     .filter(Files::isDirectory)
                     .filter(p -> p.endsWith(Path.of("src", "main", "java")))
                     .toList();
-            return roots.isEmpty() ? List.of(repo) : roots;
+            if (!roots.isEmpty()) return roots;
+            Path src = repo.resolve("src");
+            return Files.isDirectory(src) ? List.of(src) : List.of(repo);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
