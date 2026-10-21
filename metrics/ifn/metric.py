@@ -30,18 +30,33 @@ def calculate_ifn(get_cluster, clusters, edges):
     overall_ifn = sum(microservice_scores.values()) / K
     return overall_ifn, microservice_scores
 
+def calculate_ifn_cross_edge(get_cluster, clusters, edges):
+    """CHGNN released-repo IFN: distinct undirected cross-partition node pairs (any edge type) per partition."""
+    pairs = {frozenset((e.src, e.dst)) for e in edges if e.src != e.dst}
+    cross = 0
+    for pair in pairs:
+        a, b = tuple(pair)
+        ci, cj = get_cluster(a), get_cluster(b)
+        if ci is not None and cj is not None and ci != cj:
+            cross += 1
+    return cross / len(clusters) if clusters else 0.0
+
 def evaluate_ifn(dataset_path, output_path):
     dataset = load_dataset(dataset_path)
     partition = load_partition(output_path, dataset)
-    score, ms_scores = calculate_ifn(partition.get_cluster, partition.clusters, load_edges(dataset))
+    edges = load_edges(dataset)
+    score, ms_scores = calculate_ifn(partition.get_cluster, partition.clusters, edges)
+    score_cross_edge = calculate_ifn_cross_edge(partition.get_cluster, partition.clusters, edges)
 
     print(f"Final IFN Score: {score:.4f}")
+    print(f"Final IFN Cross-Edge Score: {score_cross_edge:.4f}")
 
     score_json = os.path.join(output_path, "ifn_score.json")
     with open(score_json, "w", encoding="utf-8") as f:
         json.dump({
             "metric": "IFN",
             "score": score,
+            "score_cross_edge": score_cross_edge,
             "microservice_scores": ms_scores,
             "coverage": partition.coverage()
         }, f, indent=4)

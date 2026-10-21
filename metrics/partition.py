@@ -96,9 +96,10 @@ class Partition:
             elif class_of(mid) in class_level:
                 self.by_method[mid] = self.by_class[class_of(mid)]
 
-        self.clusters = {cid: set() for cid in microservices}
+        # only microservices that hold at least one matched class count as clusters (K)
+        self.clusters = {}
         for cls, cid in self.by_class.items():
-            self.clusters[cid].add(cls)
+            self.clusters.setdefault(cid, set()).add(cls)
         self.dataset_classes = classes
         self.unassigned_classes = classes - set(self.by_class)
 

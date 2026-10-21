@@ -85,9 +85,9 @@ def test_single_cluster_output_loads(tmp_path):
     assert p.clusters["ms1"] == {"p.A", "p.B", "p.C"}
 
 
-def test_empty_microservice_keeps_its_cluster_entry(tmp_path):
-    p = load(tmp_path, {"ms1": ["p.A"], "ms2": []})
-    assert p.clusters == {"ms1": {"p.A"}, "ms2": set()}
+def test_microservice_without_matched_classes_is_not_a_cluster(tmp_path):
+    p = load(tmp_path, {"ms1": ["p.A"], "ms2": [], "ms3": ["org.ghost.Ghost"]})
+    assert p.clusters == {"ms1": {"p.A"}}
 
 
 def test_legacy_suffix_is_stripped_and_resource_nodes_skipped(tmp_path):

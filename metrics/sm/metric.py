@@ -56,15 +56,20 @@ def calculate_sm(partition_func, clusters, edges, undirected=False):
 def evaluate_sm(dataset_path, output_path):
     dataset = load_dataset(dataset_path)
     partition = load_partition(output_path, dataset)
-    score, ms_scores = calculate_sm(partition.get_cluster, partition.clusters, load_edges(dataset))
+    edges = load_edges(dataset)
+    score, ms_scores = calculate_sm(partition.get_cluster, partition.clusters, edges)
+    # CHGNN's released metric.py variant: edges collapse to unordered pairs, intra pairs count twice
+    score_undirected, _ = calculate_sm(partition.get_cluster, partition.clusters, edges, undirected=True)
 
     print(f"Final SM Score: {score:.4f}")
+    print(f"Final SM Undirected Score: {score_undirected:.4f}")
 
     score_json = os.path.join(output_path, "sm_score.json")
     with open(score_json, "w", encoding="utf-8") as f:
         json.dump({
             "metric": "SM",
             "score": score,
+            "score_undirected": score_undirected,
             "microservice_scores": ms_scores,
             "coverage": partition.coverage()
         }, f, indent=4)

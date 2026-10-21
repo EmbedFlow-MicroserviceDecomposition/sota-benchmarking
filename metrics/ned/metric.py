@@ -17,6 +17,8 @@ def calculate_ned(partition, lo=5, hi=20, eps=0.5):
     Fixed bounds: 1 - (#classes in extreme-sized partitions / total classes).
     Relative bounds (CHGNN variant): proportion of classes in partitions within [floor(avg*(1-eps)), ceil(avg*(1+eps))].
     Higher is better.
+    TripleBound variant (Weerasinghe et al., arXiv:2609.11212, Eq. 10, as read by fyp-benchmarking): classes in
+    extreme-sized partitions divided by the number of partitions. Lower is better, not bounded to [0, 1].
     """
     clusters = {}
     for cls, cid in partition.items():
@@ -24,13 +26,14 @@ def calculate_ned(partition, lo=5, hi=20, eps=0.5):
 
     total_classes = len(partition)
     if total_classes == 0 or len(clusters) == 0:
-        return 0.0, 0.0, {}
+        return 0.0, 0.0, 0.0, {}
 
     sizes = {cid: len(members) for cid, members in clusters.items()}
     
     # 1. Fixed bounds NED
     extreme_count = sum(size for size in sizes.values() if not (lo <= size <= hi))
     overall_ned = 1.0 - (extreme_count / total_classes)
+    overall_triplebound = extreme_count / len(clusters)
 
     # 2. Relative bounds NED (CHGNN variant)
     avg = total_classes / len(clusters)
@@ -44,16 +47,17 @@ def calculate_ned(partition, lo=5, hi=20, eps=0.5):
         is_non_extreme = 1.0 if (lo <= size <= hi) else 0.0
         microservice_scores[cid] = is_non_extreme
 
-    return overall_ned, overall_ned_relative, microservice_scores
+    return overall_ned, overall_ned_relative, overall_triplebound, microservice_scores
 
 def evaluate_ned(dataset_path, output_path, lo=5, hi=20, eps=0.5):
     dataset = load_dataset(dataset_path)
     resolved = load_partition(output_path, dataset)
 
-    score, score_rel, ms_scores = calculate_ned(resolved.by_class, lo=lo, hi=hi, eps=eps)
+    score, score_rel, score_triplebound, ms_scores = calculate_ned(resolved.by_class, lo=lo, hi=hi, eps=eps)
 
     print(f"Final NED Score (Fixed [{lo},{hi}]): {score:.4f}")
     print(f"Final NED Relative Score (eps={eps}): {score_rel:.4f}")
+    print(f"Final NED TripleBound Score: {score_triplebound:.4f}")
 
     ned_score_json = os.path.join(output_path, "ned_score.json")
     with open(ned_score_json, "w", encoding="utf-8") as f:
@@ -61,6 +65,7 @@ def evaluate_ned(dataset_path, output_path, lo=5, hi=20, eps=0.5):
             "metric": "NED",
             "score": score,
             "score_relative": score_rel,
+            "score_triplebound": score_triplebound,
             "bounds": {"lo": lo, "hi": hi, "eps": eps},
             "microservice_scores": ms_scores,
             "coverage": resolved.coverage()

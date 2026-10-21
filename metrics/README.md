@@ -40,3 +40,24 @@ uv run metrics/sm/metric.py \
   --dataset-path datasets/acme-air \
   --output-path tools/mono2micro/outputs/acme-air
 ```
+
+---
+
+## Variants and extra fields
+
+| Score file | Field | Meaning |
+| :--- | :--- | :--- |
+| `sm_score.json` | `score_undirected` | CHGNN released-repo SM: edges collapse to unordered pairs, intra pairs count twice. |
+| `ifn_score.json` | `score_cross_edge` | CHGNN released-repo IFN: distinct undirected cross-partition node pairs per partition. |
+| `ned_score.json` | `score_relative` | CHGNN relative-bounds NED (`eps=0.5`). |
+| `ned_score.json` | `score_triplebound` | TripleBound NED (arXiv:2609.11212, Eq. 10 as read by fyp-benchmarking): classes in extreme partitions / #partitions, lower is better, unbounded. |
+| every `*_score.json` | `coverage` | `classes`, `assigned`, `unassigned`, `unmatched_ids`, `conflicts` from `partition.py`. |
+
+## Partition resolution (`partition.py`)
+
+`output.json` may list class FQNs or method ids. Method ids roll up to their class by majority vote (ties go to the
+smallest cluster id); classes explode to all their methods. Ids that match nothing in `dataset.json` are counted in
+`coverage.unmatched_ids`, never fuzzy-matched (a bare simple name matches only if it is unique). A microservice with no matched
+class is not counted as a cluster. An `output.json` that is an error record (`{"error": ...}`) is never scored.
+
+BCP drops the `Unknown` use-case label; `fyp-benchmarking` had no such label because its use cases came from entrypoint reachability.
