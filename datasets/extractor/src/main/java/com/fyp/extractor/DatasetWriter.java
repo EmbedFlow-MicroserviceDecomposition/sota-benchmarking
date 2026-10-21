@@ -21,6 +21,8 @@ public final class DatasetWriter {
         root.addProperty("build_path", buildPath);
         root.addProperty("xmi_path", xmiPath);
 
+        root.add("classes", strings(graph.nodes()));
+
         JsonObject methods = new JsonObject();
         for (Graph.Method m : graph.methods().values()) {
             JsonObject o = new JsonObject();

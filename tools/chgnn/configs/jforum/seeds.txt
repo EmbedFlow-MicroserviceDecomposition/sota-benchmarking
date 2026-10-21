@@ -1,0 +1,6 @@
+jforum_users-res, net.jforum.dao.UserDAO
+jforum_forums-res, jforum_categories-res, net.jforum.dao.ForumDAO
+jforum_topics-res, jforum_posts-res, net.jforum.dao.TopicDAO
+jforum_privmsgs-res, net.jforum.dao.PrivateMessageDAO
+jforum_groups-res, net.jforum.dao.GroupDAO
+jforum_bookmarks-res, net.jforum.dao.BookmarkDAO

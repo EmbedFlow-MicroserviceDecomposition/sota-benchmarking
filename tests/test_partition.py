@@ -108,3 +108,11 @@ def test_error_output_is_never_scored(tmp_path):
     (tmp_path / "output.json").write_text(json.dumps({"error": "boom", "tool": "T"}))
     with pytest.raises(PartitionError, match="boom"):
         load_partition(str(tmp_path), make_dataset())
+
+
+def test_classes_listed_only_in_the_classes_key_count_as_dataset_classes(tmp_path):
+    dataset = make_dataset()
+    dataset["classes"] = ["p.A", "p.Lonely"]
+    p = load(tmp_path, {"ms1": ["p.A"]}, dataset)
+    assert "p.Lonely" in p.unassigned_classes
+    assert p.coverage()["classes"] == 7

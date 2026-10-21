@@ -1,0 +1,14 @@
+{
+  "org.apache.roller.weblogger.business.jpa.JPAWeblogManagerImpl": {"weblog": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAWeblogEntryManagerImpl": {"weblogentry": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAUserManagerImpl": {"roller_user": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAMediaFileManagerImpl": {"roller_mediafile": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPABookmarkManagerImpl": {"bookmark": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAPingTargetManagerImpl": {"pingtarget": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAAutoPingManagerImpl": {"autoping": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAPingQueueManagerImpl": {"pingqueueentry": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAPropertiesManagerImpl": {"roller_properties": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAOAuthManagerImpl": {"roller_oauthconsumer": "CRUD"},
+  "org.apache.roller.weblogger.business.jpa.JPAThreadManagerImpl": {"roller_tasklock": "CRUD"},
+  "org.apache.roller.planet.business.jpa.JPAPlanetManagerImpl": {"rag_planet": "CRUD"}
+}

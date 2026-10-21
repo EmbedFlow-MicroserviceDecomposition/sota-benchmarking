@@ -1,0 +1,4 @@
+customersession-res, com.acmeair.web.LoginREST
+booking-res, com.acmeair.morphia.services.BookingServiceImpl
+flight-res, flightsegment-res, airportcodemapping-res, com.acmeair.morphia.services.FlightServiceImpl
+customer-res, com.acmeair.morphia.services.CustomerServiceImpl

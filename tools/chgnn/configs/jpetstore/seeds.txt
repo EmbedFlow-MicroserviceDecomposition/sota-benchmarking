@@ -1,0 +1,4 @@
+account-res, org.mybatis.jpetstore.service.AccountService
+product-res, category-res, item-res, org.mybatis.jpetstore.service.CatalogService
+org.mybatis.jpetstore.domain.Cart, org.mybatis.jpetstore.web.actions.CartActionBean
+orders-res, lineitem-res, sequence-res, org.mybatis.jpetstore.service.OrderService

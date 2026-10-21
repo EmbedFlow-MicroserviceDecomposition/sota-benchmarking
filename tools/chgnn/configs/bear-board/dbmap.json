@@ -1,0 +1,7 @@
+{
+  "com.rokin.baylorboard.repository.AwardRepository": {"awards": "CRUD"},
+  "com.rokin.baylorboard.repository.EventRepository": {"events": "CRUD"},
+  "com.rokin.baylorboard.repository.TweetRepository": {"tweets": "CRUD"},
+  "com.rokin.baylorboard.repository.UserRepository": {"users": "CRUD"},
+  "com.rokin.baylorboard.repository.WhitelistUserRepository": {"whitelist_users": "CRD"}
+}

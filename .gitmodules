@@ -46,3 +46,6 @@
 [submodule "tools/triplet-guided-chgnn/triplet-guided-chgnn"]
 	path = tools/triplet-guided-chgnn/triplet-guided-chgnn
 	url = git@github.com:Mono2Distributed/triplet-guided-chgnn.git
+[submodule "tools/chgnn/Monolith-to-Microservices"]
+	path = tools/chgnn/Monolith-to-Microservices
+	url = git@github.com:Alex-Mathai-98/Monolith-to-Microservices.git

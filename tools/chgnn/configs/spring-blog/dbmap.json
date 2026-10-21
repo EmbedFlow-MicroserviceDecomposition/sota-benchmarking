@@ -1,0 +1,6 @@
+{
+  "com.raysmond.blog.repositories.PostRepository": {"posts": "CRUD"},
+  "com.raysmond.blog.repositories.TagRepository": {"tags": "CRD"},
+  "com.raysmond.blog.repositories.UserRepository": {"users": "CRU"},
+  "com.raysmond.blog.services.SettingService": {"settings": "CRU"}
+}

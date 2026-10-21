@@ -1,0 +1,3 @@
+vehicles-res, com.policynepal.autocare.vehicle.service.VehicleService
+comments-res, com.policynepal.autocare.comment.service.CommentService
+users-res, com.policynepal.autocare.user.service.UserService

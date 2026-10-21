@@ -1,0 +1,9 @@
+{
+  "org.mybatis.jpetstore.mapper.AccountMapper": {"account": "CRU"},
+  "org.mybatis.jpetstore.mapper.CategoryMapper": {"category": "R"},
+  "org.mybatis.jpetstore.mapper.ItemMapper": {"item": "RU"},
+  "org.mybatis.jpetstore.mapper.LineItemMapper": {"lineitem": "CR"},
+  "org.mybatis.jpetstore.mapper.OrderMapper": {"orders": "CR"},
+  "org.mybatis.jpetstore.mapper.ProductMapper": {"product": "R"},
+  "org.mybatis.jpetstore.mapper.SequenceMapper": {"sequence": "RU"}
+}

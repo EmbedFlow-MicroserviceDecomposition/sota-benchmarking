@@ -1,0 +1,8 @@
+{
+  "com.policynepal.autocare.vehicle.repository.VehicleRepository": {"vehicles": "CRUD"},
+  "com.policynepal.autocare.vehicle.repository.DeletedVehicleRepository": {"deletedVehicles": "CRUD"},
+  "com.policynepal.autocare.comment.repository.CommentRepository": {"comments": "CRUD"},
+  "com.policynepal.autocare.comment.repository.DeletedCommentRepository": {"deletedComments": "CRUD"},
+  "com.policynepal.autocare.user.repository.UserRepository": {"users": "CRUD"},
+  "com.policynepal.autocare.user.repository.DeletedUserRepository": {"deletedUsers": "CRUD"}
+}

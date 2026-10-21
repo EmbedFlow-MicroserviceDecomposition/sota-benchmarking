@@ -9,6 +9,7 @@ java -jar target/extractor.jar --source <dir> --out dataset.json \
      --dataset <name> --build-path <p> --xmi-path <p> [--source-path <p>]
 ```
 
+- `classes`: FQNs of every class, interface, enum and record, including ones with no methods and no edges.
 - `methods`: every method and constructor (`<init>`) of every class, interface, enum and record, id `pkg.Class.method`
   (nested types use dots, `pkg.Outer.Inner.method`); overloads share an id and the first signature wins.
   `calls` lists project callees, one entry per call site.

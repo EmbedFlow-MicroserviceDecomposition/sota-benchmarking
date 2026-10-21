@@ -1,0 +1,4 @@
+posts-res, com.raysmond.blog.services.PostService
+tags-res, com.raysmond.blog.services.TagService
+users-res, com.raysmond.blog.services.UserService
+settings-res, com.raysmond.blog.services.SettingService

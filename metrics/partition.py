@@ -44,7 +44,7 @@ class Partition:
     def __init__(self, microservices, dataset):
         methods = dataset.get("methods", {})
         method_count = Counter(class_of(m) for m in methods)
-        classes = set(method_count)
+        classes = set(dataset.get("classes", ())) | set(method_count)
         for e in dataset.get("edges", []):
             classes.update((e["src"], e["dst"]))
         simple = defaultdict(set)

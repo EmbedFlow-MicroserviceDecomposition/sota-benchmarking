@@ -85,6 +85,18 @@ class DatasetJsonTest {
     }
 
     @Test
+    void datasetJsonListsEveryClassIncludingOnesWithoutMethodsOrEdges() throws Exception {
+        Path out = Files.createTempFile("dataset", ".json");
+        DatasetWriter.write(graph, out, "Feat", "src", "b", "x");
+        JsonObject root = new Gson().fromJson(Files.readString(out), JsonObject.class);
+        var classes = new java.util.HashSet<String>();
+        root.getAsJsonArray("classes").forEach(c -> classes.add(c.getAsString()));
+        assertTrue(classes.contains("com.feat.Lonely"), classes.toString());
+        assertTrue(classes.contains("com.feat.Outer.Inner"), classes.toString());
+        assertTrue(classes.contains("com.feat.Color"), classes.toString());
+    }
+
+    @Test
     void cliExitsOneOnParseFailureAndZeroOtherwise() throws Exception {
         Path out = Files.createTempFile("dataset", ".json");
         String[] common = {"--out", out.toString(), "--dataset", "T", "--build-path", "b", "--xmi-path", "x"};

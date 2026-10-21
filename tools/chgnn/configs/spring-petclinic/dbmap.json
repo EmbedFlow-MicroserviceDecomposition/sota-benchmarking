@@ -1,0 +1,6 @@
+{
+  "org.springframework.samples.petclinic.owner.OwnerRepository": {"owners": "CRU"},
+  "org.springframework.samples.petclinic.owner.PetRepository": {"pets": "CRU", "types": "R"},
+  "org.springframework.samples.petclinic.visit.VisitRepository": {"visits": "CR"},
+  "org.springframework.samples.petclinic.vet.VetRepository": {"vets": "R", "specialties": "R"}
+}

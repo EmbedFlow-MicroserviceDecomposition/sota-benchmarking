@@ -1,0 +1,5 @@
+{
+  "com.acmeair.morphia.services.CustomerServiceImpl": {"customer": "CRU", "customersession": "CRD"},
+  "com.acmeair.morphia.services.BookingServiceImpl": {"booking": "CRD"},
+  "com.acmeair.morphia.services.FlightServiceImpl": {"flight": "CR", "flightsegment": "CR", "airportcodemapping": "CR"}
+}
