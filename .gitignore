@@ -13,3 +13,4 @@ __pycache__/
 
 # Extractor build output
 datasets/extractor/target/
+datasets/extractor/dependency-reduced-pom.xml
