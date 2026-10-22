@@ -14,6 +14,10 @@ To ensure reproducible, fair, and scalable evaluations, we adopt the following m
 ### 1. Datasets & `dataset.json`
 - Linking an external git repo (if any) as a submodule is **preferred** instead of copying files.
 - A `dataset.py` script is **mandatory** and must produce a `dataset.json`. Adding other scripts to run and additional instructions must be put in the `README.md` for that specific dataset.
+- `dataset.py` uses the shared JavaParser extractor (`datasets/extractor/`, JDK 17 + Maven, built on first run) and fails loudly if
+  any source file does not parse. `dataset.json` is method-level and also lists every class (`classes`) and class-level edges
+  (`CALL`, `EXTENDS`, `IMPLEMENTS`, `FIELD`, `weight` = number of occurrences). Optional per-dataset inputs sit next to it:
+  `entrypoints.txt` (web entrypoint classes, used by CHGNN/AE-K/VAE-C) and `fosci_trace.csv.gz` (FoSCI execution trace).
 - **Schema**:
   ```json
   {
@@ -47,6 +51,10 @@ To ensure reproducible, fair, and scalable evaluations, we adopt the following m
     }
   }
   ```
+
+A tool may emit class FQNs or method ids in `microservices`. `metrics/partition.py` resolves both: method ids roll up to their
+class by majority vote, classes explode to all their methods. Ids that match nothing in `dataset.json` are counted, never guessed,
+and every `*_score.json` carries a `coverage` block (`classes`, `assigned`, `unassigned`, `unmatched_ids`, `conflicts`).
 
 ### 3. Metrics & `<metric>_score.json`
 - A `metric.py` script is **mandatory** and takes exactly 2 parameters (`--dataset-path`, `--output-path`) to generate `<metric>_score.json` inside the tool's output directory.
@@ -104,6 +112,27 @@ graph TD
 ### Tools (Methods)
 * **[MAGNET](https://github.com/magnetmicro/MAGNET)** - `tools/magnet/`
 * **[IBM Mono2Micro](https://www.ibm.com/cloud/mono2micro)** - `tools/mono2micro/`
+* **Triplet-Guided CHGNN** - `tools/triplet-guided-chgnn/`
+* **[CHGNN](https://github.com/Alex-Mathai-98/Monolith-to-Microservices)** (original, IJCAI 2022) - `tools/chgnn/`
+* **[CoGCN](https://github.com/utkd/cogcn)** (AAAI 2021) - `tools/cogcn/`
+* **[FoSCI](https://github.com/wj86/FoSCI)** (execution-trace based, TSE 2019) - `tools/fosci/`
+* **[CARGO](https://github.com/vikramnitin9/tackle-data-gravity-insights)** (ASE 2022) - `tools/cargo/`
+* **AE-K** baseline (autoencoder + KMeans) - `tools/ae-k/`
+* **VAE-C** (variational autoencoder + fuzzy c-means) - `tools/vae-c/`
+
+The last six moved here from the retired `fyp-benchmarking` repository, which this repository supersedes. Each tool's README
+says what it needs and which datasets are N/A for it.
+
+#### Tool x dataset applicability
+
+| Dataset | CHGNN | CoGCN | AE-K / VAE-C | FoSCI | CARGO |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| acme-air, apache-roller, autocare, bear-board, jforum, jpetstore, pharmacy, spring-blog, spring-petclinic | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | trace (authors' or `fosci_trace.csv.gz`) | needs cached Doop facts |
+| daytrader, plants | authors' bundled inputs | yes | yes | N/A (1 functional atom) | needs cached Doop facts |
+| javafx-pos | N/A (no web entrypoints) | yes | N/A | N/A | needs cached Doop facts |
+| genapp (COBOL) | N/A | N/A | N/A | N/A | N/A |
+
+An N/A cell is still written: `output.json` is `{"error": "...", "tool": "..."}` and the metrics refuse to score it.
 
 ### Datasets (Monoliths)
 * **[Acme Air](https://github.com/acmeair/acmeair)** - `datasets/acme-air/`
@@ -135,11 +164,15 @@ graph TD
 ```text
 fyp-sota/
 ├── datasets/
+│   ├── common.py, extractor/        # shared JavaParser extraction
 │   └── <dataset>/
 │       ├── README.md
 │       ├── dataset.py
-│       └── dataset.json
+│       ├── dataset.json
+│       ├── entrypoints.txt          # optional
+│       └── fosci_trace.csv.gz       # optional
 ├── tools/
+│   ├── _common/                     # code shared by ae-k and vae-c
 │   └── <tool>/
 │       ├── README.md
 │       ├── tool.py
@@ -149,9 +182,12 @@ fyp-sota/
 │               ├── raw_files...
 │               └── <metric>_score.json 
 ├── metrics/
+│   ├── partition.py, compute_all.py
 │   └── <metric>/
 │       ├── README.md
 │       └── metric.py
+├── scripts/run_sweep.py             # repeated runs + mean metrics per cell
+├── tests/                           # see "Tests"
 └── README.md
 ```
 
@@ -208,3 +244,13 @@ uv run metric.py \
   --dataset-path ../../datasets/acme-air \
   --output-path ../../tools/magnet/outputs/acme-air
 ```
+
+## Tests
+
+```bash
+uv run --python 3.12 --with pytest --with numpy==2.4.4 --with scipy==1.18.0 --with scikit-learn==1.9.0 \
+  --with scikit-fuzzy==0.5.0 --with tensorflow==2.21.0 pytest tests -q
+```
+
+Without the extra `--with` packages only `tests/test_vaec_core.py` skips. The FoSCI end-to-end test runs the real search (~90 s). The
+extractor has its own JUnit suite: `mvn -f datasets/extractor/pom.xml test`.
