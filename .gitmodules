@@ -52,3 +52,6 @@
 [submodule "tools/ae-k/benchmarking-monolith-to-microservices"]
 	path = tools/ae-k/benchmarking-monolith-to-microservices
 	url = git@github.com:rokinmaharjan/benchmarking-monolith-to-microservices.git
+[submodule "tools/fosci/FoSCI"]
+	path = tools/fosci/FoSCI
+	url = git@github.com:wj86/FoSCI.git
