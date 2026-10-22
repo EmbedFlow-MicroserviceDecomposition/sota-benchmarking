@@ -58,3 +58,6 @@
 [submodule "tools/cargo/tackle-data-gravity-insights"]
 	path = tools/cargo/tackle-data-gravity-insights
 	url = git@github.com:vikramnitin9/tackle-data-gravity-insights.git
+[submodule "tools/cogcn/cogcn"]
+	path = tools/cogcn/cogcn
+	url = git@github.com:utkd/cogcn.git
