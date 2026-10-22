@@ -55,3 +55,6 @@
 [submodule "tools/fosci/FoSCI"]
 	path = tools/fosci/FoSCI
 	url = git@github.com:wj86/FoSCI.git
+[submodule "tools/cargo/tackle-data-gravity-insights"]
+	path = tools/cargo/tackle-data-gravity-insights
+	url = git@github.com:vikramnitin9/tackle-data-gravity-insights.git

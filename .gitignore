@@ -14,3 +14,7 @@ __pycache__/
 # Extractor build output
 datasets/extractor/target/
 datasets/extractor/dependency-reduced-pom.xml
+
+# CARGO caches: Doop fact directories (hours to regenerate) and DiVA transactions
+tools/cargo/doop-data/
+tools/cargo/transactions/

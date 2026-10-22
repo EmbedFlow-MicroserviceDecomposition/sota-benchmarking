@@ -1,0 +1,79 @@
+diff --git a/dgi/code2graph/process_facts.py b/dgi/code2graph/process_facts.py
+index 9b14e1f..7da5419 100644
+--- a/dgi/code2graph/process_facts.py
++++ b/dgi/code2graph/process_facts.py
+@@ -175,6 +175,7 @@ class ConsumeFacts:
+         if raw_substr in {
+             "string-constant",
+             "string-builder",
++            "string-buffer",
+             "java.lang.StringMockObject",
+             "null pseudo heap",
+         }:
+@@ -193,6 +194,16 @@ class ConsumeFacts:
+                 "object": object_name,
+                 "instance": 0,
+             }
++        elif raw_substr.startswith("class "):
++            # a java.lang.Class literal reference (e.g. "SomeForm.class"),
++            # not an allocation site with a method context
++            class_name = raw_substr[len("class "):]
++            heap_obj_dict = {
++                "class": class_name,
++                "method": None,
++                "object": class_name,
++                "instance": 0,
++            }
+         else:
+             raw_substr = raw_substr.split("/")
+             class_name, _, method_signature = (*raw_substr[0].split(" "),)
+@@ -233,6 +244,17 @@ class ConsumeFacts:
+                         "return_type": row[3],
+                     }
+ 
++    @staticmethod
++    def _read_csv_or_empty(fact_loc, ncols: int) -> pd.DataFrame:
++        """pd.read_csv, but tolerant of a genuinely empty (0-byte) Doop fact
++        file - small apps can legitimately have zero facts of some dependency
++        type (e.g. zero heap-carried dependencies), and pandas otherwise
++        raises EmptyDataError instead of returning zero rows."""
++        try:
++            return pd.read_csv(fact_loc, header=None, delimiter="\t")
++        except pd.errors.EmptyDataError:
++            return pd.DataFrame(columns=range(ncols))
++
+     def _process_heap_carried_dependencies(self, fact_loc: Path) -> pd.DataFrame:
+         """Process heap carried dependencies
+ 
+@@ -242,7 +264,7 @@ class ConsumeFacts:
+         Returns:
+             pd.DataFrame: The dataframe containing processed heap carried dependencies
+         """
+-        heap_flows_df = pd.read_csv(fact_loc, header=None, delimiter="\t")
++        heap_flows_df = self._read_csv_or_empty(fact_loc, 4)
+         heap_flows_df.columns = ["context", "heap_obj", "prev", "next"]
+         heap_flows_df.context = heap_flows_df.context.apply(self._jsonify_context)
+         heap_flows_df.prev = heap_flows_df.prev.apply(self._jsonify_method_string)
+@@ -262,11 +284,11 @@ class ConsumeFacts:
+         Returns:
+             pd.DataFrame: The dataframe containing processed call-return dependencies
+         """
+-        callret_flows_df = pd.read_csv(calls_fact_loc, header=None, delimiter="\t")
++        callret_flows_df = self._read_csv_or_empty(calls_fact_loc, 4)
+         pd.concat(
+             [
+                 callret_flows_df,
+-                pd.read_csv(returns_fact_loc, header=None, delimiter="\t"),
++                self._read_csv_or_empty(returns_fact_loc, 4),
+             ]
+         )
+         callret_flows_df.columns = ["prev_context", "prev", "next_context", "next"]
+@@ -289,7 +311,7 @@ class ConsumeFacts:
+         Returns:
+             pd.DataFrame: The dataframe containing processed data dependencies
+         """
+-        data_flows_df = pd.read_csv(fact_loc, header=None, delimiter="\t")
++        data_flows_df = self._read_csv_or_empty(fact_loc, 3)
+         data_flows_df.columns = ["context", "prev", "next"]
+         data_flows_df.context = data_flows_df.context.apply(self._jsonify_context)
+         data_flows_df.prev = data_flows_df.prev.apply(self._jsonify_method_string)
