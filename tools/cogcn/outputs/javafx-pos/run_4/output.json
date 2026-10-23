@@ -1,0 +1,72 @@
+{
+    "tool": "CoGCN",
+    "microservices": {
+        "microservice_1": [
+            "com.rafsan.inventory.HibernateUtil",
+            "com.rafsan.inventory.MainApp",
+            "com.rafsan.inventory.controller.admin.AdminController",
+            "com.rafsan.inventory.controller.pos.InvoiceController",
+            "com.rafsan.inventory.controller.pos.PosController",
+            "com.rafsan.inventory.controller.product.AddController",
+            "com.rafsan.inventory.controller.product.EditController",
+            "com.rafsan.inventory.controller.product.ProductController",
+            "com.rafsan.inventory.controller.sales.SalesController",
+            "com.rafsan.inventory.dao.ProductDao",
+            "com.rafsan.inventory.dao.SaleDao",
+            "com.rafsan.inventory.entity.Payment",
+            "com.rafsan.inventory.entity.Product",
+            "com.rafsan.inventory.entity.Sale",
+            "com.rafsan.inventory.interfaces.ProductInterface",
+            "com.rafsan.inventory.interfaces.SaleInterface",
+            "com.rafsan.inventory.model.ProductModel",
+            "com.rafsan.inventory.model.SalesModel"
+        ],
+        "microservice_2": [
+            "com.rafsan.inventory.controller.employee.AddController",
+            "com.rafsan.inventory.controller.employee.EditController",
+            "com.rafsan.inventory.controller.employee.EmployeeController",
+            "com.rafsan.inventory.controller.login.LoginController",
+            "com.rafsan.inventory.dao.EmployeeDao",
+            "com.rafsan.inventory.entity.Employee",
+            "com.rafsan.inventory.interfaces.EmployeeInterface",
+            "com.rafsan.inventory.model.EmployeeModel"
+        ],
+        "microservice_3": [
+            "com.rafsan.inventory.controller.pos.ConfirmController",
+            "com.rafsan.inventory.entity.Item",
+            "com.rafsan.inventory.pdf.PrintInvoice"
+        ],
+        "microservice_4": [
+            "com.rafsan.inventory.controller.category.AddController",
+            "com.rafsan.inventory.controller.category.CategoryController",
+            "com.rafsan.inventory.controller.category.EditController",
+            "com.rafsan.inventory.dao.CategoryDao",
+            "com.rafsan.inventory.entity.Category",
+            "com.rafsan.inventory.interfaces.CategoryInterface",
+            "com.rafsan.inventory.model.CategoryModel"
+        ],
+        "microservice_5": [
+            "com.rafsan.inventory.controller.purchase.AddController",
+            "com.rafsan.inventory.controller.purchase.PurchaseController",
+            "com.rafsan.inventory.controller.supplier.AddController",
+            "com.rafsan.inventory.controller.supplier.EditController",
+            "com.rafsan.inventory.controller.supplier.SupplierController",
+            "com.rafsan.inventory.dao.PurchaseDao",
+            "com.rafsan.inventory.dao.SupplierDao",
+            "com.rafsan.inventory.entity.Purchase",
+            "com.rafsan.inventory.entity.Supplier",
+            "com.rafsan.inventory.interfaces.PurchaseInterface",
+            "com.rafsan.inventory.interfaces.SupplierInterface",
+            "com.rafsan.inventory.model.PurchaseModel",
+            "com.rafsan.inventory.model.SupplierModel"
+        ],
+        "microservice_6": [
+            "com.rafsan.inventory.controller.report.ReportController",
+            "com.rafsan.inventory.controller.report.ViewController",
+            "com.rafsan.inventory.dao.InvoiceDao",
+            "com.rafsan.inventory.entity.Invoice",
+            "com.rafsan.inventory.interfaces.ReportInterface",
+            "com.rafsan.inventory.model.InvoiceModel"
+        ]
+    }
+}

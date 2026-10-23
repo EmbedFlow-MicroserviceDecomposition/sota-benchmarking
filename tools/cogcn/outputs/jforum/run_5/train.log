@@ -1,0 +1,9 @@
+Using data/apps/jforum dataset
+Adjacency matrix shape: (366, 366)
+Features shape: torch.Size([366, 742])
+Epoch: 0100 train_loss= 257.22229 lr= 0.01000
+Epoch: 0200 train_loss= 248.28223 lr= 0.01000
+Epoch: 0300 train_loss= 245.33401 lr= 0.01000
+Epoch: 0100 train_loss= 55.80515 lr= 0.01000
+Epoch: 0200 train_loss= 55.34150 lr= 0.01000
+Epoch: 0300 train_loss= 54.21897 lr= 0.01000

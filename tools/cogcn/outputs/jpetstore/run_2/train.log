@@ -1,0 +1,9 @@
+Using data/apps/jpetstore dataset
+Adjacency matrix shape: (24, 24)
+Features shape: torch.Size([24, 111])
+Epoch: 0100 train_loss= 6.33772 lr= 0.01000
+Epoch: 0200 train_loss= 5.01296 lr= 0.01000
+Epoch: 0300 train_loss= 5.70445 lr= 0.01000
+Epoch: 0100 train_loss= 1.72577 lr= 0.01000
+Epoch: 0200 train_loss= 1.60704 lr= 0.01000
+Epoch: 0300 train_loss= 1.64782 lr= 0.01000

@@ -1,0 +1,9 @@
+Using data/apps/daytrader dataset
+Adjacency matrix shape: (115, 115)
+Features shape: torch.Size([115, 335])
+Epoch: 0100 train_loss= 73.76131 lr= 0.01000
+Epoch: 0200 train_loss= 66.53251 lr= 0.01000
+Epoch: 0300 train_loss= 66.19749 lr= 0.01000
+Epoch: 0100 train_loss= 18.27717 lr= 0.01000
+Epoch: 0200 train_loss= 17.62875 lr= 0.01000
+Epoch: 0300 train_loss= 17.48232 lr= 0.01000

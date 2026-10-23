@@ -1,0 +1,19 @@
+{
+    "metric": "CHM",
+    "score": 0.4513888888888889,
+    "microservice_scores": {
+        "microservice_1": 0.30952380952380953,
+        "microservice_2": 0.23214285714285715,
+        "microservice_3": 0.16666666666666666,
+        "microservice_4": 1.0,
+        "microservice_5": 0.5,
+        "microservice_6": 0.5
+    },
+    "coverage": {
+        "classes": 55,
+        "assigned": 55,
+        "unassigned": 0,
+        "unmatched_ids": 0,
+        "conflicts": 0
+    }
+}

@@ -1,0 +1,9 @@
+Using data/apps/autocare dataset
+Adjacency matrix shape: (48, 48)
+Features shape: torch.Size([48, 160])
+Epoch: 0100 train_loss= 22.95277 lr= 0.01000
+Epoch: 0200 train_loss= 22.93336 lr= 0.01000
+Epoch: 0300 train_loss= 19.15124 lr= 0.01000
+Epoch: 0100 train_loss= 7.88626 lr= 0.01000
+Epoch: 0200 train_loss= 7.73920 lr= 0.01000
+Epoch: 0300 train_loss= 7.38360 lr= 0.01000

@@ -1,0 +1,9 @@
+Using data/apps/spring-petclinic dataset
+Adjacency matrix shape: (24, 24)
+Features shape: torch.Size([24, 82])
+Epoch: 0100 train_loss= 9.60008 lr= 0.01000
+Epoch: 0200 train_loss= 9.41901 lr= 0.01000
+Epoch: 0300 train_loss= 6.60424 lr= 0.01000
+Epoch: 0100 train_loss= 2.06653 lr= 0.01000
+Epoch: 0200 train_loss= 2.07826 lr= 0.01000
+Epoch: 0300 train_loss= 1.96552 lr= 0.01000

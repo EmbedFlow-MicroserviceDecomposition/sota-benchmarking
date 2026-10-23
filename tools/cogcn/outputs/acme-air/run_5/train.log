@@ -1,0 +1,9 @@
+Using data/apps/acme-air dataset
+Adjacency matrix shape: (84, 84)
+Features shape: torch.Size([84, 256])
+Epoch: 0100 train_loss= 37.84810 lr= 0.01000
+Epoch: 0200 train_loss= 37.15551 lr= 0.01000
+Epoch: 0300 train_loss= 39.91785 lr= 0.01000
+Epoch: 0100 train_loss= 11.01274 lr= 0.01000
+Epoch: 0200 train_loss= 10.53659 lr= 0.01000
+Epoch: 0300 train_loss= 10.54661 lr= 0.01000

@@ -1,0 +1,51 @@
+{
+    "tool": "CoGCN",
+    "microservices": {
+        "microservice_1": [
+            "com.rokin.baylorboard.controller.AwardController",
+            "com.rokin.baylorboard.controller.EventController",
+            "com.rokin.baylorboard.repository.AwardRepository",
+            "com.rokin.baylorboard.repository.EventRepository",
+            "com.rokin.baylorboard.service.AwardService",
+            "com.rokin.baylorboard.service.EventService",
+            "com.rokin.baylorboard.utils.CustomBeanUtils"
+        ],
+        "microservice_2": [
+            "com.rokin.baylorboard.BaylorBoardApplication",
+            "com.rokin.baylorboard.config.KafkaConfig",
+            "com.rokin.baylorboard.config.TwitterConfig",
+            "com.rokin.baylorboard.controller.GreetingController",
+            "com.rokin.baylorboard.controller.TweetController",
+            "com.rokin.baylorboard.controller.UserController",
+            "com.rokin.baylorboard.controller.WhitelistUserController",
+            "com.rokin.baylorboard.domain.Award",
+            "com.rokin.baylorboard.domain.MessageBean",
+            "com.rokin.baylorboard.domain.Roles",
+            "com.rokin.baylorboard.domain.User",
+            "com.rokin.baylorboard.domain.WhitelistUser",
+            "com.rokin.baylorboard.enums.Role",
+            "com.rokin.baylorboard.exceptions.BadRequestException",
+            "com.rokin.baylorboard.repository.RoleRepository",
+            "com.rokin.baylorboard.repository.TweetRepository",
+            "com.rokin.baylorboard.repository.UserRepository",
+            "com.rokin.baylorboard.repository.WhitelistUserRepository",
+            "com.rokin.baylorboard.service.TweetService",
+            "com.rokin.baylorboard.service.UserService",
+            "com.rokin.baylorboard.service.WhitelistUserService",
+            "com.rokin.baylorboard.utils.PasswordUtils"
+        ],
+        "microservice_3": [
+            "com.rokin.baylorboard.domain.Tweet",
+            "com.rokin.baylorboard.enums.TweetStatus"
+        ],
+        "microservice_4": [
+            "com.rokin.baylorboard.config.WebSocketConfig"
+        ],
+        "microservice_5": [
+            "com.rokin.baylorboard.domain.Event"
+        ],
+        "microservice_6": [
+            "com.rokin.baylorboard.config.WebConfig"
+        ]
+    }
+}

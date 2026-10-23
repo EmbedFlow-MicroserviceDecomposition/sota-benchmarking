@@ -1,0 +1,9 @@
+Using data/apps/plants dataset
+Adjacency matrix shape: (37, 37)
+Features shape: torch.Size([37, 175])
+Epoch: 0100 train_loss= 12.44340 lr= 0.01000
+Epoch: 0200 train_loss= 10.69710 lr= 0.01000
+Epoch: 0300 train_loss= 11.88026 lr= 0.01000
+Epoch: 0100 train_loss= 3.18080 lr= 0.01000
+Epoch: 0200 train_loss= 2.89877 lr= 0.01000
+Epoch: 0300 train_loss= 2.90146 lr= 0.01000

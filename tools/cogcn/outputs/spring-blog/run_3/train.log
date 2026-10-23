@@ -1,0 +1,9 @@
+Using data/apps/spring-blog dataset
+Adjacency matrix shape: (47, 47)
+Features shape: torch.Size([47, 166])
+Epoch: 0100 train_loss= 29.40811 lr= 0.01000
+Epoch: 0200 train_loss= 28.05429 lr= 0.01000
+Epoch: 0300 train_loss= 23.45551 lr= 0.01000
+Epoch: 0100 train_loss= 6.87223 lr= 0.01000
+Epoch: 0200 train_loss= 6.69921 lr= 0.01000
+Epoch: 0300 train_loss= 6.59319 lr= 0.01000

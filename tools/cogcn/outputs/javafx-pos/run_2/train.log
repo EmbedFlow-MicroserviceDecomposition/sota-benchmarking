@@ -1,0 +1,9 @@
+Using data/apps/javafx-pos dataset
+Adjacency matrix shape: (55, 55)
+Features shape: torch.Size([55, 116])
+Epoch: 0100 train_loss= 25.77997 lr= 0.01000
+Epoch: 0200 train_loss= 21.35418 lr= 0.01000
+Epoch: 0300 train_loss= 19.75874 lr= 0.01000
+Epoch: 0100 train_loss= 5.48824 lr= 0.01000
+Epoch: 0200 train_loss= 5.43196 lr= 0.01000
+Epoch: 0300 train_loss= 5.39313 lr= 0.01000

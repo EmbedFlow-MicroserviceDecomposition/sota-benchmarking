@@ -1,0 +1,9 @@
+Using data/apps/apache-roller dataset
+Adjacency matrix shape: (534, 534)
+Features shape: torch.Size([534, 904])
+Epoch: 0100 train_loss= 399.65698 lr= 0.01000
+Epoch: 0200 train_loss= 383.92422 lr= 0.01000
+Epoch: 0300 train_loss= 391.01526 lr= 0.01000
+Epoch: 0100 train_loss= 81.59205 lr= 0.01000
+Epoch: 0200 train_loss= 80.91651 lr= 0.01000
+Epoch: 0300 train_loss= 80.92511 lr= 0.01000

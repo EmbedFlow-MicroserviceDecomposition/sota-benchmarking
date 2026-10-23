@@ -1,0 +1,15 @@
+{
+    "tool": "cogcn",
+    "dataset": "genapp",
+    "runs_requested": 1,
+    "runs_ok": 0,
+    "units": 0,
+    "failures": [
+        {
+            "run": 1,
+            "error": "dataset 'genapp' has no Java classes in dataset.json: cell is N/A"
+        }
+    ],
+    "metrics": {},
+    "variants": {}
+}

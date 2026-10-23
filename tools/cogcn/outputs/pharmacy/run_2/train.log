@@ -1,0 +1,9 @@
+Using data/apps/pharmacy dataset
+Adjacency matrix shape: (59, 59)
+Features shape: torch.Size([59, 147])
+Epoch: 0100 train_loss= 47.33497 lr= 0.01000
+Epoch: 0200 train_loss= 38.60070 lr= 0.01000
+Epoch: 0300 train_loss= 36.51298 lr= 0.01000
+Epoch: 0100 train_loss= 12.76463 lr= 0.01000
+Epoch: 0200 train_loss= 12.53908 lr= 0.01000
+Epoch: 0300 train_loss= 11.59763 lr= 0.01000

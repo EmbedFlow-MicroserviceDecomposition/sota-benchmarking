@@ -1,0 +1,4 @@
+{
+    "error": "dataset 'genapp' has no Java classes in dataset.json: cell is N/A",
+    "tool": "CoGCN"
+}

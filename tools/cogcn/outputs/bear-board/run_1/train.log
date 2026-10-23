@@ -1,0 +1,9 @@
+Using data/apps/bear-board dataset
+Adjacency matrix shape: (34, 34)
+Features shape: torch.Size([34, 89])
+Epoch: 0100 train_loss= 21.48407 lr= 0.01000
+Epoch: 0200 train_loss= 20.46491 lr= 0.01000
+Epoch: 0300 train_loss= 17.05266 lr= 0.01000
+Epoch: 0100 train_loss= 6.67086 lr= 0.01000
+Epoch: 0200 train_loss= 6.27452 lr= 0.01000
+Epoch: 0300 train_loss= 6.16895 lr= 0.01000
