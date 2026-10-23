@@ -1,0 +1,45 @@
+{
+    "tool": "VAE-C",
+    "microservices": {
+        "microservice_1": [
+            "org.springframework.samples.petclinic.owner.OwnerController",
+            "org.springframework.samples.petclinic.owner.PetController"
+        ],
+        "microservice_2": [
+            "org.springframework.samples.petclinic.vet.Specialty",
+            "org.springframework.samples.petclinic.vet.Vet",
+            "org.springframework.samples.petclinic.vet.Vets"
+        ],
+        "microservice_3": [
+            "org.springframework.samples.petclinic.model.BaseEntity",
+            "org.springframework.samples.petclinic.model.NamedEntity",
+            "org.springframework.samples.petclinic.model.Person",
+            "org.springframework.samples.petclinic.owner.Owner",
+            "org.springframework.samples.petclinic.owner.Pet",
+            "org.springframework.samples.petclinic.owner.PetValidator",
+            "org.springframework.samples.petclinic.visit.Visit"
+        ],
+        "microservice_4": [
+            "org.springframework.samples.petclinic.PetClinicApplication",
+            "org.springframework.samples.petclinic.system.CacheConfig",
+            "org.springframework.samples.petclinic.system.CrashController",
+            "org.springframework.samples.petclinic.system.WelcomeController"
+        ],
+        "microservice_5": [
+            "org.springframework.samples.petclinic.owner.PetType",
+            "org.springframework.samples.petclinic.owner.PetTypeFormatter",
+            "org.springframework.samples.petclinic.visit.VisitRepository"
+        ],
+        "microservice_6": [
+            "org.springframework.samples.petclinic.owner.PetRepository",
+            "org.springframework.samples.petclinic.owner.VisitController"
+        ],
+        "microservice_7": [
+            "org.springframework.samples.petclinic.owner.OwnerRepository"
+        ],
+        "microservice_8": [
+            "org.springframework.samples.petclinic.vet.VetController",
+            "org.springframework.samples.petclinic.vet.VetRepository"
+        ]
+    }
+}

@@ -1,0 +1,4 @@
+{
+    "error": "entrypoints.txt not found in /Users/ravishan/Desktop/FYP/sota-benchmarking/datasets/javafx-pos: VAE-C needs web entrypoint classes; cell is N/A",
+    "tool": "VAE-C"
+}
