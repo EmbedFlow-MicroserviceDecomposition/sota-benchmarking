@@ -1,0 +1,83 @@
+{
+    "tool": "CARGO",
+    "microservices": {
+        "microservice_1": [
+            "com.upachar.web.drug.controller.DosageFormController",
+            "com.upachar.web.drug.controller.SubCategoryController",
+            "com.upachar.web.drug.dto.CategoryDto",
+            "com.upachar.web.drug.dto.DosageFormDto",
+            "com.upachar.web.drug.dto.SubCategoryDto",
+            "com.upachar.web.drug.service.DosageFormService",
+            "com.upachar.web.drug.service.SubCategoryService"
+        ],
+        "microservice_2": [
+            "com.opencsv.bean.CsvToBeanBuilder",
+            "com.upachar.web.config.security.AuthorizationServerConfiguration",
+            "com.upachar.web.data.controller.DataController",
+            "com.upachar.web.data.service.DataService",
+            "com.upachar.web.drug.domain.Category",
+            "com.upachar.web.drug.domain.Category.CategoryBuilder",
+            "com.upachar.web.drug.domain.SubCategory",
+            "com.upachar.web.drug.domain.SubCategory.SubCategoryBuilder",
+            "com.upachar.web.exceptionhandler.ErrorResponse",
+            "com.upachar.web.exceptionhandler.GlobalException",
+            "com.upachar.web.exceptionhandler.GlobalExceptionHandler",
+            "com.upachar.web.user.domain.UserRole",
+            "org.springframework.http.HttpHeaders",
+            "org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter",
+            "org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore",
+            "org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler"
+        ],
+        "microservice_3": [
+            "com.upachar.web.config.swagger.SwaggerConfiguration",
+            "springfox.documentation.service.ApiInfo",
+            "springfox.documentation.service.Contact",
+            "springfox.documentation.spring.web.plugins.Docket"
+        ],
+        "microservice_4": [
+            "com.upachar.web.drug.domain.DosageForm",
+            "com.upachar.web.drug.domain.DosageForm.DosageFormBuilder"
+        ],
+        "microservice_5": [
+            "com.upachar.web.common.dto.PageDto",
+            "com.upachar.web.common.utils.CustomBeanUtils",
+            "com.upachar.web.common.utils.CustomStringUtils",
+            "com.upachar.web.common.utils.FileUtils",
+            "com.upachar.web.drug.controller.CategoryController",
+            "com.upachar.web.drug.controller.DrugController",
+            "com.upachar.web.drug.domain.Drug",
+            "com.upachar.web.drug.domain.Drug.DrugBuilder",
+            "com.upachar.web.drug.dto.DrugDto",
+            "com.upachar.web.drug.service.CategoryService",
+            "com.upachar.web.drug.service.DrugService",
+            "com.upachar.web.order.controller.OrderController",
+            "com.upachar.web.order.domain.Order",
+            "com.upachar.web.order.domain.Order.OrderBuilder",
+            "com.upachar.web.order.domain.OrderPrescription",
+            "com.upachar.web.order.domain.OrderPrescription.OrderPrescriptionBuilder",
+            "com.upachar.web.order.dto.OrderStatusDto",
+            "com.upachar.web.order.service.OrderService",
+            "org.springframework.beans.BeanUtils",
+            "org.springframework.beans.BeanWrapperImpl"
+        ],
+        "microservice_6": [
+            "com.upachar.web.config.security.ResourceServerConfiguration",
+            "com.upachar.web.order.dto.OrderDto",
+            "com.upachar.web.user.controller.UserController",
+            "com.upachar.web.user.domain.User",
+            "com.upachar.web.user.domain.User.UserBuilder",
+            "com.upachar.web.user.dto.UserSignupDto",
+            "com.upachar.web.user.dto.UserUpdateDto",
+            "com.upachar.web.user.dto.UserValidateDto",
+            "com.upachar.web.user.service.UserService",
+            "org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter"
+        ],
+        "microservice_7": [
+            "com.upachar.web.config.security.SecurityConfiguration",
+            "com.upachar.web.order.domain.DrugQuantity",
+            "com.upachar.web.order.domain.DrugQuantity.DrugQuantityBuilder",
+            "org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter",
+            "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+        ]
+    }
+}

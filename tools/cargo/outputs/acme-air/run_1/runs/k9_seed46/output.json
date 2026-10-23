@@ -1,0 +1,35 @@
+{
+    "tool": "CARGO",
+    "microservices": {
+        "microservice_1": [
+            "com.acmeair.util.ServiceRegister",
+            "com.acmeair.util.ServiceRegister.1"
+        ],
+        "microservice_2": [
+            "com.acmeair.web.CustomerREST",
+            "com.acmeair.web.dto.CustomerInfo"
+        ],
+        "microservice_3": [
+            "com.acmeair.mongo.ConnectionManager",
+            "com.acmeair.mongo.services.AuthServiceImpl",
+            "com.acmeair.mongo.services.BookingServiceImpl",
+            "com.acmeair.mongo.services.CustomerServiceImpl",
+            "com.acmeair.mongo.services.FlightServiceImpl",
+            "com.acmeair.service.AuthService",
+            "com.acmeair.service.CustomerService",
+            "com.acmeair.service.FlightService",
+            "com.mongodb.MongoClient",
+            "com.mongodb.MongoClientURI",
+            "com.mongodb.ServerAddress"
+        ],
+        "microservice_4": [
+            "com.acmeair.config.AcmeAirConfiguration",
+            "com.acmeair.config.AcmeAirConfiguration.ServiceData",
+            "com.acmeair.service.ServiceLocator",
+            "com.acmeair.web.BookingsREST",
+            "com.acmeair.web.FlightsREST",
+            "com.acmeair.web.LoginREST",
+            "com.acmeair.web.RESTCookieSessionFilter"
+        ]
+    }
+}

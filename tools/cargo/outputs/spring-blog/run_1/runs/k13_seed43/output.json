@@ -1,0 +1,65 @@
+{
+    "tool": "CARGO",
+    "microservices": {
+        "microservice_1": [
+            "org.pegdown.PegDownProcessor"
+        ],
+        "microservice_2": [
+            "com.raysmond.blog.admin.controllers.PostController",
+            "com.raysmond.blog.controllers.HomeController",
+            "com.raysmond.blog.controllers.TagController",
+            "com.raysmond.blog.error.NotFoundException",
+            "com.raysmond.blog.forms.PostForm",
+            "com.raysmond.blog.services.PostService",
+            "com.raysmond.blog.services.TagService",
+            "com.raysmond.blog.support.web.impl.FlexmarkMarkdownService",
+            "com.raysmond.blog.support.web.impl.PegDownMarkdownService",
+            "com.vladsch.flexmark.util.options.MutableDataSet",
+            "org.springframework.data.domain.PageRequest"
+        ],
+        "microservice_3": [
+            "com.raysmond.blog.WebConfig",
+            "com.raysmond.blog.WebConfig.1",
+            "com.raysmond.blog.support.web.ViewHelper",
+            "org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter",
+            "org.springframework.web.servlet.handler.HandlerInterceptorAdapter"
+        ],
+        "microservice_4": [
+            "com.raysmond.blog.admin.controllers.UserController",
+            "com.raysmond.blog.error.ExceptionHandlerController",
+            "com.raysmond.blog.forms.UserForm",
+            "com.raysmond.blog.models.User",
+            "com.raysmond.blog.services.UserService",
+            "com.raysmond.blog.support.web.Message",
+            "com.raysmond.blog.support.web.MessageHelper",
+            "org.springframework.web.servlet.ModelAndView"
+        ],
+        "microservice_5": [
+            "com.raysmond.blog.SecurityConfig",
+            "com.raysmond.blog.admin.controllers.AdminController",
+            "com.raysmond.blog.forms.SettingsForm",
+            "com.raysmond.blog.models.BaseModel",
+            "com.raysmond.blog.models.Post",
+            "com.raysmond.blog.models.Setting",
+            "com.raysmond.blog.models.Tag",
+            "com.raysmond.blog.models.support.PostFormat",
+            "com.raysmond.blog.models.support.PostStatus",
+            "com.raysmond.blog.models.support.PostType",
+            "com.raysmond.blog.services.AppSetting",
+            "com.raysmond.blog.services.CacheSettingService",
+            "com.raysmond.blog.utils.DTOUtil",
+            "org.modelmapper.ModelMapper",
+            "org.pegdown.LinkRenderer",
+            "org.pegdown.ToHtmlSerializer",
+            "org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter",
+            "org.springframework.security.crypto.password.StandardPasswordEncoder",
+            "org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices"
+        ],
+        "microservice_6": [
+            "com.raysmond.blog.CacheConfiguration",
+            "org.springframework.cache.ehcache.EhCacheCacheManager",
+            "org.springframework.cache.ehcache.EhCacheManagerFactoryBean",
+            "org.springframework.core.io.ClassPathResource"
+        ]
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "tool": "CARGO",
+    "microservices": {
+        "microservice_1": [
+            "org.springframework.samples.petclinic.vet.VetController",
+            "org.springframework.samples.petclinic.vet.Vets"
+        ],
+        "microservice_2": [
+            "org.springframework.core.style.ToStringCreator",
+            "org.springframework.samples.petclinic.model.BaseEntity",
+            "org.springframework.samples.petclinic.model.NamedEntity",
+            "org.springframework.samples.petclinic.model.Person",
+            "org.springframework.samples.petclinic.owner.Owner",
+            "org.springframework.samples.petclinic.owner.OwnerController",
+            "org.springframework.samples.petclinic.owner.Pet",
+            "org.springframework.samples.petclinic.owner.PetController",
+            "org.springframework.samples.petclinic.owner.PetType",
+            "org.springframework.samples.petclinic.owner.PetValidator",
+            "org.springframework.samples.petclinic.owner.Visit",
+            "org.springframework.samples.petclinic.owner.VisitController",
+            "org.springframework.samples.petclinic.vet.Specialty",
+            "org.springframework.util.Assert",
+            "org.springframework.web.servlet.ModelAndView"
+        ],
+        "microservice_3": [
+            "org.springframework.beans.support.MutableSortDefinition",
+            "org.springframework.beans.support.PropertyComparator",
+            "org.springframework.samples.petclinic.vet.Vet"
+        ]
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "metric": "BCP",
+    "score": 1.2907604575624512,
+    "microservice_scores": {
+        "microservice_1": 1.9459101490553132,
+        "microservice_2": 1.791759469228055,
+        "microservice_3": 1.9459101490553132,
+        "microservice_4": 1.9459101490553132,
+        "microservice_5": 1.9459101490553132,
+        "microservice_6": 0.0,
+        "microservice_7": 0.0,
+        "microservice_8": 1.3862943611198906,
+        "microservice_9": 1.9459101490553132,
+        "microservice_10": 0.0
+    },
+    "coverage": {
+        "classes": 534,
+        "assigned": 322,
+        "unassigned": 212,
+        "unmatched_ids": 25,
+        "conflicts": 0
+    }
+}

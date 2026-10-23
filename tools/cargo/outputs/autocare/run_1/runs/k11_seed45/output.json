@@ -1,0 +1,62 @@
+{
+    "tool": "CARGO",
+    "microservices": {
+        "microservice_1": [
+            "com.policynepal.autocare.security.AuthorizationServerConfiguration",
+            "org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter",
+            "org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore"
+        ],
+        "microservice_2": [
+            "com.policynepal.autocare.exceptionhandler.ErrorResponse",
+            "org.springframework.http.HttpHeaders",
+            "org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler"
+        ],
+        "microservice_3": [
+            "com.amazonaws.auth.AWSStaticCredentialsProvider",
+            "com.amazonaws.auth.BasicAWSCredentials",
+            "com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration",
+            "com.amazonaws.services.s3.model.PutObjectRequest",
+            "com.policynepal.autocare.aws.configuration.AwsConfiguration",
+            "com.policynepal.autocare.aws.model.AwsCredential",
+            "com.policynepal.autocare.aws.model.AwsCredential.S3",
+            "com.policynepal.autocare.aws.service.S3Service",
+            "com.policynepal.autocare.comment.controller.CommentController",
+            "com.policynepal.autocare.comment.model.Comment",
+            "com.policynepal.autocare.comment.model.DeletedComment",
+            "com.policynepal.autocare.comment.service.CommentService",
+            "com.policynepal.autocare.common.dto.PageDto",
+            "com.policynepal.autocare.exceptionhandler.GlobalException",
+            "com.policynepal.autocare.exceptionhandler.GlobalExceptionHandler",
+            "com.policynepal.autocare.user.controller.UserController",
+            "com.policynepal.autocare.user.dto.UserDto",
+            "com.policynepal.autocare.user.model.DeletedUser",
+            "com.policynepal.autocare.user.model.User",
+            "com.policynepal.autocare.user.service.UserService",
+            "com.policynepal.autocare.utils.AuthenticationUtils",
+            "com.policynepal.autocare.utils.CustomBeanUtils",
+            "com.policynepal.autocare.vehicle.controller.VehicleController",
+            "com.policynepal.autocare.vehicle.model.DeletedVehicle",
+            "com.policynepal.autocare.vehicle.model.Vehicle",
+            "com.policynepal.autocare.vehicle.model.VehicleImage",
+            "com.policynepal.autocare.vehicle.service.VehicleService",
+            "org.assertj.core.util.Files",
+            "org.springframework.beans.BeanUtils",
+            "org.springframework.beans.BeanWrapperImpl"
+        ],
+        "microservice_4": [
+            "com.policynepal.autocare.security.ResourceServerConfiguration",
+            "org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter"
+        ],
+        "microservice_5": [
+            "com.policynepal.autocare.security.SecurityConfiguration",
+            "org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter",
+            "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+        ],
+        "microservice_6": [
+            "com.policynepal.autocare.swagger.SwaggerConfiguration",
+            "springfox.documentation.service.ApiInfo",
+            "springfox.documentation.service.Contact",
+            "springfox.documentation.spring.web.plugins.Docket"
+        ]
+    }
+}

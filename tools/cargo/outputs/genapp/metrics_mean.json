@@ -1,0 +1,15 @@
+{
+    "tool": "cargo",
+    "dataset": "genapp",
+    "runs_requested": 1,
+    "runs_ok": 0,
+    "units": 0,
+    "failures": [
+        {
+            "run": 1,
+            "error": "no Doop facts for dataset 'genapp' at /Users/ravishan/Desktop/FYP/sota-benchmarking/tools/cargo/doop-data/genapp: CARGO analyses compiled bytecode with Doop first (see tools/cargo/README.md); cell is N/A until they exist"
+        }
+    ],
+    "metrics": {},
+    "variants": {}
+}

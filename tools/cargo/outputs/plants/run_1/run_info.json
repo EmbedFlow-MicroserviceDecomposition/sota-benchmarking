@@ -1,0 +1,186 @@
+{
+    "facts_dir": "/Users/ravishan/Desktop/FYP/sota-benchmarking/tools/cargo/doop-data/plants",
+    "transactions": false,
+    "runs": [
+        {
+            "k": 3,
+            "seed": 42,
+            "microservices": 1,
+            "classes": 27
+        },
+        {
+            "k": 5,
+            "seed": 42,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 7,
+            "seed": 42,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 9,
+            "seed": 42,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 11,
+            "seed": 42,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 13,
+            "seed": 42,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 3,
+            "seed": 43,
+            "microservices": 1,
+            "classes": 27
+        },
+        {
+            "k": 5,
+            "seed": 43,
+            "microservices": 4,
+            "classes": 27
+        },
+        {
+            "k": 7,
+            "seed": 43,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 9,
+            "seed": 43,
+            "microservices": 1,
+            "classes": 27
+        },
+        {
+            "k": 11,
+            "seed": 43,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 13,
+            "seed": 43,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 3,
+            "seed": 44,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 5,
+            "seed": 44,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 7,
+            "seed": 44,
+            "microservices": 1,
+            "classes": 27
+        },
+        {
+            "k": 9,
+            "seed": 44,
+            "microservices": 4,
+            "classes": 27
+        },
+        {
+            "k": 11,
+            "seed": 44,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 13,
+            "seed": 44,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 3,
+            "seed": 45,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 5,
+            "seed": 45,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 7,
+            "seed": 45,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 9,
+            "seed": 45,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 11,
+            "seed": 45,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 13,
+            "seed": 45,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 3,
+            "seed": 46,
+            "microservices": 1,
+            "classes": 27
+        },
+        {
+            "k": 5,
+            "seed": 46,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 7,
+            "seed": 46,
+            "microservices": 2,
+            "classes": 27
+        },
+        {
+            "k": 9,
+            "seed": 46,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 11,
+            "seed": 46,
+            "microservices": 3,
+            "classes": 27
+        },
+        {
+            "k": 13,
+            "seed": 46,
+            "microservices": 3,
+            "classes": 27
+        }
+    ]
+}

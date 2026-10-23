@@ -1,0 +1,25 @@
+{
+    "tool": "CARGO",
+    "microservices": {
+        "microservice_1": [
+            "org.mybatis.jpetstore.domain.Cart",
+            "org.mybatis.jpetstore.domain.CartItem"
+        ],
+        "microservice_2": [
+            "net.sourceforge.stripes.action.RedirectResolution",
+            "org.mybatis.jpetstore.domain.Account",
+            "org.mybatis.jpetstore.web.actions.CartActionBean"
+        ],
+        "microservice_3": [
+            "net.sourceforge.stripes.action.ForwardResolution",
+            "net.sourceforge.stripes.action.SimpleMessage",
+            "org.mybatis.jpetstore.domain.Item",
+            "org.mybatis.jpetstore.domain.LineItem",
+            "org.mybatis.jpetstore.domain.Order",
+            "org.mybatis.jpetstore.web.actions.AbstractActionBean",
+            "org.mybatis.jpetstore.web.actions.AccountActionBean",
+            "org.mybatis.jpetstore.web.actions.CatalogActionBean",
+            "org.mybatis.jpetstore.web.actions.OrderActionBean"
+        ]
+    }
+}

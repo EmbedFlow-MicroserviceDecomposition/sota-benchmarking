@@ -1,0 +1,41 @@
+{
+    "tool": "CARGO",
+    "microservices": {
+        "microservice_1": [
+            "com.rokin.baylorboard.config.TwitterConfig",
+            "com.rokin.baylorboard.controller.TweetController",
+            "com.rokin.baylorboard.service.TweetService",
+            "com.rokin.baylorboard.service.TweetService.1",
+            "twitter4j.TwitterFactory",
+            "twitter4j.TwitterStreamFactory",
+            "twitter4j.conf.ConfigurationBuilder"
+        ],
+        "microservice_2": [
+            "com.rokin.baylorboard.controller.UserController",
+            "com.rokin.baylorboard.controller.WhitelistUserController",
+            "com.rokin.baylorboard.domain.User",
+            "com.rokin.baylorboard.exceptions.BadRequestException",
+            "com.rokin.baylorboard.service.UserService",
+            "com.rokin.baylorboard.service.WhitelistUserService",
+            "com.rokin.baylorboard.utils.CustomBeanUtils",
+            "com.rokin.baylorboard.utils.PasswordUtils",
+            "org.springframework.beans.BeanUtils",
+            "org.springframework.beans.BeanWrapperImpl"
+        ],
+        "microservice_3": [
+            "com.rokin.baylorboard.config.KafkaConfig",
+            "org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory",
+            "org.springframework.kafka.core.DefaultKafkaConsumerFactory"
+        ],
+        "microservice_4": [
+            "com.rokin.baylorboard.controller.GreetingController",
+            "com.rokin.baylorboard.domain.MessageBean"
+        ],
+        "microservice_5": [
+            "com.rokin.baylorboard.controller.AwardController",
+            "com.rokin.baylorboard.controller.EventController",
+            "com.rokin.baylorboard.service.AwardService",
+            "com.rokin.baylorboard.service.EventService"
+        ]
+    }
+}
