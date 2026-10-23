@@ -73,3 +73,19 @@ def test_method_level_output_matches_equivalent_class_level_output(tmp_path):
     ds2, out2 = write_case(tmp_path / "second", {"ms1": ["p.A", "p.B"], "ms2": ["p.C", "p.D"]})
     run(ds2, out2)
     assert method_scores == {n: score(out2, n)["score"] for n in ("sm", "icp", "ifn")}
+
+
+def test_a_metric_that_raises_fails_compute_all_but_the_other_scores_are_still_written(tmp_path, monkeypatch):
+    import compute_all
+
+    ds, out = write_case(tmp_path, {"ms1": ["p.A", "p.B"], "ms2": ["p.C", "p.D"]})
+
+    def broken(*args, **kwargs):
+        raise ValueError("chm exploded")
+
+    monkeypatch.setattr(compute_all, "evaluate_chm", broken)
+    with pytest.raises(compute_all.MetricsIncomplete, match="CHM: chm exploded"):
+        compute_all.compute_all_metrics(str(ds), str(out))
+    summary = json.loads((out / "metrics_summary.json").read_text())
+    assert "SM" in summary and "CHM" not in summary
+    assert (out / "sm_score.json").exists()
