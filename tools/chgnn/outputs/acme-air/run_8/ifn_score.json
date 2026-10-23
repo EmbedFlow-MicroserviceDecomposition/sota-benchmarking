@@ -1,0 +1,18 @@
+{
+    "metric": "IFN",
+    "score": 4.75,
+    "score_cross_edge": 13.5,
+    "microservice_scores": {
+        "microservice_1": 5.0,
+        "microservice_2": 12.0,
+        "microservice_3": 0.0,
+        "microservice_4": 2.0
+    },
+    "coverage": {
+        "classes": 84,
+        "assigned": 66,
+        "unassigned": 18,
+        "unmatched_ids": 0,
+        "conflicts": 0
+    }
+}

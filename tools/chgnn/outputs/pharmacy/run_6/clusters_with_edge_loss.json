@@ -1,0 +1,53 @@
+{
+    "0": [
+        "com.upachar.web.common.dto.PageDto",
+        "com.upachar.web.drug.service.DrugService",
+        "com.upachar.web.common.utils.CustomBeanUtils",
+        "com.upachar.web.drug.service.DosageFormService",
+        "com.upachar.web.drug.service.SubCategoryService",
+        "com.upachar.web.data.controller.DataController",
+        "com.upachar.web.data.service.DataService",
+        "com.upachar.web.drug.repository.DrugRepository",
+        "com.upachar.web.drug.repository.SubCategoryRepository",
+        "com.upachar.web.drug.controller.DrugController",
+        "com.upachar.web.drug.domain.Category",
+        "com.upachar.web.drug.domain.SubCategory",
+        "com.upachar.web.drug.domain.DosageForm",
+        "com.upachar.web.drug.domain.Drug",
+        "drugs-res",
+        "sub_categories-res",
+        "com.upachar.web.order.controller.OrderController",
+        "order_prescriptions-res",
+        "user_roles-res"
+    ],
+    "2": [
+        "com.upachar.web.order.service.OrderService",
+        "com.upachar.web.drug.controller.DosageFormController",
+        "com.upachar.web.order.domain.DrugQuantity",
+        "com.upachar.web.order.domain.Order",
+        "com.upachar.web.order.domain.OrderPrescription",
+        "com.upachar.web.order.enums.OrderStatus",
+        "com.upachar.web.user.domain.User",
+        "com.upachar.web.order.repository.DrugQuantityRepository",
+        "drug_quantities-res",
+        "com.upachar.web.order.repository.OrderRepository",
+        "orders-res",
+        "com.upachar.web.user.domain.UserRole",
+        "com.upachar.web.user.enums.Role"
+    ],
+    "3": [
+        "com.upachar.web.user.service.UserService",
+        "com.upachar.web.user.controller.UserController",
+        "com.upachar.web.user.repository.UserRepository",
+        "users-res"
+    ],
+    "1": [
+        "com.upachar.web.drug.service.CategoryService",
+        "com.upachar.web.drug.repository.CategoryRepository",
+        "com.upachar.web.drug.controller.CategoryController",
+        "com.upachar.web.drug.controller.SubCategoryController",
+        "categories-res",
+        "com.upachar.web.drug.repository.DosageFormRepository",
+        "dosage_forms-res"
+    ]
+}

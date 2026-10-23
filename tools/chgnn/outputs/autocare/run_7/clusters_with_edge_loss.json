@@ -1,0 +1,43 @@
+{
+    "0": [
+        "com.policynepal.autocare.aws.model.AwsCredential",
+        "com.policynepal.autocare.vehicle.service.VehicleService",
+        "com.policynepal.autocare.aws.model.AwsCredential.S3",
+        "com.policynepal.autocare.vehicle.model.DeletedVehicle",
+        "com.policynepal.autocare.vehicle.model.Vehicle",
+        "com.policynepal.autocare.vehicle.model.VehicleImage",
+        "com.policynepal.autocare.vehicle.repository.CustomVehicleRepository",
+        "com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl",
+        "com.policynepal.autocare.vehicle.repository.VehicleRepository",
+        "vehicles-res"
+    ],
+    "1": [
+        "com.policynepal.autocare.comment.controller.CommentController",
+        "com.policynepal.autocare.comment.service.CommentService",
+        "com.policynepal.autocare.comment.model.Comment",
+        "com.policynepal.autocare.comment.model.DeletedComment",
+        "com.policynepal.autocare.comment.repository.CommentRepository",
+        "comments-res",
+        "com.policynepal.autocare.comment.repository.DeletedCommentRepository",
+        "deletedcomments-res",
+        "com.policynepal.autocare.common.dto.PageDto",
+        "com.policynepal.autocare.utils.AuthenticationUtils",
+        "com.policynepal.autocare.utils.CustomBeanUtils",
+        "com.policynepal.autocare.user.model.Organization",
+        "com.policynepal.autocare.user.model.User.Builder",
+        "com.policynepal.autocare.user.repository.DeletedUserRepository",
+        "deletedusers-res",
+        "com.policynepal.autocare.vehicle.controller.VehicleController",
+        "com.policynepal.autocare.vehicle.repository.DeletedVehicleRepository",
+        "deletedvehicles-res"
+    ],
+    "2": [
+        "com.policynepal.autocare.user.controller.UserController",
+        "com.policynepal.autocare.user.service.UserService",
+        "com.policynepal.autocare.user.dto.UserDto",
+        "com.policynepal.autocare.user.model.DeletedUser",
+        "com.policynepal.autocare.user.model.User",
+        "com.policynepal.autocare.user.repository.UserRepository",
+        "users-res"
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "metric": "CHD",
+    "score": 0.17090288800266992,
+    "microservice_scores": {
+        "microservice_1": 0.08442433175012466,
+        "microservice_2": 0.07645231749444777,
+        "microservice_3": 0.07397841550159467,
+        "microservice_4": 0.25,
+        "microservice_5": 0.05871813371813376,
+        "microservice_6": 1.0,
+        "microservice_7": 0.05683888497927906,
+        "microservice_8": 0.09057142857142852,
+        "microservice_9": 0.07917529330572803,
+        "microservice_10": 0.09565826330532212,
+        "microservice_11": 0.08470201673326666,
+        "microservice_12": 0.10031557067271364
+    },
+    "coverage": {
+        "classes": 534,
+        "assigned": 382,
+        "unassigned": 152,
+        "unmatched_ids": 0,
+        "conflicts": 0
+    }
+}

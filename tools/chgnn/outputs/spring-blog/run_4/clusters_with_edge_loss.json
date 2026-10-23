@@ -1,0 +1,44 @@
+{
+    "3": [
+        "com.raysmond.blog.admin.controllers.AdminController",
+        "com.raysmond.blog.services.AppSetting",
+        "com.raysmond.blog.utils.DTOUtil",
+        "com.raysmond.blog.services.SettingService",
+        "settings-res"
+    ],
+    "0": [
+        "com.raysmond.blog.admin.controllers.PostController",
+        "com.raysmond.blog.models.Post",
+        "com.raysmond.blog.models.support.PostFormat",
+        "com.raysmond.blog.models.support.PostStatus",
+        "com.raysmond.blog.models.support.PostType",
+        "com.raysmond.blog.repositories.PostRepository",
+        "com.raysmond.blog.services.PostService",
+        "com.raysmond.blog.controllers.HomeController",
+        "com.raysmond.blog.models.BaseModel",
+        "com.raysmond.blog.models.Tag",
+        "com.raysmond.blog.models.User",
+        "posts-res"
+    ],
+    "2": [
+        "com.raysmond.blog.repositories.UserRepository",
+        "com.raysmond.blog.admin.controllers.UserController",
+        "com.raysmond.blog.error.NotFoundException",
+        "com.raysmond.blog.services.UserService",
+        "com.raysmond.blog.models.Setting",
+        "com.raysmond.blog.services.CacheSettingService",
+        "users-res",
+        "com.raysmond.blog.support.web.PygmentsService",
+        "com.raysmond.blog.support.web.SyntaxHighlightService"
+    ],
+    "1": [
+        "com.raysmond.blog.controllers.PostController",
+        "com.raysmond.blog.controllers.TagController",
+        "com.raysmond.blog.services.TagService",
+        "com.raysmond.blog.repositories.TagRepository",
+        "tags-res",
+        "com.raysmond.blog.support.web.MarkdownService",
+        "com.raysmond.blog.support.web.impl.FlexmarkMarkdownService",
+        "com.raysmond.blog.support.web.impl.PegDownMarkdownService"
+    ]
+}

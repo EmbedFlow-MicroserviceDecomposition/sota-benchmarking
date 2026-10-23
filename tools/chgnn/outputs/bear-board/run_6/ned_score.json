@@ -1,0 +1,24 @@
+{
+    "metric": "NED",
+    "score": 0.6190476190476191,
+    "score_relative": 1.0,
+    "score_triplebound": 2.0,
+    "bounds": {
+        "lo": 5,
+        "hi": 20,
+        "eps": 0.5
+    },
+    "microservice_scores": {
+        "microservice_1": 1.0,
+        "microservice_2": 1.0,
+        "microservice_3": 0.0,
+        "microservice_4": 0.0
+    },
+    "coverage": {
+        "classes": 34,
+        "assigned": 21,
+        "unassigned": 13,
+        "unmatched_ids": 0,
+        "conflicts": 0
+    }
+}

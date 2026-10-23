@@ -1,0 +1,43 @@
+{
+    "tool": "CHGNN",
+    "microservices": {
+        "microservice_1": [
+            "com.raysmond.blog.controllers.PostController",
+            "com.raysmond.blog.error.NotFoundException",
+            "com.raysmond.blog.models.BaseModel",
+            "com.raysmond.blog.models.Post",
+            "com.raysmond.blog.models.Setting",
+            "com.raysmond.blog.models.Tag",
+            "com.raysmond.blog.models.User",
+            "com.raysmond.blog.models.support.PostFormat",
+            "com.raysmond.blog.models.support.PostStatus",
+            "com.raysmond.blog.models.support.PostType",
+            "com.raysmond.blog.repositories.PostRepository",
+            "com.raysmond.blog.services.PostService",
+            "com.raysmond.blog.support.web.MarkdownService",
+            "com.raysmond.blog.support.web.PygmentsService",
+            "com.raysmond.blog.support.web.SyntaxHighlightService",
+            "com.raysmond.blog.support.web.impl.FlexmarkMarkdownService",
+            "com.raysmond.blog.support.web.impl.PegDownMarkdownService"
+        ],
+        "microservice_2": [
+            "com.raysmond.blog.controllers.HomeController",
+            "com.raysmond.blog.controllers.TagController",
+            "com.raysmond.blog.repositories.TagRepository",
+            "com.raysmond.blog.services.AppSetting",
+            "com.raysmond.blog.services.CacheSettingService",
+            "com.raysmond.blog.services.TagService"
+        ],
+        "microservice_3": [
+            "com.raysmond.blog.admin.controllers.AdminController",
+            "com.raysmond.blog.admin.controllers.PostController",
+            "com.raysmond.blog.admin.controllers.UserController",
+            "com.raysmond.blog.repositories.UserRepository",
+            "com.raysmond.blog.services.UserService",
+            "com.raysmond.blog.utils.DTOUtil"
+        ],
+        "microservice_4": [
+            "com.raysmond.blog.services.SettingService"
+        ]
+    }
+}

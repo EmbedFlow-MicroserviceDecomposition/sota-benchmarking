@@ -1,0 +1,15 @@
+{
+    "tool": "chgnn",
+    "dataset": "javafx-pos",
+    "runs_requested": 1,
+    "runs_ok": 0,
+    "units": 0,
+    "failures": [
+        {
+            "run": 1,
+            "error": "no CHGNN config for dataset 'javafx-pos' (tools/chgnn/configs/javafx-pos/): CHGNN needs a DB map and seeds; cell is N/A"
+        }
+    ],
+    "metrics": {},
+    "variants": {}
+}

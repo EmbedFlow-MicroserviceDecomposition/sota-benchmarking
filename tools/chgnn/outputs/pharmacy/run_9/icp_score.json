@@ -1,0 +1,17 @@
+{
+    "metric": "ICP",
+    "score": 0.27058823529411763,
+    "microservice_scores": {
+        "microservice_1": 0.3076923076923077,
+        "microservice_2": 0.6923076923076923,
+        "microservice_3": 0.23809523809523808,
+        "microservice_4": 0.04
+    },
+    "coverage": {
+        "classes": 59,
+        "assigned": 34,
+        "unassigned": 25,
+        "unmatched_ids": 0,
+        "conflicts": 0
+    }
+}

@@ -1,0 +1,4 @@
+{
+    "error": "no CHGNN config for dataset 'genapp' (tools/chgnn/configs/genapp/): CHGNN needs a DB map and seeds; cell is N/A",
+    "tool": "CHGNN"
+}

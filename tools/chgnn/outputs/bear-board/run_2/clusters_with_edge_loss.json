@@ -1,0 +1,36 @@
+{
+    "3": [
+        "com.rokin.baylorboard.controller.AwardController",
+        "com.rokin.baylorboard.service.AwardService",
+        "com.rokin.baylorboard.repository.AwardRepository",
+        "awards-res"
+    ],
+    "2": [
+        "com.rokin.baylorboard.controller.EventController",
+        "com.rokin.baylorboard.service.EventService",
+        "com.rokin.baylorboard.repository.EventRepository",
+        "events-res"
+    ],
+    "0": [
+        "com.rokin.baylorboard.controller.GreetingController",
+        "com.rokin.baylorboard.service.TweetService",
+        "com.rokin.baylorboard.domain.MessageBean",
+        "com.rokin.baylorboard.controller.TweetController",
+        "com.rokin.baylorboard.repository.TweetRepository",
+        "tweets-res"
+    ],
+    "1": [
+        "com.rokin.baylorboard.controller.UserController",
+        "com.rokin.baylorboard.service.UserService",
+        "com.rokin.baylorboard.controller.WhitelistUserController",
+        "com.rokin.baylorboard.service.WhitelistUserService",
+        "com.rokin.baylorboard.exceptions.BadRequestException",
+        "com.rokin.baylorboard.repository.RoleRepository",
+        "com.rokin.baylorboard.repository.UserRepository",
+        "users-res",
+        "com.rokin.baylorboard.repository.WhitelistUserRepository",
+        "whitelist_users-res",
+        "com.rokin.baylorboard.utils.CustomBeanUtils",
+        "com.rokin.baylorboard.utils.PasswordUtils"
+    ]
+}

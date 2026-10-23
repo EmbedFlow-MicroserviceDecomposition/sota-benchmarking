@@ -1,0 +1,32 @@
+{
+    "metric": "NED",
+    "score": 0.16230366492146597,
+    "score_relative": 0.28272251308900526,
+    "score_triplebound": 26.666666666666668,
+    "bounds": {
+        "lo": 5,
+        "hi": 20,
+        "eps": 0.5
+    },
+    "microservice_scores": {
+        "microservice_1": 1.0,
+        "microservice_2": 0.0,
+        "microservice_3": 0.0,
+        "microservice_4": 1.0,
+        "microservice_5": 0.0,
+        "microservice_6": 1.0,
+        "microservice_7": 0.0,
+        "microservice_8": 1.0,
+        "microservice_9": 1.0,
+        "microservice_10": 0.0,
+        "microservice_11": 0.0,
+        "microservice_12": 1.0
+    },
+    "coverage": {
+        "classes": 534,
+        "assigned": 382,
+        "unassigned": 152,
+        "unmatched_ids": 0,
+        "conflicts": 0
+    }
+}
