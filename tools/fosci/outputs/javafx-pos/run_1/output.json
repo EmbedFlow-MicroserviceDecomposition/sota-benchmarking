@@ -1,0 +1,4 @@
+{
+    "error": "no execution trace for dataset 'javafx-pos' (datasets/javafx-pos/fosci_trace.csv.gz or the FoSCI authors' traces): FoSCI is trace-based; cell is N/A",
+    "tool": "FoSCI"
+}

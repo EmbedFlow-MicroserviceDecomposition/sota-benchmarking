@@ -1,0 +1,9 @@
+{
+    "traces": 33,
+    "reduced": 33,
+    "classes": 59,
+    "atoms": 26,
+    "n_services": 8,
+    "seed": 394047265,
+    "trace": "springblog.txt"
+}

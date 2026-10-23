@@ -1,0 +1,4 @@
+{
+    "error": "no execution trace for dataset 'genapp' (datasets/genapp/fosci_trace.csv.gz or the FoSCI authors' traces): FoSCI is trace-based; cell is N/A",
+    "tool": "FoSCI"
+}

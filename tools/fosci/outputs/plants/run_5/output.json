@@ -1,0 +1,4 @@
+{
+    "error": "only 1 functional atoms after trace reduction (diff=3): too few to partition into services; cell is N/A",
+    "tool": "FoSCI"
+}

@@ -1,0 +1,65 @@
+{
+    "tool": "FoSCI",
+    "microservices": {
+        "microservice_1": [
+            "com.policynepal.autocare.comment.controller.CommentController",
+            "com.policynepal.autocare.comment.model.Comment",
+            "com.policynepal.autocare.comment.model.Comment_Accessor_tswjk6",
+            "com.policynepal.autocare.comment.service.CommentService",
+            "com.policynepal.autocare.utils.AuthenticationUtils"
+        ],
+        "microservice_2": [
+            "com.policynepal.autocare.vehicle.model.DeletedVehicle",
+            "com.policynepal.autocare.vehicle.model.DeletedVehicle_Accessor_le7ztl"
+        ],
+        "microservice_3": [
+            "com.policynepal.autocare.comment.dto.CommentDto",
+            "com.policynepal.autocare.comment.model.Comment_Instantiator_tswjk6",
+            "com.policynepal.autocare.comment.model.DeletedComment",
+            "com.policynepal.autocare.comment.model.DeletedComment_Accessor_l1ubi3"
+        ],
+        "microservice_4": [
+            "com.policynepal.autocare.security.CorsFilter",
+            "com.policynepal.autocare.user.model.User",
+            "com.policynepal.autocare.user.model.User_Accessor_s6t5zn",
+            "com.policynepal.autocare.user.model.User_Instantiator_s6t5zn",
+            "com.policynepal.autocare.user.service.UserService"
+        ],
+        "microservice_5": [
+            "com.policynepal.autocare.vehicle.controller.VehicleController",
+            "com.policynepal.autocare.vehicle.model.Vehicle",
+            "com.policynepal.autocare.vehicle.model.Vehicle_Accessor_u1mq4z",
+            "com.policynepal.autocare.vehicle.model.Vehicle_Instantiator_u1mq4z",
+            "com.policynepal.autocare.vehicle.service.VehicleService"
+        ],
+        "microservice_6": [
+            "com.policynepal.autocare.common.dto.PageDto",
+            "com.policynepal.autocare.vehicle.dto.SearchVehiclesDto",
+            "com.policynepal.autocare.vehicle.dto.VehicleDto"
+        ],
+        "microservice_7": [
+            "com.policynepal.autocare.user.controller.UserController",
+            "com.policynepal.autocare.user.dto.UserDto"
+        ],
+        "microservice_8": [
+            "com.policynepal.autocare.AutocareApplication",
+            "com.policynepal.autocare.aws.configuration.AwsConfiguration",
+            "com.policynepal.autocare.aws.model.AwsCredential",
+            "com.policynepal.autocare.aws.model.AwsCredential$S3",
+            "com.policynepal.autocare.exceptionhandler.GlobalExceptionHandler",
+            "com.policynepal.autocare.security.AuthorizationServerConfiguration",
+            "com.policynepal.autocare.security.CustomTokenEnhancer",
+            "com.policynepal.autocare.security.CustomUserDetailsService",
+            "com.policynepal.autocare.security.ResourceServerConfiguration",
+            "com.policynepal.autocare.security.SecurityConfiguration",
+            "com.policynepal.autocare.security.WebConfiguration",
+            "com.policynepal.autocare.swagger.SwaggerConfiguration",
+            "com.policynepal.autocare.system.controller.SystemController",
+            "com.policynepal.autocare.user.model.Organization",
+            "com.policynepal.autocare.user.model.Organization_Accessor_1xi16y",
+            "com.policynepal.autocare.user.model.User$Builder",
+            "com.policynepal.autocare.utils.CustomBeanUtils",
+            "com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl"
+        ]
+    }
+}

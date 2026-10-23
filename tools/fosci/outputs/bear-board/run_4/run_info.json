@@ -1,0 +1,9 @@
+{
+    "traces": 17,
+    "reduced": 16,
+    "classes": 32,
+    "atoms": 5,
+    "n_services": 3,
+    "seed": 940035425,
+    "trace": "fosci_trace.csv.gz"
+}

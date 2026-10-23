@@ -1,0 +1,9 @@
+{
+    "traces": 323,
+    "reduced": 166,
+    "classes": 194,
+    "atoms": 134,
+    "n_services": 9,
+    "seed": 805739556,
+    "trace": "jforum.txt"
+}

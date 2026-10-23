@@ -1,0 +1,46 @@
+{
+    "tool": "FoSCI",
+    "microservices": {
+        "microservice_1": [
+            "com.acmeair.config.LoaderREST",
+            "com.acmeair.loader.Loader"
+        ],
+        "microservice_2": [
+            "com.acmeair.entities.Customer$MemberShipStatus",
+            "com.acmeair.entities.Customer$PhoneType",
+            "com.acmeair.loader.CustomerLoader",
+            "com.acmeair.loader.FlightLoader",
+            "com.acmeair.morphia.BigDecimalConverter",
+            "com.acmeair.morphia.entities.AirportCodeMappingImpl",
+            "com.acmeair.morphia.entities.CustomerAddressImpl",
+            "com.acmeair.morphia.entities.CustomerImpl",
+            "com.acmeair.morphia.entities.FlightImpl",
+            "com.acmeair.web.AcmeAirApp"
+        ],
+        "microservice_3": [
+            "com.acmeair.web.CustomerREST",
+            "com.acmeair.web.dto.AddressInfo",
+            "com.acmeair.web.dto.CustomerInfo"
+        ],
+        "microservice_4": [
+            "com.acmeair.morphia.entities.BookingImpl",
+            "com.acmeair.morphia.entities.FlightSegmentImpl",
+            "com.acmeair.morphia.services.BookingServiceImpl",
+            "com.acmeair.service.FlightService",
+            "com.acmeair.web.BookingsREST",
+            "com.acmeair.web.FlightsREST",
+            "com.acmeair.web.LoginREST",
+            "com.acmeair.web.dto.TripFlightOptions",
+            "com.acmeair.web.dto.TripLegInfo"
+        ],
+        "microservice_5": [
+            "com.acmeair.morphia.entities.CustomerSessionImpl",
+            "com.acmeair.morphia.services.CustomerServiceImpl",
+            "com.acmeair.service.CustomerService",
+            "com.acmeair.service.KeyGenerator",
+            "com.acmeair.service.ServiceLocator",
+            "com.acmeair.service.ServiceLocator$1",
+            "com.acmeair.web.RESTCookieSessionFilter"
+        ]
+    }
+}

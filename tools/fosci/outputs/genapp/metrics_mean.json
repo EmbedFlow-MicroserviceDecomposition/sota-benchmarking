@@ -1,0 +1,15 @@
+{
+    "tool": "fosci",
+    "dataset": "genapp",
+    "runs_requested": 1,
+    "runs_ok": 0,
+    "units": 0,
+    "failures": [
+        {
+            "run": 1,
+            "error": "no execution trace for dataset 'genapp' (datasets/genapp/fosci_trace.csv.gz or the FoSCI authors' traces): FoSCI is trace-based; cell is N/A"
+        }
+    ],
+    "metrics": {},
+    "variants": {}
+}

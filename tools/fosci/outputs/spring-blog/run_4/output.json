@@ -1,0 +1,80 @@
+{
+    "tool": "FoSCI",
+    "microservices": {
+        "microservice_1": [
+            "com.raysmond.blog.admin.controllers.AdminController",
+            "com.raysmond.blog.admin.controllers.NotificatorController",
+            "com.raysmond.blog.admin.controllers.StatisticsController",
+            "com.raysmond.blog.controllers.HomeController",
+            "com.raysmond.blog.controllers.StoredFileController",
+            "com.raysmond.blog.controllers.SympathyController",
+            "com.raysmond.blog.forms",
+            "com.raysmond.blog.forms.LikeForm",
+            "com.raysmond.blog.forms.SettingsForm",
+            "com.raysmond.blog.models.Like",
+            "com.raysmond.blog.models.User",
+            "com.raysmond.blog.models.dto.PostAnnouncementDTO",
+            "com.raysmond.blog.models.dto.PostsIdListDTO",
+            "com.raysmond.blog.models.dto.VisitsStatsChartDTO",
+            "com.raysmond.blog.notificators.Notificator",
+            "com.raysmond.blog.notificators.telegram.TelegramBot",
+            "com.raysmond.blog.notificators.telegram.TelegramBotManager",
+            "com.raysmond.blog.repositories.LikeRepository",
+            "com.raysmond.blog.seo.controllers.SitemapController",
+            "com.raysmond.blog.seo.controllers.SitemapController.postService",
+            "com.raysmond.blog.services.LikeService",
+            "com.raysmond.blog.services.RequestProcessorService",
+            "com.raysmond.blog.services.SeoService",
+            "com.raysmond.blog.services.StatisticsService",
+            "com.raysmond.blog.services.TelegramBotSettings",
+            "com.raysmond.blog.services.VisitService",
+            "com.raysmond.blog.services.requestProcessorService",
+            "com.raysmond.blog.services.visitService",
+            "com.raysmond.blog.utils.DTOUtil",
+            "com.raysmond.blog.utils.PaginatorUtil"
+        ],
+        "microservice_2": [
+            "com.raysmond.blog.admin.controllers.SeoRobotAgentController",
+            "com.raysmond.blog.models.SeoRobotAgent",
+            "com.raysmond.blog.repositories.SeoRobotAgentRepository"
+        ],
+        "microservice_3": [
+            "com.raysmond.blog.admin.controllers.UserController",
+            "com.raysmond.blog.forms.UserForm",
+            "com.raysmond.blog.repositories.UserRepository",
+            "com.raysmond.blog.services.UserService"
+        ],
+        "microservice_4": [
+            "com.raysmond.blog.admin.controllers.PostController",
+            "com.raysmond.blog.forms.PostForm",
+            "com.raysmond.blog.models.support.OgLocale",
+            "com.raysmond.blog.models.support.OgType",
+            "com.raysmond.blog.models.support.PostFormat",
+            "com.raysmond.blog.models.support.PostStatus"
+        ],
+        "microservice_5": [
+            "com.raysmond.blog.controllers.TagController",
+            "com.raysmond.blog.models.SeoPostData",
+            "com.raysmond.blog.repositories.SeoPostDataRepository",
+            "com.raysmond.blog.repositories.TagRepository",
+            "com.raysmond.blog.services.TagService",
+            "com.raysmond.blog.support.web.MarkdownService"
+        ],
+        "microservice_6": [
+            "com.raysmond.blog.controllers.PostController",
+            "com.raysmond.blog.models.Post",
+            "com.raysmond.blog.repositories.PostRepository",
+            "com.raysmond.blog.services.PostService"
+        ],
+        "microservice_7": [
+            "com.raysmond.blog.admin.controllers.StoredFileController",
+            "com.raysmond.blog.models.StoredFile",
+            "com.raysmond.blog.repositories.StoredFileRepository",
+            "com.raysmond.blog.services.FileStorageService"
+        ],
+        "microservice_8": [
+            "com.raysmond.blog.services.AppSetting",
+            "com.raysmond.blog.services.SettingService"
+        ]
+    }
+}

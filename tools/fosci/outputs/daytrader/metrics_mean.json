@@ -1,0 +1,31 @@
+{
+    "tool": "fosci",
+    "dataset": "daytrader",
+    "runs_requested": 5,
+    "runs_ok": 0,
+    "units": 0,
+    "failures": [
+        {
+            "run": 1,
+            "error": "only 1 functional atoms after trace reduction (diff=3): too few to partition into services; cell is N/A"
+        },
+        {
+            "run": 2,
+            "error": "only 1 functional atoms after trace reduction (diff=3): too few to partition into services; cell is N/A"
+        },
+        {
+            "run": 3,
+            "error": "only 1 functional atoms after trace reduction (diff=3): too few to partition into services; cell is N/A"
+        },
+        {
+            "run": 4,
+            "error": "only 1 functional atoms after trace reduction (diff=3): too few to partition into services; cell is N/A"
+        },
+        {
+            "run": 5,
+            "error": "only 1 functional atoms after trace reduction (diff=3): too few to partition into services; cell is N/A"
+        }
+    ],
+    "metrics": {},
+    "variants": {}
+}

@@ -1,0 +1,69 @@
+{
+    "tool": "FoSCI",
+    "microservices": {
+        "microservice_1": [
+            "com.upachar.web.order.controller.OrderController",
+            "com.upachar.web.order.service.OrderService"
+        ],
+        "microservice_2": [
+            "com.upachar.web.exceptionhandler.GlobalException"
+        ],
+        "microservice_3": [
+            "com.upachar.web.common.dto.PageDto"
+        ],
+        "microservice_4": [
+            "com.upachar.web.exceptionhandler.ErrorResponse",
+            "com.upachar.web.exceptionhandler.GlobalExceptionHandler"
+        ],
+        "microservice_5": [
+            "com.upachar.web.user.controller.UserController",
+            "com.upachar.web.user.domain.User",
+            "com.upachar.web.user.domain.UserRole",
+            "com.upachar.web.user.service.UserService"
+        ],
+        "microservice_6": [
+            "com.upachar.web.common.utils.CustomBeanUtils",
+            "com.upachar.web.user.domain.User_Accessor_n55yq0",
+            "com.upachar.web.user.dto.UserSignupDto"
+        ],
+        "microservice_7": [
+            "com.upachar.web.config.security.CorsFilter",
+            "com.upachar.web.user.dto.UserValidateDto"
+        ],
+        "microservice_8": [
+            "com.upachar.web.drug.dto.DosageFormDto",
+            "com.upachar.web.user.dto.UserUpdateDto"
+        ],
+        "microservice_9": [
+            "com.upachar.web.drug.controller.DrugController",
+            "com.upachar.web.drug.service.DrugService"
+        ],
+        "microservice_10": [
+            "com.upachar.web.UpacharWebApplication",
+            "com.upachar.web.config.security.AuthorizationServerConfiguration",
+            "com.upachar.web.config.security.CustomTokenEnhancer",
+            "com.upachar.web.config.security.CustomUserDetailsService",
+            "com.upachar.web.config.security.ResourceServerConfiguration",
+            "com.upachar.web.config.security.SecurityConfiguration",
+            "com.upachar.web.config.swagger.SwaggerConfiguration",
+            "com.upachar.web.data.controller.DataController",
+            "com.upachar.web.data.service.DataService",
+            "com.upachar.web.drug.controller.CategoryController",
+            "com.upachar.web.drug.controller.DosageFormController",
+            "com.upachar.web.drug.controller.SubCategoryController",
+            "com.upachar.web.drug.domain.Category",
+            "com.upachar.web.drug.domain.DosageForm",
+            "com.upachar.web.drug.domain.Drug",
+            "com.upachar.web.drug.domain.SubCategory",
+            "com.upachar.web.drug.service.CategoryService",
+            "com.upachar.web.drug.service.DosageFormService",
+            "com.upachar.web.drug.service.SubCategoryService",
+            "com.upachar.web.order.domain.DrugQuantity",
+            "com.upachar.web.order.domain.Order",
+            "com.upachar.web.order.domain.OrderPrescription",
+            "com.upachar.web.order.enums.OrderStatus",
+            "com.upachar.web.user.domain.User$UserBuilder",
+            "com.upachar.web.user.enums.Role"
+        ]
+    }
+}

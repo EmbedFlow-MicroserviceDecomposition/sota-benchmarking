@@ -1,0 +1,9 @@
+{
+    "traces": 511,
+    "reduced": 263,
+    "classes": 368,
+    "atoms": 228,
+    "n_services": 16,
+    "seed": 1735749108,
+    "trace": "roller.txt"
+}

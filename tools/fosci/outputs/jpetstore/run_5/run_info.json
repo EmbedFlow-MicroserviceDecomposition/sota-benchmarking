@@ -1,0 +1,9 @@
+{
+    "traces": 47,
+    "reduced": 21,
+    "classes": 16,
+    "atoms": 12,
+    "n_services": 10,
+    "seed": 342795239,
+    "trace": "jpetstore.txt"
+}
