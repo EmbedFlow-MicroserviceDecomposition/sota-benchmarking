@@ -29,3 +29,11 @@ CoGCN reads `struct.csv` and `content.csv` (headerless), one row per class:
 
 Output: `output.json` (class FQNs from the k-means membership `train.py` pickles), `membership.json`, `classes.txt`
 (row order), `run_info.json`, `train.log`. Datasets with no Java classes (genapp) get the error-form `output.json`.
+
+## Reading the results
+
+With the stock `--k 6` and the reconstructed content features, CoGCN puts most classes in one cluster on the larger apps
+(Roller: 452 of 534 classes in one service, Autocare: 42 of 48, Spring Blog: 37 of 47). Its ICP there is near zero only because
+almost nothing crosses a boundary, and NED (0.023, 0.104, 0.064) shows the imbalance. Do not read those ICP values as good
+decompositions; compare them with NED in the same row. The content features are this repository's reconstruction (see above), so
+this may not reflect CoGCN's behaviour on its authors' features.

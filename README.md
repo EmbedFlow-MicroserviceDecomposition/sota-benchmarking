@@ -186,7 +186,9 @@ fyp-sota/
 │   └── <metric>/
 │       ├── README.md
 │       └── metric.py
-├── scripts/run_sweep.py             # repeated runs + mean metrics per cell
+├── scripts/
+│   ├── benchmark.py                 # central CLI: `run` every cell, `report` the tables
+│   └── run_sweep.py                 # one cell: repeated runs + mean metrics
 ├── tests/                           # see "Tests"
 └── README.md
 ```
@@ -244,6 +246,27 @@ uv run metric.py \
   --dataset-path ../../datasets/acme-air \
   --output-path ../../tools/magnet/outputs/acme-air
 ```
+
+## Running the whole benchmark
+
+`scripts/benchmark.py` is the central CLI. Prerequisites: Docker running, JDK 17 + Maven (the extractor builds on first use), `uv`,
+`git submodule update --init --recursive`, the FoSCI LFS traces for Roller and JForum
+(`cd tools/fosci/FoSCI && git lfs pull --include="traces/jforum.txt,traces/roller.txt"`), and CARGO's Doop facts in
+`tools/cargo/doop-data/` (see `tools/cargo/README.md`).
+
+```bash
+uv run scripts/benchmark.py run --dry-run          # the plan: which cells exist, which would run
+uv run scripts/benchmark.py run                    # every missing cell with the paper run counts (many hours)
+uv run scripts/benchmark.py run --tools chgnn,fosci --datasets jpetstore,bear-board --profile quick   # one run per cell
+uv run scripts/benchmark.py report                 # SM, ICP, IFN, NED, BCP, CHM, CHD: one table per metric, datasets x tools
+uv run scripts/benchmark.py report --metrics SM,NED --coverage --format markdown
+```
+
+`run` builds a missing `dataset.json`, skips cells that already have a `metrics_mean.json` (`--force` redoes them), and runs the
+cells one after another. `report` only reads files, so it can run while `run` is still going; it also shows the older
+single-run cells (Triplet-Guided CHGNN, MAGNET, Mono2Micro) if they have outputs. `N/A` marks a cell that does not apply to a tool,
+`FAIL` a cell where every run failed. The paper profile uses: CHGNN 10 runs, CoGCN 5, AE-K 3, VAE-C 3 (5 on bear-board, pharmacy,
+autocare), FoSCI 5 (1 on Roller), CARGO 1 invocation (its 30-entry K x seed grid runs inside).
 
 ## Tests
 
