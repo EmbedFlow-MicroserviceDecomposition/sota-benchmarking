@@ -226,8 +226,8 @@ GIT_LFS_SKIP_SMUDGE=1 git submodule update --init   # not --recursive, see below
 
 Do not use `--recursive`: CARGO's upstream repository contains a broken nested submodule entry
 (`RQ2/daytrader_apps/daytrader_mono2micro`, no URL), so a recursive update fails on it, and none of our submodules needs its nested
-ones. `GIT_LFS_SKIP_SMUDGE=1` keeps the FoSCI submodule from downloading about 1 GB of traces; pull only the ones you need
-(`cd tools/fosci/FoSCI && git lfs pull --include="traces/jforum.txt,traces/roller.txt"`). The submodule URLs are SSH
+ones. `GIT_LFS_SKIP_SMUDGE=1` keeps the FoSCI submodule from downloading about 1 GB of traces; pull the four the authors' FoSCI cells need
+(`cd tools/fosci/FoSCI && git lfs pull --include="traces/jpetstore.txt,traces/springblog.txt,traces/jforum.txt,traces/roller.txt"`, about 620 MB; needs `git-lfs` installed). The submodule URLs are SSH
 (`git@github.com:...`), so the machine needs an SSH key registered with GitHub.
 
 ### 2. End-to-End Pipeline Execution
@@ -257,8 +257,8 @@ uv run metric.py \
 ## Running the whole benchmark
 
 `scripts/benchmark.py` is the central CLI. Prerequisites: Docker running, JDK 17 + Maven (the extractor builds on first use), `uv`,
-`git submodule update --init` (without `--recursive`, see step 1), the FoSCI LFS traces for Roller and JForum
-(`cd tools/fosci/FoSCI && git lfs pull --include="traces/jforum.txt,traces/roller.txt"`), and CARGO's Doop facts in
+`git submodule update --init` (without `--recursive`, see step 1), the four FoSCI LFS traces (JPetStore, Spring Blog, JForum, Roller)
+(`cd tools/fosci/FoSCI && git lfs pull --include="traces/jpetstore.txt,traces/springblog.txt,traces/jforum.txt,traces/roller.txt"`), and CARGO's Doop facts in
 `tools/cargo/doop-data/` (see `tools/cargo/README.md`).
 
 ```bash

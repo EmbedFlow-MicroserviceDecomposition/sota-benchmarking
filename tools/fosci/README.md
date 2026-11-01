@@ -16,8 +16,9 @@ uv run ../../metrics/compute_all.py --dataset-path ../../datasets/jpetstore --ou
 ## Pipeline
 
 1. **Trace**: `datasets/<dataset>/fosci_trace.csv.gz` if present, else the authors' trace (`jpetstore`, `spring-blog`, `jforum`,
-   `apache-roller`). The authors' files are git-lfs: `cd tools/fosci/FoSCI && git lfs pull --include=traces/<file>` (jforum 129 MB,
-   roller 489 MB; the submodule is checked out with pointer files).
+   `apache-roller`). All four are git-lfs files and the submodule is checked out with pointer files, so a fresh clone must fetch them
+   (a pointer file makes the cell fail, not N/A): `cd tools/fosci/FoSCI && git lfs pull --include="traces/jpetstore.txt,traces/springblog.txt,traces/jforum.txt,traces/roller.txt"` (jpetstore 0.3 MB, springblog 0.1 MB, jforum 129 MB,
+   roller 489 MB).
 2. `fosci_preprocess.py`: trace reduction (Algorithm 1) -> `workflow_reduced.csv`; `calldep.csv` (directed class call counts) and
    `concerndep.csv` (Jaccard of camelCase name terms), which the release does not ship a script for.
 3. fosci-wrap's own `genTestCaseFv.py` -> `groupclassbytrace.py` -> `function_logic_identify.py` (diff=3): Functional Atoms.
