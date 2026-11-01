@@ -11,10 +11,10 @@ tool = load_tool("fosci")
 HEADER = "traceID,order,structtype,method1,method2,m1_para,m2_para,class1,class2,m1_return,m2_return"
 
 
-def make_dataset(tmp_path, name="demo", trace_rows=None):
+def make_dataset(tmp_path, name="demo", trace_rows=None, classes=("p.A",)):
     ds = tmp_path / name
     ds.mkdir()
-    (ds / "dataset.json").write_text(json.dumps({"classes": [], "methods": {}, "edges": []}))
+    (ds / "dataset.json").write_text(json.dumps({"classes": list(classes), "methods": {}, "edges": []}))
     if trace_rows is not None:
         with gzip.open(ds / "fosci_trace.csv.gz", "wt") as f:
             f.write(HEADER + "\n" + "\n".join(trace_rows) + "\n")
@@ -57,21 +57,33 @@ def test_explicit_n_wins_but_must_stay_below_the_atom_count():
         tool.choose_n("jpetstore", 12, override=12)
 
 
-def test_dataset_without_any_trace_is_an_error_output(tmp_path):
+def test_dataset_without_its_own_trace_is_an_error_output_that_is_retried_not_na(tmp_path):
     ds, out = make_dataset(tmp_path), tmp_path / "out"
     assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
     data = json.loads((out / "output.json").read_text())
     assert data["tool"] == "FoSCI" and "no execution trace" in data["error"] and "microservices" not in data
+    assert "datasets/demo/fosci_trace.csv.gz" in data["error"]
+    # the trace is an input still to be recorded, not an intrinsic N/A: `benchmark.py run` must try the cell again
+    assert "N/A" not in data["error"]
 
 
-def test_authors_trace_that_is_still_an_lfs_pointer_says_how_to_fetch_it(tmp_path, monkeypatch):
-    traces = tmp_path / "FoSCI" / "traces"
-    traces.mkdir(parents=True)
-    (traces / "jpetstore.txt").write_text("version https://git-lfs.github.com/spec/v1\noid sha256:abc\nsize 10\n")
-    monkeypatch.setattr(tool, "AUTHORS_TRACES", str(traces))
+def test_a_dataset_with_no_java_classes_is_a_deliberate_na(tmp_path):
+    ds, out = make_dataset(tmp_path, name="genapp", classes=()), tmp_path / "out"
+    assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
+    error = json.loads((out / "output.json").read_text())["error"]
+    assert "no Java classes" in error and "N/A" in error
+
+
+def test_the_fosci_authors_published_traces_are_never_used(tmp_path, monkeypatch):
+    """Only datasets/<name>/fosci_trace.csv.gz is an input, even if a trace by the authors exists for that dataset name."""
+    authors = tmp_path / "FoSCI" / "traces"
+    authors.mkdir(parents=True)
+    (authors / "jpetstore.txt").write_text(HEADER + "\n" + "\n".join(
+        f"{t},0,null,p.A.m,p.B.n,,,p.A,p.B,," for t in range(5)) + "\n")
+    monkeypatch.setattr(tool, "AUTHORS_TRACES", str(authors), raising=False)    # the old code path would find this file
     ds, out = make_dataset(tmp_path, name="jpetstore"), tmp_path / "out"
     assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
-    assert "git lfs pull" in json.loads((out / "output.json").read_text())["error"]
+    assert "no execution trace" in json.loads((out / "output.json").read_text())["error"]
 
 
 def test_degenerate_trace_with_too_few_atoms_is_an_error_output(tmp_path):

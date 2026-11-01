@@ -18,10 +18,6 @@ sys.path.insert(0, HERE)
 import fosci_preprocess  # noqa: E402
 
 TOOL = "FoSCI"
-AUTHORS_TRACES = os.path.join(HERE, "FoSCI", "traces")
-# execution traces published by the FoSCI authors (git-lfs files in the FoSCI repo), by dataset
-AUTHOR_FILES = {"jpetstore": "jpetstore.txt", "spring-blog": "springblog.txt",
-                "jforum": "jforum.txt", "apache-roller": "roller.txt"}
 STOCK_N = 10  # fosci-wrap's PARTITION_K
 # per-subject service counts: midpoints of the paper's ranges (Section 4.6: SpringBlog 6-10, JForum 7-11, Roller 14-18),
 # and autocare, where N=10 stalled against its 12 atoms
@@ -56,21 +52,14 @@ def choose_n(name, atoms, override=None):
 
 
 def find_trace(name, dataset_path):
-    """Raw trace file for a dataset: datasets/<name>/fosci_trace.csv.gz, else the authors' trace."""
+    """The dataset's own execution trace, datasets/<name>/fosci_trace.csv.gz. It is the only input: traces published by the
+    FoSCI authors are not used, because they were recorded on other builds of the apps."""
     own = os.path.join(dataset_path, "fosci_trace.csv.gz")
     if os.path.exists(own):
         return own
-    authors = AUTHOR_FILES.get(name)
-    if authors:
-        path = os.path.join(AUTHORS_TRACES, authors)
-        if os.path.exists(path):
-            with open(path, "rb") as f:
-                if f.read(40).startswith(b"version https://git-lfs"):
-                    raise TraceError(f"the authors' trace {path} is a git-lfs pointer: run "
-                                     f"`cd {os.path.dirname(AUTHORS_TRACES)} && git lfs pull --include=traces/{authors}`")
-            return path
-    raise TraceError(f"no execution trace for dataset '{name}' (datasets/{name}/fosci_trace.csv.gz or the FoSCI "
-                     "authors' traces): FoSCI is trace-based; cell is N/A")
+    # deliberately not worded "N/A": a missing trace is an input still to be recorded, and `benchmark.py run` retries such cells
+    raise TraceError(f"no execution trace for dataset '{name}': record one by running the app's functional tests under "
+                     f"tools/fosci/tracer-agent and save it as datasets/{name}/fosci_trace.csv.gz (see tools/fosci/README.md)")
 
 
 def main(argv=None):
@@ -88,6 +77,10 @@ def main(argv=None):
 
     if not os.path.exists(os.path.join(ds_path, "dataset.json")):
         return write_error(out_path, f"dataset.json not found in {ds_path}")
+    with open(os.path.join(ds_path, "dataset.json"), encoding="utf-8") as f:
+        dataset = json.load(f)
+    if not dataset.get("classes") and not dataset.get("methods"):
+        return write_error(out_path, f"dataset '{name}' has no Java classes in dataset.json: cell is N/A")
     try:
         trace = find_trace(name, ds_path)
     except TraceError as e:

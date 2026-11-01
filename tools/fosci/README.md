@@ -1,8 +1,8 @@
 # FoSCI
 
 Execution-trace based service candidate identification: Jin et al., *Service Candidate Identification from Monolithic Systems
-Based on Execution Traces*, TSE 2019 ([wj86/FoSCI](https://github.com/wj86/FoSCI), submodule `FoSCI/`, pinned to `d293133`, holds the
-authors' traces as git-lfs files). The optimiser is the authors' **fosci-wrap** (v2 release), vendored unmodified in
+Based on Execution Traces*, TSE 2019 ([wj86/FoSCI](https://github.com/wj86/FoSCI), submodule `FoSCI/`, pinned to `d293133`). The submodule is kept for the authors'
+documentation, test scenarios and JMeter test plans; the execution traces in it are **not used** (see Traces). The optimiser is the authors' **fosci-wrap** (v2 release), vendored unmodified in
 `fosci-wrap/` (stdlib-only Python; the release is not a git repository).
 
 ## Run
@@ -15,10 +15,8 @@ uv run ../../metrics/compute_all.py --dataset-path ../../datasets/jpetstore --ou
 
 ## Pipeline
 
-1. **Trace**: `datasets/<dataset>/fosci_trace.csv.gz` if present, else the authors' trace (`jpetstore`, `spring-blog`, `jforum`,
-   `apache-roller`). All four are git-lfs files and the submodule is checked out with pointer files, so a fresh clone must fetch them
-   (a pointer file makes the cell fail, not N/A): `cd tools/fosci/FoSCI && git lfs pull --include="traces/jpetstore.txt,traces/springblog.txt,traces/jforum.txt,traces/roller.txt"` (jpetstore 0.3 MB, springblog 0.1 MB, jforum 129 MB,
-   roller 489 MB).
+1. **Trace**: `datasets/<dataset>/fosci_trace.csv.gz`, the only input. Without it the cell fails with "no execution trace" (not
+   N/A), and `benchmark.py run` tries it again once the file exists.
 2. `fosci_preprocess.py`: trace reduction (Algorithm 1) -> `workflow_reduced.csv`; `calldep.csv` (directed class call counts) and
    `concerndep.csv` (Jaccard of camelCase name terms), which the release does not ship a script for.
 3. fosci-wrap's own `genTestCaseFv.py` -> `groupclassbytrace.py` -> `function_logic_identify.py` (diff=3): Functional Atoms.
@@ -38,15 +36,18 @@ app's own DB seeding bug leaves an empty catalogue). Runs are unseeded unless `-
 
 ## Traces
 
-| Dataset | Trace |
-| :--- | :--- |
-| jpetstore, spring-blog, jforum, apache-roller | the FoSCI authors' |
-| acme-air, bear-board, pharmacy, spring-petclinic, daytrader, plants | self-generated with `tracer-agent/` (see below), `fosci_trace.csv.gz` |
-| autocare | the reduced trace saved by fyp-benchmarking (reduction is idempotent) |
-| genapp (COBOL), javafx-pos (desktop) | none: N/A |
+The paper's requirement: execution traces must capture the target's functionality, so they come from **functional test cases run
+against an executable instance built from the monolith** (black-box functional testing of the system, not unit tests). Every trace
+in this benchmark is meant to be recorded that way against our pinned checkouts. The FoSCI authors' published traces are not used:
+they were recorded on other builds of the apps.
 
-The authors' traces were recorded on their own app versions; classes that do not exist in our pinned checkout are simply
-`unmatched_ids` in the score files (jforum: the authors' app vs `jforum/jakartaEE`).
+| Dataset | Trace today |
+| :--- | :--- |
+| acme-air, bear-board, pharmacy, spring-petclinic, daytrader, plants | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
+| autocare | the reduced form of such a scripted trace (reduction is idempotent) |
+| jpetstore, spring-blog, jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
+| javafx-pos (desktop) | none yet |
+| genapp (COBOL) | none: N/A |
 
 **Generating a trace** (`tracer-agent/`): an ASM `-javaagent` that logs every method enter/exit of a package prefix in FoSCI's raw
 column format. Use `tracer-agent-jdk8.jar` for JDK 8 apps and `tracer-agent.jar` for JDK 11+:
