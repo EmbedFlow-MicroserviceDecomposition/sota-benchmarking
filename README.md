@@ -219,9 +219,16 @@ fyp-sota/
 
 ### 1. Cloning the Repository
 ```bash
-git clone --recursive https://github.com/your-username/fyp-sota.git
-cd fyp-sota
+git clone git@github.com:EmbedFlow-MicroserviceDecomposition/sota-benchmarking.git
+cd sota-benchmarking
+GIT_LFS_SKIP_SMUDGE=1 git submodule update --init   # not --recursive, see below
 ```
+
+Do not use `--recursive`: CARGO's upstream repository contains a broken nested submodule entry
+(`RQ2/daytrader_apps/daytrader_mono2micro`, no URL), so a recursive update fails on it, and none of our submodules needs its nested
+ones. `GIT_LFS_SKIP_SMUDGE=1` keeps the FoSCI submodule from downloading about 1 GB of traces; pull only the ones you need
+(`cd tools/fosci/FoSCI && git lfs pull --include="traces/jforum.txt,traces/roller.txt"`). The submodule URLs are SSH
+(`git@github.com:...`), so the machine needs an SSH key registered with GitHub.
 
 ### 2. End-to-End Pipeline Execution
 
@@ -250,7 +257,7 @@ uv run metric.py \
 ## Running the whole benchmark
 
 `scripts/benchmark.py` is the central CLI. Prerequisites: Docker running, JDK 17 + Maven (the extractor builds on first use), `uv`,
-`git submodule update --init --recursive`, the FoSCI LFS traces for Roller and JForum
+`git submodule update --init` (without `--recursive`, see step 1), the FoSCI LFS traces for Roller and JForum
 (`cd tools/fosci/FoSCI && git lfs pull --include="traces/jforum.txt,traces/roller.txt"`), and CARGO's Doop facts in
 `tools/cargo/doop-data/` (see `tools/cargo/README.md`).
 
@@ -261,6 +268,9 @@ uv run scripts/benchmark.py run --tools chgnn,fosci --datasets jpetstore,bear-bo
 uv run scripts/benchmark.py report                 # SM, ICP, IFN, NED, BCP, CHM, CHD: one table per metric, datasets x tools
 uv run scripts/benchmark.py report --metrics SM,NED --coverage --format markdown
 ```
+
+Results are generated, not committed: `tools/<tool>/outputs/` is git-ignored, so a fresh clone has no tables until `run` has produced
+cells (or they are copied over from another machine).
 
 `run` builds a missing `dataset.json`, skips cells that already have a `metrics_mean.json` (`--force` redoes them), and runs the
 cells one after another. `report` only reads files, so it can run while `run` is still going; it also shows the older
