@@ -37,13 +37,19 @@ def membership_to_microservices(classes, labels):
     return {f"microservice_{i}": sorted(groups[l]) for i, l in enumerate(sorted(groups), 1)}
 
 
+def docker_command(repo, args):
+    """docker run for `args` inside the mounted repo copy, as the calling user (see tools/chgnn/tool.py)."""
+    user = ["--user", f"{os.getuid()}:{os.getgid()}"] if hasattr(os, "getuid") else []
+    return ["docker", "run", "--rm", "--platform", "linux/amd64"] + user + [
+        "-v", f"{repo}:/workspace/cogcn", "-w", "/workspace/cogcn", IMAGE, "python"] + args
+
+
 def run_train(repo, data_arg, k, runner):
     args = ["run_cogcn.py", "--dataset-str", data_arg, "--k", str(k)]
     if runner == "docker":
         if subprocess.run(["docker", "image", "inspect", IMAGE], capture_output=True).returncode != 0:
             subprocess.run(["docker", "build", "--platform", "linux/amd64", "-t", IMAGE, HERE], check=True)
-        return subprocess.run(["docker", "run", "--rm", "--platform", "linux/amd64", "-v", f"{repo}:/workspace/cogcn",
-                               "-w", "/workspace/cogcn", IMAGE, "python"] + args, capture_output=True, text=True)
+        return subprocess.run(docker_command(repo, args), capture_output=True, text=True)
     return subprocess.run([sys.executable] + args, cwd=repo, capture_output=True, text=True)
 
 
@@ -74,7 +80,8 @@ def main(argv=None):
         return write_error(out_path, f"--k {args.k} exceeds the {n_classes} classes of '{name}'")
 
     os.makedirs(out_path, exist_ok=True)
-    with tempfile.TemporaryDirectory() as work:
+    # inside the output folder, not /tmp: Snap-packaged Docker cannot see /tmp, so a mount from there is empty
+    with tempfile.TemporaryDirectory(dir=out_path, prefix="work-") as work:
         repo = os.path.join(work, "cogcn")
         shutil.copytree(SRC, repo, ignore=shutil.ignore_patterns("__pycache__"))
         shutil.copy(os.path.join(HERE, "run_cogcn.py"), repo)

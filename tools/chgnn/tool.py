@@ -56,14 +56,20 @@ def prepare_repo(work, slug, dataset, config_dir, entrypoints_file):
     return repo, slug
 
 
+def docker_command(repo, args):
+    """docker run for `args` inside the mounted repo copy, as the calling user: a root container would leave root-owned files in
+    the temp directory, which the tool could then not remove (Linux; Docker Desktop on macOS hides this)."""
+    user = ["--user", f"{os.getuid()}:{os.getgid()}"] if hasattr(os, "getuid") else []
+    return ["docker", "run", "--rm", "--platform", "linux/amd64"] + user + [
+        "-v", f"{repo}:/workspace/chgnn", "-w", "/workspace/chgnn", IMAGE, "python"] + args
+
+
 def run_chgnn(repo, slug, runner):
     args = ["run_chgnn.py", f"--model={MODEL}", f"--data={slug}", f"--code={CODE}"]
     if runner == "docker":
         if subprocess.run(["docker", "image", "inspect", IMAGE], capture_output=True).returncode != 0:
             subprocess.run(["docker", "build", "--platform", "linux/amd64", "-t", IMAGE, HERE], check=True)
-        cmd = ["docker", "run", "--rm", "--platform", "linux/amd64", "-v", f"{repo}:/workspace/chgnn",
-               "-w", "/workspace/chgnn", IMAGE, "python"] + args
-        return subprocess.run(cmd, capture_output=True, text=True)
+        return subprocess.run(docker_command(repo, args), capture_output=True, text=True)
     return subprocess.run([sys.executable] + args, cwd=repo, capture_output=True, text=True)
 
 
@@ -92,7 +98,8 @@ def main(argv=None):
         dataset = json.load(f)
 
     os.makedirs(out_path, exist_ok=True)
-    with tempfile.TemporaryDirectory() as work:
+    # inside the output folder, not /tmp: Snap-packaged Docker cannot see /tmp, so a mount from there is empty
+    with tempfile.TemporaryDirectory(dir=out_path, prefix="work-") as work:
         try:
             repo, slug = prepare_repo(work, name.replace("-", "_"), dataset, config_dir,
                                       os.path.join(ds_path, "entrypoints.txt"))

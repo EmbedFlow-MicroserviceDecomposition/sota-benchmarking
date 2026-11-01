@@ -1,4 +1,5 @@
 import json
+import os
 
 from conftest import load_tool
 
@@ -36,3 +37,31 @@ def test_k_larger_than_the_class_count_is_an_error_output(tmp_path):
     out = tmp_path / "out"
     assert tool.main(["--dataset-path", str(ds), "--output-path", str(out), "--k", "6"]) == 1
     assert "--k 6" in json.loads((out / "output.json").read_text())["error"]
+
+
+def test_the_container_runs_as_the_calling_user_so_the_files_it_writes_can_be_cleaned_up():
+    cmd = tool.docker_command("/tmp/x/repo", ["run_cogcn.py", "--k", "3"])
+    assert cmd[:3] == ["docker", "run", "--rm"]
+    assert cmd[cmd.index("--user") + 1] == f"{os.getuid()}:{os.getgid()}"
+    assert "/tmp/x/repo:/workspace/cogcn" in cmd
+    assert cmd[-3:] == ["run_cogcn.py", "--k", "3"]
+
+
+def test_the_work_folder_lives_inside_the_output_folder_so_snap_docker_can_mount_it(tmp_path, monkeypatch):
+    ds = tmp_path / "tiny"
+    ds.mkdir()
+    (ds / "dataset.json").write_text(json.dumps({"classes": ["p.A", "p.B", "p.C", "p.D", "p.E", "p.F"], "methods": {}, "edges": []}))
+    out = tmp_path / "out"
+    seen = []
+
+    class Failed:
+        returncode, stdout, stderr = 1, "", "stop here"
+
+    def fake_train(repo, data_arg, k, runner):
+        seen.append(repo)
+        return Failed()
+
+    monkeypatch.setattr(tool, "run_train", fake_train)
+    assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
+    assert os.path.dirname(os.path.dirname(seen[0])) == str(out)      # <out>/<work dir>/cogcn
+    assert not os.path.exists(os.path.dirname(seen[0]))
