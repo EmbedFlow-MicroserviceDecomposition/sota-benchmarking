@@ -67,6 +67,28 @@ def test_the_plan_is_tool_major_and_marks_finished_cells(root):
         ("ae-k", "bear-board", 3, False), ("ae-k", "jpetstore", 3, False)]
 
 
+def test_a_cell_where_every_run_failed_for_a_real_reason_is_planned_again(root):
+    write_cell(root, "cargo", "jpetstore", runs_ok=0, runs=1,
+               failures=[{"run": 1, "error": "no Doop facts for dataset 'jpetstore' at /x"}])
+    plan = benchmark.make_plan(str(root), ["cargo"], ["jpetstore"], "paper", force=False)
+    assert [(c.done, c.retry) for c in plan] == [(False, True)]
+
+
+def test_a_deliberate_na_cell_and_a_cell_with_results_stay_done(root):
+    write_cell(root, "ae-k", "genapp", runs_ok=0, runs=1, failures=[{"run": 1, "error": "no entrypoints.txt: cell is N/A"}])
+    write_cell(root, "chgnn", "jpetstore", {"SM": (0.2, 0.0)}, runs_ok=2, runs=3, failures=[{"run": 2, "error": "boom"}])
+    plan = benchmark.make_plan(str(root), ["ae-k", "chgnn"], ["genapp", "jpetstore"], "paper", force=False)
+    assert {(c.tool, c.dataset): (c.done, c.retry) for c in plan} == {
+        ("ae-k", "genapp"): (True, False), ("ae-k", "jpetstore"): (False, False),
+        ("chgnn", "genapp"): (False, False), ("chgnn", "jpetstore"): (True, False)}
+
+
+def test_dry_run_says_why_a_cell_is_planned_again(root, capsys):
+    write_cell(root, "cargo", "jpetstore", runs_ok=0, runs=1, failures=[{"run": 1, "error": "docker exploded"}])
+    benchmark.main(["run", "--dry-run", "--tools", "cargo", "--datasets", "jpetstore"], root=str(root))
+    assert "previous attempt failed" in capsys.readouterr().out
+
+
 def test_force_replans_finished_cells(root):
     write_cell(root, "chgnn", "jpetstore", {"SM": (0.2, 0.01)})
     plan = benchmark.make_plan(str(root), ["chgnn"], ["jpetstore"], "paper", force=True)

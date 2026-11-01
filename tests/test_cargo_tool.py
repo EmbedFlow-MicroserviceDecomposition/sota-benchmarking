@@ -27,11 +27,23 @@ def test_a_single_run_grid():
 def test_dataset_without_cached_doop_facts_is_an_error_output(tmp_path):
     ds = tmp_path / "no-facts-app"
     ds.mkdir()
-    (ds / "dataset.json").write_text(json.dumps({"classes": [], "methods": {}, "edges": []}))
+    (ds / "dataset.json").write_text(json.dumps({"classes": ["p.A"], "methods": {}, "edges": []}))
     out = tmp_path / "out"
     assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
     data = json.loads((out / "output.json").read_text())
     assert data["tool"] == "CARGO" and "Doop facts" in data["error"] and "microservices" not in data
+    # a missing input is a failure to fix, not an intrinsic N/A: it must be retried once the facts exist
+    assert "N/A" not in data["error"]
+
+
+def test_a_dataset_with_no_java_classes_is_a_deliberate_na(tmp_path):
+    ds = tmp_path / "genapp"
+    ds.mkdir()
+    (ds / "dataset.json").write_text(json.dumps({"dataset": "CICS Genapp", "source_path": "x"}))
+    out = tmp_path / "out"
+    assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
+    error = json.loads((out / "output.json").read_text())["error"]
+    assert "no Java classes" in error and "N/A" in error
 
 
 def test_missing_dataset_json_is_an_error_output(tmp_path):

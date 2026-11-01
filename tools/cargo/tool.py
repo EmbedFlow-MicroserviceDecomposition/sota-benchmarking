@@ -153,10 +153,15 @@ def main(argv=None):
 
     if not os.path.exists(os.path.join(ds_path, "dataset.json")):
         return write_error(out_path, f"dataset.json not found in {ds_path}")
+    with open(os.path.join(ds_path, "dataset.json"), encoding="utf-8") as f:
+        dataset = json.load(f)
+    if not dataset.get("classes") and not dataset.get("methods"):
+        return write_error(out_path, f"dataset '{name}' has no Java classes in dataset.json: cell is N/A")
     facts_dir = os.path.abspath(args.facts_dir or os.path.join(FACTS_ROOT, name))
     if not os.path.isdir(facts_dir) or not os.listdir(facts_dir):
+        # deliberately not worded "N/A": a missing input is a failure to fix, and `benchmark.py run` retries such cells
         return write_error(out_path, f"no Doop facts for dataset '{name}' at {facts_dir}: CARGO analyses compiled bytecode "
-                                     "with Doop first (see tools/cargo/README.md); cell is N/A until they exist")
+                                     "with Doop first; copy the facts there or produce them (see tools/cargo/README.md)")
     if not os.path.isdir(os.path.join(DGI_SRC, "cargo")):
         return write_error(out_path, "CARGO submodule is empty: run `git submodule update --init`")
     transactions = os.path.join(TRANSACTIONS, f"{name}.json")

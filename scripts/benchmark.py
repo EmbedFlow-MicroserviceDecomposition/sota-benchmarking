@@ -10,8 +10,9 @@
     uv run scripts/benchmark.py report                   # one table per metric (datasets x tools) from what is on disk
     uv run scripts/benchmark.py report --metrics SM,NED --format markdown --coverage
 
-`run` builds a missing dataset.json, then calls scripts/run_sweep.py for every cell that has no metrics_mean.json yet (finished
-cells are skipped; --force redoes them). Cells run one after another: CARGO shares one Neo4j and the Docker tools are CPU-bound.
+`run` builds a missing dataset.json, then calls scripts/run_sweep.py for every cell without usable results: cells with results or
+a deliberate N/A are skipped, a cell whose every run failed for a real reason (missing input, Docker down) is tried again, and
+--force redoes everything. Cells run one after another: CARGO shares one Neo4j and the Docker tools are CPU-bound.
 `report` only reads files, so it can be run at any time, including while a `run` is in progress.
 """
 
@@ -48,6 +49,7 @@ class Cell:
     runs: int
     args: str
     done: bool
+    retry: bool = False   # an earlier attempt left a result file, but every run failed for a real reason
 
 
 # ------------------------------------------------------------------ planning
@@ -79,9 +81,23 @@ def make_plan(root, tools, datasets, profile, force):
     for ds in datasets:
         if ds not in known:
             raise ValueError(f"unknown dataset '{ds}' (choose from {', '.join(known)})")
-    return [Cell(tool, ds, runs_for(tool, ds, profile), tool_args(tool, profile),
-                 not force and os.path.exists(os.path.join(cell_dir(root, tool, ds), "metrics_mean.json")))
-            for tool in tools for ds in sorted(datasets)]
+    cells = []
+    for tool in tools:
+        for ds in sorted(datasets):
+            state = cell_state(root, tool, ds)
+            cells.append(Cell(tool, ds, runs_for(tool, ds, profile), tool_args(tool, profile),
+                              done=not force and state == "done", retry=state == "retry"))
+    return cells
+
+
+def cell_state(root, tool, dataset):
+    """none: no result file. done: real results, or a deliberate N/A. retry: every run failed for a real reason."""
+    path = os.path.join(cell_dir(root, tool, dataset), "metrics_mean.json")
+    if not os.path.exists(path):
+        return "none"
+    with open(path, encoding="utf-8") as f:
+        summary = json.load(f)
+    return "done" if summary["runs_ok"] > 0 or is_na(summary) else "retry"
 
 
 def build_dataset_json(dataset_dir):
@@ -108,7 +124,7 @@ def cmd_run(args, root, sweep_fn, build_fn):
     if args.dry_run:
         for i, c in enumerate(plan, 1):
             print(f"  [{i}/{len(plan)}] {'skip' if c.done else 'run '}  {c.tool} x {c.dataset} ({c.runs} runs"
-                  f"{', ' + c.args if c.args else ''})")
+                  f"{', ' + c.args if c.args else ''}){'  previous attempt failed' if c.retry and not c.done else ''}")
         return 0
 
     ok = na = failed = 0
@@ -121,7 +137,7 @@ def cmd_run(args, root, sweep_fn, build_fn):
         if not os.path.exists(os.path.join(ds_dir, "dataset.json")):
             print(f"{label}: building dataset.json for {c.dataset}")
             build_fn(ds_dir)
-        print(f"{label}: running {c.runs} run(s) ...", flush=True)
+        print(f"{label}: running {c.runs} run(s){' (previous attempt failed)' if c.retry else ''} ...", flush=True)
         summary = sweep_fn(os.path.join(root, "tools", c.tool), ds_dir, cell_dir(root, c.tool, c.dataset), c.runs,
                            extra_args=shlex.split(c.args))
         if summary["runs_ok"] == 0 and is_na(summary):

@@ -272,8 +272,8 @@ uv run scripts/benchmark.py report --metrics SM,NED --coverage --format markdown
 Results are generated, not committed: `tools/<tool>/outputs/` is git-ignored, so a fresh clone has no tables until `run` has produced
 cells (or they are copied over from another machine).
 
-`run` builds a missing `dataset.json`, skips cells that already have a `metrics_mean.json` (`--force` redoes them), and runs the
-cells one after another. `report` only reads files, so it can run while `run` is still going; it also shows the older
+`run` builds a missing `dataset.json`, skips cells that already have results or a deliberate N/A (`--force` redoes them), tries again
+any cell whose every run failed for a real reason such as a missing input or Docker being down, and runs the cells one after another. `report` only reads files, so it can run while `run` is still going; it also shows the older
 single-run cells (Triplet-Guided CHGNN, MAGNET, Mono2Micro) if they have outputs. `N/A` marks a cell that does not apply to a tool,
 `FAIL` a cell where every run failed. The paper profile uses: CHGNN 10 runs, CoGCN 5, AE-K 3, VAE-C 3 (5 on bear-board, pharmacy,
 autocare), FoSCI 5 (1 on Roller), CARGO 1 invocation (its 30-entry K x seed grid runs inside).
