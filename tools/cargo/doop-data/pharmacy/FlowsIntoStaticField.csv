@@ -1,0 +1,11 @@
+<com.upachar.web.drug.service.CategoryService: void <clinit>()>/$stack0	<com.upachar.web.drug.service.CategoryService: org.slf4j.Logger log>
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/$stack0	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus PENDING>
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/$stack1	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus PROCESSED>
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/$stack2	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus DELIVERED>
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/$stack3	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus[] $VALUES>
+<com.upachar.web.data.service.DataService: void <clinit>()>/$stack0	<com.upachar.web.data.service.DataService: org.slf4j.Logger log>
+<com.upachar.web.user.enums.Role: void <clinit>()>/$stack0	<com.upachar.web.user.enums.Role: com.upachar.web.user.enums.Role ADMIN>
+<com.upachar.web.user.enums.Role: void <clinit>()>/$stack1	<com.upachar.web.user.enums.Role: com.upachar.web.user.enums.Role USER>
+<com.upachar.web.user.enums.Role: void <clinit>()>/$stack2	<com.upachar.web.user.enums.Role: com.upachar.web.user.enums.Role[] $VALUES>
+<com.upachar.web.drug.service.DrugService: void <clinit>()>/$stack0	<com.upachar.web.drug.service.DrugService: org.slf4j.Logger log>
+<com.upachar.web.common.utils.FileUtils: void <clinit>()>/$stack0	<com.upachar.web.common.utils.FileUtils: org.slf4j.Logger log>

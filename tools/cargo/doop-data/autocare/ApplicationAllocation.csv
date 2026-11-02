@@ -1,0 +1,210 @@
+class	com.policynepal.autocare.utils.CustomBeanUtils
+/	com.policynepal.autocare.aws.service.S3Service
+]	com.policynepal.autocare.user.model.User
+]	com.policynepal.autocare.vehicle.model.Vehicle
+]	com.policynepal.autocare.comment.model.Comment
+password	com.policynepal.autocare.security.AuthorizationServerConfiguration
+roles	com.policynepal.autocare.security.CustomTokenEnhancer
+userId	com.policynepal.autocare.security.CustomTokenEnhancer
+<class com.policynepal.autocare.AutocareApplication>	com.policynepal.autocare.AutocareApplication
+<com.policynepal.autocare.user.model.User: java.lang.String toString()>/new java.lang.StringBuilder/0	com.policynepal.autocare.user.model.User
+<com.policynepal.autocare.user.model.User: com.policynepal.autocare.user.model.User$Builder builder()>/new com.policynepal.autocare.user.model.User$Builder/0	com.policynepal.autocare.user.model.User
+<com.policynepal.autocare.utils.AuthenticationUtils: com.policynepal.autocare.user.model.User getAuthenticatedUser()>/new java.lang.IllegalArgumentException/0	com.policynepal.autocare.utils.AuthenticationUtils
+<com.policynepal.autocare.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.policynepal.autocare.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>/new com.policynepal.autocare.exceptionhandler.ErrorResponse/0	com.policynepal.autocare.exceptionhandler.GlobalExceptionHandler
+<com.policynepal.autocare.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.policynepal.autocare.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>/new org.springframework.http.HttpHeaders/0	com.policynepal.autocare.exceptionhandler.GlobalExceptionHandler
+<com.policynepal.autocare.security.AuthorizationServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)>/new java.lang.String[]/0	com.policynepal.autocare.security.AuthorizationServerConfiguration
+<com.policynepal.autocare.security.AuthorizationServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)>/new java.lang.String[]/1	com.policynepal.autocare.security.AuthorizationServerConfiguration
+<com.policynepal.autocare.security.AuthorizationServerConfiguration: org.springframework.security.oauth2.provider.token.TokenStore tokenStore()>/new org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore/0	com.policynepal.autocare.security.AuthorizationServerConfiguration
+<com.policynepal.autocare.user.model.User$Builder: com.policynepal.autocare.user.model.User build()>/new com.policynepal.autocare.user.model.User/0	com.policynepal.autocare.user.model.User$Builder
+<com.policynepal.autocare.comment.service.CommentService: com.policynepal.autocare.comment.model.Comment addComment(com.policynepal.autocare.comment.dto.CommentDto)>/new com.policynepal.autocare.comment.model.Comment/0	com.policynepal.autocare.comment.service.CommentService
+<com.policynepal.autocare.comment.service.CommentService: com.policynepal.autocare.comment.model.Comment validateCommentOwner(java.lang.String,com.policynepal.autocare.comment.model.Comment)>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.comment.service.CommentService
+<com.policynepal.autocare.comment.service.CommentService: com.policynepal.autocare.common.dto.PageDto findCommentsWithPaging(java.lang.String,java.lang.Integer,java.lang.Integer)>/new com.policynepal.autocare.common.dto.PageDto/0	com.policynepal.autocare.comment.service.CommentService
+<com.policynepal.autocare.comment.service.CommentService: void deleteComment(java.lang.String)>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.comment.service.CommentService
+<com.policynepal.autocare.comment.service.CommentService: void deleteComment(java.lang.String)>/new com.policynepal.autocare.comment.model.DeletedComment/0	com.policynepal.autocare.comment.service.CommentService
+<com.policynepal.autocare.comment.service.CommentService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteComment$1()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.comment.service.CommentService
+<com.policynepal.autocare.comment.service.CommentService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$updateComment$0()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.comment.service.CommentService
+<com.policynepal.autocare.vehicle.model.Vehicle: java.lang.String toString()>/new java.lang.StringBuilder/0	com.policynepal.autocare.vehicle.model.Vehicle
+<com.policynepal.autocare.swagger.SwaggerConfiguration: springfox.documentation.spring.web.plugins.Docket api()>/new springfox.documentation.spring.web.plugins.Docket/0	com.policynepal.autocare.swagger.SwaggerConfiguration
+<com.policynepal.autocare.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.ApiInfo/0	com.policynepal.autocare.swagger.SwaggerConfiguration
+<com.policynepal.autocare.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.Contact/0	com.policynepal.autocare.swagger.SwaggerConfiguration
+<com.policynepal.autocare.comment.model.Comment: java.lang.String toString()>/new java.lang.StringBuilder/0	com.policynepal.autocare.comment.model.Comment
+<com.policynepal.autocare.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new java.util.ArrayList/0	com.policynepal.autocare.security.CustomUserDetailsService
+<com.policynepal.autocare.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new org.springframework.security.core.authority.SimpleGrantedAuthority/0	com.policynepal.autocare.security.CustomUserDetailsService
+<com.policynepal.autocare.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new org.springframework.security.core.userdetails.User/0	com.policynepal.autocare.security.CustomUserDetailsService
+<com.policynepal.autocare.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new org.springframework.security.core.userdetails.UsernameNotFoundException/0	com.policynepal.autocare.security.CustomUserDetailsService
+<com.policynepal.autocare.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new java.lang.Object[]/0	com.policynepal.autocare.security.CustomUserDetailsService
+<com.policynepal.autocare.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0	com.policynepal.autocare.utils.CustomBeanUtils
+<com.policynepal.autocare.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0	com.policynepal.autocare.utils.CustomBeanUtils
+<com.policynepal.autocare.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.lang.String[]/0	com.policynepal.autocare.utils.CustomBeanUtils
+<com.policynepal.autocare.utils.CustomBeanUtils: boolean checkIfAllFieldsAreNull(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0	com.policynepal.autocare.utils.CustomBeanUtils
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.vehicle.model.Vehicle addVehicle(com.policynepal.autocare.vehicle.dto.VehicleDto)>/new com.policynepal.autocare.vehicle.model.Vehicle/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.common.dto.PageDto findVehiclesWithPaging(java.lang.Integer,java.lang.Integer)>/new com.policynepal.autocare.common.dto.PageDto/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.vehicle.model.Vehicle validateVehicleOwner(java.lang.String,com.policynepal.autocare.vehicle.model.Vehicle)>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.common.dto.PageDto searchVehiclesWithFilterAndPaging(com.policynepal.autocare.vehicle.dto.SearchVehiclesDto,java.lang.Integer,java.lang.Integer)>/new com.policynepal.autocare.common.dto.PageDto/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: void deleteVehicle(java.lang.String)>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: void deleteVehicle(java.lang.String)>/new com.policynepal.autocare.vehicle.model.DeletedVehicle/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.vehicle.model.VehicleImage uploadImage(java.lang.String,org.springframework.web.multipart.MultipartFile)>/new java.lang.String[]/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.vehicle.model.VehicleImage uploadImage(java.lang.String,org.springframework.web.multipart.MultipartFile)>/new java.lang.Object[]/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.vehicle.model.VehicleImage uploadImage(java.lang.String,org.springframework.web.multipart.MultipartFile)>/new java.util.Date/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.vehicle.model.VehicleImage uploadImage(java.lang.String,org.springframework.web.multipart.MultipartFile)>/new com.policynepal.autocare.vehicle.model.VehicleImage/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.vehicle.model.VehicleImage uploadImage(java.lang.String,org.springframework.web.multipart.MultipartFile)>/new java.util.ArrayList/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: void deleteVehicleImage(java.lang.String,java.lang.String)>/new java.util.ArrayList/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteVehicleImage$3()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$uploadImage$2()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteVehicle$1()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$updateVehicle$0()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.vehicle.service.VehicleService
+<com.policynepal.autocare.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/0	com.policynepal.autocare.security.ResourceServerConfiguration
+<com.policynepal.autocare.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/1	com.policynepal.autocare.security.ResourceServerConfiguration
+<com.policynepal.autocare.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/2	com.policynepal.autocare.security.ResourceServerConfiguration
+<com.policynepal.autocare.AutocareApplication: void run(java.lang.String[])>/new com.policynepal.autocare.user.model.Organization/0	com.policynepal.autocare.AutocareApplication
+<com.policynepal.autocare.AutocareApplication: void run(java.lang.String[])>/new java.lang.String[]/0	com.policynepal.autocare.AutocareApplication
+<com.policynepal.autocare.security.SecurityConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/0	com.policynepal.autocare.security.SecurityConfiguration
+<com.policynepal.autocare.security.SecurityConfiguration: org.springframework.security.crypto.password.PasswordEncoder passwordEncoder()>/new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder/0	com.policynepal.autocare.security.SecurityConfiguration
+<com.policynepal.autocare.security.CustomTokenEnhancer: org.springframework.security.oauth2.common.OAuth2AccessToken enhance(org.springframework.security.oauth2.common.OAuth2AccessToken,org.springframework.security.oauth2.provider.OAuth2Authentication)>/new java.util.HashMap/0	com.policynepal.autocare.security.CustomTokenEnhancer
+<com.policynepal.autocare.user.controller.UserController: java.util.Map deleteUser(java.lang.String)>/new java.util.HashMap/0	com.policynepal.autocare.user.controller.UserController
+<com.policynepal.autocare.aws.configuration.AwsConfiguration: com.amazonaws.auth.AWSCredentials getAwsCredentials()>/new com.amazonaws.auth.BasicAWSCredentials/0	com.policynepal.autocare.aws.configuration.AwsConfiguration
+<com.policynepal.autocare.aws.configuration.AwsConfiguration: com.amazonaws.services.s3.AmazonS3Client getAmazonS3Client()>/new com.amazonaws.client.builder.AwsClientBuilder$EndpointConfiguration/0	com.policynepal.autocare.aws.configuration.AwsConfiguration
+<com.policynepal.autocare.aws.configuration.AwsConfiguration: com.amazonaws.services.s3.AmazonS3Client getAmazonS3Client()>/new com.amazonaws.auth.AWSStaticCredentialsProvider/0	com.policynepal.autocare.aws.configuration.AwsConfiguration
+<com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.user.model.User addUser(com.policynepal.autocare.user.dto.UserDto)>/new com.policynepal.autocare.user.model.User/0	com.policynepal.autocare.user.service.UserService
+<com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.user.model.User validateIfUsernameExists(java.lang.String)>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.user.service.UserService
+<com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.user.model.User validateIfUsernameExists(java.lang.String,java.lang.String)>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.user.service.UserService
+<com.policynepal.autocare.user.service.UserService: void deleteUser(java.lang.String)>/new com.policynepal.autocare.user.model.DeletedUser/0	com.policynepal.autocare.user.service.UserService
+<com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteUser$2()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.user.service.UserService
+<com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$getUser$1()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.user.service.UserService
+<com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$updateUser$0()>/new com.policynepal.autocare.exceptionhandler.GlobalException/0	com.policynepal.autocare.user.service.UserService
+<com.policynepal.autocare.comment.controller.CommentController: java.util.Map deleteComment(java.lang.String)>/new java.util.HashMap/0	com.policynepal.autocare.comment.controller.CommentController
+<com.policynepal.autocare.vehicle.controller.VehicleController: java.util.Map deleteVehicle(java.lang.String)>/new java.util.HashMap/0	com.policynepal.autocare.vehicle.controller.VehicleController
+<com.policynepal.autocare.vehicle.controller.VehicleController: java.util.Map deleteImage(java.lang.String,java.lang.String)>/new java.util.HashMap/0	com.policynepal.autocare.vehicle.controller.VehicleController
+<com.policynepal.autocare.aws.service.S3Service: void createFolder(com.amazonaws.services.s3.AmazonS3Client,java.lang.String,java.lang.String)>/new com.amazonaws.services.s3.model.ObjectMetadata/0	com.policynepal.autocare.aws.service.S3Service
+<com.policynepal.autocare.aws.service.S3Service: void createFolder(com.amazonaws.services.s3.AmazonS3Client,java.lang.String,java.lang.String)>/new java.io.ByteArrayInputStream/0	com.policynepal.autocare.aws.service.S3Service
+<com.policynepal.autocare.aws.service.S3Service: void createFolder(com.amazonaws.services.s3.AmazonS3Client,java.lang.String,java.lang.String)>/new byte[]/0	com.policynepal.autocare.aws.service.S3Service
+<com.policynepal.autocare.aws.service.S3Service: void createFolder(com.amazonaws.services.s3.AmazonS3Client,java.lang.String,java.lang.String)>/new com.amazonaws.services.s3.model.PutObjectRequest/0	com.policynepal.autocare.aws.service.S3Service
+<com.policynepal.autocare.aws.service.S3Service: void createFolder(com.amazonaws.services.s3.AmazonS3Client,java.lang.String,java.lang.String)>/new java.lang.StringBuilder/0	com.policynepal.autocare.aws.service.S3Service
+<com.policynepal.autocare.aws.service.S3Service: void uploadFileInS3(com.amazonaws.services.s3.AmazonS3Client,java.lang.String,java.lang.String,java.io.File)>/new com.amazonaws.services.s3.model.PutObjectRequest/0	com.policynepal.autocare.aws.service.S3Service
+<com.policynepal.autocare.security.WebConfiguration: void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry)>/new java.lang.String[]/0	com.policynepal.autocare.security.WebConfiguration
+<com.policynepal.autocare.security.WebConfiguration: void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry)>/new java.lang.String[]/1	com.policynepal.autocare.security.WebConfiguration
+<com.policynepal.autocare.security.WebConfiguration: void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry)>/new java.lang.String[]/2	com.policynepal.autocare.security.WebConfiguration
+<com.policynepal.autocare.security.WebConfiguration: void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry)>/new java.lang.String[]/3	com.policynepal.autocare.security.WebConfiguration
+<com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl: org.springframework.data.domain.Page searchVehiclesWithFilterAndPaging(com.policynepal.autocare.vehicle.dto.SearchVehiclesDto,org.springframework.data.domain.Pageable)>/new org.springframework.data.mongodb.core.query.Query/0	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+<com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl: org.springframework.data.mongodb.core.query.Criteria getLocationSearchCriteria(com.policynepal.autocare.vehicle.dto.SearchVehiclesDto$LocationDetails)>/new org.springframework.data.geo.Point/0	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+<com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl: org.springframework.data.mongodb.core.query.Criteria getLocationSearchCriteria(com.policynepal.autocare.vehicle.dto.SearchVehiclesDto$LocationDetails)>/new org.springframework.data.geo.Distance/0	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+<com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl: org.springframework.data.mongodb.core.query.Criteria getLocationSearchCriteria(com.policynepal.autocare.vehicle.dto.SearchVehiclesDto$LocationDetails)>/new org.springframework.data.geo.Circle/0	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+User [id=	com.policynepal.autocare.user.model.User
+, firstname=	com.policynepal.autocare.user.model.User
+, lastname=	com.policynepal.autocare.user.model.User
+, username=	com.policynepal.autocare.user.model.User
+, password=	com.policynepal.autocare.user.model.User
+, roles=	com.policynepal.autocare.user.model.User
+, address=	com.policynepal.autocare.user.model.User
+, email=	com.policynepal.autocare.user.model.User
+, active=	com.policynepal.autocare.user.model.User
+, organization=	com.policynepal.autocare.user.model.User
+, createdDate=	com.policynepal.autocare.user.model.User
+, createdDate=	com.policynepal.autocare.vehicle.model.Vehicle
+, createdDate=	com.policynepal.autocare.comment.model.Comment
+, modifiedDate=	com.policynepal.autocare.user.model.User
+, modifiedDate=	com.policynepal.autocare.vehicle.model.Vehicle
+, modifiedDate=	com.policynepal.autocare.comment.model.Comment
+Authentication Required.	com.policynepal.autocare.utils.AuthenticationUtils
+client_credentials	com.policynepal.autocare.security.AuthorizationServerConfiguration
+refresh_token	com.policynepal.autocare.security.AuthorizationServerConfiguration
+all	com.policynepal.autocare.security.AuthorizationServerConfiguration
+<method type ()java.lang.Object>	com.policynepal.autocare.user.service.UserService
+<method type ()java.lang.Object>	com.policynepal.autocare.comment.service.CommentService
+<method type ()java.lang.Object>	com.policynepal.autocare.vehicle.service.VehicleService
+<handle <com.policynepal.autocare.comment.service.CommentService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$updateComment$0()>>	com.policynepal.autocare.comment.service.CommentService
+<method type ()com.policynepal.autocare.exceptionhandler.GlobalException>	com.policynepal.autocare.user.service.UserService
+<method type ()com.policynepal.autocare.exceptionhandler.GlobalException>	com.policynepal.autocare.comment.service.CommentService
+<method type ()com.policynepal.autocare.exceptionhandler.GlobalException>	com.policynepal.autocare.vehicle.service.VehicleService
+Cannot update other user\'s comment.	com.policynepal.autocare.comment.service.CommentService
+<handle <com.policynepal.autocare.comment.service.CommentService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteComment$1()>>	com.policynepal.autocare.comment.service.CommentService
+Cannot delete comment added by other user	com.policynepal.autocare.comment.service.CommentService
+Comment not found	com.policynepal.autocare.comment.service.CommentService
+Vehicle [id=	com.policynepal.autocare.vehicle.model.Vehicle
+, userId=	com.policynepal.autocare.vehicle.model.Vehicle
+, userId=	com.policynepal.autocare.comment.model.Comment
+, brand=	com.policynepal.autocare.vehicle.model.Vehicle
+, model=	com.policynepal.autocare.vehicle.model.Vehicle
+, twoWheeler=	com.policynepal.autocare.vehicle.model.Vehicle
+, newVehicle=	com.policynepal.autocare.vehicle.model.Vehicle
+, distanceDriven=	com.policynepal.autocare.vehicle.model.Vehicle
+, price=	com.policynepal.autocare.vehicle.model.Vehicle
+, sold=	com.policynepal.autocare.vehicle.model.Vehicle
+, images=	com.policynepal.autocare.vehicle.model.Vehicle
+, description=	com.policynepal.autocare.vehicle.model.Vehicle
+, usedMonths=	com.policynepal.autocare.vehicle.model.Vehicle
+, priceNegotiable=	com.policynepal.autocare.vehicle.model.Vehicle
+, mileage=	com.policynepal.autocare.vehicle.model.Vehicle
+, tags=	com.policynepal.autocare.vehicle.model.Vehicle
+, location=	com.policynepal.autocare.vehicle.model.Vehicle
+Rokin Maharjan	com.policynepal.autocare.swagger.SwaggerConfiguration
+www.linkedin.com/in/rokin/	com.policynepal.autocare.swagger.SwaggerConfiguration
+rokinmaharjan@gmail.com	com.policynepal.autocare.AutocareApplication
+rokinmaharjan@gmail.com	com.policynepal.autocare.swagger.SwaggerConfiguration
+Autocare	com.policynepal.autocare.swagger.SwaggerConfiguration
+API documentation for Autocare Nepal	com.policynepal.autocare.swagger.SwaggerConfiguration
+version 1.0	com.policynepal.autocare.swagger.SwaggerConfiguration
+Terms of service	com.policynepal.autocare.swagger.SwaggerConfiguration
+License of API	com.policynepal.autocare.swagger.SwaggerConfiguration
+API license URL	com.policynepal.autocare.swagger.SwaggerConfiguration
+Comment [id=	com.policynepal.autocare.comment.model.Comment
+, vehicleId=	com.policynepal.autocare.comment.model.Comment
+, body=	com.policynepal.autocare.comment.model.Comment
+User \'%s\' not found	com.policynepal.autocare.security.CustomUserDetailsService
+<handle <com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$updateVehicle$0()>>	com.policynepal.autocare.vehicle.service.VehicleService
+Cannot update. Vehicle not owned by user.	com.policynepal.autocare.vehicle.service.VehicleService
+<handle <com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteVehicle$1()>>	com.policynepal.autocare.vehicle.service.VehicleService
+Cannot delete vehicle added by other user	com.policynepal.autocare.vehicle.service.VehicleService
+<handle <com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$uploadImage$2()>>	com.policynepal.autocare.vehicle.service.VehicleService
+Exception occured while converting multipart file to file. Exception: {}	com.policynepal.autocare.vehicle.service.VehicleService
+%s-%s	com.policynepal.autocare.vehicle.service.VehicleService
+Temp file \'{}\' deleted	com.policynepal.autocare.vehicle.service.VehicleService
+<handle <com.policynepal.autocare.vehicle.service.VehicleService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteVehicleImage$3()>>	com.policynepal.autocare.vehicle.service.VehicleService
+Vehicle not found	com.policynepal.autocare.vehicle.service.VehicleService
+autocare	com.policynepal.autocare.security.ResourceServerConfiguration
+autocare	com.policynepal.autocare.AutocareApplication
+/v2/api-docs	com.policynepal.autocare.security.ResourceServerConfiguration
+/configuration/ui	com.policynepal.autocare.security.ResourceServerConfiguration
+/swagger-resources	com.policynepal.autocare.security.ResourceServerConfiguration
+/configuration/security	com.policynepal.autocare.security.ResourceServerConfiguration
+/swagger-ui.html	com.policynepal.autocare.security.ResourceServerConfiguration
+/webjars/**	com.policynepal.autocare.security.ResourceServerConfiguration
+/webjars/**	com.policynepal.autocare.security.WebConfiguration
+/swagger-resources/configuration/ui	com.policynepal.autocare.security.ResourceServerConfiguration
+/users/signup	com.policynepal.autocare.security.ResourceServerConfiguration
+/system/**	com.policynepal.autocare.security.ResourceServerConfiguration
+Access-Control-Allow-Origin	com.policynepal.autocare.security.CorsFilter
+*	com.policynepal.autocare.security.CorsFilter
+Access-Control-Allow-Methods	com.policynepal.autocare.security.CorsFilter
+GET, POST, PUT, DELETE, OPTIONS	com.policynepal.autocare.security.CorsFilter
+Access-Control-Allow-Headers	com.policynepal.autocare.security.CorsFilter
+Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization	com.policynepal.autocare.security.CorsFilter
+Access-Control-Max-Age	com.policynepal.autocare.security.CorsFilter
+3600	com.policynepal.autocare.security.CorsFilter
+Access-Control-Allow-Credentials	com.policynepal.autocare.security.CorsFilter
+true	com.policynepal.autocare.security.CorsFilter
+OPTIONS	com.policynepal.autocare.security.CorsFilter
+OK	com.policynepal.autocare.security.CorsFilter
+Policy Nepal	com.policynepal.autocare.AutocareApplication
+Policy Nepal company description	com.policynepal.autocare.AutocareApplication
+Policy	com.policynepal.autocare.AutocareApplication
+Nepal	com.policynepal.autocare.AutocareApplication
+Sankhamul	com.policynepal.autocare.AutocareApplication
+SUPER_ADMIN	com.policynepal.autocare.AutocareApplication
+/oauth/token	com.policynepal.autocare.security.SecurityConfiguration
+success	com.policynepal.autocare.user.controller.UserController
+success	com.policynepal.autocare.comment.controller.CommentController
+success	com.policynepal.autocare.vehicle.controller.VehicleController
+<handle <com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$updateUser$0()>>	com.policynepal.autocare.user.service.UserService
+Username already taken	com.policynepal.autocare.user.service.UserService
+<handle <com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$getUser$1()>>	com.policynepal.autocare.user.service.UserService
+<handle <com.policynepal.autocare.user.service.UserService: com.policynepal.autocare.exceptionhandler.GlobalException lambda$deleteUser$2()>>	com.policynepal.autocare.user.service.UserService
+User not found	com.policynepal.autocare.user.service.UserService
+swagger-ui.html	com.policynepal.autocare.security.WebConfiguration
+classpath:/META-INF/resources/	com.policynepal.autocare.security.WebConfiguration
+classpath:/META-INF/resources/webjars/	com.policynepal.autocare.security.WebConfiguration
+New	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+Used	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+<method type ()long>	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+<handle <com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl: long lambda$searchVehiclesWithFilterAndPaging$0(org.springframework.data.mongodb.core.query.Query)>>	com.policynepal.autocare.vehicle.repository.CustomVehicleRepositoryImpl
+System is up	com.policynepal.autocare.system.controller.SystemController

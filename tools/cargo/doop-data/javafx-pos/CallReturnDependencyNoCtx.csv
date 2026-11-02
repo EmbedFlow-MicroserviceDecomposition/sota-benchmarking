@@ -1,0 +1,8 @@
+<com.rafsan.inventory.controller.product.EditController: void handleSave(javafx.event.ActionEvent)>	<com.rafsan.inventory.model.CategoryModel: com.rafsan.inventory.entity.Category getCategory(long)>	long
+<com.rafsan.inventory.controller.product.EditController: void handleSave(javafx.event.ActionEvent)>	<com.rafsan.inventory.model.SupplierModel: com.rafsan.inventory.entity.Supplier getSupplier(long)>	long
+<com.rafsan.inventory.controller.pos.InvoiceController: void confirmAction(javafx.event.ActionEvent)>	<com.rafsan.inventory.model.EmployeeModel: com.rafsan.inventory.entity.Employee getEmployee(long)>	long
+<com.rafsan.inventory.controller.product.AddController: void handleSave(javafx.event.ActionEvent)>	<com.rafsan.inventory.model.CategoryModel: com.rafsan.inventory.entity.Category getCategory(long)>	long
+<com.rafsan.inventory.controller.product.AddController: void handleSave(javafx.event.ActionEvent)>	<com.rafsan.inventory.model.SupplierModel: com.rafsan.inventory.entity.Supplier getSupplier(long)>	long
+<com.rafsan.inventory.controller.product.ProductController: void loadProductSalesChart(com.rafsan.inventory.entity.Product)>	<com.rafsan.inventory.model.SalesModel: javafx.collections.ObservableList getSaleByProductId(long)>	long
+<com.rafsan.inventory.controller.purchase.AddController: void handleSave(javafx.event.ActionEvent)>	<com.rafsan.inventory.model.ProductModel: com.rafsan.inventory.entity.Product getProduct(long)>	long
+<com.rafsan.inventory.controller.purchase.AddController: void handleSave(javafx.event.ActionEvent)>	<com.rafsan.inventory.model.SupplierModel: com.rafsan.inventory.entity.Supplier getSupplier(long)>	long

@@ -1,0 +1,485 @@
+type	com.acmeair.util.Util
+value	com.acmeair.util.Util
+]	com.acmeair.web.dto.CustomerInfo
+]	com.acmeair.web.dto.AddressInfo
+_id	com.acmeair.mongo.services.CustomerServiceImpl
+_id	com.acmeair.mongo.services.BookingServiceImpl
+_id	com.acmeair.mongo.services.FlightServiceImpl
+_id	com.acmeair.mongo.services.AuthServiceImpl
+password	com.acmeair.mongo.services.CustomerServiceImpl
+password	com.acmeair.loader.CustomerLoader
+status	com.acmeair.util.Util
+streetAddress1	com.acmeair.mongo.services.CustomerServiceImpl
+streetAddress2	com.acmeair.mongo.services.CustomerServiceImpl
+<class com.acmeair.service.CustomerService>	com.acmeair.config.AcmeAirConfiguration
+<class com.acmeair.service.CustomerService>	com.acmeair.web.LoginREST
+<class com.acmeair.service.CustomerService>	com.acmeair.web.CustomerREST
+<class com.acmeair.service.CustomerService>	com.acmeair.loader.CustomerLoader
+<class com.acmeair.loader.Loader>	com.acmeair.loader.Loader
+<class com.acmeair.web.FlightsREST>	com.acmeair.web.AcmeAirApp
+<class com.acmeair.service.FlightService>	com.acmeair.web.FlightsREST
+<class com.acmeair.service.FlightService>	com.acmeair.service.FlightService
+<class com.acmeair.service.FlightService>	com.acmeair.config.AcmeAirConfiguration
+<class com.acmeair.service.FlightService>	com.acmeair.mongo.services.BookingServiceImpl
+<class com.acmeair.service.FlightService>	com.acmeair.web.CustomerREST
+<class com.acmeair.service.FlightService>	com.acmeair.loader.FlightLoader
+<class com.acmeair.service.BookingService>	com.acmeair.loader.BookingLoader
+<class com.acmeair.service.BookingService>	com.acmeair.config.AcmeAirConfiguration
+<class com.acmeair.service.BookingService>	com.acmeair.web.BookingsREST
+<class com.acmeair.config.AcmeAirConfiguration>	com.acmeair.config.AcmeAirConfiguration
+<class com.acmeair.config.AcmeAirConfiguration>	com.acmeair.web.AppConfig
+<class com.acmeair.service.AuthService>	com.acmeair.config.AcmeAirConfiguration
+<class com.acmeair.service.AuthService>	com.acmeair.web.RESTCookieSessionFilter
+<class com.acmeair.service.AuthService>	com.acmeair.web.LoginREST
+<class com.acmeair.service.AuthService>	com.acmeair.loader.SessionLoader
+<class com.acmeair.web.BookingsREST>	com.acmeair.web.AcmeAirApp
+<class com.acmeair.service.DataService>	com.acmeair.service.ServiceLocator
+<class com.acmeair.config.LoaderREST>	com.acmeair.web.AppConfig
+<class com.acmeair.mongo.ConnectionManager>	com.acmeair.mongo.ConnectionManager
+<class com.acmeair.web.CustomerREST>	com.acmeair.web.AcmeAirApp
+<class com.acmeair.web.LoginREST>	com.acmeair.web.AcmeAirApp
+<class com.acmeair.service.ServiceLocator>	com.acmeair.service.ServiceLocator
+<class javax.enterprise.inject.Default>	com.acmeair.service.ServiceLocator
+<class com.acmeair.loader.FlightLoader>	com.acmeair.loader.FlightLoader
+<com.acmeair.service.CustomerService: boolean validateCustomer(java.lang.String,java.lang.String)>/new org.json.simple.parser.JSONParser/0	com.acmeair.service.CustomerService
+<com.acmeair.service.CustomerService: java.lang.String getCustomerByUsernameAndPassword(java.lang.String,java.lang.String)>/new org.json.simple.parser.JSONParser/0	com.acmeair.service.CustomerService
+<com.acmeair.web.dto.CustomerInfo: java.lang.String toString()>/new java.lang.StringBuilder/0	com.acmeair.web.dto.CustomerInfo
+<com.acmeair.loader.Loader: void main(java.lang.String[])>/new com.acmeair.loader.Loader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String execute(long)>/new com.acmeair.loader.FlightLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String execute(long)>/new com.acmeair.loader.CustomerLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String execute(long)>/new com.acmeair.loader.SessionLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String execute(long)>/new com.acmeair.loader.BookingLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String execute(long)>/new java.lang.StringBuilder/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String execute(long)>/new java.lang.StringBuilder/1	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String execute(long)>/new java.lang.StringBuilder/2	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeCustomerDB(long)>/new com.acmeair.loader.CustomerLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeCustomerDB(long)>/new java.lang.StringBuilder/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeCustomerDB(long)>/new java.lang.StringBuilder/1	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeCustomerDB(long)>/new java.lang.StringBuilder/2	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeFlightDB()>/new com.acmeair.loader.FlightLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeFlightDB()>/new java.lang.StringBuilder/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeFlightDB()>/new java.lang.StringBuilder/1	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeSessionDB()>/new com.acmeair.loader.SessionLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeSessionDB()>/new java.lang.StringBuilder/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeSessionDB()>/new java.lang.StringBuilder/1	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeBookingDB()>/new com.acmeair.loader.BookingLoader/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeBookingDB()>/new java.lang.StringBuilder/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.lang.String executeBookingDB()>/new java.lang.StringBuilder/1	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.util.Properties getProperties()>/new java.util.Properties/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.util.Properties getProperties()>/new java.lang.StringBuilder/0	com.acmeair.loader.Loader
+<com.acmeair.loader.Loader: java.util.Properties getProperties()>/new java.lang.StringBuilder/1	com.acmeair.loader.Loader
+<com.acmeair.util.Util: void registerService()>/new java.lang.Double/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.lang.StringBuilder/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new org.json.simple.JSONObject/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new org.json.simple.JSONObject/1	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new org.json.simple.JSONArray/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.lang.StringBuilder/1	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.net.URL/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.lang.StringBuilder/2	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.io.DataOutputStream/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.io.BufferedReader/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.io.InputStreamReader/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.lang.StringBuffer/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.lang.StringBuilder/3	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new org.json.simple.parser.JSONParser/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.lang.StringBuilder/4	com.acmeair.util.Util
+<com.acmeair.util.Util: void registerService()>/new java.lang.StringBuilder/5	com.acmeair.util.Util
+<com.acmeair.util.Util: void sendHeartbeat(java.lang.String,java.lang.String,int)>/new java.net.URL/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void sendHeartbeat(java.lang.String,java.lang.String,int)>/new java.lang.StringBuilder/0	com.acmeair.util.Util
+<com.acmeair.util.Util: void sendHeartbeat(java.lang.String,java.lang.String,int)>/new java.lang.StringBuilder/1	com.acmeair.util.Util
+<com.acmeair.util.Util: void sendHeartbeat(java.lang.String,java.lang.String,int)>/new com.acmeair.util.Util$Not200Exception/0	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.lang.StringBuilder/0	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.net.URL/0	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.lang.StringBuilder/1	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.io.BufferedReader/0	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.io.InputStreamReader/0	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.lang.StringBuffer/0	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.lang.StringBuilder/2	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new org.json.simple.parser.JSONParser/0	com.acmeair.util.Util
+<com.acmeair.util.Util: java.lang.String getServiceProxy()>/new java.lang.StringBuilder/3	com.acmeair.util.Util
+<com.acmeair.web.FlightsREST: java.lang.String getTripFlights(java.lang.String,java.lang.String,java.util.Date,java.util.Date,boolean)>/new java.util.GregorianCalendar/0	com.acmeair.web.FlightsREST
+<com.acmeair.web.FlightsREST: java.lang.String getTripFlights(java.lang.String,java.lang.String,java.util.Date,java.util.Date,boolean)>/new java.lang.StringBuilder/0	com.acmeair.web.FlightsREST
+<com.acmeair.web.FlightsREST: java.lang.String getTripFlights(java.lang.String,java.lang.String,java.util.Date,java.util.Date,boolean)>/new java.lang.StringBuilder/1	com.acmeair.web.FlightsREST
+<com.acmeair.mongo.services.CustomerServiceImpl: void createCustomer(java.lang.String,java.lang.String,java.lang.String,int,int,java.lang.String,java.lang.String,java.lang.String)>/new org.bson.Document/0	com.acmeair.mongo.services.CustomerServiceImpl
+<com.acmeair.mongo.services.CustomerServiceImpl: void createCustomer(java.lang.String,java.lang.String,java.lang.String,int,int,java.lang.String,java.lang.String,java.lang.String)>/new org.bson.Document/1	com.acmeair.mongo.services.CustomerServiceImpl
+<com.acmeair.mongo.services.CustomerServiceImpl: java.lang.String createAddress(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>/new org.bson.Document/0	com.acmeair.mongo.services.CustomerServiceImpl
+<com.acmeair.mongo.services.CustomerServiceImpl: void updateCustomer(java.lang.String,com.acmeair.web.dto.CustomerInfo)>/new org.bson.Document/0	com.acmeair.mongo.services.CustomerServiceImpl
+<com.acmeair.mongo.services.CustomerServiceImpl: void updateCustomer(java.lang.String,com.acmeair.web.dto.CustomerInfo)>/new org.bson.conversions.Bson[]/0	com.acmeair.mongo.services.CustomerServiceImpl
+<com.acmeair.mongo.services.CustomerServiceImpl: void dropCustomers()>/new org.bson.Document/0	com.acmeair.mongo.services.CustomerServiceImpl
+<com.acmeair.config.AcmeAirConfiguration: void initialization()>/new javax.naming.InitialContext/0	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.config.AcmeAirConfiguration: void initialization()>/new javax.naming.InitialContext/1	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.config.AcmeAirConfiguration: java.util.ArrayList getDataServiceInfo()>/new java.util.ArrayList/0	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.config.AcmeAirConfiguration: java.util.ArrayList getDataServiceInfo()>/new com.acmeair.config.AcmeAirConfiguration$ServiceData/0	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.config.AcmeAirConfiguration: java.util.ArrayList getRuntimeInfo()>/new java.util.ArrayList/0	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.config.AcmeAirConfiguration: java.util.ArrayList getRuntimeInfo()>/new com.acmeair.config.AcmeAirConfiguration$ServiceData/0	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.config.AcmeAirConfiguration: java.util.ArrayList getRuntimeInfo()>/new com.acmeair.config.AcmeAirConfiguration$ServiceData/1	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.config.AcmeAirConfiguration: java.util.ArrayList getRuntimeInfo()>/new com.acmeair.config.AcmeAirConfiguration$ServiceData/2	com.acmeair.config.AcmeAirConfiguration
+<com.acmeair.web.BookingsREST: javax.ws.rs.core.Response bookFlights(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean)>/new java.lang.StringBuilder/0	com.acmeair.web.BookingsREST
+<com.acmeair.web.BookingsREST: javax.ws.rs.core.Response bookFlights(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean)>/new java.lang.StringBuilder/1	com.acmeair.web.BookingsREST
+<com.acmeair.web.BookingsREST: javax.ws.rs.core.Response cancelBookingsByNumber(java.lang.String,java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.web.BookingsREST
+<com.acmeair.web.RESTCookieSessionFilter: void doFilter(javax.servlet.ServletRequest,javax.servlet.ServletResponse,javax.servlet.FilterChain)>/new java.lang.StringBuilder/0	com.acmeair.web.RESTCookieSessionFilter
+<com.acmeair.mongo.services.BookingServiceImpl: java.lang.String bookFlight(java.lang.String,java.lang.String)>/new org.bson.Document/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: java.lang.String bookFlight(java.lang.String,java.lang.String)>/new java.util.Date/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: java.lang.String bookFlight(java.lang.String,java.lang.String)>/new java.lang.RuntimeException/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: java.lang.String getBooking(java.lang.String,java.lang.String)>/new java.lang.RuntimeException/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: java.util.List getBookingsByUser(java.lang.String)>/new java.util.ArrayList/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: java.util.List getBookingsByUser(java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: java.util.List getBookingsByUser(java.lang.String)>/new java.lang.StringBuilder/1	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: java.util.List getBookingsByUser(java.lang.String)>/new java.lang.RuntimeException/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: void cancelBooking(java.lang.String,java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: void cancelBooking(java.lang.String,java.lang.String)>/new java.lang.RuntimeException/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.mongo.services.BookingServiceImpl: void dropBookings()>/new org.bson.Document/0	com.acmeair.mongo.services.BookingServiceImpl
+<com.acmeair.service.AuthService: org.json.simple.JSONObject validateSession(java.lang.String)>/new java.util.Date/0	com.acmeair.service.AuthService
+<com.acmeair.service.AuthService: org.json.simple.JSONObject validateSession(java.lang.String)>/new org.json.simple.parser.JSONParser/0	com.acmeair.service.AuthService
+<com.acmeair.service.AuthService: org.json.simple.JSONObject validateSession(java.lang.String)>/new org.json.simple.parser.JSONParser/1	com.acmeair.service.AuthService
+<com.acmeair.service.AuthService: org.json.simple.JSONObject createSession(java.lang.String)>/new java.util.Date/0	com.acmeair.service.AuthService
+<com.acmeair.service.AuthService: org.json.simple.JSONObject createSession(java.lang.String)>/new org.json.simple.parser.JSONParser/0	com.acmeair.service.AuthService
+<com.acmeair.mongo.services.FlightServiceImpl: java.lang.String getFlightSegment(java.lang.String,java.lang.String)>/new com.mongodb.BasicDBObject/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>/new org.json.simple.parser.JSONParser/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>/new java.lang.StringBuilder/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>/new com.mongodb.BasicDBObject/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>/new com.mongodb.BasicDBObject/1	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>/new java.util.ArrayList/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>/new java.lang.StringBuilder/1	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>/new java.lang.StringBuilder/2	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: void storeAirportMapping(com.acmeair.AirportCodeMapping)>/new org.bson.Document/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: com.acmeair.AirportCodeMapping createAirportCodeMapping(java.lang.String,java.lang.String)>/new com.acmeair.AirportCodeMapping/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: void createNewFlight(java.lang.String,java.util.Date,java.util.Date,int,int,int,int,java.lang.String)>/new org.bson.Document/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: void storeFlightSegment(java.lang.String)>/new org.json.simple.parser.JSONParser/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: void storeFlightSegment(java.lang.String,java.lang.String,java.lang.String,int)>/new org.bson.Document/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: void dropFlights()>/new org.bson.Document/0	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: void dropFlights()>/new org.bson.Document/1	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.services.FlightServiceImpl: void dropFlights()>/new org.bson.Document/2	com.acmeair.mongo.services.FlightServiceImpl
+<com.acmeair.mongo.ConnectionManager: com.acmeair.mongo.ConnectionManager getConnectionManager()>/new com.acmeair.mongo.ConnectionManager/0	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new com.mongodb.MongoClient/0	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new com.mongodb.ServerAddress/0	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new com.mongodb.MongoCredential[]/0	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new com.mongodb.MongoClient/1	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new java.lang.StringBuilder/0	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new java.lang.StringBuilder/1	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new com.mongodb.MongoClientURI/0	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new com.mongodb.MongoClient/2	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new com.mongodb.MongoClient/3	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new java.lang.StringBuilder/2	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new java.lang.StringBuilder/3	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new java.lang.StringBuilder/4	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new java.lang.StringBuilder/5	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <init>()>/new java.lang.StringBuilder/6	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.ConnectionManager: void <clinit>()>/new java.util.concurrent.atomic.AtomicReference/0	com.acmeair.mongo.ConnectionManager
+<com.acmeair.mongo.services.AuthServiceImpl: void removeSession(java.lang.String)>/new org.bson.Document/0	com.acmeair.mongo.services.AuthServiceImpl
+<com.acmeair.mongo.services.AuthServiceImpl: java.lang.String createSession(java.lang.String,java.lang.String,java.util.Date,java.util.Date)>/new org.bson.Document/0	com.acmeair.mongo.services.AuthServiceImpl
+<com.acmeair.mongo.services.AuthServiceImpl: void dropSessions()>/new org.bson.Document/0	com.acmeair.mongo.services.AuthServiceImpl
+<com.acmeair.web.CustomerREST: boolean validate(java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.web.CustomerREST
+<com.acmeair.web.CustomerREST: javax.ws.rs.core.Response getCustomer(java.lang.String,java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.web.CustomerREST
+<com.acmeair.web.CustomerREST: javax.ws.rs.core.Response putCustomer(java.lang.String,com.acmeair.web.dto.CustomerInfo)>/new java.lang.StringBuilder/0	com.acmeair.web.CustomerREST
+<com.acmeair.util.ServiceRegister: void contextInitialized(javax.servlet.ServletContextEvent)>/new java.lang.Thread/0	com.acmeair.util.ServiceRegister
+<com.acmeair.util.ServiceRegister: void contextInitialized(javax.servlet.ServletContextEvent)>/new com.acmeair.util.ServiceRegister$1/0	com.acmeair.util.ServiceRegister
+<com.acmeair.web.LoginREST: javax.ws.rs.core.Response login(java.lang.String,java.lang.String)>/new javax.ws.rs.core.NewCookie/0	com.acmeair.web.LoginREST
+<com.acmeair.web.LoginREST: javax.ws.rs.core.Response login(java.lang.String,java.lang.String)>/new javax.ws.rs.core.NewCookie[]/0	com.acmeair.web.LoginREST
+<com.acmeair.web.LoginREST: javax.ws.rs.core.Response logout(java.lang.String,java.lang.String)>/new javax.ws.rs.core.NewCookie/0	com.acmeair.web.LoginREST
+<com.acmeair.web.LoginREST: javax.ws.rs.core.Response logout(java.lang.String,java.lang.String)>/new javax.ws.rs.core.NewCookie[]/0	com.acmeair.web.LoginREST
+<com.acmeair.loader.CustomerLoader: void loadCustomers(long)>/new java.lang.StringBuilder/0	com.acmeair.loader.CustomerLoader
+<com.acmeair.web.AcmeAirApp: java.util.Set getClasses()>/new java.util.HashSet/0	com.acmeair.web.AcmeAirApp
+<com.acmeair.web.AcmeAirApp: java.util.Set getClasses()>/new java.lang.Class[]/0	com.acmeair.web.AcmeAirApp
+<com.acmeair.service.ServiceLocator: com.acmeair.service.ServiceLocator instance()>/new com.acmeair.service.ServiceLocator/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void initialization()>/new javax.naming.InitialContext/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void initialization()>/new javax.naming.InitialContext/1	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void updateService(java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new javax.naming.InitialContext/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/1	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/2	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/3	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new javax.naming.InitialContext/1	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new javax.naming.InitialContext/2	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/4	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/5	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/6	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/7	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/8	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/9	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/10	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <init>()>/new java.lang.StringBuilder/11	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.lang.Object getService(java.lang.Class)>/new java.lang.annotation.Annotation[]/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.lang.Object getService(java.lang.Class)>/new com.acmeair.service.ServiceLocator$1/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.lang.Object getService(java.lang.Class)>/new java.lang.StringBuilder/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.lang.Object getService(java.lang.Class)>/new java.lang.StringBuilder/1	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.lang.Object getService(java.lang.Class)>/new java.lang.StringBuilder/2	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.util.Map getServices()>/new java.util.TreeMap/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.util.Map getServices()>/new java.lang.annotation.Annotation[]/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.util.Map getServices()>/new com.acmeair.service.ServiceLocator$2/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: java.util.Map getServices()>/new java.lang.StringBuilder/0	com.acmeair.service.ServiceLocator
+<com.acmeair.service.ServiceLocator: void <clinit>()>/new java.util.concurrent.atomic.AtomicReference/0	com.acmeair.service.ServiceLocator
+<com.acmeair.web.SupportWebSocket: java.lang.String getRandomSupportAgent()>/new java.lang.String[]/0	com.acmeair.web.SupportWebSocket
+<com.acmeair.web.SupportWebSocket: java.lang.String getGreeting(java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.web.SupportWebSocket
+<com.acmeair.web.SupportWebSocket: java.lang.String getRandomSupportResponse(java.lang.String)>/new java.lang.String[]/0	com.acmeair.web.SupportWebSocket
+<com.acmeair.web.SupportWebSocket: java.lang.String getRandomSupportResponse(java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.web.SupportWebSocket
+<com.acmeair.web.dto.AddressInfo: java.lang.String toString()>/new java.lang.StringBuilder/0	com.acmeair.web.dto.AddressInfo
+<com.acmeair.AirportCodeMapping: java.lang.String toJson()>/new java.lang.StringBuilder/0	com.acmeair.AirportCodeMapping
+<com.acmeair.web.AppConfig: java.util.Set getClasses()>/new java.util.HashSet/0	com.acmeair.web.AppConfig
+<com.acmeair.web.AppConfig: java.util.Set getClasses()>/new java.lang.Class[]/0	com.acmeair.web.AppConfig
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.io.LineNumberReader/0	com.acmeair.loader.FlightLoader
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.io.InputStreamReader/0	com.acmeair.loader.FlightLoader
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.util.StringTokenizer/0	com.acmeair.loader.FlightLoader
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.util.ArrayList/0	com.acmeair.loader.FlightLoader
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.util.StringTokenizer/1	com.acmeair.loader.FlightLoader
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.util.StringTokenizer/2	com.acmeair.loader.FlightLoader
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.lang.StringBuilder/0	com.acmeair.loader.FlightLoader
+<com.acmeair.loader.FlightLoader: void loadFlights()>/new java.util.Date/0	com.acmeair.loader.FlightLoader
+<com.acmeair.service.FlightService: void <init>()>/new java.lang.StringBuilder/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.lang.String getFlightByFlightId(java.lang.String,java.lang.String)>/new java.lang.StringBuilder/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.lang.String getFlightByFlightId(java.lang.String,java.lang.String)>/new java.lang.RuntimeException/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/1	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/2	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.util.ArrayList/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new org.json.simple.parser.JSONParser/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/3	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.util.ArrayList/1	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/4	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/5	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/6	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/7	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>/new java.lang.StringBuilder/8	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: java.util.List getFlightByAirports(java.lang.String,java.lang.String)>/new java.util.ArrayList/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: void <clinit>()>/new java.util.concurrent.ConcurrentHashMap/0	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: void <clinit>()>/new java.util.concurrent.ConcurrentHashMap/1	com.acmeair.service.FlightService
+<com.acmeair.service.FlightService: void <clinit>()>/new java.util.concurrent.ConcurrentHashMap/2	com.acmeair.service.FlightService
+mongo	com.acmeair.service.ServiceLocator
+application/json	com.acmeair.util.Util
+sessionid	com.acmeair.web.LoginREST
+Customer [id=	com.acmeair.web.dto.CustomerInfo
+, password=	com.acmeair.web.dto.CustomerInfo
+, status=	com.acmeair.web.dto.CustomerInfo
+, total_miles=	com.acmeair.web.dto.CustomerInfo
+, miles_ytd=	com.acmeair.web.dto.CustomerInfo
+, address=	com.acmeair.web.dto.CustomerInfo
+, phoneNumber=	com.acmeair.web.dto.CustomerInfo
+, phoneNumberType=	com.acmeair.web.dto.CustomerInfo
+loader.numCustomers	com.acmeair.loader.Loader
+The system property \'loader.numCustomers\' has not been set yet. Looking up the default properties.	com.acmeair.loader.Loader
+<<\\"\\">>	com.acmeair.loader.Loader
+<<\\"\\">>	com.acmeair.web.FlightsREST
+<<\\"\\">>	com.acmeair.service.FlightService
+<<\\"\\">>	com.acmeair.config.AcmeAirConfiguration$ServiceData
+<<\\"\\">>	com.acmeair.web.RESTCookieSessionFilter
+<<\\"\\">>	com.acmeair.web.LoginREST
+<<\\"\\">>	com.acmeair.mongo.services.FlightServiceImpl
+<<\\"\\">>	com.acmeair.loader.FlightLoader
+<<\\"\\">>	com.acmeair.util.Util
+Start loading flights	com.acmeair.loader.Loader
+<<\\"Start loading \\">>	com.acmeair.loader.Loader
+<<\\" customers\\">>	com.acmeair.loader.Loader
+<<\\"Finished loading in \\">>	com.acmeair.loader.Loader
+<<\\" seconds\\">>	com.acmeair.loader.Loader
+<<\\"Loaded flights and \\">>	com.acmeair.loader.Loader
+<<\\" customers in \\">>	com.acmeair.loader.Loader
+<<\\"Loaded \\">>	com.acmeair.loader.Loader
+<<\\"Loaded flights in \\">>	com.acmeair.loader.Loader
+Start clearing session	com.acmeair.loader.Loader
+<<\\"Finished clearing in \\">>	com.acmeair.loader.Loader
+<<\\"Cleared sessions in \\">>	com.acmeair.loader.Loader
+100	com.acmeair.loader.Loader
+/loader.properties	com.acmeair.loader.Loader
+<<\\"Property file \\">>	com.acmeair.loader.Loader
+<<\\" not found.\\">>	com.acmeair.loader.Loader
+<<\\"IOException - Property file \\">>	com.acmeair.loader.Loader
+com.acmeair.repository.type	com.acmeair.loader.Loader
+com.acmeair.repository.type	com.acmeair.service.ServiceLocator
+VCAP_APP_PORT	com.acmeair.util.Util
+SERVICE_NAME	com.acmeair.util.Util
+SD_TOKEN	com.acmeair.util.Util
+SD_URL	com.acmeair.util.Util
+space_id	com.acmeair.util.Util
+/api/v1/instances	com.acmeair.util.Util
+http	com.acmeair.util.Util
+:	com.acmeair.util.Util
+tags	com.acmeair.util.Util
+UP	com.acmeair.util.Util
+service_name	com.acmeair.util.Util
+endpoint	com.acmeair.util.Util
+ttl	com.acmeair.util.Util
+REGISTERING THIS SERVICE...	com.acmeair.util.Util
+POST	com.acmeair.util.Util
+Content-Type	com.acmeair.util.Util
+<<\\"Bearer \\">>	com.acmeair.util.Util
+authorization	com.acmeair.util.Util
+X-Forwarded-Proto	com.acmeair.util.Util
+https	com.acmeair.util.Util
+<<\\"Response Code : \\">>	com.acmeair.util.Util
+<<\\" Response : \\">>	com.acmeair.util.Util
+<<\\"HEARTBEAT FAILED AT \\">>	com.acmeair.util.Util
+<<\\" WITH ERROR : \\">>	com.acmeair.util.Util
+<<\\" RE-REGISTERING\\">>	com.acmeair.util.Util
+<<\\"REGISTRATION FAILED AT \\">>	com.acmeair.util.Util
+<<\\" RE-REGISTERING AFTER \\">>	com.acmeair.util.Util
+<<\\" sec  SLEEP\\">>	com.acmeair.util.Util
+<<\\"Heartbeat Check \\">>	com.acmeair.util.Util
+PUT	com.acmeair.util.Util
+/api/v1/services/ServiceProxy	com.acmeair.util.Util
+GETTING SERVICE PROXY URL...	com.acmeair.util.Util
+<<\\"SP Response Code : \\">>	com.acmeair.util.Util
+<<\\" SP Response : \\">>	com.acmeair.util.Util
+<<\\"FAILED TO GET THE SERVICE PROXY AT \\">>	com.acmeair.util.Util
+<<\\" RE-TRYING AFTER \\">>	com.acmeair.util.Util
+<<\\"{\\\"tripFlights\\\":[{\\\"numPages\\\":1,\\\"flightsOptions\\\": \\">>	com.acmeair.web.FlightsREST
+<<\\",\\\"currentPage\\\":0,\\\"hasMoreOptions\\\":false,\\\"pageSize\\\":10}, {\\\"numPages\\\":1,\\\"flightsOptions\\\": \\">>	com.acmeair.web.FlightsREST
+,\\\"currentPage\\\":0,\\\"hasMoreOptions\\\":false,\\\"pageSize\\\":10}], \\\"tripLegs\\\":2}	com.acmeair.web.FlightsREST
+,\\\"currentPage\\\":0,\\\"hasMoreOptions\\\":false,\\\"pageSize\\\":10}], \\\"tripLegs\\\":1}	com.acmeair.web.FlightsREST
+Attempting to look up BeanManager through JNDI at java:comp/BeanManager	com.acmeair.config.AcmeAirConfiguration
+Attempting to look up BeanManager through JNDI at java:comp/BeanManager	com.acmeair.service.ServiceLocator
+java:comp/BeanManager	com.acmeair.config.AcmeAirConfiguration
+java:comp/BeanManager	com.acmeair.service.ServiceLocator
+BeanManager not found at java:comp/BeanManager	com.acmeair.config.AcmeAirConfiguration
+BeanManager not found at java:comp/BeanManager	com.acmeair.service.ServiceLocator
+Attempting to look up BeanManager through JNDI at java:comp/env/BeanManager	com.acmeair.config.AcmeAirConfiguration
+Attempting to look up BeanManager through JNDI at java:comp/env/BeanManager	com.acmeair.service.ServiceLocator
+java:comp/env/BeanManager	com.acmeair.config.AcmeAirConfiguration
+java:comp/env/BeanManager	com.acmeair.service.ServiceLocator
+<<\\"BeanManager not found at java:comp/env/BeanManager \\">>	com.acmeair.config.AcmeAirConfiguration
+<<\\"BeanManager not found at java:comp/env/BeanManager \\">>	com.acmeair.service.ServiceLocator
+Get data service configuration info	com.acmeair.config.AcmeAirConfiguration
+Get active Data Service info	com.acmeair.config.AcmeAirConfiguration
+Getting Runtime info	com.acmeair.config.AcmeAirConfiguration
+Runtime	com.acmeair.config.AcmeAirConfiguration
+Java	com.acmeair.config.AcmeAirConfiguration
+Version	com.acmeair.config.AcmeAirConfiguration
+java.version	com.acmeair.config.AcmeAirConfiguration
+Vendor	com.acmeair.config.AcmeAirConfiguration
+java.vendor	com.acmeair.config.AcmeAirConfiguration
+{\\\"oneWay\\\":false,\\\"returnBookingId\\\":\\\"	com.acmeair.web.BookingsREST
+\\\",\\\"departBookingId\\\":\\\"	com.acmeair.web.BookingsREST
+\\\"}	com.acmeair.web.BookingsREST
+\\\"}	com.acmeair.web.SupportWebSocket
+\\\"}	com.acmeair.AirportCodeMapping
+{\\\"oneWay\\\":true,\\\"departBookingId\\\":\\\"	com.acmeair.web.BookingsREST
+<<\\"booking \\">>	com.acmeair.web.BookingsREST
+<<\\" deleted.\\">>	com.acmeair.web.BookingsREST
+/rest/api/login	com.acmeair.web.RESTCookieSessionFilter
+/rest/api/login/logout	com.acmeair.web.RESTCookieSessionFilter
+/rest/api/loaddb	com.acmeair.web.RESTCookieSessionFilter
+acmeair.login_user	com.acmeair.web.RESTCookieSessionFilter
+<<\\"getBookingsByUser : \\">>	com.acmeair.mongo.services.BookingServiceImpl
+dateOfBooking	com.acmeair.mongo.services.BookingServiceImpl
+<<\\"getBookingsByUser cursor data : \\">>	com.acmeair.mongo.services.BookingServiceImpl
+<<\\"cancelBooking _id : \\">>	com.acmeair.mongo.services.BookingServiceImpl
+originPort	com.acmeair.mongo.services.FlightServiceImpl
+getFlghSegment returned no flightSegment available	com.acmeair.mongo.services.FlightServiceImpl
+<<\\"getFlghtBySegment Search String : \\">>	com.acmeair.mongo.services.FlightServiceImpl
+flightSegmentId	com.acmeair.mongo.services.FlightServiceImpl
+<<\\"getFlghtBySegment Before : \\">>	com.acmeair.mongo.services.FlightServiceImpl
+scheduledDepartureTime	com.acmeair.mongo.services.FlightServiceImpl
+scheduledArrivalTime	com.acmeair.mongo.services.FlightServiceImpl
+<<\\"getFlghtBySegment after : \\">>	com.acmeair.mongo.services.FlightServiceImpl
+localhost	com.acmeair.mongo.ConnectionManager
+acmeair	com.acmeair.mongo.ConnectionManager
+MONGO_MANUAL	com.acmeair.mongo.ConnectionManager
+MONGO_HOST	com.acmeair.mongo.ConnectionManager
+MONGO_PORT	com.acmeair.mongo.ConnectionManager
+MONGO_DBNAME	com.acmeair.mongo.ConnectionManager
+MONGO_USER	com.acmeair.mongo.ConnectionManager
+MONGO_PASSWORD	com.acmeair.mongo.ConnectionManager
+VCAP_SERVICES	com.acmeair.service.ServiceLocator
+VCAP_SERVICES	com.acmeair.mongo.ConnectionManager
+Reading VCAP_SERVICES	com.acmeair.service.ServiceLocator
+Reading VCAP_SERVICES	com.acmeair.mongo.ConnectionManager
+user-provided	com.acmeair.mongo.ConnectionManager
+<<\\"Service Type : MongoDB by Compost - \\">>	com.acmeair.mongo.ConnectionManager
+<<\\"service url = \\">>	com.acmeair.mongo.ConnectionManager
+<<\\"#### Mongo DB Database Name \\">>	com.acmeair.mongo.ConnectionManager
+<<\\" ####\\">>	com.acmeair.mongo.ConnectionManager
+<<\\"#### Mongo DB Server \\">>	com.acmeair.mongo.ConnectionManager
+<<\\"#### Mongo DB Port \\">>	com.acmeair.mongo.ConnectionManager
+<<\\"#### Mongo DB is created with DB name \\">>	com.acmeair.mongo.ConnectionManager
+<<\\"Caught Exception : \\">>	com.acmeair.mongo.ConnectionManager
+<<\\"validate : loginUser \\">>	com.acmeair.web.CustomerREST
+<<\\" customerid \\">>	com.acmeair.web.CustomerREST
+<<\\"getCustomer : session ID \\">>	com.acmeair.web.CustomerREST
+<<\\" userid \\">>	com.acmeair.web.CustomerREST
+<<\\"putCustomer : \\">>	com.acmeair.web.CustomerREST
+sessionid is empty	com.acmeair.web.LoginREST
+{streetAddress1 : \\\"123 Main St.\\\", streetAddress2 :null, city: \\\"Anytown\\\", stateProvince: \\\"NC\\\", country: \\\"USA\\\", postalCode: \\\"27617\\\"}	com.acmeair.loader.CustomerLoader
+uid	com.acmeair.loader.CustomerLoader
+@email.com	com.acmeair.loader.CustomerLoader
+GOLD	com.acmeair.loader.CustomerLoader
+919-123-4567	com.acmeair.loader.CustomerLoader
+BUSINESS	com.acmeair.loader.CustomerLoader
+<<\\"Service Locator updating service to : \\">>	com.acmeair.service.ServiceLocator
+java:comp/env	com.acmeair.service.ServiceLocator
+Found repository in web.xml:	com.acmeair.service.ServiceLocator
+Found repository in server.xml:	com.acmeair.service.ServiceLocator
+Found repository in jvm property:	com.acmeair.service.ServiceLocator
+Found repository in environment property:	com.acmeair.service.ServiceLocator
+<<\\"jsonObject = \\">>	com.acmeair.service.ServiceLocator
+ElasticCaching	com.acmeair.service.ServiceLocator
+DataCache	com.acmeair.service.ServiceLocator
+VCAP_SERVICES existed with service:	com.acmeair.service.ServiceLocator
+wxs	com.acmeair.service.ServiceLocator
+redis	com.acmeair.service.ServiceLocator
+mysql	com.acmeair.service.ServiceLocator
+cleardb	com.acmeair.service.ServiceLocator
+postgresql	com.acmeair.service.ServiceLocator
+db2	com.acmeair.service.ServiceLocator
+<<\\"ServiceType is now : \\">>	com.acmeair.service.ServiceLocator
+Can not determine type. Use default service implementation.	com.acmeair.service.ServiceLocator
+BeanManager is null!!!	com.acmeair.service.ServiceLocator
+<<\\" Bean = \\">>	com.acmeair.service.ServiceLocator
+Service type is not set, searching for the default implementation.	com.acmeair.service.ServiceLocator
+<<\\"   name=\\">>	com.acmeair.service.ServiceLocator
+<<\\" description=\\">>	com.acmeair.service.ServiceLocator
+<<\\"No Service of type: \\">>	com.acmeair.service.ServiceLocator
+<<\\" found for \\">>	com.acmeair.service.ServiceLocator
+<<\\" \\">>	com.acmeair.service.ServiceLocator
+Getting CustomerService Impls	com.acmeair.service.ServiceLocator
+default	com.acmeair.service.ServiceLocator
+Bob	com.acmeair.web.SupportWebSocket
+Bill	com.acmeair.web.SupportWebSocket
+Beth	com.acmeair.web.SupportWebSocket
+Don	com.acmeair.web.SupportWebSocket
+Jim	com.acmeair.web.SupportWebSocket
+Kate	com.acmeair.web.SupportWebSocket
+Matt	com.acmeair.web.SupportWebSocket
+Mike	com.acmeair.web.SupportWebSocket
+Nick	com.acmeair.web.SupportWebSocket
+Rick	com.acmeair.web.SupportWebSocket
+Steve	com.acmeair.web.SupportWebSocket
+Tina	com.acmeair.web.SupportWebSocket
+Tom	com.acmeair.web.SupportWebSocket
+{\\\"agent\\\" : \\\"	com.acmeair.web.SupportWebSocket
+<<\\"\\\",\\\"message\\\" : \\\"Welcome to AcmeAir Support. My name is \\">>	com.acmeair.web.SupportWebSocket
+. How can I help you?\\\"}	com.acmeair.web.SupportWebSocket
+One moment please...	com.acmeair.web.SupportWebSocket
+Did you try rebooting?	com.acmeair.web.SupportWebSocket
+Is it plugged in?	com.acmeair.web.SupportWebSocket
+Let me contact L2.	com.acmeair.web.SupportWebSocket
+\\\",\\\"message\\\" : \\\"	com.acmeair.web.SupportWebSocket
+CustomerAddress [streetAddress1=	com.acmeair.web.dto.AddressInfo
+, streetAddress2=	com.acmeair.web.dto.AddressInfo
+, city=	com.acmeair.web.dto.AddressInfo
+, stateProvince=	com.acmeair.web.dto.AddressInfo
+, country=	com.acmeair.web.dto.AddressInfo
+, postalCode=	com.acmeair.web.dto.AddressInfo
+{ _id : \\\"	com.acmeair.AirportCodeMapping
+\\\", airportName : \\\"	com.acmeair.AirportCodeMapping
+/mileage.csv	com.acmeair.loader.FlightLoader
+,	com.acmeair.loader.FlightLoader
+NA	com.acmeair.loader.FlightLoader
+AA	com.acmeair.loader.FlightLoader
+B747	com.acmeair.loader.FlightLoader
+USE_FLIGHT_DATA_RELATED_CACHING	com.acmeair.service.FlightService
+Found env variable USE_FLIGHT_DATA_RELATED_CACHING	com.acmeair.service.FlightService
+<<\\"useFlightDataRelatedCaching : \\">>	com.acmeair.service.FlightService
+USE_FLIGHT_DATA_RELATED_CACHING environment variable is set. Enabling Caching. To disable caching, use Environment variable USE_FLIGHT_DATA_RELATED_CACHING=false	com.acmeair.service.FlightService
+USE_FLIGHT_DATA_RELATED_CACHING error. Check for below log	com.acmeair.service.FlightService
+<<\\"Book flights with \\">>	com.acmeair.service.FlightService
+<<\\" and \\">>	com.acmeair.service.FlightService
+<<\\"Search for flights from \\">>	com.acmeair.service.FlightService
+<<\\" to \\">>	com.acmeair.service.FlightService
+<<\\" on \\">>	com.acmeair.service.FlightService
+<<\\"Segment \\">>	com.acmeair.service.FlightService
+<<\\"Segment in JSON \\">>	com.acmeair.service.FlightService
+Segment is null	com.acmeair.service.FlightService
+<<\\"flightSegmentIdAndScheduledDepartureTimeQueryString \\">>	com.acmeair.service.FlightService
+<<\\"flights search results if flights cache is null \\">>	com.acmeair.service.FlightService
+<<\\"Returning \\">>	com.acmeair.service.FlightService
+<<\\"useFlightDataRelatedCaching is false \\">>	com.acmeair.service.FlightService

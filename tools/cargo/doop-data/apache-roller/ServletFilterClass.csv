@@ -1,0 +1,12 @@
+org.apache.roller.weblogger.ui.core.filters.ValidateSaltFilter
+org.apache.roller.weblogger.ui.core.filters.IPBanFilter
+org.apache.roller.weblogger.ui.core.filters.CharEncodingFilter
+org.apache.roller.weblogger.ui.core.filters.RoleAssignmentFilter
+org.apache.roller.weblogger.ui.core.filters.InitFilter
+org.apache.roller.weblogger.ui.core.filters.DebugFilter
+org.apache.roller.weblogger.ui.core.filters.PersistenceSessionFilter
+org.apache.roller.weblogger.ui.core.filters.CustomOpenIDAuthenticationProcessingFilter
+org.apache.roller.weblogger.ui.rendering.filters.RequestMappingFilter
+org.apache.roller.weblogger.ui.core.filters.SpringFirewallExceptionFilter
+org.apache.roller.weblogger.ui.core.filters.BootstrapFilter
+org.apache.roller.weblogger.ui.core.filters.LoadSaltFilter

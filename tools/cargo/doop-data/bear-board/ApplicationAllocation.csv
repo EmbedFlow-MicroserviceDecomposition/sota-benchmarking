@@ -1,0 +1,178 @@
+)	com.rokin.baylorboard.domain.User
+)	com.rokin.baylorboard.domain.Event
+)	com.rokin.baylorboard.domain.Tweet
+)	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+)	com.rokin.baylorboard.domain.Roles
+)	com.rokin.baylorboard.domain.WhitelistUser
+)	com.rokin.baylorboard.domain.User$UserBuilder
+)	com.rokin.baylorboard.domain.Award
+class	com.rokin.baylorboard.utils.CustomBeanUtils
+ACCEPTED	com.rokin.baylorboard.enums.TweetStatus
+PENDING	com.rokin.baylorboard.enums.TweetStatus
+REJECTED	com.rokin.baylorboard.enums.TweetStatus
+PROFESSOR	com.rokin.baylorboard.enums.Role
+ADMIN	com.rokin.baylorboard.enums.Role
+<class org.apache.kafka.common.serialization.StringDeserializer>	com.rokin.baylorboard.config.KafkaConfig
+<class com.rokin.baylorboard.BaylorBoardApplication>	com.rokin.baylorboard.BaylorBoardApplication
+<class com.rokin.baylorboard.enums.TweetStatus>	com.rokin.baylorboard.enums.TweetStatus
+<class com.rokin.baylorboard.enums.Role>	com.rokin.baylorboard.enums.Role
+<com.rokin.baylorboard.service.TweetService: java.util.List fetchTweets()>/new twitter4j.Query/0	com.rokin.baylorboard.service.TweetService
+<com.rokin.baylorboard.service.TweetService: java.util.List fetchTweets()>/new java.util.ArrayList/0	com.rokin.baylorboard.service.TweetService
+<com.rokin.baylorboard.service.TweetService: void sendTweetsToKafka(com.rokin.baylorboard.domain.Tweet)>/new java.lang.StringBuilder/0	com.rokin.baylorboard.service.TweetService
+<com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>/new com.rokin.baylorboard.service.TweetService$1/0	com.rokin.baylorboard.service.TweetService
+<com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>/new java.lang.String[]/0	com.rokin.baylorboard.service.TweetService
+<com.rokin.baylorboard.service.TweetService: java.util.Map findTweetsWithPaging(com.rokin.baylorboard.enums.TweetStatus,java.lang.Integer,java.lang.Integer)>/new java.util.HashMap/0	com.rokin.baylorboard.service.TweetService
+<com.rokin.baylorboard.service.TweetService$1: void onStatus(twitter4j.Status)>/new com.rokin.baylorboard.domain.MessageBean/0	com.rokin.baylorboard.service.TweetService$1
+<com.rokin.baylorboard.domain.User: com.rokin.baylorboard.domain.User$UserBuilder builder()>/new com.rokin.baylorboard.domain.User$UserBuilder/0	com.rokin.baylorboard.domain.User
+<com.rokin.baylorboard.domain.User: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.User
+<com.rokin.baylorboard.domain.Event: void <init>()>/new java.util.ArrayList/0	com.rokin.baylorboard.domain.Event
+<com.rokin.baylorboard.domain.Event: void <init>()>/new java.util.ArrayList/1	com.rokin.baylorboard.domain.Event
+<com.rokin.baylorboard.domain.Event: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.Event
+<com.rokin.baylorboard.repository.TweetRepository: java.util.List saveAll(java.lang.Iterable)>/new java.lang.Error/0	com.rokin.baylorboard.repository.TweetRepository
+<com.rokin.baylorboard.repository.TweetRepository: org.springframework.data.domain.Page findAll(org.springframework.data.domain.Pageable)>/new java.lang.Error/0	com.rokin.baylorboard.repository.TweetRepository
+<com.rokin.baylorboard.repository.TweetRepository: java.util.Optional findById(java.lang.Object)>/new java.lang.Error/0	com.rokin.baylorboard.repository.TweetRepository
+<com.rokin.baylorboard.repository.TweetRepository: java.lang.Object save(java.lang.Object)>/new java.lang.Error/0	com.rokin.baylorboard.repository.TweetRepository
+<com.rokin.baylorboard.repository.TweetRepository: void deleteAll()>/new java.lang.Error/0	com.rokin.baylorboard.repository.TweetRepository
+<com.rokin.baylorboard.config.TwitterConfig: twitter4j.conf.ConfigurationBuilder getConfigurationBuilder()>/new twitter4j.conf.ConfigurationBuilder/0	com.rokin.baylorboard.config.TwitterConfig
+<com.rokin.baylorboard.config.TwitterConfig: twitter4j.Twitter getTwitterInstance()>/new twitter4j.TwitterFactory/0	com.rokin.baylorboard.config.TwitterConfig
+<com.rokin.baylorboard.config.TwitterConfig: twitter4j.TwitterStream getTwitterStream()>/new twitter4j.TwitterStreamFactory/0	com.rokin.baylorboard.config.TwitterConfig
+<com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>/new java.util.HashMap/0	com.rokin.baylorboard.config.KafkaConfig
+<com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>/new org.springframework.kafka.core.DefaultKafkaConsumerFactory/0	com.rokin.baylorboard.config.KafkaConfig
+<com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory kafkaListenerContainerFactory()>/new org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory/0	com.rokin.baylorboard.config.KafkaConfig
+<com.rokin.baylorboard.domain.Tweet: com.rokin.baylorboard.domain.Tweet$TweetBuilder builder()>/new com.rokin.baylorboard.domain.Tweet$TweetBuilder/0	com.rokin.baylorboard.domain.Tweet
+<com.rokin.baylorboard.domain.Tweet: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.Tweet
+<com.rokin.baylorboard.domain.Tweet$TweetBuilder: com.rokin.baylorboard.domain.Tweet build()>/new com.rokin.baylorboard.domain.Tweet/0	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+<com.rokin.baylorboard.domain.Tweet$TweetBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+<com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0	com.rokin.baylorboard.utils.CustomBeanUtils
+<com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0	com.rokin.baylorboard.utils.CustomBeanUtils
+<com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.lang.String[]/0	com.rokin.baylorboard.utils.CustomBeanUtils
+<com.rokin.baylorboard.utils.CustomBeanUtils: boolean checkIfAllFieldsAreNull(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0	com.rokin.baylorboard.utils.CustomBeanUtils
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/new com.rokin.baylorboard.enums.TweetStatus/0	com.rokin.baylorboard.enums.TweetStatus
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/new com.rokin.baylorboard.enums.TweetStatus/1	com.rokin.baylorboard.enums.TweetStatus
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/new com.rokin.baylorboard.enums.TweetStatus/2	com.rokin.baylorboard.enums.TweetStatus
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/new com.rokin.baylorboard.enums.TweetStatus[]/0	com.rokin.baylorboard.enums.TweetStatus
+<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/0	com.rokin.baylorboard.service.UserService
+<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/1	com.rokin.baylorboard.service.UserService
+<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>/new java.lang.StringBuilder/0	com.rokin.baylorboard.service.UserService
+<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User loginUser(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/0	com.rokin.baylorboard.service.UserService
+<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User loginUser(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/1	com.rokin.baylorboard.service.UserService
+<com.rokin.baylorboard.utils.PasswordUtils: java.lang.String getSalt(int)>/new java.lang.StringBuilder/0	com.rokin.baylorboard.utils.PasswordUtils
+<com.rokin.baylorboard.utils.PasswordUtils: java.lang.String getSalt(int)>/new java.lang.String/0	com.rokin.baylorboard.utils.PasswordUtils
+<com.rokin.baylorboard.utils.PasswordUtils: byte[] hash(char[],byte[])>/new javax.crypto.spec.PBEKeySpec/0	com.rokin.baylorboard.utils.PasswordUtils
+<com.rokin.baylorboard.utils.PasswordUtils: byte[] hash(char[],byte[])>/new java.lang.AssertionError/0	com.rokin.baylorboard.utils.PasswordUtils
+<com.rokin.baylorboard.utils.PasswordUtils: byte[] hash(char[],byte[])>/new java.lang.StringBuilder/0	com.rokin.baylorboard.utils.PasswordUtils
+<com.rokin.baylorboard.utils.PasswordUtils: void <clinit>()>/new java.security.SecureRandom/0	com.rokin.baylorboard.utils.PasswordUtils
+<com.rokin.baylorboard.config.WebSocketConfig: void registerStompEndpoints(org.springframework.web.socket.config.annotation.StompEndpointRegistry)>/new java.lang.String[]/0	com.rokin.baylorboard.config.WebSocketConfig
+<com.rokin.baylorboard.config.WebSocketConfig: void registerStompEndpoints(org.springframework.web.socket.config.annotation.StompEndpointRegistry)>/new java.lang.String[]/1	com.rokin.baylorboard.config.WebSocketConfig
+<com.rokin.baylorboard.config.WebSocketConfig: void configureMessageBroker(org.springframework.messaging.simp.config.MessageBrokerRegistry)>/new java.lang.String[]/0	com.rokin.baylorboard.config.WebSocketConfig
+<com.rokin.baylorboard.config.WebSocketConfig: void configureMessageBroker(org.springframework.messaging.simp.config.MessageBrokerRegistry)>/new java.lang.String[]/1	com.rokin.baylorboard.config.WebSocketConfig
+<com.rokin.baylorboard.service.AwardService: java.util.Map findEventsWithPaging(java.lang.Integer,java.lang.Integer)>/new java.util.HashMap/0	com.rokin.baylorboard.service.AwardService
+<com.rokin.baylorboard.controller.GreetingController: void fireGreeting1()>/new com.rokin.baylorboard.domain.MessageBean/0	com.rokin.baylorboard.controller.GreetingController
+<com.rokin.baylorboard.domain.Roles: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.Roles
+<com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/0	com.rokin.baylorboard.enums.Role
+<com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/1	com.rokin.baylorboard.enums.Role
+<com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role[]/0	com.rokin.baylorboard.enums.Role
+<com.rokin.baylorboard.service.EventService: java.util.Map findEventsWithPaging(java.lang.Integer,java.lang.Integer)>/new java.util.HashMap/0	com.rokin.baylorboard.service.EventService
+<com.rokin.baylorboard.domain.WhitelistUser: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.WhitelistUser
+<com.rokin.baylorboard.domain.User$UserBuilder: com.rokin.baylorboard.domain.User build()>/new com.rokin.baylorboard.domain.User/0	com.rokin.baylorboard.domain.User$UserBuilder
+<com.rokin.baylorboard.domain.User$UserBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.User$UserBuilder
+<com.rokin.baylorboard.domain.Award: java.lang.String toString()>/new java.lang.StringBuilder/0	com.rokin.baylorboard.domain.Award
+<com.rokin.baylorboard.config.WebConfig: void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry)>/new java.lang.String[]/0	com.rokin.baylorboard.config.WebConfig
+<com.rokin.baylorboard.config.WebConfig: void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry)>/new java.lang.String[]/1	com.rokin.baylorboard.config.WebConfig
+events	com.rokin.baylorboard.service.EventService
+tweets	com.rokin.baylorboard.service.TweetService
+/topic/user	com.rokin.baylorboard.controller.GreetingController
+awards	com.rokin.baylorboard.service.AwardService
+Baylor	com.rokin.baylorboard.service.TweetService
+<method type (java.lang.Object)java.lang.Object>	com.rokin.baylorboard.service.TweetService
+<method type (java.lang.Object)java.lang.Object>	com.rokin.baylorboard.service.TweetService$1
+<handle <com.rokin.baylorboard.domain.WhitelistUser: java.lang.String getUser()>>	com.rokin.baylorboard.service.TweetService
+<handle <com.rokin.baylorboard.domain.WhitelistUser: java.lang.String getUser()>>	com.rokin.baylorboard.service.TweetService$1
+<method type (com.rokin.baylorboard.domain.WhitelistUser)java.lang.String>	com.rokin.baylorboard.service.TweetService
+<method type (com.rokin.baylorboard.domain.WhitelistUser)java.lang.String>	com.rokin.baylorboard.service.TweetService$1
+<<\\"Sending to kafka: \\">>	com.rokin.baylorboard.service.TweetService
+Twitter streaming tweets with #Baylor	com.rokin.baylorboard.service.TweetService
+pages	com.rokin.baylorboard.service.TweetService
+pages	com.rokin.baylorboard.service.AwardService
+pages	com.rokin.baylorboard.service.EventService
+totalTweets	com.rokin.baylorboard.service.TweetService
+a	com.rokin.baylorboard.service.TweetService$1
+User(id=	com.rokin.baylorboard.domain.User
+, emailAddress=	com.rokin.baylorboard.domain.User
+, emailAddress=	com.rokin.baylorboard.domain.User$UserBuilder
+, password=	com.rokin.baylorboard.domain.User
+, password=	com.rokin.baylorboard.domain.User$UserBuilder
+, firstName=	com.rokin.baylorboard.domain.User
+, firstName=	com.rokin.baylorboard.domain.User$UserBuilder
+, lastName=	com.rokin.baylorboard.domain.User
+, lastName=	com.rokin.baylorboard.domain.User$UserBuilder
+, role=	com.rokin.baylorboard.domain.User
+, role=	com.rokin.baylorboard.domain.User$UserBuilder
+, salt=	com.rokin.baylorboard.domain.User
+, salt=	com.rokin.baylorboard.domain.User$UserBuilder
+Event(id=	com.rokin.baylorboard.domain.Event
+, title=	com.rokin.baylorboard.domain.Event
+, title=	com.rokin.baylorboard.domain.Award
+, coordinator=	com.rokin.baylorboard.domain.Event
+, description=	com.rokin.baylorboard.domain.Event
+, description=	com.rokin.baylorboard.domain.Award
+, date=	com.rokin.baylorboard.domain.Event
+, date=	com.rokin.baylorboard.domain.Award
+, images=	com.rokin.baylorboard.domain.Event
+, videos=	com.rokin.baylorboard.domain.Event
+, createdDate=	com.rokin.baylorboard.domain.Event
+, createdDate=	com.rokin.baylorboard.domain.Award
+, lastModifiedDate=	com.rokin.baylorboard.domain.Event
+, lastModifiedDate=	com.rokin.baylorboard.domain.Award
+Unresolved compilation error: Method <com.rokin.baylorboard.repository.TweetRepository: java.util.List saveAll(java.lang.Iterable)> does not exist!	com.rokin.baylorboard.repository.TweetRepository
+Unresolved compilation error: Method <com.rokin.baylorboard.repository.TweetRepository: org.springframework.data.domain.Page findAll(org.springframework.data.domain.Pageable)> does not exist!	com.rokin.baylorboard.repository.TweetRepository
+Unresolved compilation error: Method <com.rokin.baylorboard.repository.TweetRepository: java.util.Optional findById(java.lang.Object)> does not exist!	com.rokin.baylorboard.repository.TweetRepository
+Unresolved compilation error: Method <com.rokin.baylorboard.repository.TweetRepository: java.lang.Object save(java.lang.Object)> does not exist!	com.rokin.baylorboard.repository.TweetRepository
+Unresolved compilation error: Method <com.rokin.baylorboard.repository.TweetRepository: void deleteAll()> does not exist!	com.rokin.baylorboard.repository.TweetRepository
+:	com.rokin.baylorboard.config.KafkaConfig
+bootstrap.servers	com.rokin.baylorboard.config.KafkaConfig
+group.id	com.rokin.baylorboard.config.KafkaConfig
+group1	com.rokin.baylorboard.config.KafkaConfig
+key.deserializer	com.rokin.baylorboard.config.KafkaConfig
+value.deserializer	com.rokin.baylorboard.config.KafkaConfig
+Tweet(id=	com.rokin.baylorboard.domain.Tweet
+, text=	com.rokin.baylorboard.domain.Tweet
+, text=	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+, user=	com.rokin.baylorboard.domain.Tweet
+, user=	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+, user=	com.rokin.baylorboard.domain.WhitelistUser
+, status=	com.rokin.baylorboard.domain.Tweet
+, status=	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+, tweetedAt=	com.rokin.baylorboard.domain.Tweet
+, tweetedAt=	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+, userImage=	com.rokin.baylorboard.domain.Tweet
+, userImage=	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+Tweet.TweetBuilder(id=	com.rokin.baylorboard.domain.Tweet$TweetBuilder
+Invalid password.	com.rokin.baylorboard.service.UserService
+<<\\" already registered.\\">>	com.rokin.baylorboard.service.UserService
+Invalid email	com.rokin.baylorboard.service.UserService
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz	com.rokin.baylorboard.utils.PasswordUtils
+PBKDF2WithHmacSHA1	com.rokin.baylorboard.utils.PasswordUtils
+<<\\"Error while hashing a password: \\">>	com.rokin.baylorboard.utils.PasswordUtils
+/websocket-chat	com.rokin.baylorboard.config.WebSocketConfig
+http://localhost:3000/	com.rokin.baylorboard.config.WebSocketConfig
+https://baylorbear-board.netlify.app/	com.rokin.baylorboard.config.WebSocketConfig
+http://kiosk.ecs.baylor.edu/	com.rokin.baylorboard.config.WebSocketConfig
+/topic/	com.rokin.baylorboard.config.WebSocketConfig
+/app	com.rokin.baylorboard.config.WebSocketConfig
+Deleted all tweets	com.rokin.baylorboard.controller.TweetController
+Fire	com.rokin.baylorboard.controller.GreetingController
+boo	com.rokin.baylorboard.controller.GreetingController
+blaah	com.rokin.baylorboard.controller.GreetingController
+Fireeeeuu	com.rokin.baylorboard.controller.GreetingController
+Roles(id=	com.rokin.baylorboard.domain.Roles
+, name=	com.rokin.baylorboard.domain.Roles
+WhitelistUser(id=	com.rokin.baylorboard.domain.WhitelistUser
+User.UserBuilder(id=	com.rokin.baylorboard.domain.User$UserBuilder
+Award(id=	com.rokin.baylorboard.domain.Award
+*	com.rokin.baylorboard.config.WebConfig
+GET	com.rokin.baylorboard.config.WebConfig
+POST	com.rokin.baylorboard.config.WebConfig
+PUT	com.rokin.baylorboard.config.WebConfig
+DELETE	com.rokin.baylorboard.config.WebConfig
+PATCH	com.rokin.baylorboard.config.WebConfig

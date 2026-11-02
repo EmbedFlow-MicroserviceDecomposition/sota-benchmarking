@@ -1,0 +1,190 @@
+[<<immutable-hcontext>>, <<main-thread>>]	<java.lang.Thread: void <init>(java.lang.ThreadGroup,java.lang.String)>
+[<<immutable-hcontext>>, <<system-thread-group>>]	<java.lang.ThreadGroup: void <init>()>
+[<<immutable-hcontext>>, <<main-thread-group>>]	<java.lang.ThreadGroup: void <init>(java.lang.ThreadGroup,java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<com.rokin.baylorboard.service.TweetService: java.util.Map findTweetsWithPaging(com.rokin.baylorboard.enums.TweetStatus,java.lang.Integer,java.lang.Integer)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<com.rokin.baylorboard.service.TweetService: com.rokin.baylorboard.domain.Tweet updateStatus(java.lang.String,com.rokin.baylorboard.enums.TweetStatus)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<com.rokin.baylorboard.service.TweetService: com.rokin.baylorboard.domain.Tweet getById(java.lang.String)>
+[<<immutable-context>>, <com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>/new com.rokin.baylorboard.service.TweetService$1/0]	<com.rokin.baylorboard.service.TweetService$1: void <init>(com.rokin.baylorboard.service.TweetService)>
+[com.rokin.baylorboard.service.TweetService::MockObject, <com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>/new com.rokin.baylorboard.service.TweetService$1/0]	<com.rokin.baylorboard.service.TweetService$1: void <init>(com.rokin.baylorboard.service.TweetService)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.User::MockObject]	<com.rokin.baylorboard.domain.User: void setPassword(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.User::MockObject]	<com.rokin.baylorboard.domain.User: void setRole(com.rokin.baylorboard.enums.Role)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.User::MockObject]	<com.rokin.baylorboard.domain.User: void setSalt(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.User: void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.rokin.baylorboard.enums.Role,java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.WhitelistUserController: com.rokin.baylorboard.domain.WhitelistUser addWhitelistUser(com.rokin.baylorboard.domain.WhitelistUser)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.WhitelistUserController: void deleteWhitelistUser(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.UserController: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.UserController: com.rokin.baylorboard.domain.User login(com.rokin.baylorboard.domain.User)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.UserController: com.rokin.baylorboard.domain.User updateUser(java.lang.String,com.rokin.baylorboard.domain.User)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.UserController: com.rokin.baylorboard.domain.User getUser(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.UserController: void deleteUser(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<com.rokin.baylorboard.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<com.rokin.baylorboard.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.AwardController: com.rokin.baylorboard.domain.Award addAward(com.rokin.baylorboard.domain.Award)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.AwardController: java.util.Map getAwards(java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.AwardController: com.rokin.baylorboard.domain.Award updateAward(java.lang.String,com.rokin.baylorboard.domain.Award)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.AwardController: com.rokin.baylorboard.domain.Award getEvent(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.AwardController: void deleteEvent(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.EventController: com.rokin.baylorboard.domain.Event addEvent(com.rokin.baylorboard.domain.Event)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.EventController: java.util.Map getEvents(java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.EventController: java.util.Map getEventsforslide(java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.EventController: com.rokin.baylorboard.domain.Event updateEvent(java.lang.String,com.rokin.baylorboard.domain.Event)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.EventController: com.rokin.baylorboard.domain.Event getEvent(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.EventController: void deleteEvent(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.enums.TweetStatus: void <init>(java.lang.String,int)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User updateUser(java.lang.String,com.rokin.baylorboard.domain.User)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User findById(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.service.UserService: void deleteUser(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User loginUser(com.rokin.baylorboard.domain.User)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.utils.PasswordUtils: java.lang.String getSalt(int)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.utils.PasswordUtils: byte[] hash(char[],byte[])>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.utils.PasswordUtils: java.lang.String generateSecurePassword(java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.utils.PasswordUtils: boolean verifyUserPassword(java.lang.String,java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.WhitelistUserService::MockObject]	<com.rokin.baylorboard.service.WhitelistUserService: com.rokin.baylorboard.domain.WhitelistUser add(com.rokin.baylorboard.domain.WhitelistUser)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.WhitelistUserService::MockObject]	<com.rokin.baylorboard.service.WhitelistUserService: void delete(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.WebSocketConfig: void registerStompEndpoints(org.springframework.web.socket.config.annotation.StompEndpointRegistry)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.WebSocketConfig: void configureMessageBroker(org.springframework.messaging.simp.config.MessageBrokerRegistry)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.TweetController: java.util.Map getTweets(com.rokin.baylorboard.enums.TweetStatus,java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.TweetController: com.rokin.baylorboard.domain.Tweet updateTweetStatus(java.lang.String,com.rokin.baylorboard.enums.TweetStatus)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.TweetController: com.rokin.baylorboard.domain.Tweet getById(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<com.rokin.baylorboard.service.AwardService: com.rokin.baylorboard.domain.Award add(com.rokin.baylorboard.domain.Award)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<com.rokin.baylorboard.service.AwardService: java.util.Map findEventsWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<com.rokin.baylorboard.service.AwardService: com.rokin.baylorboard.domain.Award update(java.lang.String,com.rokin.baylorboard.domain.Award)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<com.rokin.baylorboard.service.AwardService: com.rokin.baylorboard.domain.Award findById(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<com.rokin.baylorboard.service.AwardService: void delete(java.lang.String)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/1]	<com.rokin.baylorboard.exceptions.BadRequestException: void <init>(java.lang.String)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/0]	<com.rokin.baylorboard.exceptions.BadRequestException: void <init>(java.lang.String)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User loginUser(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/0]	<com.rokin.baylorboard.exceptions.BadRequestException: void <init>(java.lang.String)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User loginUser(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/1]	<com.rokin.baylorboard.exceptions.BadRequestException: void <init>(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.GreetingController: com.rokin.baylorboard.domain.MessageBean send(com.rokin.baylorboard.domain.MessageBean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.GreetingController: void fireGreeting(com.rokin.baylorboard.domain.MessageBean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.GreetingController: void sendNews(com.rokin.baylorboard.domain.MessageBean)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.controller.GreetingController::MockObject]	<com.rokin.baylorboard.controller.GreetingController: void sendNews(com.rokin.baylorboard.domain.MessageBean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.enums.Role: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/0]	<com.rokin.baylorboard.enums.Role: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/1]	<com.rokin.baylorboard.enums.Role: void <init>(java.lang.String,int)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<com.rokin.baylorboard.service.EventService: com.rokin.baylorboard.domain.Event addEvent(com.rokin.baylorboard.domain.Event)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<com.rokin.baylorboard.service.EventService: java.util.Map findEventsWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<com.rokin.baylorboard.service.EventService: com.rokin.baylorboard.domain.Event updateEvent(java.lang.String,com.rokin.baylorboard.domain.Event)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<com.rokin.baylorboard.service.EventService: com.rokin.baylorboard.domain.Event findById(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<com.rokin.baylorboard.service.EventService: void deleteEvent(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.MessageBean: void setName(java.lang.String)>
+[<<immutable-context>>, <com.rokin.baylorboard.controller.GreetingController: void fireGreeting1()>/new com.rokin.baylorboard.domain.MessageBean/0]	<com.rokin.baylorboard.domain.MessageBean: void setName(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.MessageBean: void setMessage(java.lang.String)>
+[<<immutable-context>>, <com.rokin.baylorboard.controller.GreetingController: void fireGreeting1()>/new com.rokin.baylorboard.domain.MessageBean/0]	<com.rokin.baylorboard.domain.MessageBean: void setMessage(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.WebConfig: void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry)>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.TweetController: java.lang.String fetchTweets()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.WhitelistUserController: java.util.List getAllWhitelistUsers()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.UserController: java.util.List allUsers()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.TwitterConfig: twitter4j.Twitter getTwitterInstance()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.TwitterConfig: twitter4j.TwitterStream getTwitterStream()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.config.KafkaConfig::MockObject]	<com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory kafkaListenerContainerFactory()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.TweetController: java.lang.String deleteAllTweets()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.GreetingController: void fireGreeting1()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.service.TweetService: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<com.rokin.baylorboard.service.TweetService: void deleteAllTweets()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.User::MockObject]	<com.rokin.baylorboard.domain.User: java.lang.String getEmailAddress()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.User::MockObject]	<com.rokin.baylorboard.domain.User: java.lang.String getPassword()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.User: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.WhitelistUserController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.UserController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.Event: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.TwitterConfig: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.TwitterConfig: twitter4j.conf.ConfigurationBuilder getConfigurationBuilder()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.config.TwitterConfig::MockObject]	<com.rokin.baylorboard.config.TwitterConfig: twitter4j.conf.ConfigurationBuilder getConfigurationBuilder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.KafkaConfig: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.AwardController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.EventController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.service.UserService: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<com.rokin.baylorboard.service.UserService: java.util.List allUsers()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.utils.PasswordUtils: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.service.WhitelistUserService: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.WhitelistUserService::MockObject]	<com.rokin.baylorboard.service.WhitelistUserService: java.util.List findAll()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.WebSocketConfig: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.TweetController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.service.AwardService: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.controller.GreetingController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.enums.Role: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.service.EventService: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.WhitelistUser: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.Award: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.MessageBean: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.controller.GreetingController: void fireGreeting1()>/new com.rokin.baylorboard.domain.MessageBean/0]	<com.rokin.baylorboard.domain.MessageBean: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.MessageBean: java.lang.String getName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.MessageBean: java.lang.String getMessage()>
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.config.WebConfig: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.Event::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.User::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.controller.WhitelistUserController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.controller.AwardController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.controller.TweetController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.controller.GreetingController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.controller.UserController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.controller.EventController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.WhitelistUserService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.config.TwitterConfig::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.config.KafkaConfig::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.config.WebSocketConfig::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.config.WebConfig::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.MessageBean::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.WhitelistUser::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.Award::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>/new com.rokin.baylorboard.service.TweetService$1/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.controller.GreetingController: void fireGreeting1()>/new com.rokin.baylorboard.domain.MessageBean/0]	<java.lang.Object: void <init>()>
+[com.rokin.baylorboard.service.TweetService::MockObject, <com.rokin.baylorboard.service.TweetService: java.lang.String streamTweets()>/new com.rokin.baylorboard.service.TweetService$1/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.domain.Event: void <init>()>/new java.util.ArrayList/0]	<java.util.ArrayList: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.domain.Event: void <init>()>/new java.util.ArrayList/1]	<java.util.ArrayList: void <init>()>
+[<<immutable-hcontext>>, <<string-builder>>]	<java.lang.StringBuilder: void <init>()>
+[com.rokin.baylorboard.config.KafkaConfig::MockObject, <com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>/new java.util.HashMap/0]	<java.util.HashMap: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>/new java.util.HashMap/0]	<java.util.HashMap: void <init>()>
+[com.rokin.baylorboard.service.TweetService::MockObject, <com.rokin.baylorboard.service.TweetService: java.util.Map findTweetsWithPaging(com.rokin.baylorboard.enums.TweetStatus,java.lang.Integer,java.lang.Integer)>/new java.util.HashMap/0]	<java.util.HashMap: void <init>()>
+[com.rokin.baylorboard.service.AwardService::MockObject, <com.rokin.baylorboard.service.AwardService: java.util.Map findEventsWithPaging(java.lang.Integer,java.lang.Integer)>/new java.util.HashMap/0]	<java.util.HashMap: void <init>()>
+[com.rokin.baylorboard.service.EventService::MockObject, <com.rokin.baylorboard.service.EventService: java.util.Map findEventsWithPaging(java.lang.Integer,java.lang.Integer)>/new java.util.HashMap/0]	<java.util.HashMap: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.config.TwitterConfig: twitter4j.conf.ConfigurationBuilder getConfigurationBuilder()>/new twitter4j.conf.ConfigurationBuilder/0]	<twitter4j.conf.ConfigurationBuilder: void <init>()>
+[com.rokin.baylorboard.config.TwitterConfig::MockObject, <com.rokin.baylorboard.config.TwitterConfig: twitter4j.conf.ConfigurationBuilder getConfigurationBuilder()>/new twitter4j.conf.ConfigurationBuilder/0]	<twitter4j.conf.ConfigurationBuilder: void <init>()>
+[<<immutable-context>>, <com.rokin.baylorboard.config.TwitterConfig: twitter4j.Twitter getTwitterInstance()>/new twitter4j.TwitterFactory/0]	<twitter4j.TwitterFactory: void <init>(twitter4j.conf.Configuration)>
+[<<immutable-context>>, <com.rokin.baylorboard.config.TwitterConfig: twitter4j.TwitterStream getTwitterStream()>/new twitter4j.TwitterStreamFactory/0]	<twitter4j.TwitterStreamFactory: void <init>(twitter4j.conf.Configuration)>
+[<<immutable-context>>, <com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>/new org.springframework.kafka.core.DefaultKafkaConsumerFactory/0]	<org.springframework.kafka.core.DefaultKafkaConsumerFactory: void <init>(java.util.Map)>
+[com.rokin.baylorboard.config.KafkaConfig::MockObject, <com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.core.ConsumerFactory consumerFactory()>/new org.springframework.kafka.core.DefaultKafkaConsumerFactory/0]	<org.springframework.kafka.core.DefaultKafkaConsumerFactory: void <init>(java.util.Map)>
+[<<immutable-context>>, <com.rokin.baylorboard.config.KafkaConfig: org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory kafkaListenerContainerFactory()>/new org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory/0]	<org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory: void <init>()>
+[com.rokin.baylorboard.service.AwardService::MockObject, <com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.rokin.baylorboard.service.EventService::MockObject, <com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.rokin.baylorboard.service.AwardService::MockObject, <com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.rokin.baylorboard.service.EventService::MockObject, <com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[<<immutable-hcontext>>, com.rokin.baylorboard.enums.Role::MockObject]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.enums.TweetStatus::MockObject]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/0]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/1]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-hcontext>>, <<string-builder>>]	<java.lang.StringBuilder: void <init>(int)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.utils.PasswordUtils: java.lang.String getSalt(int)>/new java.lang.String/0]	<java.lang.String: void <init>(java.lang.StringBuilder)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.utils.PasswordUtils: byte[] hash(char[],byte[])>/new javax.crypto.spec.PBEKeySpec/0]	<javax.crypto.spec.PBEKeySpec: void <init>(char[],byte[],int,int)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.utils.PasswordUtils: byte[] hash(char[],byte[])>/new java.lang.AssertionError/0]	<java.lang.AssertionError: void <init>(java.lang.String,java.lang.Throwable)>
+[<<immutable-context>>, <com.rokin.baylorboard.utils.PasswordUtils: void <clinit>()>/new java.security.SecureRandom/0]	<java.security.SecureRandom: void <init>()>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/1]	<java.lang.RuntimeException: void <init>(java.lang.String)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User addUsers(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/0]	<java.lang.RuntimeException: void <init>(java.lang.String)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User loginUser(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/0]	<java.lang.RuntimeException: void <init>(java.lang.String)>
+[com.rokin.baylorboard.service.UserService::MockObject, <com.rokin.baylorboard.service.UserService: com.rokin.baylorboard.domain.User loginUser(com.rokin.baylorboard.domain.User)>/new com.rokin.baylorboard.exceptions.BadRequestException/1]	<java.lang.RuntimeException: void <init>(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<java.lang.Integer: java.lang.Integer valueOf(int)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<java.lang.Integer: java.lang.Integer valueOf(int)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<java.lang.Integer: java.lang.Integer valueOf(int)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.TweetService::MockObject]	<java.lang.Long: java.lang.Long valueOf(long)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.AwardService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.EventService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<java.util.Arrays: void fill(char[],char)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<javax.crypto.SecretKeyFactory: javax.crypto.SecretKeyFactory getInstance(java.lang.String)>
+[<<immutable-hcontext>>, com.rokin.baylorboard.service.UserService::MockObject]	<java.util.Base64: java.util.Base64$Encoder getEncoder()>

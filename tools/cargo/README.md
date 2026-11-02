@@ -18,9 +18,10 @@ uv run ../../metrics/compute_all.py --dataset-path ../../datasets/jpetstore --ou
 `tool.py` needs Docker (it manages a `sota-cargo-neo4j` container, `neo4j:5`; `--neo4j external` uses your own on `localhost:7687`)
 and Python 3.12 (uv installs the pinned-by-range `dgi` dependencies from the script header).
 
-1. **Doop facts** (stage 1, cached): `tools/cargo/doop-data/<dataset>/` holds the Datalog fact CSVs Doop produced from the
-   dataset's bytecode. They are git-ignored (20-200 MB each, hours to regenerate). Without them the cell is N/A (error-form
-   `output.json`).
+1. **Doop facts** (stage 1): `tools/cargo/doop-data/<dataset>/` holds the Datalog fact CSVs Doop produced from the jars in
+   `tools/cargo/jars/<dataset>/`. Both are committed because they take hours (and a repaired toolchain) to regenerate. One file is
+   left out: `DependentInstruction.csv` (up to 118 MB, over GitHub's file limit); `dgi` never reads it, and it is git-ignored if you
+   regenerate it. A dataset without facts fails with "no Doop facts" and is retried by `benchmark.py run` once they exist.
 2. A work copy of `dgi/` gets `patches/dgi-robustness.patch` applied (4 fixes found running 10 datasets: empty fact files,
    `java.lang.Class` literal heap objects, `string-buffer` pseudo-heap markers), then `dgi c2g` loads the facts into Neo4j (and
    `dgi tx2g` loads DiVA transactions from `transactions/<dataset>.json` when one exists, as for daytrader). A marker node means
@@ -47,10 +48,16 @@ Doop (`quay.io/rkrsn/doop-main`) analyses the application **bytecode** with a 2-
 
 ## Caveats
 
-- The facts in the cache were produced from the jars of fyp-benchmarking's runs: CARGO's own bundled jars for acme-air, daytrader,
-  jpetstore and plants (built from commits that cannot always be traced; the acme-air jar is a MongoDB variant that does not exist
-  in `acmeair/acmeair`'s history), and jars built from the pinned checkouts for the rest. Classes in a partition that are not in
+- `jars/<dataset>/` are the exact inputs Doop analysed. For acme-air, daytrader, jpetstore and plants they are CARGO's own bundled
+  jars (built from commits that cannot always be traced; the acme-air jar is a MongoDB variant that does not exist in
+  `acmeair/acmeair`'s history; the acme-air and jpetstore copies differ from the upstream ones only in `META-INF/MANIFEST.MF`).
+  The others were built by hand from the pinned checkouts (Spring Boot apps as plain jars of `target/classes`). Note the pinned
+  JPetStore declares Java 17, which this Doop cannot read, so its facts come from CARGO's older bundled jar, not from our pin. Classes in a partition that are not in
   `dataset.json` appear as `unmatched_ids`; classes Doop never reached appear as `unassigned` in every `*_score.json`
   `coverage` block. Read the coverage block before comparing CARGO's scores with other tools'.
+- CARGO is not reproducible between loads. On Roller, two loads of the identical full facts gave different partitions with the
+  same K and seed (a run without `DependentInstruction.csv` matched one of them, which is how that file was shown to be unused);
+  JPetStore gave identical partitions in its one comparison. The cause was not investigated. Read the 30-entry grid averages with
+  that in mind.
 - Doop's graph has call-return, data and heap dependencies but no EXTENDS/IMPLEMENTS edges, so CARGO never sees inheritance.
 - The paper reports Coupling/Cohesion and its own ICP/BCP, which are different formulas from the ones in `metrics/`.

@@ -127,9 +127,9 @@ says what it needs and which datasets are N/A for it.
 
 | Dataset | CHGNN | CoGCN | AE-K / VAE-C | FoSCI | CARGO |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| acme-air, apache-roller, autocare, bear-board, jforum, jpetstore, pharmacy, spring-blog, spring-petclinic | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | own trace `fosci_trace.csv.gz` (not recorded yet for apache-roller, jforum, jpetstore, spring-blog: the cell fails until it is) | needs cached Doop facts |
-| daytrader, plants | authors' bundled inputs | yes | yes | N/A with the current trace (1 functional atom) | needs cached Doop facts |
-| javafx-pos | N/A (no web entrypoints) | yes | N/A | no trace yet | needs cached Doop facts |
+| acme-air, apache-roller, autocare, bear-board, jforum, jpetstore, pharmacy, spring-blog, spring-petclinic | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | own trace `fosci_trace.csv.gz` (not recorded yet for apache-roller, jforum, jpetstore, spring-blog: the cell fails until it is) | committed Doop facts |
+| daytrader, plants | authors' bundled inputs | yes | yes | N/A with the current trace (1 functional atom) | committed Doop facts |
+| javafx-pos | N/A (no web entrypoints) | yes | N/A | no trace yet | committed Doop facts |
 | genapp (COBOL) | N/A | N/A | N/A | N/A | N/A |
 
 An N/A cell is still written: `output.json` is `{"error": "...", "tool": "..."}` and the metrics refuse to score it.
@@ -257,8 +257,8 @@ uv run metric.py \
 ## Running the whole benchmark
 
 `scripts/benchmark.py` is the central CLI. Prerequisites: Docker running, JDK 17 + Maven (the extractor builds on first use), `uv`,
-`git submodule update --init` (without `--recursive`, see step 1), and CARGO's Doop facts in
-`tools/cargo/doop-data/` (see `tools/cargo/README.md`).
+`git submodule update --init` (without `--recursive`, see step 1). CARGO's Doop facts and input jars are committed under
+`tools/cargo/`.
 
 ```bash
 uv run scripts/benchmark.py run --dry-run          # the plan: which cells exist, which would run

@@ -1,0 +1,6 @@
+com.ibm.websphere.samples.pbw.ejb.CatalogMgr
+com.ibm.websphere.samples.pbw.ejb.MailerBean
+com.ibm.websphere.samples.pbw.ejb.SuppliersBean
+com.ibm.websphere.samples.pbw.ejb.CustomerMgr
+com.ibm.websphere.samples.pbw.ejb.BackOrderMgr
+com.ibm.websphere.samples.pbw.ejb.ResetDBBean

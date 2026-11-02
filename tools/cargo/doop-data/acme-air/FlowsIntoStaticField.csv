@@ -1,0 +1,17 @@
+<com.acmeair.loader.Loader: void <clinit>()>/$stack2	<com.acmeair.loader.Loader: java.util.logging.Logger logger>
+<com.acmeair.loader.Loader: void <clinit>()>/$stringconstant0	<com.acmeair.loader.Loader: java.lang.String REPOSITORY_LOOKUP_KEY>
+<com.acmeair.mongo.ConnectionManager: void <clinit>()>/$stack0	<com.acmeair.mongo.ConnectionManager: java.util.concurrent.atomic.AtomicReference connectionManager>
+<com.acmeair.mongo.ConnectionManager: void <clinit>()>/$stack3	<com.acmeair.mongo.ConnectionManager: java.util.logging.Logger logger>
+<com.acmeair.web.LoginREST: void <clinit>()>/$stringconstant0	<com.acmeair.web.LoginREST: java.lang.String SESSIONID_COOKIE_NAME>
+<com.acmeair.service.ServiceLocator: void updateService(java.lang.String)>/serviceName#_0	<com.acmeair.service.ServiceLocator: java.lang.String serviceType>
+<com.acmeair.service.ServiceLocator: void <init>()>/type_$$A_16#_194	<com.acmeair.service.ServiceLocator: java.lang.String serviceType>
+<com.acmeair.service.ServiceLocator: void <clinit>()>/$stack2	<com.acmeair.service.ServiceLocator: java.util.logging.Logger logger>
+<com.acmeair.service.ServiceLocator: void <clinit>()>/$stack3	<com.acmeair.service.ServiceLocator: java.util.concurrent.atomic.AtomicReference singletonServiceLocator>
+<com.acmeair.service.ServiceLocator: void <clinit>()>/$stringconstant0	<com.acmeair.service.ServiceLocator: java.lang.String REPOSITORY_LOOKUP_KEY>
+<com.acmeair.service.FlightService: void <init>()>/$stack8	<com.acmeair.service.FlightService: java.lang.Boolean useFlightDataRelatedCaching>
+<com.acmeair.service.FlightService: void <init>()>/$stack12	<com.acmeair.service.FlightService: java.lang.Boolean useFlightDataRelatedCaching>
+<com.acmeair.service.FlightService: void <clinit>()>/$stack0	<com.acmeair.service.FlightService: java.util.concurrent.ConcurrentHashMap originAndDestPortToSegmentCache>
+<com.acmeair.service.FlightService: void <clinit>()>/$stack1	<com.acmeair.service.FlightService: java.util.concurrent.ConcurrentHashMap flightSegmentAndDataToFlightCache>
+<com.acmeair.service.FlightService: void <clinit>()>/$stack2	<com.acmeair.service.FlightService: java.util.concurrent.ConcurrentHashMap flightPKtoFlightCache>
+<com.acmeair.service.FlightService: void <clinit>()>/$null0	<com.acmeair.service.FlightService: java.lang.Boolean useFlightDataRelatedCaching>
+<com.acmeair.service.FlightService: void <clinit>()>/$stringconstant0	<com.acmeair.service.FlightService: java.lang.String acmeairDir>

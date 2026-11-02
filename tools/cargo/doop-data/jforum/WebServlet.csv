@@ -1,0 +1,4 @@
+javax.servlet.http.HttpServlet
+net.jforum.JForum
+net.jforum.JForumBaseServlet
+net.jforum.InstallServlet

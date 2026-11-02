@@ -1,0 +1,36 @@
+[<<immutable-context>>]	<net.jforum.JForumExecutionContext: void <clinit>()>/new java.lang.ThreadLocal/0	<net.jforum.JForumExecutionContext: java.lang.ThreadLocal userData>
+[<<immutable-context>>]	<net.jforum.JForumBaseServlet: void init(javax.servlet.ServletConfig)>/new freemarker.template.Configuration/0	<net.jforum.JForumExecutionContext: freemarker.template.Configuration templateConfig>
+[net.jforum.JForum::MockObject]	<net.jforum.JForumBaseServlet: void init(javax.servlet.ServletConfig)>/new freemarker.template.Configuration/0	<net.jforum.JForumExecutionContext: freemarker.template.Configuration templateConfig>
+[net.jforum.InstallServlet::MockObject]	<net.jforum.JForumBaseServlet: void init(javax.servlet.ServletConfig)>/new freemarker.template.Configuration/0	<net.jforum.JForumExecutionContext: freemarker.template.Configuration templateConfig>
+[<<immutable-context>>]	<net.jforum.Command: void <clinit>()>/new java.lang.Class[]/0	<net.jforum.Command: java.lang.Class[] NO_ARGS_CLASS>
+[<<immutable-context>>]	<net.jforum.Command: void <clinit>()>/new java.lang.Object[]/0	<net.jforum.Command: java.lang.Object[] NO_ARGS_OBJECT>
+[<<immutable-context>>]	<net.jforum.util.I18n: void <clinit>()>/new net.jforum.util.I18n/0	<net.jforum.util.I18n: net.jforum.util.I18n classInstance>
+[<<immutable-context>>]	<net.jforum.util.I18n: void <clinit>()>/new java.util.HashMap/0	<net.jforum.util.I18n: java.util.Map messagesMap>
+[<<immutable-context>>]	<net.jforum.util.I18n: void <clinit>()>/new java.util.Properties/0	<net.jforum.util.I18n: java.util.Properties localeNames>
+[<<immutable-hcontext>>]	<<null pseudo heap>>	<net.jforum.util.I18n: java.lang.String defaultName>
+[<<immutable-context>>]	<net.jforum.util.I18n: void <clinit>()>/new java.util.ArrayList/0	<net.jforum.util.I18n: java.util.List watching>
+[<<immutable-context>>]	<net.jforum.repository.ModulesRepository: void <clinit>()>/new java.util.HashMap/0	<net.jforum.repository.ModulesRepository: java.util.Map cache>
+[<<immutable-context>>]	<net.jforum.repository.ForumRepository: void start(net.jforum.dao.ForumDAO,net.jforum.dao.CategoryDAO,net.jforum.dao.ConfigDAO)>/new net.jforum.repository.ForumRepository/0	<net.jforum.repository.ForumRepository: net.jforum.repository.ForumRepository instance>
+[<<immutable-context>>]	<net.jforum.util.concurrent.Executor: void <clinit>()>/new EDU.oswego.cs.dl.util.concurrent.PooledExecutor/0	<net.jforum.util.concurrent.Executor: EDU.oswego.cs.dl.util.concurrent.PooledExecutor executor>
+[<<immutable-context>>]	<net.jforum.api.integration.mail.pop.MessageId: void <clinit>()>/new java.util.Random/0	<net.jforum.api.integration.mail.pop.MessageId: java.util.Random random>
+[<<immutable-context>>]	<net.jforum.context.standard.StandardSessionContext: void <clinit>()>/new java.util.Random/0	<net.jforum.context.standard.StandardSessionContext: java.util.Random random>
+[<<immutable-hcontext>>]	<<string-constant>>	<net.jforum.context.standard.StandardSessionContext: java.lang.String SESSION_ID>
+[<<immutable-context>>]	<net.jforum.util.SafeHtml: void <clinit>()>/new java.util.HashSet/0	<net.jforum.util.SafeHtml: java.util.Set welcomeTags>
+[<<immutable-context>>]	<net.jforum.util.SafeHtml: void <clinit>()>/new java.util.HashSet/1	<net.jforum.util.SafeHtml: java.util.Set welcomeAttributes>
+[<<immutable-context>>]	<net.jforum.util.SafeHtml: void <clinit>()>/new java.util.HashSet/2	<net.jforum.util.SafeHtml: java.util.Set allowedProtocols>
+[<<immutable-context>>]	<net.jforum.util.FileMonitor: void <clinit>()>/new net.jforum.util.FileMonitor/0	<net.jforum.util.FileMonitor: net.jforum.util.FileMonitor instance>
+[<<immutable-context>>]	<net.jforum.util.legacy.clickstream.config.ConfigLoader: void <clinit>()>/new net.jforum.util.legacy.clickstream.config.ConfigLoader/0	<net.jforum.util.legacy.clickstream.config.ConfigLoader: net.jforum.util.legacy.clickstream.config.ConfigLoader instance>
+[<<immutable-context>>]	<net.jforum.UrlPatternCollection: void <clinit>()>/new java.util.HashMap/0	<net.jforum.UrlPatternCollection: java.util.Map patternsMap>
+[<<immutable-context>>]	<net.jforum.view.forum.common.TopicsCommon: void <clinit>()>/new java.lang.Object/0	<net.jforum.view.forum.common.TopicsCommon: java.lang.Object MUTEXT>
+[<<immutable-hcontext>>]	<net.jforum.util.legacy.commons.fileupload.MultipartStream: void <clinit>()>/new byte[]/0	<net.jforum.util.legacy.commons.fileupload.MultipartStream: byte[] HEADER_SEPARATOR>
+[<<immutable-hcontext>>]	<net.jforum.util.legacy.commons.fileupload.MultipartStream: void <clinit>()>/new byte[]/1	<net.jforum.util.legacy.commons.fileupload.MultipartStream: byte[] FIELD_SEPARATOR>
+[<<immutable-hcontext>>]	<net.jforum.util.legacy.commons.fileupload.MultipartStream: void <clinit>()>/new byte[]/2	<net.jforum.util.legacy.commons.fileupload.MultipartStream: byte[] STREAM_TERMINATOR>
+[<<immutable-context>>]	<net.jforum.util.preferences.SystemGlobals: void initGlobals(java.lang.String,java.lang.String)>/new net.jforum.util.preferences.SystemGlobals/0	<net.jforum.util.preferences.SystemGlobals: net.jforum.util.preferences.SystemGlobals globals>
+[<<immutable-context>>]	<net.jforum.util.preferences.SystemGlobals: void <clinit>()>/new net.jforum.util.preferences.SystemGlobals/0	<net.jforum.util.preferences.SystemGlobals: net.jforum.util.preferences.SystemGlobals globals>
+[net.jforum.JForum::MockObject]	<net.jforum.util.preferences.SystemGlobals: void initGlobals(java.lang.String,java.lang.String)>/new net.jforum.util.preferences.SystemGlobals/0	<net.jforum.util.preferences.SystemGlobals: net.jforum.util.preferences.SystemGlobals globals>
+[net.jforum.InstallServlet::MockObject]	<net.jforum.util.preferences.SystemGlobals: void initGlobals(java.lang.String,java.lang.String)>/new net.jforum.util.preferences.SystemGlobals/0	<net.jforum.util.preferences.SystemGlobals: net.jforum.util.preferences.SystemGlobals globals>
+[<<immutable-context>>]	<net.jforum.util.preferences.SystemGlobals: void <clinit>()>/new java.util.ArrayList/0	<net.jforum.util.preferences.SystemGlobals: java.util.List additionalDefaultsList>
+[<<immutable-context>>]	<net.jforum.util.preferences.SystemGlobals: void <clinit>()>/new java.util.Properties/0	<net.jforum.util.preferences.SystemGlobals: java.util.Properties queries>
+[<<immutable-context>>]	<net.jforum.util.preferences.SystemGlobals: void <clinit>()>/new java.util.Properties/1	<net.jforum.util.preferences.SystemGlobals: java.util.Properties transientValues>
+[<<immutable-context>>]	<net.jforum.repository.TopicRepository: void <clinit>()>/new net.jforum.entities.TopicTypeComparator/0	<net.jforum.repository.TopicRepository: java.util.Comparator TYPE_COMPARATOR>
+[<<immutable-context>>]	<net.jforum.search.LuceneIndexer: void <clinit>()>/new java.lang.Object/0	<net.jforum.search.LuceneIndexer: java.lang.Object MUTEX>

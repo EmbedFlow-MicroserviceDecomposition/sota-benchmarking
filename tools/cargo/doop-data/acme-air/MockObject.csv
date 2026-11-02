@@ -1,0 +1,16 @@
+java.lang.String::MockObject	java.lang.String
+com.acmeair.web.dto.CustomerInfo::MockObject	com.acmeair.web.dto.CustomerInfo
+com.acmeair.web.dto.AddressInfo::MockObject	com.acmeair.web.dto.AddressInfo
+com.acmeair.web.FlightsREST::MockObject	com.acmeair.web.FlightsREST
+com.acmeair.mongo.services.CustomerServiceImpl::MockObject	com.acmeair.mongo.services.CustomerServiceImpl
+com.acmeair.config.AcmeAirConfiguration::MockObject	com.acmeair.config.AcmeAirConfiguration
+com.acmeair.web.BookingsREST::MockObject	com.acmeair.web.BookingsREST
+com.acmeair.web.RESTCookieSessionFilter::MockObject	com.acmeair.web.RESTCookieSessionFilter
+com.acmeair.web.LoginREST::MockObject	com.acmeair.web.LoginREST
+com.acmeair.service.ServiceLocator::MockObject	com.acmeair.service.ServiceLocator
+com.acmeair.mongo.services.BookingServiceImpl::MockObject	com.acmeair.mongo.services.BookingServiceImpl
+com.acmeair.util.ServiceRegister::MockObject	com.acmeair.util.ServiceRegister
+com.acmeair.config.LoaderREST::MockObject	com.acmeair.config.LoaderREST
+com.acmeair.mongo.services.FlightServiceImpl::MockObject	com.acmeair.mongo.services.FlightServiceImpl
+com.acmeair.mongo.services.AuthServiceImpl::MockObject	com.acmeair.mongo.services.AuthServiceImpl
+com.acmeair.web.CustomerREST::MockObject	com.acmeair.web.CustomerREST

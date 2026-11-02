@@ -1,0 +1,4 @@
+com.raysmond.blog.admin.controllers.UserController
+com.raysmond.blog.admin.controllers.PostController
+com.raysmond.blog.controllers.TagController
+com.raysmond.blog.controllers.UserController

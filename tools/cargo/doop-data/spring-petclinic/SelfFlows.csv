@@ -1,0 +1,4 @@
+<org.springframework.samples.petclinic.owner.Owner: org.springframework.samples.petclinic.owner.Pet getPet(java.lang.String,boolean)>/compName#_135
+<org.springframework.samples.petclinic.owner.Owner: org.springframework.samples.petclinic.owner.Pet getPet(java.lang.String,boolean)>/$stack12
+<org.springframework.samples.petclinic.owner.Owner: org.springframework.samples.petclinic.owner.Pet getPet(java.lang.String,boolean)>/$stack12_$$A_4
+<org.springframework.samples.petclinic.owner.Owner: org.springframework.samples.petclinic.owner.Pet getPet(java.lang.String,boolean)>/compName_$$A_3#_140

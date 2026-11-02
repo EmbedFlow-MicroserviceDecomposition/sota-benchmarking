@@ -1,0 +1,697 @@
+[<<immutable-hcontext>>, <<main-thread>>]	<java.lang.Thread: void <init>(java.lang.ThreadGroup,java.lang.String)>
+[<<immutable-hcontext>>, <<system-thread-group>>]	<java.lang.ThreadGroup: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<java.lang.invoke.LambdaMetafactory: java.lang.invoke.CallSite metafactory(java.lang.invoke.MethodHandles$Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.invoke.MethodType,java.lang.invoke.MethodHandle,java.lang.invoke.MethodType)>
+[<<immutable-hcontext>>, <<main-thread-group>>]	<java.lang.ThreadGroup: void <init>(java.lang.ThreadGroup,java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: com.upachar.web.order.domain.Order addOrder(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: java.util.List findOrdersByUser(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: com.upachar.web.order.domain.Order editOrder(java.lang.Long,com.upachar.web.order.dto.OrderUpdateDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: void deleteOrder(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: com.upachar.web.order.domain.Order updateOrderStatus(java.lang.Long,com.upachar.web.order.dto.OrderStatusDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: com.upachar.web.order.domain.Order getOrderById(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.AuthorizationServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.AuthorizationServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.AuthorizationServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setTotalPrice(java.lang.Double)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setDeliveryAddress(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setDeliveryAddress(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setDeliveryAddress(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setDeliveryPhone(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setDeliveryPhone(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setDeliveryPhone(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setOrderStatus(com.upachar.web.order.enums.OrderStatus)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setOrderStatus(com.upachar.web.order.enums.OrderStatus)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setOrderStatus(com.upachar.web.order.enums.OrderStatus)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setDrugQuantities(java.util.Set)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setDrugQuantities(java.util.Set)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setOrderPrescriptions(java.util.Set)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setOrderPrescriptions(java.util.Set)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setOrderPrescriptions(java.util.Set)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setUser(com.upachar.web.user.domain.User)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setUser(com.upachar.web.user.domain.User)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void setUser(com.upachar.web.user.domain.User)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setCreatedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void setModifiedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void <init>(java.lang.Long,java.lang.Double,java.lang.String,java.lang.String,com.upachar.web.order.enums.OrderStatus,java.util.Set,java.util.Set,com.upachar.web.user.domain.User,java.util.Date,java.util.Date)>
+[<com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0, <com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order build()>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void <init>(java.lang.Long,java.lang.Double,java.lang.String,java.lang.String,com.upachar.web.order.enums.OrderStatus,java.util.Set,java.util.Set,com.upachar.web.user.domain.User,java.util.Date,java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.dto.UserUpdateDto: void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.SubCategoryController: com.upachar.web.drug.domain.SubCategory addSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.SubCategoryController: java.util.List findByCategoryId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.SubCategoryController: com.upachar.web.drug.domain.SubCategory editSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.SubCategoryController: void deleteSubCategory(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.upachar.web.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User findById(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: boolean validateEmail(java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: boolean validateIfUserIsUnique(java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User updateUser(java.lang.Long,com.upachar.web.user.dto.UserUpdateDto)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: boolean validateIfUserIsUpdateable(java.lang.Long,java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User findByEmailAndIdNot(java.lang.String,java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User findByIdNotAndPhone(java.lang.Long,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: void deleteUser(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.user.service.UserService: void checkIfUserCreateable(com.upachar.web.user.dto.UserValidateDto)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order$OrderBuilder totalPrice(java.lang.Double)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order$OrderBuilder deliveryAddress(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order$OrderBuilder deliveryPhone(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order$OrderBuilder orderStatus(com.upachar.web.order.enums.OrderStatus)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order$OrderBuilder drugQuantities(java.util.Set)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order$OrderBuilder orderPrescriptions(java.util.Set)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order$OrderBuilder user(com.upachar.web.user.domain.User)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder productId(java.lang.Long)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder brandName(java.lang.String)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder genericName(java.lang.String)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder manufacturer(java.lang.String)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder dosageForm(com.upachar.web.drug.domain.DosageForm)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder subCategory(com.upachar.web.drug.domain.SubCategory)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder details(java.lang.String)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder inStock(java.lang.Boolean)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder photoUrl(java.lang.String)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder price(java.lang.Double)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder packSize(java.lang.Integer)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder prescriptionRequired(java.lang.Boolean)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder trending(java.lang.Boolean)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug$DrugBuilder specialOffer(java.lang.Boolean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.SecurityConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DosageFormController: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.DrugDto: void <init>(java.lang.Long,java.lang.String,java.lang.String,java.lang.Long,java.lang.String,java.lang.Long,java.lang.String,java.lang.Boolean,java.lang.Double,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.CategoryDto: void <init>(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.dto.OrderUpdateDto: void <init>(java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DosageFormService::MockObject]	<com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DosageFormService::MockObject]	<com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm findById(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: void setName(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: void setCategory(com.upachar.web.drug.domain.Category)>
+[com.upachar.web.drug.service.SubCategoryService::MockObject, <com.upachar.web.drug.service.SubCategoryService: com.upachar.web.drug.domain.SubCategory addSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>/new com.upachar.web.drug.domain.SubCategory/0]	<com.upachar.web.drug.domain.SubCategory: void setCategory(com.upachar.web.drug.domain.Category)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: void setCreatedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: void setModifiedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: void <init>(java.lang.Long,java.lang.String,com.upachar.web.drug.domain.Category,java.util.Date,java.util.Date)>
+[<com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0, <com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: com.upachar.web.drug.domain.SubCategory build()>/new com.upachar.web.drug.domain.SubCategory/0]	<com.upachar.web.drug.domain.SubCategory: void <init>(java.lang.Long,java.lang.String,com.upachar.web.drug.domain.Category,java.util.Date,java.util.Date)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category findById(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category findByName(java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.drug.service.CategoryService: void deleteCategory(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category editCategory(java.lang.Long,com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.data.controller.DataController: java.lang.String loadData(org.springframework.web.multipart.MultipartFile)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: com.upachar.web.user.domain.User getUserById(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: com.upachar.web.user.domain.User updateUser(java.lang.Long,com.upachar.web.user.dto.UserUpdateDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: void deleteUser(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: java.util.Map checkIfUserCreateable(com.upachar.web.user.dto.UserValidateDto)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.CorsFilter: void doFilter(javax.servlet.ServletRequest,javax.servlet.ServletResponse,javax.servlet.FilterChain)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.CorsFilter: void init(javax.servlet.FilterConfig)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.dto.UserSignupDto: void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DosageFormService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: void copyNonNullProperties(java.lang.Object,java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DosageFormService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: void <init>(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: void setForm(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: void <init>(java.lang.Long,java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: com.upachar.web.drug.domain.Drug findDrugById(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: com.upachar.web.drug.domain.Drug updateDrug(java.lang.Long,com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: java.util.List findDrugsInSubCategory(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: void deleteDrug(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: java.util.List searchDrugs(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.SubCategoryDto: void <init>(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.enums.OrderStatus: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/1]	<com.upachar.web.order.enums.OrderStatus: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/0]	<com.upachar.web.order.enums.OrderStatus: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/2]	<com.upachar.web.order.enums.OrderStatus: void <init>(java.lang.String,int)>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<com.upachar.web.data.service.DataService: void loadDataFromFile(org.springframework.web.multipart.MultipartFile)>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<com.upachar.web.data.service.DataService: com.upachar.web.drug.domain.DosageForm getDosageForm(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setFirstName(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setLastName(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setEmail(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setPassword(java.lang.String)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<com.upachar.web.user.domain.User: void setPassword(java.lang.String)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<com.upachar.web.user.domain.User: void setPassword(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setPhone(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setAddress(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setRoles(java.util.List)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<com.upachar.web.user.domain.User: void setRoles(java.util.List)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<com.upachar.web.user.domain.User: void setRoles(java.util.List)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setCreatedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void setModifiedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void <init>(java.lang.Long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.Date,java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.drug.service.DosageFormService::MockObject, <com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.exceptionhandler.GlobalException/0]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.drug.service.CategoryService::MockObject, <com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.data.service.DataService: com.upachar.web.drug.domain.DosageForm getDosageForm(java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateEmail(java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUnique(java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUnique(java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/1]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUpdateable(java.lang.Long,java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUpdateable(java.lang.Long,java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/1]	<com.upachar.web.exceptionhandler.GlobalException: void <init>(java.lang.String,org.springframework.http.HttpStatus)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.dto.OrderStatusDto: void <init>(com.upachar.web.order.enums.OrderStatus)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0]	<com.upachar.web.drug.domain.Category$CategoryBuilder: com.upachar.web.drug.domain.Category$CategoryBuilder name(java.lang.String)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0]	<com.upachar.web.drug.domain.Category$CategoryBuilder: com.upachar.web.drug.domain.Category$CategoryBuilder photoUrl(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.dto.OrderDto: void <init>(java.util.Map,java.lang.Double,java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.UserRole: void <init>(com.upachar.web.user.enums.Role)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole/0]	<com.upachar.web.user.domain.UserRole: void <init>(com.upachar.web.user.enums.Role)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole/0]	<com.upachar.web.user.domain.UserRole: void <init>(com.upachar.web.user.enums.Role)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.UserRole: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.UserRole: void setRole(com.upachar.web.user.enums.Role)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0]	<com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder name(java.lang.String)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0]	<com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder category(com.upachar.web.drug.domain.Category)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<com.upachar.web.drug.service.SubCategoryService: com.upachar.web.drug.domain.SubCategory findById(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<com.upachar.web.drug.service.SubCategoryService: com.upachar.web.drug.domain.SubCategory addSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<com.upachar.web.drug.service.SubCategoryService: java.util.List findByCategoryId(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<com.upachar.web.drug.service.SubCategoryService: com.upachar.web.drug.domain.SubCategory updateSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<com.upachar.web.drug.service.SubCategoryService: void deleteSubCategory(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.enums.Role: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/1]	<com.upachar.web.user.enums.Role: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/0]	<com.upachar.web.user.enums.Role: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: void <init>(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.OrderPrescription/0]	<com.upachar.web.order.domain.OrderPrescription: void <init>(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.OrderPrescription/0]	<com.upachar.web.order.domain.OrderPrescription: void <init>(java.lang.String)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new com.upachar.web.order.domain.OrderPrescription/0]	<com.upachar.web.order.domain.OrderPrescription: void <init>(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: void setPrescriptionUrl(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: void <init>(java.lang.Long,java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.dto.UserValidateDto: void <init>(java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug findById(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug updateDrug(java.lang.Long,com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: java.util.List findBySubCategoryId(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: void deleteDrug(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: void deleteAllAssociatedToSubCategory(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: java.util.List findByBrandNameRegexOrGenericNameRegex(java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.common.utils.CustomStringUtils: java.lang.String getImageNameFromUrl(java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.common.utils.CustomStringUtils: java.lang.String getImageNameFromUrl(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setProductId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setBrandName(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setGenericName(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setManufacturer(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setDosageForm(com.upachar.web.drug.domain.DosageForm)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Drug/0]	<com.upachar.web.drug.domain.Drug: void setDosageForm(com.upachar.web.drug.domain.DosageForm)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setSubCategory(com.upachar.web.drug.domain.SubCategory)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Drug/0]	<com.upachar.web.drug.domain.Drug: void setSubCategory(com.upachar.web.drug.domain.SubCategory)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setDetails(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setInStock(java.lang.Boolean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setPhotoUrl(java.lang.String)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Drug/0]	<com.upachar.web.drug.domain.Drug: void setPhotoUrl(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setPrice(java.lang.Double)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setPackSize(java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setPrescriptionRequired(java.lang.Boolean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setTrending(java.lang.Boolean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setSpecialOffer(java.lang.Boolean)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setCreatedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void setModifiedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void <init>(java.lang.Long,java.lang.Long,java.lang.String,java.lang.String,java.lang.String,com.upachar.web.drug.domain.DosageForm,com.upachar.web.drug.domain.SubCategory,java.lang.String,java.lang.Boolean,java.lang.String,java.lang.Double,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.util.Date,java.util.Date)>
+[<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0, <com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug build()>/new com.upachar.web.drug.domain.Drug/0]	<com.upachar.web.drug.domain.Drug: void <init>(java.lang.Long,java.lang.Long,java.lang.String,java.lang.String,java.lang.String,com.upachar.web.drug.domain.DosageForm,com.upachar.web.drug.domain.SubCategory,java.lang.String,java.lang.Boolean,java.lang.String,java.lang.Double,java.lang.Integer,java.lang.Boolean,java.lang.Boolean,java.lang.Boolean,java.util.Date,java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.CategoryController: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.CategoryController: void deleteCategory(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.CategoryController: com.upachar.web.drug.domain.Category editCategory(java.lang.Long,com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.ResourceServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.DosageFormDto: void <init>(java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: java.util.List findByUserId(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order updateOrder(java.lang.Long,com.upachar.web.order.dto.OrderUpdateDto)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order findById(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: void deleteOrder(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order updateOrderStatus(java.lang.Long,com.upachar.web.order.dto.OrderStatusDto)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: void deleteAllAssociatedWithDrug(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: void deleteAllAssociatedWithUser(java.lang.Long)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: java.util.List findByIdIn(java.util.List)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setContent(java.util.List)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setContent(java.util.List)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setContent(java.util.List)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setContent(java.util.List)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setPageElementCount(long)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setPageElementCount(long)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setPageElementCount(long)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setPageElementCount(long)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalElements(long)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalElements(long)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalElements(long)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalElements(long)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalPages(long)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalPages(long)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalPages(long)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void setTotalPages(long)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.common.utils.FileUtils: java.lang.String uploadImage(org.springframework.web.multipart.MultipartFile,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.common.utils.FileUtils: java.lang.String uploadImage(org.springframework.web.multipart.MultipartFile,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.common.utils.FileUtils: java.lang.String uploadImage(org.springframework.web.multipart.MultipartFile,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.common.utils.FileUtils: boolean deleteImage(java.lang.String,java.lang.String)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.common.utils.FileUtils: boolean deleteImage(java.lang.String,java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: void <init>(java.lang.Integer,com.upachar.web.drug.domain.Drug)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.DrugQuantity/0]	<com.upachar.web.order.domain.DrugQuantity: void <init>(java.lang.Integer,com.upachar.web.drug.domain.Drug)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new com.upachar.web.order.domain.DrugQuantity/0]	<com.upachar.web.order.domain.DrugQuantity: void <init>(java.lang.Integer,com.upachar.web.drug.domain.Drug)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: void setQuantity(java.lang.Integer)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: void setDrug(com.upachar.web.drug.domain.Drug)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: void <init>(java.lang.Long,java.lang.Integer,com.upachar.web.drug.domain.Drug)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: void setId(java.lang.Long)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: void setName(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: void setPhotoUrl(java.lang.String)>
+[com.upachar.web.drug.service.CategoryService::MockObject, <com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Category/0]	<com.upachar.web.drug.domain.Category: void setPhotoUrl(java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: void setCreatedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: void setModifiedDate(java.util.Date)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: boolean equals(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: boolean canEqual(java.lang.Object)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: void <init>(java.lang.Long,java.lang.String,java.lang.String,java.util.Date,java.util.Date)>
+[<com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0, <com.upachar.web.drug.domain.Category$CategoryBuilder: com.upachar.web.drug.domain.Category build()>/new com.upachar.web.drug.domain.Category/0]	<com.upachar.web.drug.domain.Category: void <init>(java.lang.Long,java.lang.String,java.lang.String,java.util.Date,java.util.Date)>
+[<<immutable-context>>, <com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.upachar.web.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>/new com.upachar.web.exceptionhandler.ErrorResponse/0]	<com.upachar.web.exceptionhandler.ErrorResponse: void <init>(int,java.lang.String,java.lang.String)>
+[<<immutable-context>>, <com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)>/new com.upachar.web.exceptionhandler.ErrorResponse/0]	<com.upachar.web.exceptionhandler.ErrorResponse: void <init>(int,java.lang.String,java.lang.String)>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.SecurityConfiguration: org.springframework.security.authentication.AuthenticationManager authenticationManagerBean()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.AuthorizationServerConfiguration: org.springframework.security.oauth2.provider.token.TokenStore tokenStore()>
+[<<immutable-hcontext>>, com.upachar.web.config.security.AuthorizationServerConfiguration::MockObject]	<com.upachar.web.config.security.AuthorizationServerConfiguration: org.springframework.security.oauth2.provider.token.TokenStore tokenStore()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.SecurityConfiguration: org.springframework.security.crypto.password.PasswordEncoder passwordEncoder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DosageFormController: java.util.List getAllDosageForms()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: java.util.Set getAllDrugNames()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: java.util.List getSpecialOfferDrugs()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: java.util.List getTrendingDrugs()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: java.util.List getLatestDrugs()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.spring.web.plugins.Docket api()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.CategoryController: java.util.List getAllCategories()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.controller.OrderController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.AuthorizationServerConfiguration: void <init>()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.DosageForm: com.upachar.web.drug.domain.DosageForm$DosageFormBuilder builder()>/new com.upachar.web.drug.domain.DosageForm$DosageFormBuilder/0]	<com.upachar.web.drug.domain.DosageForm$DosageFormBuilder: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.lang.Double getTotalPrice()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.lang.Double getTotalPrice()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.lang.String getDeliveryAddress()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.lang.String getDeliveryAddress()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.lang.String getDeliveryPhone()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.lang.String getDeliveryPhone()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: com.upachar.web.order.enums.OrderStatus getOrderStatus()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: com.upachar.web.order.enums.OrderStatus getOrderStatus()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.util.Set getDrugQuantities()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.util.Set getDrugQuantities()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.util.Set getOrderPrescriptions()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.util.Set getOrderPrescriptions()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: com.upachar.web.user.domain.User getUser()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: com.upachar.web.user.domain.User getUser()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.util.Date getCreatedDate()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.util.Date getCreatedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.util.Date getModifiedDate()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<com.upachar.web.order.domain.Order: java.util.Date getModifiedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.Order: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<com.upachar.web.order.domain.Order: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserUpdateDto::MockObject]	<com.upachar.web.user.dto.UserUpdateDto: java.lang.String getEmail()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserUpdateDto::MockObject]	<com.upachar.web.user.dto.UserUpdateDto: java.lang.String getPhone()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.dto.UserUpdateDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.SubCategoryController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.exceptionhandler.GlobalExceptionHandler: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.service.UserService: void <init>()>
+[<<immutable-context>>, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order build()>
+[<<immutable-context>>, <com.upachar.web.order.domain.DrugQuantity: com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder builder()>/new com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder/0]	<com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: void <init>()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug build()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.SecurityConfiguration: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DosageFormController: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.DrugDto::MockObject]	<com.upachar.web.drug.dto.DrugDto: java.lang.Long getDosageFormId()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.DrugDto::MockObject]	<com.upachar.web.drug.dto.DrugDto: java.lang.Long getSubCategoryId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.DrugDto: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.CategoryDto::MockObject]	<com.upachar.web.drug.dto.CategoryDto: java.lang.String getName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.CategoryDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.dto.OrderUpdateDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.service.DosageFormService: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DosageFormService::MockObject]	<com.upachar.web.drug.service.DosageFormService: java.util.List findAll()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.SubCategory::MockObject]	<com.upachar.web.drug.domain.SubCategory: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: java.lang.String getName()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.SubCategory::MockObject]	<com.upachar.web.drug.domain.SubCategory: java.lang.String getName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.Category getCategory()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.SubCategory::MockObject]	<com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.Category getCategory()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: java.util.Date getCreatedDate()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.SubCategory::MockObject]	<com.upachar.web.drug.domain.SubCategory: java.util.Date getCreatedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: java.util.Date getModifiedDate()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.SubCategory::MockObject]	<com.upachar.web.drug.domain.SubCategory: java.util.Date getModifiedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.SubCategory: void <init>()>
+[com.upachar.web.drug.service.SubCategoryService::MockObject, <com.upachar.web.drug.service.SubCategoryService: com.upachar.web.drug.domain.SubCategory addSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>/new com.upachar.web.drug.domain.SubCategory/0]	<com.upachar.web.drug.domain.SubCategory: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.service.CategoryService: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<com.upachar.web.drug.service.CategoryService: java.util.List findAll()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.service.CategoryService: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.data.controller.DataController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.controller.UserController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.CorsFilter: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.CorsFilter: void destroy()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserSignupDto::MockObject]	<com.upachar.web.user.dto.UserSignupDto: java.lang.String getEmail()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserSignupDto::MockObject]	<com.upachar.web.user.dto.UserSignupDto: java.lang.String getPassword()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserSignupDto::MockObject]	<com.upachar.web.user.dto.UserSignupDto: java.lang.String getPhone()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.dto.UserSignupDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: com.upachar.web.drug.domain.DosageForm$DosageFormBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.DosageForm::MockObject]	<com.upachar.web.drug.domain.DosageForm: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: java.lang.String getForm()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.DosageForm::MockObject]	<com.upachar.web.drug.domain.DosageForm: java.lang.String getForm()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.DosageForm: void <init>()>
+[com.upachar.web.drug.service.DosageFormService::MockObject, <com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>/new com.upachar.web.drug.domain.DosageForm/0]	<com.upachar.web.drug.domain.DosageForm: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.DrugController: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.SubCategoryDto::MockObject]	<com.upachar.web.drug.dto.SubCategoryDto: java.lang.String getName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.SubCategoryDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.enums.OrderStatus: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.data.service.DataService: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.data.service.DataService: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: com.upachar.web.user.domain.User$UserBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.String getFirstName()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.lang.String getFirstName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.String getLastName()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.lang.String getLastName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.String getEmail()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.lang.String getEmail()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.String getPassword()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.lang.String getPassword()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.String getPhone()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.lang.String getPhone()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.String getAddress()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.lang.String getAddress()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.util.List getRoles()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.util.List getRoles()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.util.Date getCreatedDate()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.util.Date getCreatedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.util.Date getModifiedDate()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<com.upachar.web.user.domain.User: java.util.Date getModifiedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.User: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<com.upachar.web.user.domain.User: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<com.upachar.web.user.domain.User: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.exceptionhandler.GlobalException::MockObject]	<com.upachar.web.exceptionhandler.GlobalException: java.lang.String getMessage()>
+[<<immutable-hcontext>>, com.upachar.web.exceptionhandler.GlobalException::MockObject]	<com.upachar.web.exceptionhandler.GlobalException: org.springframework.http.HttpStatus getStatus()>
+[<<immutable-context>>, <com.upachar.web.user.domain.User: com.upachar.web.user.domain.User$UserBuilder builder()>/new com.upachar.web.user.domain.User$UserBuilder/0]	<com.upachar.web.user.domain.User$UserBuilder: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.dto.OrderStatusDto::MockObject]	<com.upachar.web.order.dto.OrderStatusDto: com.upachar.web.order.enums.OrderStatus getOrderStatus()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.dto.OrderStatusDto: void <init>()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0]	<com.upachar.web.drug.domain.Category$CategoryBuilder: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0]	<com.upachar.web.drug.domain.Category$CategoryBuilder: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0]	<com.upachar.web.drug.domain.Category$CategoryBuilder: com.upachar.web.drug.domain.Category build()>
+[<<immutable-hcontext>>, com.upachar.web.order.dto.OrderDto::MockObject]	<com.upachar.web.order.dto.OrderDto: java.util.Map getDrugQuantities()>
+[<<immutable-hcontext>>, com.upachar.web.order.dto.OrderDto::MockObject]	<com.upachar.web.order.dto.OrderDto: java.lang.Long getUserId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.dto.OrderDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.UserRole: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.UserRole: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.domain.UserRole: com.upachar.web.user.enums.Role getRole()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0]	<com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0]	<com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0]	<com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: com.upachar.web.drug.domain.SubCategory build()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.service.SubCategoryService: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.swagger.SwaggerConfiguration: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>
+[<<immutable-hcontext>>, com.upachar.web.config.swagger.SwaggerConfiguration::MockObject]	<com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.enums.Role: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.OrderPrescription::MockObject]	<com.upachar.web.order.domain.OrderPrescription: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: java.lang.String getPrescriptionUrl()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.OrderPrescription::MockObject]	<com.upachar.web.order.domain.OrderPrescription: java.lang.String getPrescriptionUrl()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.OrderPrescription: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserValidateDto::MockObject]	<com.upachar.web.user.dto.UserValidateDto: java.lang.String getEmail()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserValidateDto::MockObject]	<com.upachar.web.user.dto.UserValidateDto: java.lang.String getPhone()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.user.dto.UserValidateDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.service.DrugService: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: java.util.Set getAllDrugNames()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: java.util.List getSpecialOfferDrugs()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: java.util.List getTrendingDrugs()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<com.upachar.web.drug.service.DrugService: java.util.List getTop10LatestDrugs()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.service.DrugService: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Long getProductId()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Long getProductId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.String getBrandName()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.String getBrandName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.String getGenericName()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.String getGenericName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.String getManufacturer()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.String getManufacturer()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.DosageForm getDosageForm()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.DosageForm getDosageForm()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.SubCategory getSubCategory()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.SubCategory getSubCategory()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.String getDetails()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.String getDetails()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getInStock()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getInStock()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.String getPhotoUrl()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.String getPhotoUrl()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Double getPrice()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Double getPrice()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Integer getPackSize()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Integer getPackSize()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getPrescriptionRequired()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getPrescriptionRequired()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getTrending()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getTrending()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getSpecialOffer()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.lang.Boolean getSpecialOffer()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.util.Date getCreatedDate()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.util.Date getCreatedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.util.Date getModifiedDate()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<com.upachar.web.drug.domain.Drug: java.util.Date getModifiedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Drug: void <init>()>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Drug/0]	<com.upachar.web.drug.domain.Drug: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.controller.CategoryController: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.ResourceServerConfiguration: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.DosageFormDto::MockObject]	<com.upachar.web.drug.dto.DosageFormDto: java.lang.String getForm()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.dto.DosageFormDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.service.OrderService: void <init>()>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void <init>()>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<com.upachar.web.common.dto.PageDto: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.CustomTokenEnhancer: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.common.utils.FileUtils: void <clinit>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.config.security.CustomUserDetailsService: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.DrugQuantity::MockObject]	<com.upachar.web.order.domain.DrugQuantity: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: java.lang.Integer getQuantity()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.DrugQuantity::MockObject]	<com.upachar.web.order.domain.DrugQuantity: java.lang.Integer getQuantity()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: com.upachar.web.drug.domain.Drug getDrug()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.DrugQuantity::MockObject]	<com.upachar.web.order.domain.DrugQuantity: com.upachar.web.drug.domain.Drug getDrug()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.order.domain.DrugQuantity: void <init>()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: java.lang.Long getId()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Category::MockObject]	<com.upachar.web.drug.domain.Category: java.lang.Long getId()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: java.lang.String getName()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Category::MockObject]	<com.upachar.web.drug.domain.Category: java.lang.String getName()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: java.lang.String getPhotoUrl()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Category::MockObject]	<com.upachar.web.drug.domain.Category: java.lang.String getPhotoUrl()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: java.util.Date getCreatedDate()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Category::MockObject]	<com.upachar.web.drug.domain.Category: java.util.Date getCreatedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: java.util.Date getModifiedDate()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Category::MockObject]	<com.upachar.web.drug.domain.Category: java.util.Date getModifiedDate()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: int hashCode()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: java.lang.String toString()>
+[<<immutable-context>>, <<immutable-context>>]	<com.upachar.web.drug.domain.Category: void <init>()>
+[com.upachar.web.drug.service.CategoryService::MockObject, <com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Category/0]	<com.upachar.web.drug.domain.Category: void <init>()>
+[<<immutable-context>>, <com.upachar.web.order.domain.OrderPrescription: com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder builder()>/new com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder/0]	<com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.Order::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.SubCategory::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.config.security.CorsFilter::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.DrugQuantity::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.controller.CategoryController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.controller.OrderController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.controller.DosageFormController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.data.controller.DataController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.controller.SubCategoryController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.controller.UserController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.User::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Category::MockObject]	<java.lang.Object: void <init>()>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.Drug::MockObject]	<java.lang.Object: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole/0]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.controller.DrugController::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.config.security.CustomTokenEnhancer::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.config.security.CustomUserDetailsService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DosageFormService::MockObject]	<java.lang.Object: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.domain.UserRole::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.dto.OrderUpdateDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.dto.OrderStatusDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.CategoryDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.SubCategoryDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.dto.OrderDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.DosageFormDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserSignupDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.dto.DrugDto::MockObject]	<java.lang.Object: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserUpdateDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.dto.UserValidateDto::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.config.swagger.SwaggerConfiguration::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.drug.domain.DosageForm::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.order.domain.OrderPrescription::MockObject]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.upachar.web.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>/new com.upachar.web.exceptionhandler.ErrorResponse/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)>/new com.upachar.web.exceptionhandler.ErrorResponse/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.DosageForm: com.upachar.web.drug.domain.DosageForm$DosageFormBuilder builder()>/new com.upachar.web.drug.domain.DosageForm$DosageFormBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.order.domain.OrderPrescription: com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder builder()>/new com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.user.domain.User: com.upachar.web.user.domain.User$UserBuilder builder()>/new com.upachar.web.user.domain.User$UserBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.order.domain.DrugQuantity: com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder builder()>/new com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder/0]	<java.lang.Object: void <init>()>
+[<<immutable-context>>, <com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.drug.service.DosageFormService::MockObject, <com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>/new com.upachar.web.drug.domain.DosageForm/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.drug.service.SubCategoryService::MockObject, <com.upachar.web.drug.service.SubCategoryService: com.upachar.web.drug.domain.SubCategory addSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>/new com.upachar.web.drug.domain.SubCategory/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.DrugQuantity/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.OrderPrescription/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.OrderPrescription/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new com.upachar.web.order.domain.DrugQuantity/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new com.upachar.web.order.domain.OrderPrescription/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.drug.service.CategoryService::MockObject, <com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Category/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Drug/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0]	<java.lang.Object: void <init>()>
+[<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0, <com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug build()>/new com.upachar.web.drug.domain.Drug/0]	<java.lang.Object: void <init>()>
+[<com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0, <com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: com.upachar.web.drug.domain.SubCategory build()>/new com.upachar.web.drug.domain.SubCategory/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0]	<java.lang.Object: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0]	<java.lang.Object: void <init>()>
+[<com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0, <com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order build()>/new com.upachar.web.order.domain.Order/0]	<java.lang.Object: void <init>()>
+[<com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0, <com.upachar.web.drug.domain.Category$CategoryBuilder: com.upachar.web.drug.domain.Category build()>/new com.upachar.web.drug.domain.Category/0]	<java.lang.Object: void <init>()>
+[<<immutable-hcontext>>, <<string-builder>>]	<java.lang.StringBuilder: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.config.security.AuthorizationServerConfiguration::MockObject]	<org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter: void <init>()>
+[<<immutable-context>>, <com.upachar.web.config.security.AuthorizationServerConfiguration: org.springframework.security.oauth2.provider.token.TokenStore tokenStore()>/new org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore/0]	<org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore: void <init>()>
+[com.upachar.web.config.security.AuthorizationServerConfiguration::MockObject, <com.upachar.web.config.security.AuthorizationServerConfiguration: org.springframework.security.oauth2.provider.token.TokenStore tokenStore()>/new org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore/0]	<org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.exceptionhandler.GlobalExceptionHandler::MockObject]	<org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler: void <init>()>
+[<<immutable-context>>, <com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.upachar.web.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>/new org.springframework.http.HttpHeaders/0]	<org.springframework.http.HttpHeaders: void <init>()>
+[<<immutable-context>>, <com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)>/new org.springframework.http.HttpHeaders/0]	<org.springframework.http.HttpHeaders: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.config.security.SecurityConfiguration::MockObject]	<org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter: void <init>()>
+[<<immutable-context>>, <com.upachar.web.config.security.SecurityConfiguration: org.springframework.security.crypto.password.PasswordEncoder passwordEncoder()>/new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder/0]	<org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder: void <init>()>
+[<<immutable-context>>, <com.upachar.web.user.controller.UserController: java.util.Map checkIfUserCreateable(com.upachar.web.user.dto.UserValidateDto)>/new java.util.HashMap/0]	<java.util.HashMap: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.data.service.DataService: com.upachar.web.drug.domain.DosageForm getDosageForm(java.lang.String)>/new java.util.HashMap/0]	<java.util.HashMap: void <init>()>
+[com.upachar.web.drug.service.SubCategoryService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.upachar.web.drug.service.DosageFormService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.upachar.web.drug.service.CategoryService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0]	<org.springframework.beans.BeanWrapperImpl: void <init>(java.lang.Object)>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.util.HashSet/1]	<java.util.HashSet: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new java.util.HashSet/1]	<java.util.HashSet: void <init>()>
+[com.upachar.web.drug.service.DosageFormService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.drug.service.SubCategoryService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.drug.service.CategoryService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[com.upachar.web.drug.service.DrugService::MockObject, <com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0]	<java.util.HashSet: void <init>()>
+[<<immutable-context>>, <com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/1]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-hcontext>>, com.upachar.web.order.enums.OrderStatus::MockObject]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-hcontext>>, com.upachar.web.user.enums.Role::MockObject]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/0]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/1]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/2]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[<<immutable-context>>, <com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/0]	<java.lang.Enum: void <init>(java.lang.String,int)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.data.service.DataService: void loadDataFromFile(org.springframework.web.multipart.MultipartFile)>/new java.io.FileReader/0]	<java.io.FileReader: void <init>(java.io.File)>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.data.service.DataService: void loadDataFromFile(org.springframework.web.multipart.MultipartFile)>/new com.opencsv.bean.CsvToBeanBuilder/0]	<com.opencsv.bean.CsvToBeanBuilder: void <init>(java.io.Reader)>
+[<<immutable-hcontext>>, com.upachar.web.exceptionhandler.GlobalException::MockObject]	<java.lang.Exception: void <init>()>
+[com.upachar.web.drug.service.DosageFormService::MockObject, <com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<java.lang.Exception: void <init>()>
+[com.upachar.web.order.service.OrderService::MockObject, <com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.exceptionhandler.GlobalException/0]	<java.lang.Exception: void <init>()>
+[com.upachar.web.drug.service.CategoryService::MockObject, <com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<java.lang.Exception: void <init>()>
+[com.upachar.web.data.service.DataService::MockObject, <com.upachar.web.data.service.DataService: com.upachar.web.drug.domain.DosageForm getDosageForm(java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<java.lang.Exception: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateEmail(java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<java.lang.Exception: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUnique(java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<java.lang.Exception: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUnique(java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/1]	<java.lang.Exception: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUpdateable(java.lang.Long,java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0]	<java.lang.Exception: void <init>()>
+[com.upachar.web.user.service.UserService::MockObject, <com.upachar.web.user.service.UserService: boolean validateIfUserIsUpdateable(java.lang.Long,java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/1]	<java.lang.Exception: void <init>()>
+[<<immutable-context>>, <com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.spring.web.plugins.Docket api()>/new springfox.documentation.spring.web.plugins.Docket/0]	<springfox.documentation.spring.web.plugins.Docket: void <init>(springfox.documentation.spi.DocumentationType)>
+[<<immutable-context>>, <com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.Contact/0]	<springfox.documentation.service.Contact: void <init>(java.lang.String,java.lang.String,java.lang.String)>
+[com.upachar.web.config.swagger.SwaggerConfiguration::MockObject, <com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.Contact/0]	<springfox.documentation.service.Contact: void <init>(java.lang.String,java.lang.String,java.lang.String)>
+[<<immutable-context>>, <com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.ApiInfo/0]	<springfox.documentation.service.ApiInfo: void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,springfox.documentation.service.Contact,java.lang.String,java.lang.String,java.util.Collection)>
+[com.upachar.web.config.swagger.SwaggerConfiguration::MockObject, <com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.ApiInfo/0]	<springfox.documentation.service.ApiInfo: void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,springfox.documentation.service.Contact,java.lang.String,java.lang.String,java.util.Collection)>
+[<<immutable-hcontext>>, com.upachar.web.config.security.ResourceServerConfiguration::MockObject]	<org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter: void <init>()>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<java.util.Arrays: java.util.List asList(java.lang.Object[])>
+[<<immutable-context>>, <<immutable-context>>]	<java.lang.Boolean: java.lang.Boolean valueOf(boolean)>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<java.lang.Boolean: java.lang.Boolean valueOf(boolean)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<java.lang.Boolean: java.lang.Boolean valueOf(boolean)>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.SubCategoryService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.user.service.UserService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DosageFormService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<org.springframework.beans.BeanUtils: void copyProperties(java.lang.Object,java.lang.Object,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<java.lang.Long: java.lang.Long valueOf(long)>
+[<<immutable-hcontext>>, com.upachar.web.data.service.DataService::MockObject]	<java.lang.Integer: java.lang.Integer valueOf(int)>
+[<<immutable-context>>, <<immutable-context>>]	<java.util.Collections: java.util.List emptyList()>
+[<<immutable-hcontext>>, com.upachar.web.config.swagger.SwaggerConfiguration::MockObject]	<java.util.Collections: java.util.List emptyList()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<java.util.stream.Collectors: java.util.stream.Collector toSet()>
+[<<immutable-hcontext>>, com.upachar.web.order.service.OrderService::MockObject]	<java.util.stream.Collectors: java.util.stream.Collector toList()>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.CategoryService::MockObject]	<java.nio.file.Files: void delete(java.nio.file.Path)>
+[<<immutable-hcontext>>, com.upachar.web.drug.service.DrugService::MockObject]	<java.nio.file.Files: void delete(java.nio.file.Path)>

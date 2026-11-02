@@ -1,0 +1,594 @@
+)	com.upachar.web.order.dto.OrderDto$OrderDtoBuilder
+)	com.upachar.web.drug.domain.DosageForm$DosageFormBuilder
+)	com.upachar.web.order.domain.Order
+)	com.upachar.web.user.domain.User
+)	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+)	com.upachar.web.user.dto.UserUpdateDto
+)	com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder
+)	com.upachar.web.order.domain.Order$OrderBuilder
+)	com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder
+)	com.upachar.web.drug.domain.Drug
+)	com.upachar.web.drug.domain.Drug$DrugBuilder
+)	com.upachar.web.drug.domain.DosageForm
+)	com.upachar.web.drug.domain.SubCategory
+)	com.upachar.web.drug.dto.DrugDto
+)	com.upachar.web.drug.dto.CategoryDto
+)	com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder
+)	com.upachar.web.order.dto.OrderUpdateDto
+)	com.upachar.web.drug.domain.Category
+)	com.upachar.web.user.dto.UserSignupDto
+)	com.upachar.web.data.dto.DrugDetailsDto
+)	com.upachar.web.drug.dto.SubCategoryDto
+)	com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder
+)	com.upachar.web.user.domain.User$UserBuilder
+)	com.upachar.web.order.dto.OrderStatusDto
+)	com.upachar.web.drug.domain.Category$CategoryBuilder
+)	com.upachar.web.order.dto.OrderDto
+)	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+)	com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder
+)	com.upachar.web.order.domain.OrderPrescription
+)	com.upachar.web.user.dto.UserValidateDto
+)	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+)	com.upachar.web.drug.dto.DosageFormDto
+)	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+)	com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder
+)	com.upachar.web.order.domain.DrugQuantity
+)	com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder
+)	com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder
+class	com.upachar.web.common.utils.CustomBeanUtils
+/	com.upachar.web.common.utils.CustomStringUtils
+.	com.upachar.web.common.utils.FileUtils
+userId	com.upachar.web.config.security.CustomTokenEnhancer
+USER	com.upachar.web.user.enums.Role
+ADMIN	com.upachar.web.user.enums.Role
+password	com.upachar.web.config.security.AuthorizationServerConfiguration
+PENDING	com.upachar.web.order.enums.OrderStatus
+PROCESSED	com.upachar.web.order.enums.OrderStatus
+DELIVERED	com.upachar.web.order.enums.OrderStatus
+<class com.upachar.web.order.enums.OrderStatus>	com.upachar.web.order.enums.OrderStatus
+<class com.upachar.web.UpacharWebApplication>	com.upachar.web.UpacharWebApplication
+<class com.upachar.web.user.enums.Role>	com.upachar.web.user.enums.Role
+<com.upachar.web.order.dto.OrderDto$OrderDtoBuilder: com.upachar.web.order.dto.OrderDto build()>/new com.upachar.web.order.dto.OrderDto/0	com.upachar.web.order.dto.OrderDto$OrderDtoBuilder
+<com.upachar.web.order.dto.OrderDto$OrderDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.dto.OrderDto$OrderDtoBuilder
+<com.upachar.web.config.security.AuthorizationServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)>/new java.lang.String[]/0	com.upachar.web.config.security.AuthorizationServerConfiguration
+<com.upachar.web.config.security.AuthorizationServerConfiguration: void configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)>/new java.lang.String[]/1	com.upachar.web.config.security.AuthorizationServerConfiguration
+<com.upachar.web.config.security.AuthorizationServerConfiguration: org.springframework.security.oauth2.provider.token.TokenStore tokenStore()>/new org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore/0	com.upachar.web.config.security.AuthorizationServerConfiguration
+<com.upachar.web.drug.domain.DosageForm$DosageFormBuilder: com.upachar.web.drug.domain.DosageForm build()>/new com.upachar.web.drug.domain.DosageForm/0	com.upachar.web.drug.domain.DosageForm$DosageFormBuilder
+<com.upachar.web.drug.domain.DosageForm$DosageFormBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.DosageForm$DosageFormBuilder
+<com.upachar.web.order.domain.Order: com.upachar.web.order.domain.Order$OrderBuilder builder()>/new com.upachar.web.order.domain.Order$OrderBuilder/0	com.upachar.web.order.domain.Order
+<com.upachar.web.order.domain.Order: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.domain.Order
+<com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder: com.upachar.web.drug.dto.DrugDto build()>/new com.upachar.web.drug.dto.DrugDto/0	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+<com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+<com.upachar.web.user.dto.UserUpdateDto: com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder builder()>/new com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder/0	com.upachar.web.user.dto.UserUpdateDto
+<com.upachar.web.user.dto.UserUpdateDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.dto.UserUpdateDto
+<com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder: com.upachar.web.order.dto.OrderStatusDto build()>/new com.upachar.web.order.dto.OrderStatusDto/0	com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder
+<com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder
+<com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.upachar.web.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>/new com.upachar.web.exceptionhandler.ErrorResponse/0	com.upachar.web.exceptionhandler.GlobalExceptionHandler
+<com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleIOException(com.upachar.web.exceptionhandler.GlobalException,org.springframework.web.context.request.WebRequest)>/new org.springframework.http.HttpHeaders/0	com.upachar.web.exceptionhandler.GlobalExceptionHandler
+<com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)>/new com.upachar.web.exceptionhandler.ErrorResponse/0	com.upachar.web.exceptionhandler.GlobalExceptionHandler
+<com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)>/new java.lang.StringBuilder/0	com.upachar.web.exceptionhandler.GlobalExceptionHandler
+<com.upachar.web.exceptionhandler.GlobalExceptionHandler: org.springframework.http.ResponseEntity handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)>/new org.springframework.http.HttpHeaders/0	com.upachar.web.exceptionhandler.GlobalExceptionHandler
+<com.upachar.web.user.service.UserService: com.upachar.web.common.dto.PageDto findUsersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupUser(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole[]/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: boolean validateEmail(java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: boolean validateIfUserIsUnique(java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: boolean validateIfUserIsUnique(java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/1	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.User/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: com.upachar.web.user.domain.User signupAdmin(com.upachar.web.user.dto.UserSignupDto)>/new com.upachar.web.user.domain.UserRole[]/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: boolean validateIfUserIsUpdateable(java.lang.Long,java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: boolean validateIfUserIsUpdateable(java.lang.Long,java.lang.String,java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/1	com.upachar.web.user.service.UserService
+<com.upachar.web.user.service.UserService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.user.service.UserService
+<com.upachar.web.order.domain.Order$OrderBuilder: com.upachar.web.order.domain.Order build()>/new com.upachar.web.order.domain.Order/0	com.upachar.web.order.domain.Order$OrderBuilder
+<com.upachar.web.order.domain.Order$OrderBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.domain.Order$OrderBuilder
+<com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder: com.upachar.web.order.domain.DrugQuantity build()>/new com.upachar.web.order.domain.DrugQuantity/0	com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder
+<com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder
+<com.upachar.web.drug.domain.Drug$DrugBuilder: com.upachar.web.drug.domain.Drug build()>/new com.upachar.web.drug.domain.Drug/0	com.upachar.web.drug.domain.Drug$DrugBuilder
+<com.upachar.web.drug.domain.Drug$DrugBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.Drug$DrugBuilder
+<com.upachar.web.user.repository.UserRepository: java.lang.Object save(java.lang.Object)>/new java.lang.Error/0	com.upachar.web.user.repository.UserRepository
+<com.upachar.web.user.repository.UserRepository: java.util.Optional findById(java.lang.Object)>/new java.lang.Error/0	com.upachar.web.user.repository.UserRepository
+<com.upachar.web.user.repository.UserRepository: org.springframework.data.domain.Page findAll(org.springframework.data.domain.Pageable)>/new java.lang.Error/0	com.upachar.web.user.repository.UserRepository
+<com.upachar.web.user.repository.UserRepository: void deleteById(java.lang.Object)>/new java.lang.Error/0	com.upachar.web.user.repository.UserRepository
+<com.upachar.web.config.security.SecurityConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/0	com.upachar.web.config.security.SecurityConfiguration
+<com.upachar.web.config.security.SecurityConfiguration: org.springframework.security.crypto.password.PasswordEncoder passwordEncoder()>/new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder/0	com.upachar.web.config.security.SecurityConfiguration
+<com.upachar.web.drug.dto.DrugDto: com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder builder()>/new com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder/0	com.upachar.web.drug.dto.DrugDto
+<com.upachar.web.drug.dto.DrugDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.DrugDto
+<com.upachar.web.drug.dto.CategoryDto: com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder builder()>/new com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder/0	com.upachar.web.drug.dto.CategoryDto
+<com.upachar.web.drug.dto.CategoryDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.CategoryDto
+<com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder: com.upachar.web.drug.dto.DosageFormDto build()>/new com.upachar.web.drug.dto.DosageFormDto/0	com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder
+<com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder
+<com.upachar.web.order.dto.OrderUpdateDto: com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder builder()>/new com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder/0	com.upachar.web.order.dto.OrderUpdateDto
+<com.upachar.web.order.dto.OrderUpdateDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.dto.OrderUpdateDto
+<com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.drug.service.DosageFormService
+<com.upachar.web.drug.service.DosageFormService: com.upachar.web.drug.domain.DosageForm addDosageForm(com.upachar.web.drug.dto.DosageFormDto)>/new com.upachar.web.drug.domain.DosageForm/0	com.upachar.web.drug.service.DosageFormService
+<com.upachar.web.drug.service.DosageFormService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.drug.service.DosageFormService
+<com.upachar.web.drug.domain.SubCategory: com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder builder()>/new com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder/0	com.upachar.web.drug.domain.SubCategory
+<com.upachar.web.drug.domain.SubCategory: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.SubCategory
+<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.drug.service.CategoryService
+<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Category/0	com.upachar.web.drug.service.CategoryService
+<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category addCategory(com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new java.lang.StringBuilder/0	com.upachar.web.drug.service.CategoryService
+<com.upachar.web.drug.service.CategoryService: com.upachar.web.drug.domain.Category editCategory(java.lang.Long,com.upachar.web.drug.dto.CategoryDto,org.springframework.web.multipart.MultipartFile)>/new java.lang.StringBuilder/0	com.upachar.web.drug.service.CategoryService
+<com.upachar.web.drug.service.CategoryService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.drug.service.CategoryService
+<com.upachar.web.user.controller.UserController: java.util.Map checkIfUserCreateable(com.upachar.web.user.dto.UserValidateDto)>/new java.util.HashMap/0	com.upachar.web.user.controller.UserController
+<com.upachar.web.user.dto.UserSignupDto: com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder builder()>/new com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder/0	com.upachar.web.user.dto.UserSignupDto
+<com.upachar.web.user.dto.UserSignupDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.dto.UserSignupDto
+<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0	com.upachar.web.common.utils.CustomBeanUtils
+<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.util.HashSet/0	com.upachar.web.common.utils.CustomBeanUtils
+<com.upachar.web.common.utils.CustomBeanUtils: java.lang.String[] getNullPropertyNames(java.lang.Object)>/new java.lang.String[]/0	com.upachar.web.common.utils.CustomBeanUtils
+<com.upachar.web.common.utils.CustomBeanUtils: boolean checkIfAllFieldsAreNull(java.lang.Object)>/new org.springframework.beans.BeanWrapperImpl/0	com.upachar.web.common.utils.CustomBeanUtils
+<com.upachar.web.drug.domain.DosageForm: com.upachar.web.drug.domain.DosageForm$DosageFormBuilder builder()>/new com.upachar.web.drug.domain.DosageForm$DosageFormBuilder/0	com.upachar.web.drug.domain.DosageForm
+<com.upachar.web.drug.domain.DosageForm: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.DosageForm
+<com.upachar.web.data.dto.DrugDetailsDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.data.dto.DrugDetailsDto
+<com.upachar.web.drug.dto.SubCategoryDto: com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder builder()>/new com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder/0	com.upachar.web.drug.dto.SubCategoryDto
+<com.upachar.web.drug.dto.SubCategoryDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.SubCategoryDto
+<com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder: com.upachar.web.drug.dto.CategoryDto build()>/new com.upachar.web.drug.dto.CategoryDto/0	com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder
+<com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/0	com.upachar.web.order.enums.OrderStatus
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/1	com.upachar.web.order.enums.OrderStatus
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/2	com.upachar.web.order.enums.OrderStatus
+<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus[]/0	com.upachar.web.order.enums.OrderStatus
+<com.upachar.web.data.service.DataService: void loadDataFromFile(org.springframework.web.multipart.MultipartFile)>/new java.lang.String[]/0	com.upachar.web.data.service.DataService
+<com.upachar.web.data.service.DataService: void loadDataFromFile(org.springframework.web.multipart.MultipartFile)>/new com.opencsv.bean.CsvToBeanBuilder/0	com.upachar.web.data.service.DataService
+<com.upachar.web.data.service.DataService: void loadDataFromFile(org.springframework.web.multipart.MultipartFile)>/new java.io.FileReader/0	com.upachar.web.data.service.DataService
+<com.upachar.web.data.service.DataService: com.upachar.web.drug.domain.DosageForm getDosageForm(java.lang.String)>/new java.util.HashMap/0	com.upachar.web.data.service.DataService
+<com.upachar.web.data.service.DataService: com.upachar.web.drug.domain.DosageForm getDosageForm(java.lang.String)>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.data.service.DataService
+<com.upachar.web.data.service.DataService: com.upachar.web.drug.domain.DosageForm getDosageForm(java.lang.String)>/new java.lang.StringBuilder/0	com.upachar.web.data.service.DataService
+<com.upachar.web.user.domain.User: com.upachar.web.user.domain.User$UserBuilder builder()>/new com.upachar.web.user.domain.User$UserBuilder/0	com.upachar.web.user.domain.User
+<com.upachar.web.user.domain.User: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.domain.User
+<com.upachar.web.user.domain.User$UserBuilder: com.upachar.web.user.domain.User build()>/new com.upachar.web.user.domain.User/0	com.upachar.web.user.domain.User$UserBuilder
+<com.upachar.web.user.domain.User$UserBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.domain.User$UserBuilder
+<com.upachar.web.order.dto.OrderStatusDto: com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder builder()>/new com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder/0	com.upachar.web.order.dto.OrderStatusDto
+<com.upachar.web.order.dto.OrderStatusDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.dto.OrderStatusDto
+<com.upachar.web.drug.domain.Category$CategoryBuilder: com.upachar.web.drug.domain.Category build()>/new com.upachar.web.drug.domain.Category/0	com.upachar.web.drug.domain.Category$CategoryBuilder
+<com.upachar.web.drug.domain.Category$CategoryBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.Category$CategoryBuilder
+<com.upachar.web.order.dto.OrderDto: com.upachar.web.order.dto.OrderDto$OrderDtoBuilder builder()>/new com.upachar.web.order.dto.OrderDto$OrderDtoBuilder/0	com.upachar.web.order.dto.OrderDto
+<com.upachar.web.order.dto.OrderDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.dto.OrderDto
+<com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: com.upachar.web.drug.domain.SubCategory build()>/new com.upachar.web.drug.domain.SubCategory/0	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+<com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+<com.upachar.web.drug.service.SubCategoryService: com.upachar.web.drug.domain.SubCategory addSubCategory(java.lang.Long,com.upachar.web.drug.dto.SubCategoryDto)>/new com.upachar.web.drug.domain.SubCategory/0	com.upachar.web.drug.service.SubCategoryService
+<com.upachar.web.drug.service.SubCategoryService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.drug.service.SubCategoryService
+<com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.spring.web.plugins.Docket api()>/new springfox.documentation.spring.web.plugins.Docket/0	com.upachar.web.config.swagger.SwaggerConfiguration
+<com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.ApiInfo/0	com.upachar.web.config.swagger.SwaggerConfiguration
+<com.upachar.web.config.swagger.SwaggerConfiguration: springfox.documentation.service.ApiInfo apiInfo()>/new springfox.documentation.service.Contact/0	com.upachar.web.config.swagger.SwaggerConfiguration
+<com.upachar.web.UpacharWebApplication: org.springframework.boot.builder.SpringApplicationBuilder configure(org.springframework.boot.builder.SpringApplicationBuilder)>/new java.lang.Class[]/0	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.user.domain.UserRole/0	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.user.domain.UserRole/1	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.user.domain.UserRole[]/0	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm[]/0	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/0	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/1	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/2	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/3	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/4	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/5	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/6	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/7	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/8	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/9	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/10	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/11	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/12	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/13	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/14	com.upachar.web.UpacharWebApplication
+<com.upachar.web.UpacharWebApplication: void run(java.lang.String[])>/new com.upachar.web.drug.domain.DosageForm/15	com.upachar.web.UpacharWebApplication
+<com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder: com.upachar.web.order.dto.OrderUpdateDto build()>/new com.upachar.web.order.dto.OrderUpdateDto/0	com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder
+<com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder
+<com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/0	com.upachar.web.user.enums.Role
+<com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/1	com.upachar.web.user.enums.Role
+<com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role[]/0	com.upachar.web.user.enums.Role
+<com.upachar.web.order.domain.OrderPrescription: com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder builder()>/new com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder/0	com.upachar.web.order.domain.OrderPrescription
+<com.upachar.web.order.domain.OrderPrescription: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.domain.OrderPrescription
+<com.upachar.web.user.dto.UserValidateDto: com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder builder()>/new com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder/0	com.upachar.web.user.dto.UserValidateDto
+<com.upachar.web.user.dto.UserValidateDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.dto.UserValidateDto
+<com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new com.upachar.web.drug.domain.Drug/0	com.upachar.web.drug.service.DrugService
+<com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug addDrug(com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new java.lang.StringBuilder/0	com.upachar.web.drug.service.DrugService
+<com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0	com.upachar.web.drug.service.DrugService
+<com.upachar.web.drug.service.DrugService: com.upachar.web.common.dto.PageDto findAllDrugsWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0	com.upachar.web.drug.service.DrugService
+<com.upachar.web.drug.service.DrugService: com.upachar.web.drug.domain.Drug updateDrug(java.lang.Long,com.upachar.web.drug.dto.DrugDto,org.springframework.web.multipart.MultipartFile)>/new java.lang.StringBuilder/0	com.upachar.web.drug.service.DrugService
+<com.upachar.web.drug.service.DrugService: java.util.List findByBrandNameRegexOrGenericNameRegex(java.lang.String,java.lang.String)>/new java.lang.StringBuilder/0	com.upachar.web.drug.service.DrugService
+<com.upachar.web.drug.service.DrugService: java.util.List findByBrandNameRegexOrGenericNameRegex(java.lang.String,java.lang.String)>/new java.lang.StringBuilder/1	com.upachar.web.drug.service.DrugService
+<com.upachar.web.drug.service.DrugService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.drug.service.DrugService
+<com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder: com.upachar.web.user.dto.UserUpdateDto build()>/new com.upachar.web.user.dto.UserUpdateDto/0	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+<com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+<com.upachar.web.drug.domain.Drug: com.upachar.web.drug.domain.Drug$DrugBuilder builder()>/new com.upachar.web.drug.domain.Drug$DrugBuilder/0	com.upachar.web.drug.domain.Drug
+<com.upachar.web.drug.domain.Drug: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.Drug
+<com.upachar.web.config.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/0	com.upachar.web.config.security.ResourceServerConfiguration
+<com.upachar.web.config.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/1	com.upachar.web.config.security.ResourceServerConfiguration
+<com.upachar.web.config.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/2	com.upachar.web.config.security.ResourceServerConfiguration
+<com.upachar.web.config.security.ResourceServerConfiguration: void configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)>/new java.lang.String[]/3	com.upachar.web.config.security.ResourceServerConfiguration
+<com.upachar.web.drug.dto.DosageFormDto: com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder builder()>/new com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder/0	com.upachar.web.drug.dto.DosageFormDto
+<com.upachar.web.drug.dto.DosageFormDto: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.DosageFormDto
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.util.HashSet/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.lang.StringBuilder/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.DrugQuantity/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.util.HashSet/1	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.OrderPrescription/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order addOrders(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.lang.StringBuilder/1	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.common.dto.PageDto findOrdersWithPaging(java.lang.Integer,java.lang.Integer)>/new com.upachar.web.common.dto.PageDto/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.util.HashSet/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.OrderPrescription/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new java.lang.StringBuilder/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order orderWithPrescription(com.upachar.web.order.dto.OrderDto,org.springframework.web.multipart.MultipartFile[])>/new com.upachar.web.order.domain.Order/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new java.util.HashSet/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new com.upachar.web.order.domain.DrugQuantity/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new java.util.HashSet/1	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.order.domain.Order reorderOrder(java.lang.Long,com.upachar.web.order.dto.OrderDto)>/new com.upachar.web.order.domain.OrderPrescription/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.order.service.OrderService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>/new com.upachar.web.exceptionhandler.GlobalException/0	com.upachar.web.order.service.OrderService
+<com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder: com.upachar.web.user.dto.UserSignupDto build()>/new com.upachar.web.user.dto.UserSignupDto/0	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+<com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+<com.upachar.web.drug.repository.DosageFormRepository: java.lang.Object save(java.lang.Object)>/new java.lang.Error/0	com.upachar.web.drug.repository.DosageFormRepository
+<com.upachar.web.drug.repository.DosageFormRepository: java.util.List findAll()>/new java.lang.Error/0	com.upachar.web.drug.repository.DosageFormRepository
+<com.upachar.web.drug.repository.DosageFormRepository: java.util.List saveAll(java.lang.Iterable)>/new java.lang.Error/0	com.upachar.web.drug.repository.DosageFormRepository
+<com.upachar.web.drug.repository.DosageFormRepository: java.util.Optional findById(java.lang.Object)>/new java.lang.Error/0	com.upachar.web.drug.repository.DosageFormRepository
+<com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder: com.upachar.web.drug.dto.SubCategoryDto build()>/new com.upachar.web.drug.dto.SubCategoryDto/0	com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder
+<com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder
+<com.upachar.web.config.security.CustomTokenEnhancer: org.springframework.security.oauth2.common.OAuth2AccessToken enhance(org.springframework.security.oauth2.common.OAuth2AccessToken,org.springframework.security.oauth2.provider.OAuth2Authentication)>/new java.util.HashMap/0	com.upachar.web.config.security.CustomTokenEnhancer
+<com.upachar.web.common.utils.FileUtils: java.lang.String uploadImage(org.springframework.web.multipart.MultipartFile,java.lang.String)>/new java.lang.StringBuilder/0	com.upachar.web.common.utils.FileUtils
+<com.upachar.web.common.utils.FileUtils: java.lang.String uploadImage(org.springframework.web.multipart.MultipartFile,java.lang.String)>/new java.lang.StringBuilder/1	com.upachar.web.common.utils.FileUtils
+<com.upachar.web.common.utils.FileUtils: java.lang.String uploadImage(org.springframework.web.multipart.MultipartFile,java.lang.String)>/new java.lang.String[]/0	com.upachar.web.common.utils.FileUtils
+<com.upachar.web.common.utils.FileUtils: boolean deleteImage(java.lang.String,java.lang.String)>/new java.lang.StringBuilder/0	com.upachar.web.common.utils.FileUtils
+<com.upachar.web.common.utils.FileUtils: boolean deleteImage(java.lang.String,java.lang.String)>/new java.lang.String[]/0	com.upachar.web.common.utils.FileUtils
+<com.upachar.web.config.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new java.util.ArrayList/0	com.upachar.web.config.security.CustomUserDetailsService
+<com.upachar.web.config.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new org.springframework.security.core.authority.SimpleGrantedAuthority/0	com.upachar.web.config.security.CustomUserDetailsService
+<com.upachar.web.config.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new org.springframework.security.core.userdetails.User/0	com.upachar.web.config.security.CustomUserDetailsService
+<com.upachar.web.config.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new org.springframework.security.core.userdetails.UsernameNotFoundException/0	com.upachar.web.config.security.CustomUserDetailsService
+<com.upachar.web.config.security.CustomUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)>/new java.lang.Object[]/0	com.upachar.web.config.security.CustomUserDetailsService
+<com.upachar.web.order.domain.DrugQuantity: com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder builder()>/new com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder/0	com.upachar.web.order.domain.DrugQuantity
+<com.upachar.web.order.domain.DrugQuantity: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.domain.DrugQuantity
+<com.upachar.web.drug.domain.Category: com.upachar.web.drug.domain.Category$CategoryBuilder builder()>/new com.upachar.web.drug.domain.Category$CategoryBuilder/0	com.upachar.web.drug.domain.Category
+<com.upachar.web.drug.domain.Category: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.drug.domain.Category
+<com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder: com.upachar.web.order.domain.OrderPrescription build()>/new com.upachar.web.order.domain.OrderPrescription/0	com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder
+<com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder
+<com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder: com.upachar.web.user.dto.UserValidateDto build()>/new com.upachar.web.user.dto.UserValidateDto/0	com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder
+<com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder: java.lang.String toString()>/new java.lang.StringBuilder/0	com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder
+OrderDto.OrderDtoBuilder(drugQuantities=	com.upachar.web.order.dto.OrderDto$OrderDtoBuilder
+, totalPrice=	com.upachar.web.order.dto.OrderDto$OrderDtoBuilder
+, totalPrice=	com.upachar.web.order.domain.Order
+, totalPrice=	com.upachar.web.order.domain.Order$OrderBuilder
+, totalPrice=	com.upachar.web.order.dto.OrderDto
+, userId=	com.upachar.web.order.dto.OrderDto$OrderDtoBuilder
+, userId=	com.upachar.web.order.dto.OrderDto
+client_credentials	com.upachar.web.config.security.AuthorizationServerConfiguration
+refresh_token	com.upachar.web.config.security.AuthorizationServerConfiguration
+all	com.upachar.web.config.security.AuthorizationServerConfiguration
+DosageForm.DosageFormBuilder(id=	com.upachar.web.drug.domain.DosageForm$DosageFormBuilder
+, form=	com.upachar.web.drug.domain.DosageForm$DosageFormBuilder
+, form=	com.upachar.web.drug.domain.DosageForm
+Order(id=	com.upachar.web.order.domain.Order
+, deliveryAddress=	com.upachar.web.order.domain.Order
+, deliveryAddress=	com.upachar.web.order.domain.Order$OrderBuilder
+, deliveryPhone=	com.upachar.web.order.domain.Order
+, deliveryPhone=	com.upachar.web.order.domain.Order$OrderBuilder
+, deliveryPhone=	com.upachar.web.order.dto.OrderUpdateDto
+, deliveryPhone=	com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder
+, orderStatus=	com.upachar.web.order.domain.Order
+, orderStatus=	com.upachar.web.order.domain.Order$OrderBuilder
+, drugQuantities=	com.upachar.web.order.domain.Order
+, drugQuantities=	com.upachar.web.order.domain.Order$OrderBuilder
+, orderPrescriptions=	com.upachar.web.order.domain.Order
+, orderPrescriptions=	com.upachar.web.order.domain.Order$OrderBuilder
+, user=	com.upachar.web.order.domain.Order
+, user=	com.upachar.web.order.domain.Order$OrderBuilder
+, createdDate=	com.upachar.web.order.domain.Order
+, createdDate=	com.upachar.web.user.domain.User
+, createdDate=	com.upachar.web.order.domain.Order$OrderBuilder
+, createdDate=	com.upachar.web.drug.domain.Drug
+, createdDate=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, createdDate=	com.upachar.web.drug.domain.SubCategory
+, createdDate=	com.upachar.web.drug.domain.Category
+, createdDate=	com.upachar.web.user.domain.User$UserBuilder
+, createdDate=	com.upachar.web.drug.domain.Category$CategoryBuilder
+, createdDate=	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+, modifiedDate=	com.upachar.web.order.domain.Order
+, modifiedDate=	com.upachar.web.user.domain.User
+, modifiedDate=	com.upachar.web.order.domain.Order$OrderBuilder
+, modifiedDate=	com.upachar.web.drug.domain.Drug
+, modifiedDate=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, modifiedDate=	com.upachar.web.drug.domain.SubCategory
+, modifiedDate=	com.upachar.web.drug.domain.Category
+, modifiedDate=	com.upachar.web.user.domain.User$UserBuilder
+, modifiedDate=	com.upachar.web.drug.domain.Category$CategoryBuilder
+, modifiedDate=	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+DrugDto.DrugDtoBuilder(productId=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, brandName=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, brandName=	com.upachar.web.drug.domain.Drug
+, brandName=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, brandName=	com.upachar.web.drug.dto.DrugDto
+, genericName=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, genericName=	com.upachar.web.drug.domain.Drug
+, genericName=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, genericName=	com.upachar.web.drug.dto.DrugDto
+, genericName=	com.upachar.web.data.dto.DrugDetailsDto
+, dosageFormId=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, dosageFormId=	com.upachar.web.drug.dto.DrugDto
+, manufacturer=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, manufacturer=	com.upachar.web.drug.domain.Drug
+, manufacturer=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, manufacturer=	com.upachar.web.drug.dto.DrugDto
+, manufacturer=	com.upachar.web.data.dto.DrugDetailsDto
+, subCategoryId=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, subCategoryId=	com.upachar.web.drug.dto.DrugDto
+, details=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, details=	com.upachar.web.drug.domain.Drug
+, details=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, details=	com.upachar.web.drug.dto.DrugDto
+, details=	com.upachar.web.data.dto.DrugDetailsDto
+, inStock=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, inStock=	com.upachar.web.drug.domain.Drug
+, inStock=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, inStock=	com.upachar.web.drug.dto.DrugDto
+, price=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, price=	com.upachar.web.drug.domain.Drug
+, price=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, price=	com.upachar.web.drug.dto.DrugDto
+, price=	com.upachar.web.data.dto.DrugDetailsDto
+, packSize=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, packSize=	com.upachar.web.drug.domain.Drug
+, packSize=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, packSize=	com.upachar.web.drug.dto.DrugDto
+, packSize=	com.upachar.web.data.dto.DrugDetailsDto
+, prescriptionRequired=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, prescriptionRequired=	com.upachar.web.drug.domain.Drug
+, prescriptionRequired=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, prescriptionRequired=	com.upachar.web.drug.dto.DrugDto
+, prescriptionRequired=	com.upachar.web.data.dto.DrugDetailsDto
+, trending=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, trending=	com.upachar.web.drug.domain.Drug
+, trending=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, trending=	com.upachar.web.drug.dto.DrugDto
+, specialOffer=	com.upachar.web.drug.dto.DrugDto$DrugDtoBuilder
+, specialOffer=	com.upachar.web.drug.domain.Drug
+, specialOffer=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, specialOffer=	com.upachar.web.drug.dto.DrugDto
+UserUpdateDto(firstName=	com.upachar.web.user.dto.UserUpdateDto
+, lastName=	com.upachar.web.user.domain.User
+, lastName=	com.upachar.web.user.dto.UserUpdateDto
+, lastName=	com.upachar.web.user.dto.UserSignupDto
+, lastName=	com.upachar.web.user.domain.User$UserBuilder
+, lastName=	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+, lastName=	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+, email=	com.upachar.web.user.domain.User
+, email=	com.upachar.web.user.dto.UserUpdateDto
+, email=	com.upachar.web.user.dto.UserSignupDto
+, email=	com.upachar.web.user.domain.User$UserBuilder
+, email=	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+, email=	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+, phone=	com.upachar.web.user.domain.User
+, phone=	com.upachar.web.user.dto.UserUpdateDto
+, phone=	com.upachar.web.user.dto.UserSignupDto
+, phone=	com.upachar.web.user.domain.User$UserBuilder
+, phone=	com.upachar.web.user.dto.UserValidateDto
+, phone=	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+, phone=	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+, phone=	com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder
+, address=	com.upachar.web.user.domain.User
+, address=	com.upachar.web.user.dto.UserUpdateDto
+, address=	com.upachar.web.user.dto.UserSignupDto
+, address=	com.upachar.web.user.domain.User$UserBuilder
+, address=	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+, address=	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+OrderStatusDto.OrderStatusDtoBuilder(orderStatus=	com.upachar.web.order.dto.OrderStatusDto$OrderStatusDtoBuilder
+Validation failed for field: \'	com.upachar.web.exceptionhandler.GlobalExceptionHandler
+<<\\"\' - \\">>	com.upachar.web.exceptionhandler.GlobalExceptionHandler
+<method type ()java.lang.Object>	com.upachar.web.order.service.OrderService
+<method type ()java.lang.Object>	com.upachar.web.drug.service.SubCategoryService
+<method type ()java.lang.Object>	com.upachar.web.user.service.UserService
+<method type ()java.lang.Object>	com.upachar.web.drug.service.DosageFormService
+<method type ()java.lang.Object>	com.upachar.web.drug.service.CategoryService
+<method type ()java.lang.Object>	com.upachar.web.drug.service.DrugService
+<handle <com.upachar.web.user.service.UserService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>>	com.upachar.web.user.service.UserService
+<method type ()com.upachar.web.exceptionhandler.GlobalException>	com.upachar.web.order.service.OrderService
+<method type ()com.upachar.web.exceptionhandler.GlobalException>	com.upachar.web.drug.service.SubCategoryService
+<method type ()com.upachar.web.exceptionhandler.GlobalException>	com.upachar.web.user.service.UserService
+<method type ()com.upachar.web.exceptionhandler.GlobalException>	com.upachar.web.drug.service.DosageFormService
+<method type ()com.upachar.web.exceptionhandler.GlobalException>	com.upachar.web.drug.service.CategoryService
+<method type ()com.upachar.web.exceptionhandler.GlobalException>	com.upachar.web.drug.service.DrugService
+^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$	com.upachar.web.user.service.UserService
+Email format incorrect	com.upachar.web.user.service.UserService
+Email already registered	com.upachar.web.user.service.UserService
+Phone number already registered	com.upachar.web.user.service.UserService
+<<\\"\\">>	com.upachar.web.user.service.UserService
+User not found	com.upachar.web.user.service.UserService
+Order.OrderBuilder(id=	com.upachar.web.order.domain.Order$OrderBuilder
+DrugQuantity.DrugQuantityBuilder(id=	com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder
+, quantity=	com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder
+, quantity=	com.upachar.web.order.domain.DrugQuantity
+, drug=	com.upachar.web.order.domain.DrugQuantity$DrugQuantityBuilder
+, drug=	com.upachar.web.order.domain.DrugQuantity
+Drug.DrugBuilder(id=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, productId=	com.upachar.web.drug.domain.Drug
+, productId=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, dosageForm=	com.upachar.web.drug.domain.Drug
+, dosageForm=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, dosageForm=	com.upachar.web.data.dto.DrugDetailsDto
+, subCategory=	com.upachar.web.drug.domain.Drug
+, subCategory=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, subCategory=	com.upachar.web.data.dto.DrugDetailsDto
+, photoUrl=	com.upachar.web.drug.domain.Drug
+, photoUrl=	com.upachar.web.drug.domain.Drug$DrugBuilder
+, photoUrl=	com.upachar.web.drug.domain.Category
+, photoUrl=	com.upachar.web.drug.domain.Category$CategoryBuilder
+Unresolved compilation error: Method <com.upachar.web.user.repository.UserRepository: java.lang.Object save(java.lang.Object)> does not exist!	com.upachar.web.user.repository.UserRepository
+Unresolved compilation error: Method <com.upachar.web.user.repository.UserRepository: java.util.Optional findById(java.lang.Object)> does not exist!	com.upachar.web.user.repository.UserRepository
+Unresolved compilation error: Method <com.upachar.web.user.repository.UserRepository: org.springframework.data.domain.Page findAll(org.springframework.data.domain.Pageable)> does not exist!	com.upachar.web.user.repository.UserRepository
+Unresolved compilation error: Method <com.upachar.web.user.repository.UserRepository: void deleteById(java.lang.Object)> does not exist!	com.upachar.web.user.repository.UserRepository
+/oauth/token	com.upachar.web.config.security.SecurityConfiguration
+DrugDto(productId=	com.upachar.web.drug.dto.DrugDto
+CategoryDto(name=	com.upachar.web.drug.dto.CategoryDto
+DosageFormDto.DosageFormDtoBuilder(form=	com.upachar.web.drug.dto.DosageFormDto$DosageFormDtoBuilder
+OrderUpdateDto(deliveryAddress=	com.upachar.web.order.dto.OrderUpdateDto
+Dosage form already exists	com.upachar.web.drug.service.DosageFormService
+<handle <com.upachar.web.drug.service.DosageFormService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>>	com.upachar.web.drug.service.DosageFormService
+Dosage form does not exist	com.upachar.web.drug.service.DosageFormService
+SubCategory(id=	com.upachar.web.drug.domain.SubCategory
+, name=	com.upachar.web.drug.domain.SubCategory
+, name=	com.upachar.web.drug.domain.Category
+, name=	com.upachar.web.drug.domain.Category$CategoryBuilder
+, name=	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+, category=	com.upachar.web.drug.domain.SubCategory
+, category=	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+Category name already exists	com.upachar.web.drug.service.CategoryService
+<handle <com.upachar.web.drug.service.CategoryService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>>	com.upachar.web.drug.service.CategoryService
+Category not found	com.upachar.web.drug.service.CategoryService
+Successfully loaded data from file	com.upachar.web.data.controller.DataController
+valid	com.upachar.web.user.controller.UserController
+Access-Control-Allow-Origin	com.upachar.web.config.security.CorsFilter
+*	com.upachar.web.config.security.CorsFilter
+Access-Control-Allow-Methods	com.upachar.web.config.security.CorsFilter
+GET, POST, PUT, PATCH, DELETE, OPTIONS	com.upachar.web.config.security.CorsFilter
+Access-Control-Allow-Headers	com.upachar.web.config.security.CorsFilter
+Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization	com.upachar.web.config.security.CorsFilter
+Access-Control-Max-Age	com.upachar.web.config.security.CorsFilter
+3600	com.upachar.web.config.security.CorsFilter
+Access-Control-Allow-Credentials	com.upachar.web.config.security.CorsFilter
+true	com.upachar.web.config.security.CorsFilter
+OPTIONS	com.upachar.web.config.security.CorsFilter
+OK	com.upachar.web.config.security.CorsFilter
+UserSignupDto(firstName=	com.upachar.web.user.dto.UserSignupDto
+, password=	com.upachar.web.user.domain.User
+, password=	com.upachar.web.user.dto.UserSignupDto
+, password=	com.upachar.web.user.domain.User$UserBuilder
+, password=	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+DosageForm(id=	com.upachar.web.drug.domain.DosageForm
+DrugDetailsDto(brandName=	com.upachar.web.data.dto.DrugDetailsDto
+SubCategoryDto(name=	com.upachar.web.drug.dto.SubCategoryDto
+CategoryDto.CategoryDtoBuilder(name=	com.upachar.web.drug.dto.CategoryDto$CategoryDtoBuilder
+Prescriptions	com.upachar.web.data.service.DataService
+https://i.ytimg.com/vi/2QvOxa_7wEw/maxresdefault.jpg	com.upachar.web.data.service.DataService
+Processing drug {} with product id {}	com.upachar.web.data.service.DataService
+Found drug without brand name. Skipping drug.	com.upachar.web.data.service.DataService
+yes	com.upachar.web.data.service.DataService
+-------------------------------------------------	com.upachar.web.data.service.DataService
+rn	com.upachar.web.data.service.DataService
+\n	com.upachar.web.data.service.DataService
+https://thedailycougar.com/wp-content/uploads/2019/09/DE4DFD9C-2926-4BBC-8100-A64D0C3A64D6.png	com.upachar.web.data.service.DataService
+tablet	com.upachar.web.data.service.DataService
+Tablet	com.upachar.web.data.service.DataService
+Tablet	com.upachar.web.UpacharWebApplication
+cream	com.upachar.web.data.service.DataService
+Cream	com.upachar.web.data.service.DataService
+Cream	com.upachar.web.UpacharWebApplication
+capsule	com.upachar.web.data.service.DataService
+Capsule	com.upachar.web.data.service.DataService
+Capsule	com.upachar.web.UpacharWebApplication
+drop_ear	com.upachar.web.data.service.DataService
+eye drops	com.upachar.web.data.service.DataService
+Drop Ear	com.upachar.web.data.service.DataService
+Drop Ear	com.upachar.web.UpacharWebApplication
+drop_eye	com.upachar.web.data.service.DataService
+Drop Eye	com.upachar.web.data.service.DataService
+Drop Eye	com.upachar.web.UpacharWebApplication
+drop_nasal	com.upachar.web.data.service.DataService
+Drop Nasal	com.upachar.web.data.service.DataService
+Drop Nasal	com.upachar.web.UpacharWebApplication
+drop_oral	com.upachar.web.data.service.DataService
+Drop Oral	com.upachar.web.data.service.DataService
+Drop Oral	com.upachar.web.UpacharWebApplication
+inhaler_aerosol	com.upachar.web.data.service.DataService
+Inhaler/Aerosol	com.upachar.web.data.service.DataService
+Inhaler/Aerosol	com.upachar.web.UpacharWebApplication
+injection	com.upachar.web.data.service.DataService
+Injection	com.upachar.web.data.service.DataService
+Injection	com.upachar.web.UpacharWebApplication
+nasal spray	com.upachar.web.data.service.DataService
+nasal_spray	com.upachar.web.data.service.DataService
+Nasal Spray	com.upachar.web.data.service.DataService
+Nasal Spray	com.upachar.web.UpacharWebApplication
+ointment_eye	com.upachar.web.data.service.DataService
+Ointment Eye	com.upachar.web.data.service.DataService
+Ointment Eye	com.upachar.web.UpacharWebApplication
+ointment_topical	com.upachar.web.data.service.DataService
+Ointment Topical	com.upachar.web.data.service.DataService
+Ointment Topical	com.upachar.web.UpacharWebApplication
+suspension	com.upachar.web.data.service.DataService
+Suspension	com.upachar.web.data.service.DataService
+Suspension	com.upachar.web.UpacharWebApplication
+suppository_rectal	com.upachar.web.data.service.DataService
+Suppository Rectal	com.upachar.web.data.service.DataService
+Suppository Rectal	com.upachar.web.UpacharWebApplication
+suppository_vaginal	com.upachar.web.data.service.DataService
+Suppository Vaginal	com.upachar.web.data.service.DataService
+Suppository Vaginal	com.upachar.web.UpacharWebApplication
+syrup	com.upachar.web.data.service.DataService
+Syrup	com.upachar.web.data.service.DataService
+Syrup	com.upachar.web.UpacharWebApplication
+<<\\"Dosage Form \\">>	com.upachar.web.data.service.DataService
+<<\\" not found\\">>	com.upachar.web.data.service.DataService
+User(id=	com.upachar.web.user.domain.User
+, firstName=	com.upachar.web.user.domain.User
+, firstName=	com.upachar.web.user.domain.User$UserBuilder
+, roles=	com.upachar.web.user.domain.User
+, roles=	com.upachar.web.user.domain.User$UserBuilder
+User.UserBuilder(id=	com.upachar.web.user.domain.User$UserBuilder
+OrderStatusDto(orderStatus=	com.upachar.web.order.dto.OrderStatusDto
+Category.CategoryBuilder(id=	com.upachar.web.drug.domain.Category$CategoryBuilder
+OrderDto(drugQuantities=	com.upachar.web.order.dto.OrderDto
+SubCategory.SubCategoryBuilder(id=	com.upachar.web.drug.domain.SubCategory$SubCategoryBuilder
+<handle <com.upachar.web.drug.service.SubCategoryService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>>	com.upachar.web.drug.service.SubCategoryService
+Subcategory not found	com.upachar.web.drug.service.SubCategoryService
+Rokin Maharjan	com.upachar.web.config.swagger.SwaggerConfiguration
+www.linkedin.com/in/rokin/	com.upachar.web.config.swagger.SwaggerConfiguration
+rokinmaharjan@gmail.com	com.upachar.web.UpacharWebApplication
+rokinmaharjan@gmail.com	com.upachar.web.config.swagger.SwaggerConfiguration
+Upachar Pharmacy	com.upachar.web.config.swagger.SwaggerConfiguration
+API documentation for Upachar Pharmacy	com.upachar.web.config.swagger.SwaggerConfiguration
+version 1.0	com.upachar.web.config.swagger.SwaggerConfiguration
+Terms of service	com.upachar.web.config.swagger.SwaggerConfiguration
+License of API	com.upachar.web.config.swagger.SwaggerConfiguration
+API license URL	com.upachar.web.config.swagger.SwaggerConfiguration
+Rokin	com.upachar.web.UpacharWebApplication
+Maharjan	com.upachar.web.UpacharWebApplication
+9808621458	com.upachar.web.UpacharWebApplication
+Kirtipur	com.upachar.web.UpacharWebApplication
+OrderUpdateDto.OrderUpdateDtoBuilder(deliveryAddress=	com.upachar.web.order.dto.OrderUpdateDto$OrderUpdateDtoBuilder
+OrderPrescription(id=	com.upachar.web.order.domain.OrderPrescription
+, prescriptionUrl=	com.upachar.web.order.domain.OrderPrescription
+, prescriptionUrl=	com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder
+UserValidateDto(email=	com.upachar.web.user.dto.UserValidateDto
+<handle <com.upachar.web.drug.service.DrugService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>>	com.upachar.web.drug.service.DrugService
+<method type (java.lang.Object)java.lang.Object>	com.upachar.web.order.service.OrderService
+<method type (java.lang.Object)java.lang.Object>	com.upachar.web.drug.service.DrugService
+<handle <com.upachar.web.drug.domain.Drug: java.lang.String getGenericName()>>	com.upachar.web.drug.service.DrugService
+<method type (com.upachar.web.drug.domain.Drug)java.lang.String>	com.upachar.web.drug.service.DrugService
+Deleting drug \'{}\'	com.upachar.web.drug.service.DrugService
+Deleting all orders associated with drug \'{}\'	com.upachar.web.drug.service.DrugService
+%	com.upachar.web.drug.service.DrugService
+Drug not found	com.upachar.web.drug.service.DrugService
+UserUpdateDto.UserUpdateDtoBuilder(firstName=	com.upachar.web.user.dto.UserUpdateDto$UserUpdateDtoBuilder
+Drug(id=	com.upachar.web.drug.domain.Drug
+upachar-resource	com.upachar.web.config.security.ResourceServerConfiguration
+/v2/api-docs	com.upachar.web.config.security.ResourceServerConfiguration
+/configuration/ui	com.upachar.web.config.security.ResourceServerConfiguration
+/swagger-resources	com.upachar.web.config.security.ResourceServerConfiguration
+/configuration/security	com.upachar.web.config.security.ResourceServerConfiguration
+/swagger-ui.html	com.upachar.web.config.security.ResourceServerConfiguration
+/webjars/**	com.upachar.web.config.security.ResourceServerConfiguration
+/swagger-resources/configuration/ui	com.upachar.web.config.security.ResourceServerConfiguration
+/users/signup	com.upachar.web.config.security.ResourceServerConfiguration
+/system/**	com.upachar.web.config.security.ResourceServerConfiguration
+/**	com.upachar.web.config.security.ResourceServerConfiguration
+DosageFormDto(form=	com.upachar.web.drug.dto.DosageFormDto
+Drug \'	com.upachar.web.order.service.OrderService
+\' requires a prescription.	com.upachar.web.order.service.OrderService
+<handle <com.upachar.web.order.service.OrderService: com.upachar.web.exceptionhandler.GlobalException lambda$findById$0()>>	com.upachar.web.order.service.OrderService
+<handle <com.upachar.web.order.service.OrderService: java.lang.Long lambda$deleteAllAssociatedWithDrug$1(com.upachar.web.order.domain.DrugQuantity)>>	com.upachar.web.order.service.OrderService
+<method type (com.upachar.web.order.domain.DrugQuantity)java.lang.Long>	com.upachar.web.order.service.OrderService
+Order not found	com.upachar.web.order.service.OrderService
+UserSignupDto.UserSignupDtoBuilder(firstName=	com.upachar.web.user.dto.UserSignupDto$UserSignupDtoBuilder
+Unresolved compilation error: Method <com.upachar.web.drug.repository.DosageFormRepository: java.lang.Object save(java.lang.Object)> does not exist!	com.upachar.web.drug.repository.DosageFormRepository
+Unresolved compilation error: Method <com.upachar.web.drug.repository.DosageFormRepository: java.util.List findAll()> does not exist!	com.upachar.web.drug.repository.DosageFormRepository
+Unresolved compilation error: Method <com.upachar.web.drug.repository.DosageFormRepository: java.util.List saveAll(java.lang.Iterable)> does not exist!	com.upachar.web.drug.repository.DosageFormRepository
+Unresolved compilation error: Method <com.upachar.web.drug.repository.DosageFormRepository: java.util.Optional findById(java.lang.Object)> does not exist!	com.upachar.web.drug.repository.DosageFormRepository
+SubCategoryDto.SubCategoryDtoBuilder(name=	com.upachar.web.drug.dto.SubCategoryDto$SubCategoryDtoBuilder
+Exception occured while converting multipart file to file. Exception: {}	com.upachar.web.common.utils.FileUtils
+Cannot find file to delete. Exception: {}	com.upachar.web.common.utils.FileUtils
+Exception occured while deleting drug image. Exception: {}	com.upachar.web.common.utils.FileUtils
+User \'%s\' not found	com.upachar.web.config.security.CustomUserDetailsService
+DrugQuantity(id=	com.upachar.web.order.domain.DrugQuantity
+Category(id=	com.upachar.web.drug.domain.Category
+OrderPrescription.OrderPrescriptionBuilder(id=	com.upachar.web.order.domain.OrderPrescription$OrderPrescriptionBuilder
+UserValidateDto.UserValidateDtoBuilder(email=	com.upachar.web.user.dto.UserValidateDto$UserValidateDtoBuilder
