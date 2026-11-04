@@ -28,3 +28,37 @@ uv run dataset.py
 ```
 
 This will parse all Java files inside the `pharmacy` repository and output the standardized `dataset.json` file.
+
+## MonoEmbed inputs
+
+From this repository root, initialize the pinned application source:
+
+```bash
+git -c 'url.https://github.com/.insteadOf=git@github.com:' \
+  submodule update --init datasets/pharmacy/pharmacy
+```
+
+Install JDK 17, Maven and `uv`, then run from `datasets/pharmacy/`:
+
+```bash
+uv run dataset.py --monoembed
+```
+
+The adapter builds `tools/monoembed/extractor/` on first use and runs its bundled
+Spoon 10.1.1 source extractor directly against this checkout's `src/main/java`.
+Maven downloads the extractor's pinned dependencies; no separate analyzer repo,
+application build, copied JAR, or hand-prepared `typeData.json` is needed.
+
+The generated `dataset.json` includes `classes`, `class_sources` (FQN-to-source
+strings), and `monoembed` provenance. Preparation verifies the complete type
+universe and source paths, records the source commit, dirty state, source hashes,
+source-content hash and extractor JAR hash, and fails on Java parse errors.
+Nested type names use dots. The source text uses Spoon's default rendering, as
+in the original MonoEmbed pipeline. Java syntax unsupported by `javalang` and
+local class declarations fail explicitly.
+
+Rebuild `tools/monoembed/extractor/` with `mvn -q package` after changing its Java
+source or dependencies; its generated `target/` is Git-ignored. Regenerate
+`dataset.json` after changing the application source. Without `--monoembed`, the
+original adapter behavior is preserved. See [the standalone server workflow](../../tools/monoembed/README.md)
+for inference and evaluation. Other dataset adapters can adopt the same metadata.
