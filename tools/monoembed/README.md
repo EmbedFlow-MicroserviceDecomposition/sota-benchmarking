@@ -17,7 +17,7 @@ model offloading, and disk space for the 8B base model and offload files. Model
 loading can require substantial host memory. Python dependencies are pinned
 inline; the source extractor's dependencies are declared in its bundled POM.
 
-From a fresh clone on the GPU server, prepare Pharmacy:
+From a fresh clone on the GPU server:
 
 ```bash
 git clone --branch migrate/monoembed \
@@ -26,14 +26,65 @@ cd sota-benchmarking
 
 git -c 'url.https://github.com/.insteadOf=git@github.com:' \
   submodule update --init datasets/pharmacy/pharmacy
-
-(cd datasets/pharmacy && uv run dataset.py --monoembed)
 ```
 
-The final command builds the bundled Spoon extractor on first use and writes the
-existing generated `dataset.json`. See [Pharmacy preparation](../../datasets/pharmacy/README.md#monoembed-inputs).
-Other datasets need the same `classes` and `class_sources` fields; their legacy
-method-only adapters are not automatically converted.
+Dataset adapters retain their ordinary interfaces. All MonoEmbed preparation lives
+in `tools/monoembed/prepare.py`, with no tool-specific module, flag, or imports in
+`datasets/`. Prepare a private input snapshot from the common dataset:
+
+```bash
+uv run tools/monoembed/prepare.py \
+  --dataset-path datasets/pharmacy \
+  --output-path tools/monoembed/.cache/datasets/pharmacy
+```
+
+If common `dataset.json` is missing, preparation invokes its normal `dataset.py`
+first. Existing common metadata is left unchanged. The tool then builds its
+bundled Spoon extractor as needed and writes the enriched `dataset.json` under
+its ignored cache. This snapshot contains source text, method/edge information,
+use-case mappings, and MonoEmbed provenance. Paths are resolved from the common
+metadata. Preparation rejects output directories inside `datasets/`.
+
+### Supported datasets and source scope
+
+| Dataset | Source checkout / scope in MonoEmbed mode |
+| --- | --- |
+| acme-air | `acmeair/`: all production Maven Java roots |
+| apache-roller | `roller/app/src/main/java` only |
+| autocare | `autocare-nepal/src/main/java` |
+| bear-board | `bear-board/src/main/java` |
+| javafx-pos | `JavaFX-Point-of-Sales/src/main/java` |
+| jforum | pinned `jakartaEE/`: Maven production roots, or Eclipse `src/` |
+| pharmacy | `pharmacy/src/main/java` |
+| spring-blog | `SpringBlog/src/main/java` |
+| spring-petclinic | `spring-petclinic/src/main/java` |
+| daytrader, jpetstore, plants | all production Java roots of their existing submodules |
+
+The first nine cover the Java datasets prepared in the old MonoEmbed workspace. The
+workflow uses this benchmark's current submodule pins; it never checks out the
+historical notebook revisions over them. JForum, Roller, and PetClinic pins differ
+from the old bundles, so historical class counts and scores are not assumed.
+Java type names consistently use dots for named nested types and exclude anonymous
+and method-local types; consequently Acme Air uses named types rather than the old
+86-type protocol that also included two anonymous classes. This choice is recorded
+in each dataset's provenance. CICS Genapp is COBOL and has no MonoEmbed adapter.
+
+Java source discovery handles multi-module Maven projects and Eclipse `src/`
+layouts. The same roots feed both source-text extraction and benchmark method/edge
+extraction. Valid syntax unsupported by `javalang` uses Spoon's declared-method
+metadata; affected files are listed in `spoon_method_fallback_files`. Graphs remain
+static approximations, and overloads still share the repository's method ID format.
+
+To initialize just these nine source repositories from the benchmark root:
+
+```bash
+git -c 'url.https://github.com/.insteadOf=git@github.com:' submodule update --init \
+  datasets/acme-air/acmeair datasets/apache-roller/roller \
+  datasets/autocare/autocare-nepal datasets/bear-board/bear-board \
+  datasets/javafx-pos/JavaFX-Point-of-Sales \
+  datasets/jforum/jakartaEE datasets/pharmacy/pharmacy \
+  datasets/spring-blog/SpringBlog datasets/spring-petclinic/spring-petclinic
+```
 
 At inference time, the runner fetches only these three adapter files from
 `khalsel/MonoEmbed-EMSE25-RP` at commit
@@ -58,7 +109,7 @@ adapter download is required to prepare source inputs or run the CPU tests.
 
 ## Run and score
 
-From the repository root, with a prepared Pharmacy `dataset.json`:
+From the repository root, after preparing the tool-owned Pharmacy snapshot:
 
 ```bash
 export CUDA_VISIBLE_DEVICES=0
@@ -70,7 +121,7 @@ read -rsp "Hugging Face token: " HF_TOKEN
 export HF_TOKEN
 printf '\n'
 uv run tools/monoembed/tool.py \
-  --dataset-path datasets/pharmacy \
+  --dataset-path tools/monoembed/.cache/datasets/pharmacy \
   --output-path tools/monoembed/outputs/pharmacy/run_01
 ```
 
@@ -86,7 +137,7 @@ After a successful tool exit, score the same directory:
 
 ```bash
 uv run metrics/compute_all.py \
-  --dataset-path datasets/pharmacy \
+  --dataset-path tools/monoembed/.cache/datasets/pharmacy \
   --output-path tools/monoembed/outputs/pharmacy/run_01
 ```
 
@@ -98,6 +149,34 @@ than a partition. BCP requires meaningful class-to-use-case mappings in
 establish business-context purity. Existing static call extraction is approximate.
 NED uses this repository's higher-is-better definition, unlike the complement
 described by the old Pharmacy notebook.
+
+### Run the original dataset cohort sequentially on the server
+
+Set the token, writable cache variables, and `CUDA_VISIBLE_DEVICES` as above. Run
+inside tmux from the benchmark root. Choose an unused run ID; the successful
+Pharmacy run does not need to be repeated unless you want a fresh result.
+
+```bash
+run_id=generalized_01
+for dataset_name in acme-air apache-roller autocare bear-board \
+                    javafx-pos jforum pharmacy spring-blog spring-petclinic; do
+  uv run tools/monoembed/prepare.py \
+    --dataset-path "datasets/$dataset_name" \
+    --output-path "tools/monoembed/.cache/datasets/$dataset_name" || break
+  uv run tools/monoembed/tool.py \
+    --dataset-path "tools/monoembed/.cache/datasets/$dataset_name" \
+    --output-path "tools/monoembed/outputs/$dataset_name/$run_id" || break
+  uv run metrics/compute_all.py \
+    --dataset-path "tools/monoembed/.cache/datasets/$dataset_name" \
+    --output-path "tools/monoembed/outputs/$dataset_name/$run_id" || break
+done
+```
+
+Use the same prepared snapshot for the model and metrics so both consume the
+same class universe and graph. Preparation downloads parser/build dependencies only. Model files are loaded on
+the GPU server and reused from the existing caches across datasets. Check all
+seven metric files for every completed run; the metrics runner's caught-error
+behavior described above also applies to this loop.
 
 ## Protocol and artifacts
 
@@ -137,7 +216,8 @@ packages are absent; the full command below supplies them:
 ```bash
 uv run --python 3.11 --with pytest==8.3.5 --with javalang==0.13.0 \
   --with numpy==1.26.4 --with scipy==1.14.1 --with scikit-learn==1.5.2 \
-  --with pandas==2.2.3 --with pyarrow==17.0.0 pytest tests/test_monoembed.py -q
+  --with pandas==2.2.3 --with pyarrow==17.0.0 \
+  pytest tests/test_monoembed.py -q
 ```
 
 ## Attribution

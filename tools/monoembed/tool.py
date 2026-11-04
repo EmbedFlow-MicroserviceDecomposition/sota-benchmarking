@@ -100,7 +100,7 @@ def load_inputs(dataset_path):
     dataset = json.loads(path.read_text(encoding="utf-8"))
     names, sources = dataset.get("classes"), dataset.get("class_sources")
     if not isinstance(names, list) or not names or not isinstance(sources, dict):
-        raise ValueError("Missing classes/class_sources: regenerate dataset.json using --monoembed; see README.md")
+        raise ValueError("Missing classes/class_sources: regenerate prepared dataset.json using tools/monoembed/prepare.py; see README.md")
     if any(not isinstance(name, str) or not name.strip() or name != name.strip() for name in names):
         raise ValueError("Class FQNs must be nonempty strings without surrounding whitespace")
     if len(names) != len(set(names)) or set(names) != set(sources):
