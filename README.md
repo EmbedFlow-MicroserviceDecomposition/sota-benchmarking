@@ -48,7 +48,15 @@ To ensure reproducible, fair, and scalable evaluations, we adopt the following m
   }
   ```
 
+Class-based tools may list fully qualified class names in `microservices`, as
+the existing class-based adapters do. MonoEmbed uses this form so NED counts
+classes. Its tool-owned prepared `dataset.json` additionally contains `classes` (type FQNs),
+`class_sources` (FQN-to-source-text strings), and `monoembed` provenance. See
+[MonoEmbed](tools/monoembed/README.md) and
+[dataset scopes and preparation](tools/monoembed/README.md#supported-datasets-and-source-scope).
+
 ### 3. Metrics & `<metric>_score.json`
+
 - A `metric.py` script is **mandatory** and takes exactly 2 parameters (`--dataset-path`, `--output-path`) to generate `<metric>_score.json` inside the tool's output directory.
 - **Schema**:
   ```json
@@ -104,6 +112,7 @@ graph TD
 ### Tools (Methods)
 * **[MAGNET](https://github.com/magnetmicro/MAGNET)** - `tools/magnet/`
 * **[IBM Mono2Micro](https://www.ibm.com/cloud/mono2micro)** - `tools/mono2micro/`
+* **[MonoEmbed](tools/monoembed/README.md)** - `tools/monoembed/` (GPU inference; Java source adapters)
 
 ### Datasets (Monoliths)
 * **[Acme Air](https://github.com/acmeair/acmeair)** - `datasets/acme-air/`
