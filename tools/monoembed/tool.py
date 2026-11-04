@@ -4,6 +4,7 @@
 #     "torch==2.4.1", "llm2vec==0.2.3", "transformers==4.44.2",
 #     "tokenizers==0.19.1", "peft==0.11.1", "accelerate==0.33.0",
 #     "huggingface-hub==0.24.7", "safetensors==0.4.5",
+#     "setuptools==80.9.0",
 #     "numpy==1.26.4", "scipy==1.14.1", "scikit-learn==1.5.2",
 #     "pandas==2.2.3", "pyarrow==17.0.0", "psutil==6.0.0", "tqdm==4.66.5",
 # ]

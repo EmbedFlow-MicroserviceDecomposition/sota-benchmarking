@@ -62,6 +62,10 @@ From the repository root, with a prepared Pharmacy `dataset.json`:
 
 ```bash
 export CUDA_VISIBLE_DEVICES=0
+export HF_HOME="$PWD/tools/monoembed/.cache/huggingface"
+export HF_HUB_CACHE="$HF_HOME/hub"
+export TRANSFORMERS_CACHE="$HF_HUB_CACHE"
+mkdir -p "$HF_HUB_CACHE"
 read -rsp "Hugging Face token: " HF_TOKEN
 export HF_TOKEN
 printf '\n'
@@ -69,6 +73,14 @@ uv run tools/monoembed/tool.py \
   --dataset-path datasets/pharmacy \
   --output-path tools/monoembed/outputs/pharmacy/run_01
 ```
+
+The cache variables above keep model files in the repository's writable, ignored
+cache directory. For a different writable server volume, change `HF_HOME` and
+derive the other two variables from it. Run these exports inside the tmux session
+before starting the tool. `setuptools` is explicitly pinned because the inference
+dependency stack requires it and isolated `uv` environments may not include it.
+After a failed attempt, use a fresh output directory such as `run_02`; the verified
+adapter cache is reused.
 
 After a successful tool exit, score the same directory:
 
