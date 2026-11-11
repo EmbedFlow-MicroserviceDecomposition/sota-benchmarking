@@ -11,96 +11,21 @@ Exits 1 if any scenario's check fails, so a trace is only kept from a suite that
 """
 
 import argparse
-import http.cookiejar
+import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.parse
-import urllib.request
-from html.parser import HTMLParser
 
-
-class Forms(HTMLParser):
-    """Collects every <form>: its action and the name/value pairs a browser would submit."""
-
-    def __init__(self):
-        super().__init__()
-        self.forms, self._form, self._select = [], None, None
-
-    def handle_starttag(self, tag, attrs):
-        a = dict(attrs)
-        if tag == "form":
-            self._form = {"action": a.get("action", ""), "fields": {}, "submits": set()}
-            self.forms.append(self._form)
-        elif self._form is None:
-            return
-        elif tag == "input" and a.get("name"):
-            kind = (a.get("type") or "text").lower()
-            if kind == "submit":
-                self._form["submits"].add(a["name"])
-            elif kind in ("checkbox", "radio"):
-                if "checked" in a:
-                    self._form["fields"][a["name"]] = a.get("value", "on")
-            else:
-                self._form["fields"][a["name"]] = a.get("value") or ""
-        elif tag == "select" and a.get("name"):
-            self._select = a["name"]
-            self._form["fields"].setdefault(self._select, "")
-        elif tag == "option" and self._select:
-            if "selected" in a or not self._form["fields"][self._select]:
-                self._form["fields"][self._select] = a.get("value", "")
-
-    def handle_endtag(self, tag):
-        if tag == "form":
-            self._form = None
-        elif tag == "select":
-            self._select = None
-
-
-class Browser:
-    def __init__(self, base):
-        self.base = base.rstrip("/")
-        self.opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
-        self.page, self.url = "", ""
-
-    def _open(self, req):
-        try:
-            with self.opener.open(req, timeout=30) as r:
-                self.page, self.url = r.read().decode("utf-8", "ignore"), r.geturl()
-        except urllib.error.HTTPError as e:
-            self.page, self.url = e.read().decode("utf-8", "ignore"), f"HTTP {e.code} {e.url}"
-        return self.page
-
-    def get(self, path):
-        return self._open(urllib.request.Request(self.base + path, headers={"User-Agent": "functional-tests"}))
-
-    def submit(self, button, **override):
-        """POST the form on the current page that holds the submit button `button` (hidden Stripes tokens included)."""
-        parser = Forms()
-        parser.feed(self.page)
-        form = next(f for f in parser.forms if button in f["submits"])
-        data = dict(form["fields"])
-        data.update({k.replace("__", "."): v for k, v in override.items()})
-        data[button] = "x"
-        action = urllib.parse.urljoin(self.url, form["action"])
-        body = urllib.parse.urlencode(data).encode()
-        return self._open(urllib.request.Request(action, data=body, headers={"User-Agent": "functional-tests"}))
-
-
-FAILED = []
-
-
-def check(scenario, ok, detail):
-    print(f"{'PASS' if ok else 'FAIL'}  {scenario}: {detail}")
-    if not ok:
-        FAILED.append(scenario)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from web_driver import Browser, Suite  # noqa: E402
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--base-url", default="http://localhost:8080/jpetstore")
     b = Browser(ap.parse_args().base_url)
+    suite = Suite()
+    check = suite.check
     user, pw = f"ft{int(time.time())}", "Passw0rd!"
 
     b.get("/actions/Catalog.action")
@@ -186,8 +111,7 @@ def main():
     check("4 edit persisted", saved == {"firstName": "Changed", "city": "Kandy"}, f"profile shows {saved}")
     b.get("/actions/Account.action?signoff=")
 
-    print(f"\n{len(FAILED)} failed scenario(s): {FAILED}" if FAILED else "\nall scenarios passed")
-    return 1 if FAILED else 0
+    return suite.finish()
 
 
 if __name__ == "__main__":

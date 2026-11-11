@@ -46,7 +46,8 @@ they were recorded on other builds of the apps.
 | acme-air, bear-board, pharmacy, spring-petclinic, daytrader, plants | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
 | autocare | the reduced form of such a scripted trace (reduction is idempotent) |
 | jpetstore | **canonical**: `datasets/jpetstore/functional_tests.py` (the authors' 14-scenario list, 17 checks) run once against the pinned build (recipe below): 121 requests, 17 classes, 9 atoms |
-| spring-blog, jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
+| spring-blog | **canonical**: `datasets/spring-blog/functional_tests.py` (the 12 of the authors' 28 scenarios the pinned build implements, 27 checks) run once against the pinned build on a fresh database (recipe below): 350 requests, 38 classes, 24 atoms |
+| jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
 
@@ -70,3 +71,11 @@ java -javaagent:tracer-agent/tracer-agent.jar=<package.prefix>,<out.csv> -jar ap
    session-bound `_sourcePage`/`__fp` tokens. The pinned app rejects `editAccount` unless `username` and `password` are sent (both are
    `@Validate(required = true)` yet the edit form shows neither as an input), so the suite sends them; the authors' plan did not.
 4. Stop Tomcat (the CSV is flushed per row), then `gzip -9 -n <out>.csv` into `datasets/<dataset>/fosci_trace.csv.gz`.
+
+**Spring Blog**, no Docker either: build from a copy of the pinned source with JDK 8 (`JAVA_HOME=<jdk8> ./gradlew --no-daemon build -x test`;
+Gradle 3.5.1), start a MySQL on 127.0.0.1:3306 with an empty `spring_blog_prod` database (Redis is configured but never contacted), and run
+`java -javaagent:tools/fosci/tracer-agent/tracer-agent-jdk8.jar=com.raysmond.blog,<out>.csv -jar build/libs/SpringBlog-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod`
+(the prod profile's defaults already point at 127.0.0.1, user `root`, empty password). Then run `uv run datasets/spring-blog/functional_tests.py`
+once on that fresh database. A MySQL 8.4+/9 server rejects Spring Boot 1.5's bundled Connector/J 5.1.45 (`caching_sha2_password`): use
+MariaDB or MySQL 5.7/8.0, or put Connector/J 8.0.33 first on the classpath. Two defects of the pinned app are built into the suite: `/tags/<name>`
+has no view template (HTTP 500 after the controller already ran), and a post cannot be deleted while another post shares one of its tags.
