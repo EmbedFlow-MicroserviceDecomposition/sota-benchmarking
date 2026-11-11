@@ -45,7 +45,8 @@ they were recorded on other builds of the apps.
 | :--- | :--- |
 | acme-air, bear-board, pharmacy, spring-petclinic, daytrader, plants | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
 | autocare | the reduced form of such a scripted trace (reduction is idempotent) |
-| jpetstore, spring-blog, jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
+| jpetstore | **canonical**: `datasets/jpetstore/functional_tests.py` (the authors' 14-scenario list, 17 checks) run once against the pinned build (recipe below): 121 requests, 17 classes, 9 atoms |
+| spring-blog, jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
 
@@ -56,3 +57,16 @@ column format. Use `tracer-agent-jdk8.jar` for JDK 8 apps and `tracer-agent.jar`
 java -javaagent:tracer-agent/tracer-agent.jar=<package.prefix>,<out.csv> -jar app.jar
 # drive the app with real traffic, then: gzip -9 -n out.csv > datasets/<dataset>/fosci_trace.csv.gz
 ```
+
+**Canonical recipe, worked example (JPetStore)**, no Docker needed:
+
+1. Build the pinned source from a copy of `datasets/jpetstore/jpetstore-6`. The pin's enforcer wants JDK 21+ to build although it compiles
+   for Java 17, and its licence plugin needs repository metadata a copy lacks:
+   `JAVA_HOME=<jdk21> mvn -q clean package -DskipTests -Dlicense.skip=true`.
+2. Unpack Tomcat 9.0.120 (the version the pin's own cargo profile uses), put `target/jpetstore.war` in `webapps/`, and start it on JDK 17
+   with `CATALINA_OPTS="-javaagent:tools/fosci/tracer-agent/tracer-agent.jar=org.mybatis.jpetstore,<out>.csv"`.
+3. Run `uv run datasets/jpetstore/functional_tests.py` once against it (it exits 1 if any check fails). It scrapes the live Stripes forms,
+   so it works where the authors' recorded JMeter plan (`FoSCI/testplan/jpetstore-testplan.jmx`) cannot replay: that plan carries
+   session-bound `_sourcePage`/`__fp` tokens. The pinned app rejects `editAccount` unless `username` and `password` are sent (both are
+   `@Validate(required = true)` yet the edit form shows neither as an input), so the suite sends them; the authors' plan did not.
+4. Stop Tomcat (the CSV is flushed per row), then `gzip -9 -n <out>.csv` into `datasets/<dataset>/fosci_trace.csv.gz`.
