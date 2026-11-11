@@ -136,6 +136,21 @@ def run_cargo(name, grid, out_path):
     return runs
 
 
+def unsupported_reason(ds_path):
+    """Why the dataset says bytecode analysis cannot be done on it, or None. Raises ValueError on an unreadable declaration."""
+    path = os.path.join(ds_path, "bytecode_analysis.json")
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, encoding="utf-8") as f:
+            declared = json.load(f)
+        if declared.get("supported", True):
+            return None
+        return str(declared.get("reason") or "bytecode analysis is not supported")
+    except (OSError, ValueError, AttributeError) as e:
+        raise ValueError(f"cannot read {path}: {e}") from e
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Tool: CARGO (Nitin et al., ASE 2022), from cached Doop facts")
     parser.add_argument("--dataset-path", required=True, help="Dataset directory (contains dataset.json)")
@@ -157,6 +172,12 @@ def main(argv=None):
         dataset = json.load(f)
     if not dataset.get("classes") and not dataset.get("methods"):
         return write_error(out_path, f"dataset '{name}' has no Java classes in dataset.json: cell is N/A")
+    try:
+        unsupported = unsupported_reason(ds_path)
+    except ValueError as e:
+        return write_error(out_path, str(e))
+    if unsupported:
+        return write_error(out_path, f"dataset '{name}' declares bytecode analysis unsupported ({unsupported}): cell is N/A")
     facts_dir = os.path.abspath(args.facts_dir or os.path.join(FACTS_ROOT, name))
     if not os.path.isdir(facts_dir) or not os.listdir(facts_dir):
         # deliberately not worded "N/A": a missing input is a failure to fix, and `benchmark.py run` retries such cells

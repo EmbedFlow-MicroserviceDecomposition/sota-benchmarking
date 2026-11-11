@@ -43,8 +43,11 @@ Doop (`quay.io/rkrsn/doop-main`) analyses the application **bytecode** with a 2-
 - Spring Boot apps need a plain jar of `target/classes` (the repackaged fat jar crashes `dgi`'s heap-object parser) and
   `--keep-spec` roots generated from `datasets/<dataset>/entrypoints.txt`, because `jackee` only knows Servlet/EJB entry points.
 - The desktop app (javafx-pos) uses `--main com.rafsan.inventory.MainApp`. DayTrader took ~3 h; Roller a similar order.
-- Doop's Soot cannot read Java 17 bytecode (reports 0 classes): the current Spring PetClinic (Boot 4 / Java 17) is N/A, and the
-  cached facts here are for the older Java 8 build.
+- Doop's Soot cannot read Java 17 bytecode (reports 0 classes). A dataset whose pin needs it declares so in
+  `datasets/<dataset>/bytecode_analysis.json` (`{"supported": false, "reason": "..."}`); `tool.py` then writes a deliberate N/A,
+  whatever facts exist. The current Spring PetClinic (Boot 4 / Java 17) is declared this way: facts built from the older
+  Java 8 PetClinic were removed, because they describe a different app (10 of the pin's 24 classes unassigned, 6 foreign
+  ones assigned, never more than 3 clusters) and gave a meaningless ICP/IFN of 0.
 
 ## Caveats
 

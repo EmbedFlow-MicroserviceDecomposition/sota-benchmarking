@@ -52,3 +52,40 @@ def test_missing_dataset_json_is_an_error_output(tmp_path):
     out = tmp_path / "out"
     assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
     assert "dataset.json" in json.loads((out / "output.json").read_text())["error"]
+
+
+def test_a_dataset_that_declares_bytecode_analysis_unsupported_is_a_deliberate_na(tmp_path):
+    ds = tmp_path / "java17-app"
+    ds.mkdir()
+    (ds / "dataset.json").write_text(json.dumps({"classes": ["p.A"], "methods": {}, "edges": []}))
+    (ds / "bytecode_analysis.json").write_text(json.dumps({"supported": False, "reason": "pin targets Java 17"}))
+    out = tmp_path / "out"
+    # even with facts present for it: the dataset's own declaration wins
+    facts = tmp_path / "facts"
+    facts.mkdir()
+    (facts / "AnyCallGraphEdge.csv").write_text("x\n")
+    assert tool.main(["--dataset-path", str(ds), "--output-path", str(out), "--facts-dir", str(facts)]) == 1
+    error = json.loads((out / "output.json").read_text())["error"]
+    assert "pin targets Java 17" in error and "N/A" in error
+
+
+def test_a_declaration_that_says_supported_does_not_block_the_run(tmp_path):
+    ds = tmp_path / "ok-app"
+    ds.mkdir()
+    (ds / "dataset.json").write_text(json.dumps({"classes": ["p.A"], "methods": {}, "edges": []}))
+    (ds / "bytecode_analysis.json").write_text(json.dumps({"supported": True}))
+    out = tmp_path / "out"
+    assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
+    error = json.loads((out / "output.json").read_text())["error"]
+    assert "Doop facts" in error and "N/A" not in error     # got past the declaration, then failed on the missing facts
+
+
+def test_an_unreadable_declaration_is_a_failure_not_an_na(tmp_path):
+    ds = tmp_path / "bad-app"
+    ds.mkdir()
+    (ds / "dataset.json").write_text(json.dumps({"classes": ["p.A"], "methods": {}, "edges": []}))
+    (ds / "bytecode_analysis.json").write_text("{not json")
+    out = tmp_path / "out"
+    assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
+    error = json.loads((out / "output.json").read_text())["error"]
+    assert "bytecode_analysis.json" in error and "N/A" not in error

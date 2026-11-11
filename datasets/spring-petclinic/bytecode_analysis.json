@@ -1,0 +1,4 @@
+{
+    "supported": false,
+    "reason": "the pinned source targets Java 17 (Spring Boot 4), and Doop's Soot cannot read Java 17 bytecode"
+}
