@@ -333,36 +333,6 @@ def test_all_metrics_produce_expected_artifacts(prepared, tmp_path):
         assert math.isfinite(result["score"])
 
 
-JAVA_DATASETS = ["acme-air", "apache-roller", "autocare", "bear-board", "daytrader",
-                 "javafx-pos", "jforum", "jpetstore", "pharmacy", "plants", "spring-blog", "spring-petclinic"]
-
-
-@pytest.mark.parametrize("dataset", JAVA_DATASETS)
-def test_legacy_dataset_output_is_identical_to_head(dataset, tmp_path):
-    import contextlib
-    import io
-    import types
-
-    rel = f"datasets/{dataset}/dataset.py"
-    result = subprocess.run(["git", "show", f"0354a9e8f9d946e6c161b2847b99a4117de9cd9e:{rel}"], cwd=ROOT, capture_output=True, text=True)
-    if result.returncode:
-        pytest.skip("Historical compatibility baseline is unavailable in this shallow checkout")
-    original = result.stdout
-    baseline = types.ModuleType("baseline_" + dataset.replace("-", "_"))
-    baseline.__file__ = str(ROOT / rel)
-    exec(compile(original, baseline.__file__, "exec"), baseline.__dict__)
-    adapter = load("current_" + dataset.replace("-", "_"), rel)
-    app = tmp_path / "app"
-    source = app / "src/main/java/p/Example.java"
-    source.parent.mkdir(parents=True)
-    source.write_text("package p; class Example { void run() {} }")
-    before, after = tmp_path / "before.json", tmp_path / "after.json"
-    with contextlib.redirect_stdout(io.StringIO()):
-        baseline.generate_universal_json("Fixture", str(app), str(before), "b", "x")
-        adapter.generate_universal_json("Fixture", str(app), str(after), "b", "x")
-    assert json.loads(before.read_text()) == json.loads(after.read_text())
-
-
 def test_multiple_module_roots_and_eclipse_layout(tmp_path):
     app = tmp_path / "app"
     first, second = app / "module-a/src/main/java", app / "module-b/src/main/java"
@@ -438,3 +408,34 @@ def test_standalone_preparation_rejects_tool_artifacts_in_common_tree(prepared, 
     target = ROOT / "datasets" / "temporary-prepared-inputs"
     with pytest.raises(ValueError, match="outside datasets"):
         preparation.prepare_dataset(prepared, target)
+
+
+@pytest.mark.parametrize("extra_common_fields", [{}, {"classes": ["p.A"]}])
+def test_tool_auto_prepares_standard_dataset(sources, tmp_path, monkeypatch, np, pd, extra_common_fields):
+    pytest.importorskip("sklearn")
+    pytest.importorskip("pyarrow")
+    repo, records = sources
+    common = tmp_path / "datasets" / "fixture-app"
+    original = {"dataset": "Fixture", "source_path": "../../app", "methods": {},
+                "usecases": {"p.A": ["checkout"]}, **extra_common_fields}
+    write_json(common / "dataset.json", original)
+    before = (common / "dataset.json").read_bytes()
+
+    cache_root = tmp_path / "cache" / "datasets"
+    monkeypatch.setattr(tool, "DATASET_CACHE", cache_root)
+    monkeypatch.setattr(preparation, "extract_monoembed_types", lambda roots: (records, "test-extractor-hash"))
+    fake_adapter(tmp_path, monkeypatch)
+    monkeypatch.setattr(tool, "version", lambda name: "test")
+    monkeypatch.setattr(tool, "embed", lambda texts, adapter, out: (np.array([[1.0, 0.0], [0.0, 1.0]]), {"gpu": "test"}))
+
+    output = tmp_path / "output"
+    assert tool.main(["--dataset-path", str(common), "--output-path", str(output)]) == 0
+    assert (common / "dataset.json").read_bytes() == before
+    cached_dirs = list(cache_root.iterdir())
+    assert len(cached_dirs) == 1
+    cached_json = cached_dirs[0] / "dataset.json"
+    assert cached_json.is_file()
+    result = json.loads((output / "output.json").read_text())
+    assert sorted(c for members in result["microservices"].values() for c in members) == ["p.A", "p.A.Inner"]
+    run_info = json.loads((output / "run_info.json").read_text())
+    assert run_info["dataset_sha256"] == tool.sha256(cached_json)

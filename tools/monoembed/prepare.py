@@ -293,7 +293,8 @@ def prepare_dataset(dataset_path, output_path):
     if not metadata.is_file():
         if not (dataset_path / "dataset.py").is_file():
             raise ValueError(f"Missing dataset.json and dataset.py in {dataset_path}")
-        subprocess.run(["uv", "run", "dataset.py"], cwd=dataset_path, check=True)
+        uv_bin = shutil.which("uv") or os.environ.get("UV") or "uv"
+        subprocess.run([uv_bin, "run", "dataset.py"], cwd=dataset_path, check=True)
     original = json.loads(metadata.read_text(encoding="utf-8"))
     raw_source = original.get("source_path")
     if not raw_source:

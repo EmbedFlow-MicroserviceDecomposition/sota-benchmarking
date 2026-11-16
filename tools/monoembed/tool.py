@@ -7,6 +7,7 @@
 #     "setuptools==80.9.0",
 #     "numpy==1.26.4", "scipy==1.14.1", "scikit-learn==1.5.2",
 #     "pandas==2.2.3", "pyarrow==17.0.0", "psutil==6.0.0", "tqdm==4.66.5",
+#     "javalang==0.13.0",
 # ]
 # ///
 """Local MonoEmbed inference and conversion to the SOTA benchmark contract.
@@ -35,6 +36,7 @@ SEED = 42
 ADAPTER_FILES = ("adapter_config.json", "adapter_model.safetensors", "llm2vec_config.json")
 ADAPTER_REVISION = "c93362c7de488b9970f2c16371fe0e9b166a4e8c"
 ADAPTER_CACHE = Path(__file__).resolve().parent / ".cache" / "adapter" / ADAPTER_REVISION
+DATASET_CACHE = Path(__file__).resolve().parent / ".cache" / "datasets"
 ADAPTER_HASHES = {
     "adapter_config.json": "a286ede3776c07b0410a7f066338c50346e8ae90e23d7c989bd135c7cbe58efe",
     "adapter_model.safetensors": "5c33f84175ee2cbafc4f0917f3c7fbecef7175d68772be8333e55ad60889ae14",
@@ -95,8 +97,55 @@ def check_cuda():
         raise RuntimeError("MonoEmbed requires exactly one visible CUDA GPU; select one with CUDA_VISIBLE_DEVICES")
 
 
+def _prepared_cache_dir(dataset_path):
+    dataset_path = Path(dataset_path).resolve()
+    common_root = (Path(__file__).resolve().parents[2] / "datasets").resolve()
+    if dataset_path.parent == common_root:
+        return DATASET_CACHE / dataset_path.name
+    digest = hashlib.sha256(str(dataset_path).encode("utf-8")).hexdigest()[:12]
+    return DATASET_CACHE / f"{dataset_path.name}-{digest}"
+
+
+def _load_prepare_module():
+    import importlib.util
+
+    existing = sys.modules.get("monoembed_prepare")
+    if existing is not None:
+        return existing
+    spec = importlib.util.spec_from_file_location(
+        "monoembed_prepare", Path(__file__).resolve().with_name("prepare.py")
+    )
+    module = importlib.util.module_from_spec(spec)
+    sys.modules["monoembed_prepare"] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def resolve_prepared_dataset(dataset_path):
+    """Prepare a standard benchmark dataset into tools/monoembed/.cache/datasets/ when needed."""
+    dataset_dir = Path(dataset_path).resolve()
+    path = dataset_dir / "dataset.json"
+    if path.is_file():
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        # Already prepared (or a test fixture without source_path/dataset.py): validate in load_inputs.
+        is_standard_dataset = (
+            isinstance(raw, dict)
+            and raw.get("class_sources") is None
+            and (bool(raw.get("source_path")) or (dataset_dir / "dataset.py").is_file())
+        )
+        if not is_standard_dataset:
+            return dataset_dir
+    elif not (dataset_dir / "dataset.py").is_file():
+        raise FileNotFoundError(path)
+
+    target = _prepared_cache_dir(dataset_dir)
+    _load_prepare_module().prepare_dataset(dataset_dir, target)
+    return target
+
+
 def load_inputs(dataset_path):
-    path = Path(dataset_path) / "dataset.json"
+    resolved_dir = resolve_prepared_dataset(dataset_path)
+    path = Path(resolved_dir) / "dataset.json"
     dataset = json.loads(path.read_text(encoding="utf-8"))
     names, sources = dataset.get("classes"), dataset.get("class_sources")
     if not isinstance(names, list) or not names or not isinstance(sources, dict):
@@ -217,7 +266,8 @@ def to_microservices(names, labels):
 
 
 def run(dataset_path, output_path):
-    dataset, names, texts = load_inputs(dataset_path)
+    resolved_dataset_path = resolve_prepared_dataset(dataset_path)
+    dataset, names, texts = load_inputs(resolved_dataset_path)
     check_cuda()  # Reject CPU-only machines before downloading any model/adapter files.
     import numpy as np
     import pandas as pd
@@ -234,7 +284,7 @@ def run(dataset_path, output_path):
     microservices = to_microservices(names, labels)
     write_json(output_path / "partition.json", dict(zip(names, labels)))
     info = {
-        "dataset": dataset.get("dataset"), "dataset_sha256": sha256(Path(dataset_path) / "dataset.json"),
+        "dataset": dataset.get("dataset"), "dataset_sha256": sha256(Path(resolved_dataset_path) / "dataset.json"),
         "preparation": dataset.get("monoembed", {}), "class_count": len(names),
         "base_model": BASE_MODEL, "adapter_sha256": {name: sha256(adapter / name) for name in ADAPTER_FILES},
         "adapter_upstream_revision": ADAPTER_REVISION if not os.environ.get("MONOEMBED_ADAPTER_PATH") else None,

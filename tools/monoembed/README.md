@@ -109,7 +109,11 @@ adapter download is required to prepare source inputs or run the CPU tests.
 
 ## Run and score
 
-From the repository root, after preparing the tool-owned Pharmacy snapshot:
+From the repository root, run directly against a standard dataset directory
+(matching the repository's `--dataset-path datasets/<name>` contract; `tool.py`
+automatically prepares or refreshes `tools/monoembed/.cache/datasets/<name>` while
+leaving `datasets/<name>/dataset.json` unchanged, and pre-prepared snapshots can
+also be passed directly):
 
 ```bash
 export CUDA_VISIBLE_DEVICES=0
@@ -121,7 +125,7 @@ read -rsp "Hugging Face token: " HF_TOKEN
 export HF_TOKEN
 printf '\n'
 uv run tools/monoembed/tool.py \
-  --dataset-path tools/monoembed/.cache/datasets/pharmacy \
+  --dataset-path datasets/pharmacy \
   --output-path tools/monoembed/outputs/pharmacy/run_01
 ```
 
@@ -160,11 +164,8 @@ Pharmacy run does not need to be repeated unless you want a fresh result.
 run_id=generalized_01
 for dataset_name in acme-air apache-roller autocare bear-board \
                     javafx-pos jforum pharmacy spring-blog spring-petclinic; do
-  uv run tools/monoembed/prepare.py \
-    --dataset-path "datasets/$dataset_name" \
-    --output-path "tools/monoembed/.cache/datasets/$dataset_name" || break
   uv run tools/monoembed/tool.py \
-    --dataset-path "tools/monoembed/.cache/datasets/$dataset_name" \
+    --dataset-path "datasets/$dataset_name" \
     --output-path "tools/monoembed/outputs/$dataset_name/$run_id" || break
   uv run metrics/compute_all.py \
     --dataset-path "tools/monoembed/.cache/datasets/$dataset_name" \
