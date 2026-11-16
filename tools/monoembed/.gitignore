@@ -1,0 +1,4 @@
+
+# MonoEmbed downloads and source extractor build products
+.cache/
+extractor/target/
