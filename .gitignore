@@ -18,3 +18,9 @@ datasets/extractor/dependency-reduced-pom.xml
 # CARGO: the Doop facts, DiVA transactions and input jars are committed (hours to regenerate). Doop's DependentInstruction.csv (up to 118 MB,
 # over GitHub's 100 MB file limit) is never read by dgi, so it stays on disk only.
 tools/cargo/doop-data/*/DependentInstruction.csv
+
+# secrets
+.env*
+!.env.example
+!.env.sample
+!.env.template
