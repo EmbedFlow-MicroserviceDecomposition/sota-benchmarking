@@ -61,3 +61,6 @@
 [submodule "tools/cogcn/cogcn"]
 	path = tools/cogcn/cogcn
 	url = git@github.com:utkd/cogcn.git
+[submodule "tools/code2vec/code2vec"]
+	path = tools/code2vec/code2vec
+	url = git@github.com:tech-srl/code2vec.git
