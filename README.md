@@ -56,7 +56,13 @@ A tool may emit class FQNs or method ids in `microservices`. `metrics/partition.
 class by majority vote, classes explode to all their methods. Ids that match nothing in `dataset.json` are counted, never guessed,
 and every `*_score.json` carries a `coverage` block (`classes`, `assigned`, `unassigned`, `unmatched_ids`, `conflicts`).
 
+MonoEmbed emits class FQNs, so NED counts classes. Its tool-owned prepared `dataset.json` additionally contains `classes` (type FQNs),
+`class_sources` (FQN-to-source-text strings), and `monoembed` provenance. See
+[MonoEmbed](tools/monoembed/README.md) and
+[dataset scopes and preparation](tools/monoembed/README.md#supported-datasets-and-source-scope).
+
 ### 3. Metrics & `<metric>_score.json`
+
 - A `metric.py` script is **mandatory** and takes exactly 2 parameters (`--dataset-path`, `--output-path`) to generate `<metric>_score.json` inside the tool's output directory.
 - **Schema**:
   ```json
@@ -112,6 +118,7 @@ graph TD
 ### Tools (Methods)
 * **[MAGNET](https://github.com/magnetmicro/MAGNET)** - `tools/magnet/`
 * **[IBM Mono2Micro](https://www.ibm.com/cloud/mono2micro)** - `tools/mono2micro/`
+* **[MonoEmbed](tools/monoembed/README.md)** - `tools/monoembed/` (GPU inference; Java source adapters)
 * **Triplet-Guided CHGNN** - `tools/triplet-guided-chgnn/`
 * **[CHGNN](https://github.com/Alex-Mathai-98/Monolith-to-Microservices)** (original, IJCAI 2022) - `tools/chgnn/`
 * **[CoGCN](https://github.com/utkd/cogcn)** (AAAI 2021) - `tools/cogcn/`
