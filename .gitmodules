@@ -64,3 +64,6 @@
 [submodule "tools/code2vec/code2vec"]
 	path = tools/code2vec/code2vec
 	url = git@github.com:tech-srl/code2vec.git
+[submodule "tools/hydec/decomp-hydec"]
+	path = tools/hydec/decomp-hydec
+	url = git@github.com:khaledsellami/decomp-hydec.git
