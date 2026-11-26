@@ -1,0 +1,25 @@
+{
+  "dataset": "plants",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 4158,
+  "classes": 37,
+  "classes_covered": 30,
+  "class_coverage": 0.8108,
+  "traceable_classes": 37,
+  "traceable_class_coverage": 0.8108,
+  "methods": 442,
+  "methods_covered": 269,
+  "method_coverage": 0.6086,
+  "target": 0.7,
+  "uncovered_classes": [
+    "com.ibm.websphere.samples.pbw.bean.NoSupplierException",
+    "com.ibm.websphere.samples.pbw.bean.ShoppingCartContent",
+    "com.ibm.websphere.samples.pbw.jpa.OrderKey",
+    "com.ibm.websphere.samples.pbw.war.BackOrderItem",
+    "com.ibm.websphere.samples.pbw.war.MailAction",
+    "com.ibm.websphere.samples.pbw.war.ValidatePasswords",
+    "com.ibm.websphere.samples.pbw.war.ValidatorUtils"
+  ],
+  "uncovered_interfaces": [],
+  "unmatched_trace_classes": []
+}

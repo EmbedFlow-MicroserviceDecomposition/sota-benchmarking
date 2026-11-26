@@ -12,6 +12,7 @@ Standard library only: record.py imports the suites into whatever interpreter ru
 """
 
 import argparse
+import html
 import http.cookiejar
 import json
 import re
@@ -97,6 +98,102 @@ class Client:
 
     def post(self, path, data=None, **kw):
         return self.request("POST", path, data=data, **kw)
+
+
+_FORM = re.compile(r"<form\b([^>]*)>(.*?)</form>", re.S | re.I)
+_ATTR = re.compile(r"""([\w:.-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')""")
+_INPUT = re.compile(r"<input\b([^>]*)>", re.I)
+_SELECT = re.compile(r"<select\b([^>]*)>(.*?)</select>", re.S | re.I)
+_TEXTAREA = re.compile(r"<textarea\b([^>]*)>(.*?)</textarea>", re.S | re.I)
+_MYFACES_LINK = re.compile(r"""<a\b[^>]*onclick="return myfaces\.oam\.submitForm\('([^']+)','([^']+)'(?:,null,\[(.*?)\])?\);"[^>]*>(.*?)</a>""",
+                           re.S)
+# h:commandLink with f:ajax: jsf.ajax.request('<id>',event,{execute:'...',render:'...',...})
+_AJAX_LINK = re.compile(r"""<a\b[^>]*onclick="[^"]*jsf\.ajax\.request\(\\'([^\\]+)\\',event,\{execute:\\'([^\\]*)\\',"""
+                        r"""render:\\'([^\\]*)\\'[^"]*"[^>]*>(.*?)</a>""", re.S)
+
+
+def _attrs(text):
+    return {m.group(1).lower(): html.unescape(m.group(2) if m.group(2) is not None else m.group(3)) for m in _ATTR.finditer(text)}
+
+
+def forms(resp):
+    """{form id or name: (action, {field: value})} with the values a browser would submit (no submit buttons)."""
+    found = {}
+    for m in _FORM.finditer(resp.text):
+        attrs, body = _attrs(m.group(1)), m.group(2)
+        fields = {}
+        for i in _INPUT.finditer(body):
+            a = _attrs(i.group(1))
+            kind = a.get("type", "text").lower()
+            if "name" not in a or kind in ("submit", "image", "button", "reset", "file"):
+                continue
+            if kind in ("checkbox", "radio") and "checked" not in a:
+                continue
+            fields[a["name"]] = a.get("value", "on" if kind == "checkbox" else "")
+        for s in _SELECT.finditer(body):
+            a = _attrs(s.group(1))
+            options = re.findall(r"<option\b([^>]*)>", s.group(2), re.I)
+            chosen = next((o for o in options if "selected" in _attrs(o)), options[0] if options else None)
+            if "name" in a and chosen is not None:
+                fields[a["name"]] = _attrs(chosen).get("value", "")
+        for t in _TEXTAREA.finditer(body):
+            a = _attrs(t.group(1))
+            if "name" in a:
+                fields[a["name"]] = html.unescape(t.group(2))
+        found[attrs.get("id") or attrs.get("name")] = (attrs.get("action", resp.url), fields)
+    return found
+
+
+def _link_text(inner):
+    alt = " ".join(re.findall(r"""alt="([^"]*)\"""", inner))
+    return " ".join((html.unescape(re.sub(r"<[^>]+>", " ", inner)) + " " + alt).split())
+
+
+def jsf_links(resp):
+    """Command links: [(form id, link id, {param: value}, visible text, ajax)], ajax = None or (execute, render)."""
+    links = []
+    for form_id, link_id, params, inner in _MYFACES_LINK.findall(resp.text):
+        links.append((form_id, link_id, dict(re.findall(r"\['([^']*)','([^']*)'\]", params or "")), _link_text(inner), None))
+    for link_id, execute, render, inner in _AJAX_LINK.findall(resp.text):
+        links.append((link_id.split(":")[0], link_id, {}, _link_text(inner), (execute.strip(), render.strip())))
+    return links
+
+
+def jsf_click(client, resp, text=None, params=None, fields=None, form=None, **checks):
+    """Follow an h:commandLink as the browser would: MyFaces' submitForm() posts the form's fields plus `<form>:_idcl`
+    and the link's f:params; an f:ajax link sends the JSF partial request instead (the response is partial XML).
+    Picks the first link whose text (or image alt) contains `text` and whose params include `params`; `fields`
+    overrides form inputs (keys may omit the `<form>:` prefix)."""
+    for form_id, link_id, link_params, link_text, ajax in jsf_links(resp):
+        if form and form_id != form:
+            continue
+        if text is not None and text.lower() not in link_text.lower():
+            continue
+        if params and any(link_params.get(k) != str(v) for k, v in params.items()):
+            continue
+        if ajax:
+            execute, render = ajax
+            extra = {"javax.faces.source": link_id, "javax.faces.partial.event": "click",
+                     "javax.faces.partial.execute": " ".join(form_id if t == "@form" else t for t in execute.split()),
+                     "javax.faces.partial.render": render, "javax.faces.behavior.event": "action",
+                     "javax.faces.partial.ajax": "true"}
+            return jsf_post(client, resp, form_id, extra, fields, headers={"Faces-Request": "partial/ajax"}, **checks)
+        return jsf_post(client, resp, form_id, dict(link_params, **{f"{form_id}:_idcl": link_id}), fields, **checks)
+    raise UsecaseFailed(f"{resp.url}: no command link text={text!r} params={params!r} form={form!r}; "
+                        f"links: {[(t, p) for _, _, p, t, _ in jsf_links(resp)][:40]}")
+
+
+def jsf_post(client, resp, form_id, extra=None, fields=None, **checks):
+    """Submit JSF form `form_id` of `resp` with `extra` parameters (e.g. a command button's name) and overridden fields."""
+    page_forms = forms(resp)
+    if form_id not in page_forms:
+        raise UsecaseFailed(f"{resp.url}: no form {form_id!r}; forms: {list(page_forms)}")
+    action, data = page_forms[form_id]
+    for name, value in (fields or {}).items():
+        key = name if name in data or ":" in name else f"{form_id}:{name}"
+        data[key] = value
+    data.update(extra or {})
+    return client.post(urllib.parse.urljoin(resp.url, action), data, **checks)
 
 
 def unique(prefix):

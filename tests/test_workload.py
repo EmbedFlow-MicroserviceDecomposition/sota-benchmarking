@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from workload import Client, Suite, UsecaseFailed
+from workload import Client, Response, Suite, UsecaseFailed, forms, jsf_click, jsf_links
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -97,7 +97,7 @@ def test_wait_ready_times_out_while_the_app_is_not_deployed(server):
         Suite("Demo", server, ready_path="/nope").wait_ready(timeout=0)
 
 
-@pytest.mark.parametrize("dataset", ["jpetstore", "spring-blog"])
+@pytest.mark.parametrize("dataset", ["jpetstore", "spring-blog", "plants"])
 def test_suites_keep_mono2micro_contract(dataset):
     """record.py needs USECASES and run_usecase(name, **kwargs); the suite must match them."""
     path = ROOT / "datasets" / dataset / "exercise_usecases.py"
@@ -107,3 +107,46 @@ def test_suites_keep_mono2micro_contract(dataset):
     assert module.USECASES == list(module.suite.usecases)
     assert len(module.USECASES) >= 10
     assert callable(module.run_usecase)
+
+
+JSF_PAGE = """<form id="shop" name="shop" method="post" action="/app/shop.jsf">
+<input type="hidden" name="shop_SUBMIT" value="1" /><input id="shop:qty" type="text" name="shop:qty" value="1" />
+<input type="checkbox" name="shop:gift" value="true" /><input type="checkbox" name="shop:news" value="true" checked="checked" />
+<select name="shop:size"><option value="S">S</option><option value="M" selected="selected">M</option></select>
+<textarea name="shop:note">hi &amp; bye</textarea><input type="submit" name="shop:go" value="Go" />
+<a href="#" onclick="return myfaces.oam.submitForm('shop','shop:j_id_1',null,[['itemID','T1']]);">Bonsai <b>Tree</b></a>
+<a href="#" onclick="return myfaces.oam.submitForm('shop','shop:j_id_2');"><img src="x.gif" alt="Checkout Now" /></a>
+<a href="#" onclick="jsf.util.chain(document.getElementById('shop:j_id_3'), event,'jsf.ajax.request(\\'shop:j_id_3\\',event,{execute:\\'@form \\',render:\\'shop:table \\',\\'javax.faces.behavior.event\\':\\'action\\'})'); return false;" id="shop:j_id_3"><img alt="Recalculate" /></a>
+<input type="hidden" name="javax.faces.ViewState" value="VS1" /></form>"""
+
+
+def test_forms_submit_what_a_browser_would():
+    action, fields = forms(Response(200, "http://h/app/x.jsf", JSF_PAGE))["shop"]
+    assert action == "/app/shop.jsf"
+    assert fields == {"shop_SUBMIT": "1", "shop:qty": "1", "shop:news": "true", "shop:size": "M",
+                      "shop:note": "hi & bye", "javax.faces.ViewState": "VS1"}
+
+
+def test_jsf_links_find_text_images_params_and_ajax():
+    links = jsf_links(Response(200, "http://h/app/x.jsf", JSF_PAGE))
+    assert [(link_id, params, text, ajax) for _, link_id, params, text, ajax in links] == [
+        ("shop:j_id_1", {"itemID": "T1"}, "Bonsai Tree", None),
+        ("shop:j_id_2", {}, "Checkout Now", None),
+        ("shop:j_id_3", {}, "Recalculate", ("@form", "shop:table"))]
+
+
+def test_jsf_click_posts_the_form_like_myfaces(monkeypatch):
+    page = Response(200, "http://h/app/x.jsf", JSF_PAGE)
+    sent = []
+    client = Client("http://h/app")
+    monkeypatch.setattr(client, "post", lambda url, data, **kw: sent.append((url, data, kw)) or page)
+    jsf_click(client, page, params={"itemID": "T1"}, fields={"qty": "3"})
+    url, data, _ = sent[-1]
+    assert url == "http://h/app/shop.jsf"
+    assert data["shop:qty"] == "3" and data["itemID"] == "T1" and data["shop:_idcl"] == "shop:j_id_1"
+    jsf_click(client, page, text="recalc")
+    _, data, kw = sent[-1]
+    assert data["javax.faces.source"] == "shop:j_id_3" and data["javax.faces.partial.execute"] == "shop"
+    assert kw["headers"] == {"Faces-Request": "partial/ajax"}
+    with pytest.raises(UsecaseFailed, match="no command link"):
+        jsf_click(client, page, text="missing")

@@ -1,7 +1,7 @@
 {
   "dataset": "spring-blog",
   "trace": "fosci_trace.csv.gz",
-  "traces": 2017,
+  "traces": 2008,
   "classes": 47,
   "classes_covered": 37,
   "class_coverage": 0.7872,

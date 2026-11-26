@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mounted into the server's configDropins/overrides by docker-compose.yml; the app's own server.xml is untouched.
+     1. listen on all interfaces: the stock httpEndpoint binds to localhost, unreachable through Docker's port mapping;
+     2. deploy the WAR as a configured application instead of from dropins, so that
+     3. the SampAdmin role (web.xml's admin pages) maps to the server.xml's basic-registry user dev/dev. -->
+<server>
+    <httpEndpoint id="defaultHttpEndpoint" host="*"/>
+    <applicationMonitor dropinsEnabled="false"/>
+    <webApplication id="PlantsByWebSphere" name="PlantsByWebSphere" location="${server.config.dir}/dropins/PlantsByWebSphere.war"
+                    contextRoot="/PlantsByWebSphere">
+        <application-bnd>
+            <security-role name="SampAdmin">
+                <user name="dev"/>
+            </security-role>
+        </application-bnd>
+    </webApplication>
+</server>

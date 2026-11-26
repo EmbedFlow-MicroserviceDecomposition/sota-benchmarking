@@ -31,8 +31,8 @@ were assigned.
 Per-subject N from the paper (midpoint of Section 4.6's ranges): spring-blog 8, jforum 9, apache-roller 16; autocare 8 (N=10 stalled
 against its 12 atoms); otherwise the stock 10. N is capped at `atoms - 2`, because N close to the atom count never converges
 (a bear-board run hung for 4+ CPU hours at N=10 on 5 atoms): bear-board 3, acme-air 5, spring-petclinic 7. Fewer than 4 atoms means
-the cell is N/A (error-form `output.json`): daytrader (1 atom: the tracer failed to instrument most classes) and plants (1 atom: the
-app's own DB seeding bug leaves an empty catalogue). Runs are unseeded unless `--seed` is given; apache-roller takes ~1-2 h per run.
+the cell is N/A (error-form `output.json`): daytrader with its old trace (1 atom: the tracer failed to instrument most classes).
+Plants was N/A too until its functional suite: it now has 20 atoms. Runs are unseeded unless `--seed` is given; apache-roller takes ~1-2 h per run.
 
 ## Traces
 
@@ -43,10 +43,11 @@ they were recorded on other builds of the apps.
 
 | Dataset | Trace today |
 | :--- | :--- |
-| acme-air, bear-board, pharmacy, spring-petclinic, daytrader, plants | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
+| acme-air, bear-board, pharmacy, spring-petclinic, daytrader | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
 | autocare | the reduced form of such a scripted trace (reduction is idempotent) |
 | jpetstore | functional suite (`datasets/jpetstore/exercise_usecases.py`, 18 use cases covering the authors' 14 scenarios): 337 traces, classes 17/24 (71%; every non-interface class), methods 64% |
-| spring-blog | functional suite (22 use cases, every controller endpoint; `--jdk8`): 2017 traces, classes 37/47 (79%; 92% of non-interfaces: the rest are `Constants` and dead code), methods 74% |
+| spring-blog | functional suite (22 use cases, every controller endpoint; `--jdk8`): 2008 traces, classes 37/47 (79%; 92% of non-interfaces: the rest are `Constants` and dead code), methods 74% |
+| plants | functional suite (22 use cases: JSF storefront, checkout, registration, admin; `--jdk8`): 4158 traces, classes 30/37 (81%; the rest are never-thrown exceptions, a JPA key class, back-order classes the app never seeds and an unwired validator), methods 61% |
 | jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
@@ -59,6 +60,7 @@ trace unless every use case passes. Per-use-case trace row spans go to `outputs/
 ```bash
 uv run record_trace.py --dataset-path ../../datasets/jpetstore [--package org.mybatis.jpetstore]
 uv run record_trace.py --dataset-path ../../datasets/spring-blog --jdk8   # JDK 8 apps need the JDK 8 agent
+uv run record_trace.py --dataset-path ../../datasets/plants --jdk8
 uv run trace_coverage.py --dataset-path ../../datasets/jpetstore   # coverage of an existing trace; exits 1 below 70%
 ```
 
@@ -69,3 +71,15 @@ FoSCI's raw column format. **Coverage target: 70% of `dataset.json` classes.** A
 another app class in the trace, which is all FoSCI sees. Interfaces such as MyBatis mappers run through generated proxies and
 can never appear, so the report also gives coverage of non-interface classes. Methods the tracer cannot see (getters and setters
 called by JSP/EL or reflection, and handlers that only forward to a view) keep method coverage below class coverage.
+
+The tracer computes stack-map frames with a `ClassWriter` that reads class hierarchies from the defining class loader's class files.
+ASM's default loads them through the agent's loader, which cannot see an app server's classes: before this fix such classes
+(Plants' EJBs, for example) were silently left uninstrumented. `failed to instrument` lines in the app's log name any class still
+skipped. Rebuild both jars after changing `src/` (the jars already contain ASM; only `tracer/*.class` is replaced):
+
+```bash
+cd tools/fosci && mkdir -p outputs/tracer-build && docker run --rm -v "$PWD/tracer-agent":/agent \
+  -v "$PWD/outputs/tracer-build":/build -w /build eclipse-temurin:11-jdk sh -c 'for v in 11 8; do
+    jar=/agent/tracer-agent.jar; [ $v = 8 ] && jar=/agent/tracer-agent-jdk8.jar
+    mkdir -p c$v && javac --release $v -cp $jar -d c$v /agent/src/tracer/*.java && (cd c$v && jar uf $jar tracer/*.class); done'
+```

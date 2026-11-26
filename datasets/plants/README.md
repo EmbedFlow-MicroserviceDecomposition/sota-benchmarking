@@ -44,3 +44,25 @@ uv run dataset.py
 ```
 
 This will parse all Java files inside the repository and output the standardized `dataset.json` file.
+
+## Running the app and its functional suite
+
+```bash
+cd sample.plantsbywebsphere
+docker run --rm -v "$PWD":/src -v sota-m2:/root/.m2 -w /src maven:3.9-eclipse-temurin-8 mvn -q -B package -DskipTests
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:9080/PlantsByWebSphere/promo.jsf
+python3 exercise_usecases.py --wait           # 22 use cases, exits 1 if any fails
+```
+
+`mvn package` builds the whole Liberty server into `target/liberty/wlp`, which the compose file mounts. Liberty reads the agent
+from `JVM_ARGS` (the `WLP_JVM_OPTIONS` this compose file used before is ignored, so no agent was ever attached).
+`liberty/sota-overrides.xml` is mounted into the server's `configDropins/overrides` without touching the submodule: it binds
+HTTP to all interfaces (the stock `httpEndpoint` listens on localhost only, unreachable through Docker), and deploys the WAR as a
+configured application so the admin pages' `SampAdmin` role maps to the server's `dev`/`dev` user.
+
+`uv run ../../tools/fosci/record_trace.py --dataset-path . --jdk8` records `fosci_trace.csv.gz` from the same suite. The suite
+expects these bugs of the pinned app as they are: back orders are never seeded (`Util.readTokens` NPE), account update is a
+500 (JPA optimistic lock without a version column), mismatched registration passwords are accepted, a duplicate e-mail is a
+500, `AccountServlet` and the admin populate forward to JSPs the app does not ship, the order e-mail fails (no mail resource),
+and the database reset fails part-way once orders exist (the admin populate then leaves the catalogue empty), so the two reset
+use cases run last.
