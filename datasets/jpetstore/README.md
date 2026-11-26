@@ -30,3 +30,19 @@ uv run dataset.py
 ```
 
 This will parse all Java files inside the `jpetstore-6` repository and output the standardized `dataset.json` file.
+
+## Running the app and its functional suite
+
+The build needs JDK 21+ (the enforcer rejects 17; the war still targets Java 17 and runs on `tomcat:9-jdk17`). The git-commit-id
+plugin cannot see the submodule's git dir from a container, so skip it:
+
+```bash
+cd jpetstore-6
+docker run --rm -v "$PWD":/src -v sota-m2:/root/.m2 -w /src maven:3.9-eclipse-temurin-21 \
+  mvn -q -B package -DskipTests -Dlicense.skip=true -Dformatter.skip=true -Dimpsort.skip=true -Dmaven.gitcommitid.skip=true
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:8080/jpetstore
+python3 exercise_usecases.py --wait           # 18 use cases, exits 1 if any fails
+```
+
+`uv run ../../tools/fosci/record_trace.py --dataset-path .` records `fosci_trace.csv.gz` from the same suite.
+Sign-on uses the seeded `j2ee`/`j2ee` and `ACID`/`ACID` accounts.

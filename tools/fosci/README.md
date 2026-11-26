@@ -45,14 +45,25 @@ they were recorded on other builds of the apps.
 | :--- | :--- |
 | acme-air, bear-board, pharmacy, spring-petclinic, daytrader, plants | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
 | autocare | the reduced form of such a scripted trace (reduction is idempotent) |
-| jpetstore, spring-blog, jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
+| jpetstore | functional suite (`datasets/jpetstore/exercise_usecases.py`, 18 use cases covering the authors' 14 scenarios): 337 traces, classes 17/24 (71%; every non-interface class), methods 64% |
+| spring-blog, jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
 
-**Generating a trace** (`tracer-agent/`): an ASM `-javaagent` that logs every method enter/exit of a package prefix in FoSCI's raw
-column format. Use `tracer-agent-jdk8.jar` for JDK 8 apps and `tracer-agent.jar` for JDK 11+:
+**Recording a trace** (`record_trace.py`): runs the dataset's functional test suite (`datasets/<dataset>/exercise_usecases.py`,
+the same suite Mono2Micro records; harness in `datasets/workload.py`) against a fresh `docker compose` instance of the app with
+`tracer-agent/` attached, then writes `fosci_trace.csv.gz` and `fosci_trace_coverage.json` into the dataset. It refuses to write the
+trace unless every use case passes. Per-use-case trace row spans go to `outputs/<dataset>/trace/usecase_spans.json`.
 
 ```bash
-java -javaagent:tracer-agent/tracer-agent.jar=<package.prefix>,<out.csv> -jar app.jar
-# drive the app with real traffic, then: gzip -9 -n out.csv > datasets/<dataset>/fosci_trace.csv.gz
+uv run record_trace.py --dataset-path ../../datasets/jpetstore [--package org.mybatis.jpetstore] [--jdk8]
+uv run trace_coverage.py --dataset-path ../../datasets/jpetstore   # coverage of an existing trace; exits 1 below 70%
 ```
+
+The dataset's compose file must start the app with `${JAVA_AGENT}` (the compose default keeps Mono2Micro's agent) and mount
+`tools/fosci/tracer-agent` at `/fosci` and `${TRACE_DIR}` at `/trace`. The tracer (`tracer-agent.jar` for JDK 11+,
+`tracer-agent-jdk8.jar` for JDK 8) is an ASM `-javaagent` that logs every call between two classes of the package prefix in
+FoSCI's raw column format. **Coverage target: 70% of `dataset.json` classes.** A class counts as covered when it calls or is called by
+another app class in the trace, which is all FoSCI sees. Interfaces such as MyBatis mappers run through generated proxies and
+can never appear, so the report also gives coverage of non-interface classes. Methods the tracer cannot see (getters and setters
+called by JSP/EL or reflection, and handlers that only forward to a view) keep method coverage below class coverage.

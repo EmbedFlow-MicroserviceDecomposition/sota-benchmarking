@@ -1,0 +1,25 @@
+{
+  "dataset": "jpetstore",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 337,
+  "classes": 24,
+  "classes_covered": 17,
+  "class_coverage": 0.7083,
+  "traceable_classes": 17,
+  "traceable_class_coverage": 1.0,
+  "methods": 286,
+  "methods_covered": 184,
+  "method_coverage": 0.6434,
+  "target": 0.7,
+  "uncovered_classes": [],
+  "uncovered_interfaces": [
+    "org.mybatis.jpetstore.mapper.AccountMapper",
+    "org.mybatis.jpetstore.mapper.CategoryMapper",
+    "org.mybatis.jpetstore.mapper.ItemMapper",
+    "org.mybatis.jpetstore.mapper.LineItemMapper",
+    "org.mybatis.jpetstore.mapper.OrderMapper",
+    "org.mybatis.jpetstore.mapper.ProductMapper",
+    "org.mybatis.jpetstore.mapper.SequenceMapper"
+  ],
+  "unmatched_trace_classes": []
+}
