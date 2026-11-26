@@ -1,11 +1,15 @@
+import base64
+import hashlib
 import importlib.util
+import socket
+import struct
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
 import pytest
 
-from workload import Client, Response, Suite, UsecaseFailed, forms, jsf_click, jsf_links
+from workload import Client, Response, Suite, UsecaseFailed, WebSocket, forms, jsf_click, jsf_links, ws_frame
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -97,7 +101,7 @@ def test_wait_ready_times_out_while_the_app_is_not_deployed(server):
         Suite("Demo", server, ready_path="/nope").wait_ready(timeout=0)
 
 
-@pytest.mark.parametrize("dataset", ["jpetstore", "spring-blog", "plants"])
+@pytest.mark.parametrize("dataset", ["jpetstore", "spring-blog", "plants", "daytrader"])
 def test_suites_keep_mono2micro_contract(dataset):
     """record.py needs USECASES and run_usecase(name, **kwargs); the suite must match them."""
     path = ROOT / "datasets" / dataset / "exercise_usecases.py"
@@ -150,3 +154,59 @@ def test_jsf_click_posts_the_form_like_myfaces(monkeypatch):
     assert kw["headers"] == {"Faces-Request": "partial/ajax"}
     with pytest.raises(UsecaseFailed, match="no command link"):
         jsf_click(client, page, text="missing")
+
+
+def _echo_server(listener):
+    """A one-connection WebSocket server: completes the handshake, echoes data frames, pings once, then closes."""
+    conn, _ = listener.accept()
+    request = b""
+    while b"\r\n\r\n" not in request:
+        request += conn.recv(4096)
+    key = next(line.split(b": ")[1] for line in request.split(b"\r\n") if line.lower().startswith(b"sec-websocket-key")).decode()
+    accept = base64.b64encode(hashlib.sha1((key + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11").encode()).digest()).decode()
+    conn.sendall(f"HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: {accept}\r\n\r\n".encode())
+    conn.sendall(ws_frame(9, b"hi", mask=False))  # a ping the client must answer
+    def read(n):
+        data = b""
+        while len(data) < n:
+            data += conn.recv(n - len(data))
+        return data
+
+    for _ in range(4):  # text, the pong, binary, the big text
+        head = read(2)
+        opcode, n = head[0] & 0x0F, head[1] & 0x7F
+        if n == 126:
+            n = struct.unpack(">H", read(2))[0]
+        elif n == 127:
+            n = struct.unpack(">Q", read(8))[0]
+        mask = read(4)
+        body = read(n)
+        payload = bytes(b ^ mask[i % 4] for i, b in enumerate(body))
+        if opcode == 10:
+            assert payload == b"hi"  # the pong
+        elif opcode in (1, 2):
+            conn.sendall(ws_frame(opcode, payload, mask=False))
+    conn.sendall(ws_frame(8, b"", mask=False))
+    conn.close()
+
+
+def test_websocket_client_handshakes_echoes_text_binary_and_big_frames_and_answers_pings():
+    listener = socket.socket()
+    listener.bind(("127.0.0.1", 0))
+    listener.listen(1)
+    threading.Thread(target=_echo_server, args=(listener,), daemon=True).start()
+    with WebSocket(f"ws://127.0.0.1:{listener.getsockname()[1]}/echo") as ws:
+        ws.send("héllo")
+        assert ws.recv() == "héllo"
+        ws.send(b"\x00\x01\x02")
+        assert ws.recv() == b"\x00\x01\x02"
+        big = "x" * 70000  # 8-byte length form
+        ws.send(big)
+        assert ws.recv() == big
+        assert ws.recv() is None  # the server's close frame
+    listener.close()
+
+
+def test_websocket_refuses_a_server_that_does_not_upgrade(server):
+    with pytest.raises(UsecaseFailed, match="handshake refused"):
+        WebSocket(server.replace("http", "ws") + "/home")

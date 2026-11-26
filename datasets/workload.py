@@ -12,10 +12,15 @@ Standard library only: record.py imports the suites into whatever interpreter ru
 """
 
 import argparse
+import base64
+import hashlib
 import html
 import http.cookiejar
 import json
+import os
 import re
+import socket
+import struct
 import sys
 import time
 import traceback
@@ -72,7 +77,7 @@ class Client:
         self.opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cookies))
 
     def request(self, method, path, params=None, data=None, json_body=None, headers=None,
-                expect=200, contains=(), absent=()):
+                expect=200, contains=(), absent=(), timeout=None):
         url = path if path.startswith("http") else self.base_url + path
         if params:
             url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params, doseq=True)
@@ -87,11 +92,17 @@ class Client:
         hdrs.update(headers or {})
         req = urllib.request.Request(url, data=body, headers=hdrs, method=method)
         try:
-            with self.opener.open(req, timeout=self.timeout) as r:
+            with self.opener.open(req, timeout=timeout or self.timeout) as r:
                 resp = Response(r.status, r.geturl(), r.read().decode("utf-8", errors="replace"))
         except urllib.error.HTTPError as e:
             resp = Response(e.code, url, e.read().decode("utf-8", errors="replace"))
         return check(resp, f"{method} {path}", expect, contains, absent)
+
+    def websocket(self, path, **kw):
+        """Open a WebSocket on `path` of the same server, with this session's cookies."""
+        url = "ws" + self.base_url[4:] + path
+        cookie = "; ".join(f"{c.name}={c.value}" for c in self.cookies)
+        return WebSocket(url, headers={"Cookie": cookie} if cookie else None, **kw)
 
     def get(self, path, params=None, **kw):
         return self.request("GET", path, params=params, **kw)
@@ -194,6 +205,97 @@ def jsf_post(client, resp, form_id, extra=None, fields=None, **checks):
         data[key] = value
     data.update(extra or {})
     return client.post(urllib.parse.urljoin(resp.url, action), data, **checks)
+
+
+_WS_GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
+
+
+def ws_frame(opcode, payload, mask=True):
+    """One unfragmented RFC 6455 frame (clients must mask)."""
+    head = bytes([0x80 | opcode])
+    n = len(payload)
+    mask_bit = 0x80 if mask else 0
+    head += bytes([mask_bit | n]) if n < 126 else bytes([mask_bit | 126]) + struct.pack(">H", n) if n < 65536 \
+        else bytes([mask_bit | 127]) + struct.pack(">Q", n)
+    if not mask:
+        return head + payload
+    key = os.urandom(4)
+    return head + key + bytes(b ^ key[i % 4] for i, b in enumerate(payload))
+
+
+class WebSocket:
+    """Minimal RFC 6455 client: text and binary messages, answers pings; enough to drive a server endpoint."""
+
+    def __init__(self, url, timeout=30, headers=None):
+        parts = urllib.parse.urlparse(url)
+        port = parts.port or (443 if parts.scheme == "wss" else 80)
+        self.sock = socket.create_connection((parts.hostname, port), timeout)
+        self.timeout = timeout
+        key = base64.b64encode(os.urandom(16)).decode()
+        path = (parts.path or "/") + ("?" + parts.query if parts.query else "")
+        extra = "".join(f"{k}: {v}\r\n" for k, v in (headers or {}).items())
+        self.sock.sendall((f"GET {path} HTTP/1.1\r\nHost: {parts.hostname}:{port}\r\nUpgrade: websocket\r\n"
+                           f"Connection: Upgrade\r\nSec-WebSocket-Key: {key}\r\nSec-WebSocket-Version: 13\r\n"
+                           f"{extra}\r\n").encode())
+        reply = b""
+        while b"\r\n\r\n" not in reply:
+            chunk = self.sock.recv(4096)
+            if not chunk:
+                raise UsecaseFailed(f"{url}: connection closed during the WebSocket handshake")
+            reply += chunk
+        head, _, self._buffer = reply.partition(b"\r\n\r\n")
+        status = head.split(b"\r\n", 1)[0].decode("latin-1")
+        accept = base64.b64encode(hashlib.sha1((key + _WS_GUID).encode()).digest()).decode()
+        if " 101 " not in status or accept not in head.decode("latin-1"):
+            raise UsecaseFailed(f"{url}: WebSocket handshake refused: {status}")
+
+    def _read(self, n):
+        while len(self._buffer) < n:
+            chunk = self.sock.recv(65536)
+            if not chunk:
+                raise UsecaseFailed("WebSocket closed by the server")
+            self._buffer += chunk
+        data, self._buffer = self._buffer[:n], self._buffer[n:]
+        return data
+
+    def send(self, message):
+        """A str goes as a text frame, bytes as a binary frame."""
+        if isinstance(message, str):
+            self.sock.sendall(ws_frame(1, message.encode("utf-8")))
+        else:
+            self.sock.sendall(ws_frame(2, bytes(message)))
+
+    def recv(self):
+        """The next text (str) or binary (bytes) message; None when the server closes."""
+        while True:
+            first, second = self._read(2)
+            opcode, n = first & 0x0F, second & 0x7F
+            if n == 126:
+                n = struct.unpack(">H", self._read(2))[0]
+            elif n == 127:
+                n = struct.unpack(">Q", self._read(8))[0]
+            payload = self._read(n)  # servers do not mask
+            if opcode == 9:
+                self.sock.sendall(ws_frame(10, payload))
+            elif opcode == 8:
+                return None
+            elif opcode == 1:
+                return payload.decode("utf-8")
+            elif opcode == 2:
+                return payload
+
+    def close(self):
+        try:
+            self.sock.sendall(ws_frame(8, b""))
+        except OSError:
+            pass
+        self.sock.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        self.close()
 
 
 def unique(prefix):
