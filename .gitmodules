@@ -67,3 +67,6 @@
 [submodule "tools/hydec/decomp-hydec"]
 	path = tools/hydec/decomp-hydec
 	url = git@github.com:khaledsellami/decomp-hydec.git
+[submodule "tools/rldec/decomp-rldec"]
+	path = tools/rldec/decomp-rldec
+	url = git@github.com:khaledsellami/decomp-rldec.git
