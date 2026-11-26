@@ -1,0 +1,3 @@
+com.ibm.websphere.samples.daytrader.ejb3.TradeSLSBBean
+com.ibm.websphere.samples.daytrader.ejb3.DTBroker3MDB
+com.ibm.websphere.samples.daytrader.ejb3.DTStreamer3MDB

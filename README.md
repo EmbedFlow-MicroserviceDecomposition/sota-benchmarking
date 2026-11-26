@@ -14,6 +14,10 @@ To ensure reproducible, fair, and scalable evaluations, we adopt the following m
 ### 1. Datasets & `dataset.json`
 - Linking an external git repo (if any) as a submodule is **preferred** instead of copying files.
 - A `dataset.py` script is **mandatory** and must produce a `dataset.json`. Adding other scripts to run and additional instructions must be put in the `README.md` for that specific dataset.
+- `dataset.py` uses the shared JavaParser extractor (`datasets/extractor/`, JDK 17 + Maven, built on first run) and fails loudly if
+  any source file does not parse. `dataset.json` is method-level and also lists every class (`classes`) and class-level edges
+  (`CALL`, `EXTENDS`, `IMPLEMENTS`, `FIELD`, `weight` = number of occurrences). Optional per-dataset inputs sit next to it:
+  `entrypoints.txt` (web entrypoint classes, used by CHGNN/AE-K/VAE-C) and `fosci_trace.csv.gz` (FoSCI execution trace).
 - **Schema**:
   ```json
   {
@@ -48,9 +52,11 @@ To ensure reproducible, fair, and scalable evaluations, we adopt the following m
   }
   ```
 
-Class-based tools may list fully qualified class names in `microservices`, as
-the existing class-based adapters do. MonoEmbed uses this form so NED counts
-classes. Its tool-owned prepared `dataset.json` additionally contains `classes` (type FQNs),
+A tool may emit class FQNs or method ids in `microservices`. `metrics/partition.py` resolves both: method ids roll up to their
+class by majority vote, classes explode to all their methods. Ids that match nothing in `dataset.json` are counted, never guessed,
+and every `*_score.json` carries a `coverage` block (`classes`, `assigned`, `unassigned`, `unmatched_ids`, `conflicts`).
+
+MonoEmbed emits class FQNs, so NED counts classes. Its tool-owned prepared `dataset.json` additionally contains `classes` (type FQNs),
 `class_sources` (FQN-to-source-text strings), and `monoembed` provenance. See
 [MonoEmbed](tools/monoembed/README.md) and
 [dataset scopes and preparation](tools/monoembed/README.md#supported-datasets-and-source-scope).
@@ -113,6 +119,28 @@ graph TD
 * **[MAGNET](https://github.com/magnetmicro/MAGNET)** - `tools/magnet/`
 * **[IBM Mono2Micro](https://www.ibm.com/cloud/mono2micro)** - `tools/mono2micro/`
 * **[MonoEmbed](tools/monoembed/README.md)** - `tools/monoembed/` (GPU inference; Java source adapters)
+* **Triplet-Guided CHGNN** - `tools/triplet-guided-chgnn/`
+* **[CHGNN](https://github.com/Alex-Mathai-98/Monolith-to-Microservices)** (original, IJCAI 2022) - `tools/chgnn/`
+* **[CoGCN](https://github.com/utkd/cogcn)** (AAAI 2021) - `tools/cogcn/`
+* **[FoSCI](https://github.com/wj86/FoSCI)** (execution-trace based, TSE 2019) - `tools/fosci/`
+* **[CARGO](https://github.com/vikramnitin9/tackle-data-gravity-insights)** (ASE 2022) - `tools/cargo/`
+* **AE-K** baseline (autoencoder + KMeans) - `tools/ae-k/`
+* **VAE-C** (variational autoencoder + fuzzy c-means) - `tools/vae-c/`
+
+The last six moved here from the retired `fyp-benchmarking` repository, which this repository supersedes. Each tool's README
+says what it needs and which datasets are N/A for it.
+
+#### Tool x dataset applicability
+
+| Dataset | CHGNN | CoGCN | AE-K / VAE-C | FoSCI | CARGO |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| acme-air, apache-roller, autocare, bear-board, jforum, jpetstore, pharmacy, spring-blog | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | own trace `fosci_trace.csv.gz` (not recorded yet for apache-roller, jforum, jpetstore, spring-blog: the cell fails until it is) | committed Doop facts |
+| spring-petclinic | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | own trace `fosci_trace.csv.gz` | N/A (declared in `bytecode_analysis.json`: Java 17 pin) |
+| daytrader, plants | authors' bundled inputs | yes | yes | N/A with the current trace (1 functional atom) | committed Doop facts |
+| javafx-pos | N/A (no web entrypoints) | yes | N/A | no trace yet | committed Doop facts |
+| genapp (COBOL) | N/A | N/A | N/A | N/A | N/A |
+
+A dataset can declare that a tool family cannot analyse it: `datasets/<name>/bytecode_analysis.json` (`{"supported": false, "reason": "..."}`) makes CARGO's cell N/A, whatever facts exist. An N/A cell is still written: `output.json` is `{"error": "...", "tool": "..."}` and the metrics refuse to score it.
 
 ### Datasets (Monoliths)
 * **[Acme Air](https://github.com/acmeair/acmeair)** - `datasets/acme-air/`
@@ -144,11 +172,15 @@ graph TD
 ```text
 fyp-sota/
 ├── datasets/
+│   ├── common.py, extractor/        # shared JavaParser extraction
 │   └── <dataset>/
 │       ├── README.md
 │       ├── dataset.py
-│       └── dataset.json
+│       ├── dataset.json
+│       ├── entrypoints.txt          # optional
+│       └── fosci_trace.csv.gz       # optional
 ├── tools/
+│   ├── _common/                     # code shared by ae-k and vae-c
 │   └── <tool>/
 │       ├── README.md
 │       ├── tool.py
@@ -158,9 +190,14 @@ fyp-sota/
 │               ├── raw_files...
 │               └── <metric>_score.json 
 ├── metrics/
+│   ├── partition.py, compute_all.py
 │   └── <metric>/
 │       ├── README.md
 │       └── metric.py
+├── scripts/
+│   ├── benchmark.py                 # central CLI: `run` every cell, `report` the tables
+│   └── run_sweep.py                 # one cell: repeated runs + mean metrics
+├── tests/                           # see "Tests"
 └── README.md
 ```
 
@@ -190,9 +227,16 @@ fyp-sota/
 
 ### 1. Cloning the Repository
 ```bash
-git clone --recursive https://github.com/your-username/fyp-sota.git
-cd fyp-sota
+git clone git@github.com:EmbedFlow-MicroserviceDecomposition/sota-benchmarking.git
+cd sota-benchmarking
+GIT_LFS_SKIP_SMUDGE=1 git submodule update --init   # not --recursive, see below
 ```
+
+Do not use `--recursive`: CARGO's upstream repository contains a broken nested submodule entry
+(`RQ2/daytrader_apps/daytrader_mono2micro`, no URL), so a recursive update fails on it, and none of our submodules needs its nested
+ones. `GIT_LFS_SKIP_SMUDGE=1` keeps the FoSCI submodule from downloading about 1 GB of the FoSCI authors' traces, which this benchmark does
+not use (FoSCI reads only `datasets/<dataset>/fosci_trace.csv.gz`). The submodule URLs are SSH
+(`git@github.com:...`), so the machine needs an SSH key registered with GitHub.
 
 ### 2. End-to-End Pipeline Execution
 
@@ -217,3 +261,38 @@ uv run metric.py \
   --dataset-path ../../datasets/acme-air \
   --output-path ../../tools/magnet/outputs/acme-air
 ```
+
+## Running the whole benchmark
+
+`scripts/benchmark.py` is the central CLI. Prerequisites: Docker running, JDK 17 + Maven (the extractor builds on first use), `uv`,
+`git submodule update --init` (without `--recursive`, see step 1). CARGO's Doop facts and input jars are committed under
+`tools/cargo/`.
+
+```bash
+uv run scripts/benchmark.py run --dry-run          # the plan: which cells exist, which would run
+uv run scripts/benchmark.py run                    # every missing cell with the paper run counts (many hours)
+uv run scripts/benchmark.py run --tools chgnn,fosci --datasets jpetstore,bear-board --profile quick   # one run per cell
+uv run scripts/benchmark.py report                 # SM, ICP, IFN, NED, BCP, CHM, CHD: one table per metric, datasets x tools
+uv run scripts/benchmark.py report --metrics SM,NED --coverage --format markdown
+```
+
+Results are generated, not committed: `tools/<tool>/outputs/` is git-ignored, so a fresh clone has no tables until `run` has produced
+cells (or they are copied over from another machine).
+
+`run` builds a missing `dataset.json`, skips cells that already have results or a deliberate N/A (`--force` redoes them), tries again
+any cell whose every run failed for a real reason such as a missing input or Docker being down, and runs the cells one after another. `report` only reads files, so it can run while `run` is still going; it also shows the older
+single-run cells (Triplet-Guided CHGNN, MAGNET, Mono2Micro) if they have outputs. `N/A` marks a cell that does not apply to a tool,
+`FAIL` a cell where every run failed. The paper profile uses: CHGNN 10 runs, CoGCN 5, AE-K 3, VAE-C 3 (5 on bear-board, pharmacy,
+autocare), FoSCI 5 (1 on Roller), CARGO 1 invocation (its 30-entry K x seed grid runs inside).
+
+## Tests
+
+```bash
+uv run --python 3.12 --with pytest --with numpy==2.4.4 --with scipy==1.18.0 --with scikit-learn==1.9.0 \
+  --with scikit-fuzzy==0.5.0 --with tensorflow==2.21.0 --with javalang==0.13.0 --with pandas --with pyarrow pytest tests -q
+```
+
+`javalang` is needed to collect `tests/test_monoembed.py`; without `pandas`/`pyarrow` six MonoEmbed tests skip, and without the
+other extras `tests/test_vaec_core.py` skips. No submodule needs to be initialised. `tests/test_dataset_common.py` builds the extractor, so it
+needs JDK 17+ and Maven. The FoSCI end-to-end test runs the real search (~90 s). The
+extractor has its own JUnit suite: `mvn -f datasets/extractor/pom.xml test`.

@@ -1,0 +1,3 @@
+com.ibm.websphere.samples.pbw.war.AdminServlet
+com.ibm.websphere.samples.pbw.war.AccountServlet
+com.ibm.websphere.samples.pbw.war.ImageServlet

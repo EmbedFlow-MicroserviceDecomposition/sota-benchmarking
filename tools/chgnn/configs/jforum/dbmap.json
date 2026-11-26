@@ -1,0 +1,10 @@
+{
+  "net.jforum.dao.UserDAO": {"jforum_users": "CRUD"},
+  "net.jforum.dao.TopicDAO": {"jforum_topics": "CRUD"},
+  "net.jforum.dao.PostDAO": {"jforum_posts": "CRUD"},
+  "net.jforum.dao.ForumDAO": {"jforum_forums": "CRUD"},
+  "net.jforum.dao.CategoryDAO": {"jforum_categories": "CRUD"},
+  "net.jforum.dao.PrivateMessageDAO": {"jforum_privmsgs": "CRUD"},
+  "net.jforum.dao.GroupDAO": {"jforum_groups": "CRUD"},
+  "net.jforum.dao.BookmarkDAO": {"jforum_bookmarks": "CRUD"}
+}

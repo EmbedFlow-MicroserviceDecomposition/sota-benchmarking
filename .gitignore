@@ -1,5 +1,7 @@
 # Ignore generated Universal JSONs
 dataset.json
+# ...except the hand-made metric-parity fixture
+!tests/fixtures/parity/dataset.json
 
 # Ignore generated KDM Code Models
 *_kdm.xmi
@@ -10,3 +12,11 @@ outputs/
 # Ignore Python cache
 __pycache__/
 *.pyc
+
+# Extractor build output
+datasets/extractor/target/
+datasets/extractor/dependency-reduced-pom.xml
+
+# CARGO: the Doop facts, DiVA transactions and input jars are committed (hours to regenerate). Doop's DependentInstruction.csv (up to 118 MB,
+# over GitHub's 100 MB file limit) is never read by dgi, so it stays on disk only.
+tools/cargo/doop-data/*/DependentInstruction.csv

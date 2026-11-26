@@ -1,0 +1,13 @@
+<com.acmeair.loader.Loader: java.lang.String loadDB(long)>	<com.acmeair.loader.Loader: java.lang.String execute(long)>	long
+<com.acmeair.loader.Loader: java.lang.String loadCustomerDB(long)>	<com.acmeair.loader.Loader: java.lang.String executeCustomerDB(long)>	long
+<com.acmeair.web.FlightsREST: java.lang.String getTripFlights(java.lang.String,java.lang.String,java.util.Date,java.util.Date,boolean)>	<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>	java.util.Date
+<com.acmeair.config.LoaderREST: javax.ws.rs.core.Response loadDB(long)>	<com.acmeair.loader.Loader: java.lang.String loadDB(long)>	long
+<com.acmeair.service.AuthService: org.json.simple.JSONObject createSession(java.lang.String)>	<com.acmeair.service.AuthService: java.lang.String createSession(java.lang.String,java.lang.String,java.util.Date,java.util.Date)>	java.util.Date
+<com.acmeair.web.SupportWebSocket: java.lang.String getRandomSupportResponse(java.lang.String)>	<com.acmeair.web.SupportWebSocket: int getRandomInt(int,int)>	int
+<com.acmeair.service.FlightService: java.util.List getFlightByAirportsAndDepartureDate(java.lang.String,java.lang.String,java.util.Date)>	<com.acmeair.service.FlightService: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>	java.util.Date
+<com.acmeair.service.FlightService: java.util.List getFlightByAirports(java.lang.String,java.lang.String)>	<com.acmeair.service.FlightService: java.util.List getFlightBySegment(java.lang.String,java.util.Date)>	java.util.Date
+<com.acmeair.loader.FlightLoader: void loadFlights()>	<com.acmeair.loader.FlightLoader: java.util.Date getArrivalTime(java.util.Date,int)>	int
+<com.acmeair.loader.FlightLoader: void loadFlights()>	<com.acmeair.loader.FlightLoader: java.util.Date getArrivalTime(java.util.Date,int)>	java.util.Date
+<com.acmeair.loader.FlightLoader: void loadFlights()>	<com.acmeair.loader.FlightLoader: boolean alreadyInCollection(java.lang.String,java.util.ArrayList)>	java.util.ArrayList
+<com.acmeair.loader.Loader: java.lang.String execute()>	<com.acmeair.loader.Loader: java.lang.String execute(long)>	long
+<com.acmeair.web.SupportWebSocket: java.lang.String getRandomSupportAgent()>	<com.acmeair.web.SupportWebSocket: int getRandomInt(int,int)>	int

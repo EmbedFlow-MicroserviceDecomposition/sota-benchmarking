@@ -1,0 +1,7 @@
+[<<immutable-context>>]	<com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/1	<com.upachar.web.user.enums.Role: com.upachar.web.user.enums.Role USER>
+[<<immutable-context>>]	<com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role/0	<com.upachar.web.user.enums.Role: com.upachar.web.user.enums.Role ADMIN>
+[<<immutable-context>>]	<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/0	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus PENDING>
+[<<immutable-context>>]	<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/1	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus PROCESSED>
+[<<immutable-context>>]	<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus/2	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus DELIVERED>
+[<<immutable-context>>]	<com.upachar.web.order.enums.OrderStatus: void <clinit>()>/new com.upachar.web.order.enums.OrderStatus[]/0	<com.upachar.web.order.enums.OrderStatus: com.upachar.web.order.enums.OrderStatus[] $VALUES>
+[<<immutable-context>>]	<com.upachar.web.user.enums.Role: void <clinit>()>/new com.upachar.web.user.enums.Role[]/0	<com.upachar.web.user.enums.Role: com.upachar.web.user.enums.Role[] $VALUES>

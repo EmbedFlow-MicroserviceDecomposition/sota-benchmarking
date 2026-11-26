@@ -1,0 +1,4 @@
+[<<immutable-context>>]	<com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/1	<com.rokin.baylorboard.enums.Role: com.rokin.baylorboard.enums.Role PROFESSOR>
+[<<immutable-context>>]	<com.rokin.baylorboard.utils.PasswordUtils: void <clinit>()>/new java.security.SecureRandom/0	<com.rokin.baylorboard.utils.PasswordUtils: java.util.Random RANDOM>
+[<<immutable-context>>]	<com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role/0	<com.rokin.baylorboard.enums.Role: com.rokin.baylorboard.enums.Role ADMIN>
+[<<immutable-context>>]	<com.rokin.baylorboard.enums.Role: void <clinit>()>/new com.rokin.baylorboard.enums.Role[]/0	<com.rokin.baylorboard.enums.Role: com.rokin.baylorboard.enums.Role[] $VALUES>

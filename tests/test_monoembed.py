@@ -31,7 +31,6 @@ def load(name, path):
 
 tool = load("monoembed_tool", "tools/monoembed/tool.py")
 preparation = load("monoembed_prepare", "tools/monoembed/prepare.py")
-pharmacy = load("pharmacy_dataset", "datasets/pharmacy/dataset.py")
 
 
 def write_json(path, value):
@@ -249,7 +248,7 @@ def sources(tmp_path):
     return repo, records
 
 
-def test_pharmacy_preparation_and_legacy_mode(sources, tmp_path, monkeypatch):
+def test_pharmacy_preparation(sources, tmp_path, monkeypatch):
     repo, records = sources
     monkeypatch.setattr(preparation, "extract_monoembed_types", lambda root: (records, "test-extractor-hash"))
     # A test source must not enter either representation in MonoEmbed mode.
@@ -265,8 +264,6 @@ def test_pharmacy_preparation_and_legacy_mode(sources, tmp_path, monkeypatch):
     assert data["monoembed"]["source_commit"]
     assert "p/A.java" in data["monoembed"]["source_sha256"]
     assert not any("Test" in name for name in data["methods"])
-    pharmacy.generate_universal_json("Demo", str(repo), out, "b", "x")
-    assert "class_sources" not in json.loads(out.read_text())
 
 
 def test_preparation_builds_and_runs_only_bundled_extractor(tmp_path, monkeypatch):

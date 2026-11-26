@@ -1,0 +1,11 @@
+{
+  "com.upachar.web.drug.repository.DrugRepository": {"drugs": "CRUD"},
+  "com.upachar.web.drug.repository.CategoryRepository": {"categories": "CRUD"},
+  "com.upachar.web.drug.repository.SubCategoryRepository": {"sub_categories": "CRUD"},
+  "com.upachar.web.drug.repository.DosageFormRepository": {"dosage_forms": "CRU"},
+  "com.upachar.web.order.repository.OrderRepository": {"orders": "CRUD"},
+  "com.upachar.web.order.repository.DrugQuantityRepository": {"drug_quantities": "R"},
+  "com.upachar.web.order.service.OrderService": {"order_prescriptions": "CRD"},
+  "com.upachar.web.user.repository.UserRepository": {"users": "CRUD"},
+  "com.upachar.web.user.service.UserService": {"user_roles": "CR"}
+}

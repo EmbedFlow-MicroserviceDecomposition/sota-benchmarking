@@ -1,0 +1,3 @@
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.MessageBean: void setName(java.lang.String)>/assign/instruction3	<com.rokin.baylorboard.domain.MessageBean: java.lang.String getName()>/assign/instruction2
+[<<immutable-context>>, <<immutable-context>>]	<com.rokin.baylorboard.domain.MessageBean: void setMessage(java.lang.String)>/assign/instruction3	<com.rokin.baylorboard.domain.MessageBean: java.lang.String getMessage()>/assign/instruction2
+[<<immutable-hcontext>>, com.rokin.baylorboard.domain.User::MockObject]	<com.rokin.baylorboard.domain.User: void setPassword(java.lang.String)>/assign/instruction3	<com.rokin.baylorboard.domain.User: java.lang.String getPassword()>/assign/instruction2

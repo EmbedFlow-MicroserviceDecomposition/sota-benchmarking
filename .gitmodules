@@ -46,3 +46,18 @@
 [submodule "tools/triplet-guided-chgnn/triplet-guided-chgnn"]
 	path = tools/triplet-guided-chgnn/triplet-guided-chgnn
 	url = git@github.com:Mono2Distributed/triplet-guided-chgnn.git
+[submodule "tools/chgnn/Monolith-to-Microservices"]
+	path = tools/chgnn/Monolith-to-Microservices
+	url = git@github.com:Alex-Mathai-98/Monolith-to-Microservices.git
+[submodule "tools/ae-k/benchmarking-monolith-to-microservices"]
+	path = tools/ae-k/benchmarking-monolith-to-microservices
+	url = git@github.com:rokinmaharjan/benchmarking-monolith-to-microservices.git
+[submodule "tools/fosci/FoSCI"]
+	path = tools/fosci/FoSCI
+	url = git@github.com:wj86/FoSCI.git
+[submodule "tools/cargo/tackle-data-gravity-insights"]
+	path = tools/cargo/tackle-data-gravity-insights
+	url = git@github.com:vikramnitin9/tackle-data-gravity-insights.git
+[submodule "tools/cogcn/cogcn"]
+	path = tools/cogcn/cogcn
+	url = git@github.com:utkd/cogcn.git

@@ -7,6 +7,9 @@ import os
 import re
 import json
 import argparse
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from partition import Edge, class_of, load_dataset, load_edges, load_partition  # noqa: E402
 from dataclasses import dataclass
 from itertools import combinations
 
@@ -36,92 +39,6 @@ def _jaccard(a, b):
     if not a and not b:
         return 1.0
     return len(a & b) / len(a | b)
-
-def resolve_partition(microservices, dataset_methods=None):
-    method_partition = {}
-    class_member_counts = {}
-
-    class_fqn_to_simple = {}
-    simple_to_class_fqn = {}
-    if dataset_methods:
-        for mid, mdata in dataset_methods.items():
-            pkg = mdata.get("package", "")
-            cls = mdata.get("class", "")
-            if cls:
-                fqn = f"{pkg}.{cls}" if pkg else cls
-                class_fqn_to_simple[fqn] = cls
-                simple_to_class_fqn.setdefault(cls, set()).add(fqn)
-
-    for cid, members in microservices.items():
-        for m in members:
-            if "-res" in m:
-                continue
-            clean_m = m.split(" [")[0].strip()
-            method_partition[clean_m] = cid
-            if m != clean_m:
-                method_partition[m] = cid
-
-            if dataset_methods and clean_m in dataset_methods:
-                m_info = dataset_methods[clean_m]
-                pkg = m_info.get("package", "")
-                cls = m_info.get("class", "")
-                class_fqn = f"{pkg}.{cls}" if pkg else cls
-                simple_cls = cls
-            elif clean_m in class_fqn_to_simple:
-                class_fqn = clean_m
-                simple_cls = class_fqn_to_simple[clean_m]
-            elif clean_m in simple_to_class_fqn:
-                simple_cls = clean_m
-                fqns = simple_to_class_fqn[clean_m]
-                class_fqn = list(fqns)[0] if len(fqns) == 1 else clean_m
-            elif "." in clean_m:
-                last_seg = clean_m.split(".")[-1]
-                if last_seg and last_seg[0].isupper():
-                    class_fqn = clean_m
-                    simple_cls = last_seg
-                else:
-                    class_fqn = clean_m.rsplit(".", 1)[0]
-                    simple_cls = class_fqn.split(".")[-1]
-            else:
-                class_fqn = clean_m
-                simple_cls = clean_m
-
-            class_member_counts.setdefault(class_fqn, {})
-            class_member_counts[class_fqn][cid] = class_member_counts[class_fqn].get(cid, 0) + 1
-            if simple_cls != class_fqn:
-                class_member_counts.setdefault(simple_cls, {})
-                class_member_counts[simple_cls][cid] = class_member_counts[simple_cls].get(cid, 0) + 1
-
-    class_partition = {}
-    for class_name, counts in class_member_counts.items():
-        majority_cid = max(counts.items(), key=lambda x: x[1])[0]
-        class_partition[class_name] = majority_cid
-
-    def get_cluster(node_id):
-        if not node_id:
-            return None
-        clean_node = node_id.split(" [")[0].strip()
-        if clean_node in method_partition:
-            return method_partition[clean_node]
-        if node_id in method_partition:
-            return method_partition[node_id]
-        if clean_node in class_partition:
-            return class_partition[clean_node]
-        if node_id in class_partition:
-            return class_partition[node_id]
-        simple_name = clean_node.split(".")[-1]
-        if simple_name in class_partition:
-            return class_partition[simple_name]
-        if "." in clean_node:
-            parent_cls = clean_node.rsplit(".", 1)[0]
-            if parent_cls in class_partition:
-                return class_partition[parent_cls]
-            short_parent = parent_cls.split(".")[-1]
-            if short_parent in class_partition:
-                return class_partition[short_parent]
-        return None
-
-    return get_cluster
 
 def _published_ops(get_cluster, clusters, calls):
     ops = {cid: set() for cid in clusters}
@@ -161,57 +78,39 @@ def calculate_chd(get_cluster, clusters, calls):
     overall_chd = sum(microservice_scores.values()) / len(clusters)
     return overall_chd, microservice_scores
 
-def load_calls(dataset_path):
+def load_calls(dataset):
+    """(caller class FQN, Operation) for every project call site in dataset.json."""
+    methods = dataset.get("methods", {})
     calls = []
-    dataset_methods = {}
-    dataset_json = os.path.join(dataset_path, "dataset.json")
+    for caller_id, mdata in methods.items():
+        for callee_id in mdata.get("calls", []):
+            callee = methods.get(callee_id, {})
+            op = Operation(cls=class_of(callee_id),
+                           name=callee.get("method_name", callee_id.split(".")[-1]),
+                           params=tuple(callee.get("parameters", [])),
+                           returns=callee.get("return_type", "void"))
+            calls.append((class_of(caller_id), op))
+    return calls
 
-    if os.path.exists(dataset_json):
-        with open(dataset_json, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            methods = data.get("methods", {})
-            dataset_methods = methods
-            for caller_id, mdata in methods.items():
-                caller_cls = mdata.get("class", caller_id.rsplit(".", 1)[0] if "." in caller_id else caller_id)
-                method_calls = mdata.get("calls", [])
-                for callee_id in method_calls:
-                    callee_data = methods.get(callee_id, {})
-                    callee_cls = callee_data.get("class", callee_id.rsplit(".", 1)[0] if "." in callee_id else callee_id)
-                    callee_name = callee_data.get("method_name", callee_id.split(".")[-1])
-                    callee_params = tuple(callee_data.get("parameters", []))
-                    callee_returns = callee_data.get("return_type", "void")
-                    
-                    op = Operation(cls=callee_cls, name=callee_name, params=callee_params, returns=callee_returns)
-                    calls.append((caller_cls, op))
-
-    return calls, dataset_methods
 
 def evaluate_chd(dataset_path, output_path):
-    output_json = os.path.join(output_path, "output.json")
-    if not os.path.exists(output_json):
-        raise FileNotFoundError(f"output.json not found at {output_json}")
-
-    with open(output_json, "r", encoding="utf-8") as f:
-        result_data = json.load(f)
-        microservices = result_data.get("microservices", {})
-
-    calls, dataset_methods = load_calls(dataset_path)
-    get_cluster = resolve_partition(microservices, dataset_methods)
-    clusters = set(microservices.keys())
-
-    score, ms_scores = calculate_chd(get_cluster, clusters, calls)
+    dataset = load_dataset(dataset_path)
+    partition = load_partition(output_path, dataset)
+    score, ms_scores = calculate_chd(partition.get_cluster, partition.clusters, load_calls(dataset))
 
     print(f"Final CHD Score: {score:.4f}")
 
-    chd_score_json = os.path.join(output_path, "chd_score.json")
-    with open(chd_score_json, "w", encoding="utf-8") as f:
+    score_json = os.path.join(output_path, "chd_score.json")
+    with open(score_json, "w", encoding="utf-8") as f:
         json.dump({
             "metric": "CHD",
             "score": score,
-            "microservice_scores": ms_scores
+            "microservice_scores": ms_scores,
+            "coverage": partition.coverage()
         }, f, indent=4)
-    print(f"Saved metric results to {chd_score_json}")
+    print(f"Saved metric results to {score_json}")
     return score
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Metric: Evaluator for Cohesion at Domain Level (CHD)")

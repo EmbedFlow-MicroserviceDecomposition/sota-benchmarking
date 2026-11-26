@@ -1,0 +1,11 @@
+[<<immutable-hcontext>>]	<<string-constant>>	<com.acmeair.web.LoginREST: java.lang.String SESSIONID_COOKIE_NAME>
+[<<immutable-context>>]	<com.acmeair.mongo.ConnectionManager: void <clinit>()>/new java.util.concurrent.atomic.AtomicReference/0	<com.acmeair.mongo.ConnectionManager: java.util.concurrent.atomic.AtomicReference connectionManager>
+[<<immutable-hcontext>>]	<<string-constant>>	<com.acmeair.service.ServiceLocator: java.lang.String REPOSITORY_LOOKUP_KEY>
+[<<immutable-hcontext>>]	<<string-constant>>	<com.acmeair.service.ServiceLocator: java.lang.String serviceType>
+[<<immutable-hcontext>>]	<<null pseudo heap>>	<com.acmeair.service.ServiceLocator: java.lang.String serviceType>
+[<<immutable-context>>]	<com.acmeair.service.ServiceLocator: void <clinit>()>/new java.util.concurrent.atomic.AtomicReference/0	<com.acmeair.service.ServiceLocator: java.util.concurrent.atomic.AtomicReference singletonServiceLocator>
+[<<immutable-hcontext>>]	<<null pseudo heap>>	<com.acmeair.service.FlightService: java.lang.Boolean useFlightDataRelatedCaching>
+[<<immutable-hcontext>>]	<<string-constant>>	<com.acmeair.service.FlightService: java.lang.String acmeairDir>
+[<<immutable-context>>]	<com.acmeair.service.FlightService: void <clinit>()>/new java.util.concurrent.ConcurrentHashMap/0	<com.acmeair.service.FlightService: java.util.concurrent.ConcurrentHashMap originAndDestPortToSegmentCache>
+[<<immutable-context>>]	<com.acmeair.service.FlightService: void <clinit>()>/new java.util.concurrent.ConcurrentHashMap/1	<com.acmeair.service.FlightService: java.util.concurrent.ConcurrentHashMap flightSegmentAndDataToFlightCache>
+[<<immutable-context>>]	<com.acmeair.service.FlightService: void <clinit>()>/new java.util.concurrent.ConcurrentHashMap/2	<com.acmeair.service.FlightService: java.util.concurrent.ConcurrentHashMap flightPKtoFlightCache>

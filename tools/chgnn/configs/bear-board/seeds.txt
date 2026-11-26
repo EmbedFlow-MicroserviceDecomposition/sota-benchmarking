@@ -1,0 +1,4 @@
+tweets-res, com.rokin.baylorboard.service.TweetService
+users-res, com.rokin.baylorboard.service.UserService
+events-res, com.rokin.baylorboard.service.EventService
+awards-res, com.rokin.baylorboard.service.AwardService

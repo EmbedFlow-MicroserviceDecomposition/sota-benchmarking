@@ -1,0 +1,4 @@
+drugs-res, com.upachar.web.drug.service.DrugService
+categories-res, com.upachar.web.drug.service.CategoryService
+orders-res, com.upachar.web.order.service.OrderService
+users-res, com.upachar.web.user.service.UserService

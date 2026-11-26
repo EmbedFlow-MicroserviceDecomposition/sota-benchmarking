@@ -1,0 +1,12 @@
+weblog-res, org.apache.roller.weblogger.business.jpa.JPAWeblogManagerImpl
+weblogentry-res, org.apache.roller.weblogger.business.jpa.JPAWeblogEntryManagerImpl
+roller_user-res, org.apache.roller.weblogger.business.jpa.JPAUserManagerImpl
+roller_mediafile-res, org.apache.roller.weblogger.business.jpa.JPAMediaFileManagerImpl
+bookmark-res, org.apache.roller.weblogger.business.jpa.JPABookmarkManagerImpl
+pingtarget-res, org.apache.roller.weblogger.business.jpa.JPAPingTargetManagerImpl
+autoping-res, org.apache.roller.weblogger.business.jpa.JPAAutoPingManagerImpl
+pingqueueentry-res, org.apache.roller.weblogger.business.jpa.JPAPingQueueManagerImpl
+roller_properties-res, org.apache.roller.weblogger.business.jpa.JPAPropertiesManagerImpl
+roller_oauthconsumer-res, org.apache.roller.weblogger.business.jpa.JPAOAuthManagerImpl
+roller_tasklock-res, org.apache.roller.weblogger.business.jpa.JPAThreadManagerImpl
+rag_planet-res, org.apache.roller.planet.business.jpa.JPAPlanetManagerImpl

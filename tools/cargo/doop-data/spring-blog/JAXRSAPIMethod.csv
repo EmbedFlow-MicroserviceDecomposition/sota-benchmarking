@@ -1,0 +1,9 @@
+<com.raysmond.blog.admin.controllers.UserController: java.lang.String profile(org.springframework.ui.Model)>
+<com.raysmond.blog.admin.controllers.UserController: java.lang.String update(java.lang.Long,com.raysmond.blog.forms.UserForm,org.springframework.validation.Errors,org.springframework.web.servlet.mvc.support.RedirectAttributes)>
+<com.raysmond.blog.controllers.UserController: java.lang.String signin(java.security.Principal,org.springframework.web.servlet.mvc.support.RedirectAttributes)>
+<com.raysmond.blog.admin.controllers.PostController: java.lang.String editPost(java.lang.Long,org.springframework.ui.Model)>
+<com.raysmond.blog.admin.controllers.PostController: java.lang.String deletePost(java.lang.Long)>
+<com.raysmond.blog.admin.controllers.PostController: java.lang.String create(java.security.Principal,com.raysmond.blog.forms.PostForm,org.springframework.validation.Errors,org.springframework.ui.Model)>
+<com.raysmond.blog.admin.controllers.PostController: java.lang.String update(java.lang.Long,com.raysmond.blog.forms.PostForm,org.springframework.validation.Errors,org.springframework.ui.Model)>
+<com.raysmond.blog.controllers.TagController: java.lang.String index(org.springframework.ui.Model)>
+<com.raysmond.blog.controllers.TagController: java.lang.String showTag(java.lang.String,int,org.springframework.ui.Model)>

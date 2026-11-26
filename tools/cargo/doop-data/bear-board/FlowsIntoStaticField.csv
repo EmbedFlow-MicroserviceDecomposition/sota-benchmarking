@@ -1,0 +1,8 @@
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/$stack0	<com.rokin.baylorboard.enums.TweetStatus: com.rokin.baylorboard.enums.TweetStatus ACCEPTED>
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/$stack1	<com.rokin.baylorboard.enums.TweetStatus: com.rokin.baylorboard.enums.TweetStatus PENDING>
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/$stack2	<com.rokin.baylorboard.enums.TweetStatus: com.rokin.baylorboard.enums.TweetStatus REJECTED>
+<com.rokin.baylorboard.enums.TweetStatus: void <clinit>()>/$stack3	<com.rokin.baylorboard.enums.TweetStatus: com.rokin.baylorboard.enums.TweetStatus[] $VALUES>
+<com.rokin.baylorboard.utils.PasswordUtils: void <clinit>()>/$stack0	<com.rokin.baylorboard.utils.PasswordUtils: java.util.Random RANDOM>
+<com.rokin.baylorboard.enums.Role: void <clinit>()>/$stack0	<com.rokin.baylorboard.enums.Role: com.rokin.baylorboard.enums.Role ADMIN>
+<com.rokin.baylorboard.enums.Role: void <clinit>()>/$stack1	<com.rokin.baylorboard.enums.Role: com.rokin.baylorboard.enums.Role PROFESSOR>
+<com.rokin.baylorboard.enums.Role: void <clinit>()>/$stack2	<com.rokin.baylorboard.enums.Role: com.rokin.baylorboard.enums.Role[] $VALUES>

@@ -1,0 +1,27 @@
+{
+ "tool": "Fixture",
+ "microservices": {
+  "microservice_1": [
+   "p.C00",
+   "p.C01",
+   "p.C02",
+   "p.C03",
+   "p.C04",
+   "p.C05",
+   "p.C06"
+  ],
+  "microservice_2": [
+   "p.C07",
+   "p.C08",
+   "p.C09"
+  ],
+  "microservice_3": [
+   "p.C10",
+   "p.C11"
+  ],
+  "microservice_4": [
+   "p.C12",
+   "p.C13"
+  ]
+ }
+}
