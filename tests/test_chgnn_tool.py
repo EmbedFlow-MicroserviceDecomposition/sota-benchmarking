@@ -6,6 +6,13 @@ from conftest import load_tool
 tool = load_tool("chgnn")
 
 
+def fake_submodule(tmp_path, monkeypatch):
+    """Stand in for the CHGNN submodule, which a fresh checkout without `git submodule update` leaves empty."""
+    repo = tmp_path / "Monolith-to-Microservices"
+    (repo / "data_layer").mkdir(parents=True)
+    monkeypatch.setattr(tool, "REPO", str(repo))
+
+
 def test_clusters_become_numbered_microservices_without_resource_nodes():
     raw = {"2": ["b.B", "tbl-res"], "0": ["a.A", "x-res", "a.A2"], "1": ["only-res"]}
     assert tool.clusters_to_microservices(raw) == {
@@ -59,6 +66,7 @@ def test_the_work_folder_lives_inside_the_output_folder_so_snap_docker_can_mount
         seen.append(work)
         raise ValueError("stop here")
 
+    fake_submodule(tmp_path, monkeypatch)
     monkeypatch.setattr(tool, "prepare_repo", fake_prepare)
     assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
     assert os.path.dirname(seen[0]) == str(out)

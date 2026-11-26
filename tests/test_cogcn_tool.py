@@ -6,6 +6,14 @@ from conftest import load_tool
 tool = load_tool("cogcn")
 
 
+def fake_submodule(tmp_path, monkeypatch):
+    """Stand in for the CoGCN submodule, which a fresh checkout without `git submodule update` leaves empty."""
+    src = tmp_path / "cogcn-src"
+    src.mkdir()
+    (src / "train.py").write_text("")
+    monkeypatch.setattr(tool, "SRC", str(src))
+
+
 def test_membership_labels_become_numbered_microservices():
     classes = ["p.A", "p.B", "p.C", "p.D"]
     assert tool.membership_to_microservices(classes, [2, 0, 2, 1]) == {
@@ -30,7 +38,8 @@ def test_dataset_with_no_classes_is_an_error_output(tmp_path):
     assert "no Java classes" in json.loads((out / "output.json").read_text())["error"]
 
 
-def test_k_larger_than_the_class_count_is_an_error_output(tmp_path):
+def test_k_larger_than_the_class_count_is_an_error_output(tmp_path, monkeypatch):
+    fake_submodule(tmp_path, monkeypatch)
     ds = tmp_path / "tiny"
     ds.mkdir()
     (ds / "dataset.json").write_text(json.dumps({"classes": ["p.A", "p.B"], "methods": {}, "edges": []}))
@@ -61,6 +70,7 @@ def test_the_work_folder_lives_inside_the_output_folder_so_snap_docker_can_mount
         seen.append(repo)
         return Failed()
 
+    fake_submodule(tmp_path, monkeypatch)
     monkeypatch.setattr(tool, "run_train", fake_train)
     assert tool.main(["--dataset-path", str(ds), "--output-path", str(out)]) == 1
     assert os.path.dirname(os.path.dirname(seen[0])) == str(out)      # <out>/<work dir>/cogcn

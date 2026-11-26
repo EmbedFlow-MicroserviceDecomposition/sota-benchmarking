@@ -1,5 +1,7 @@
 # Ignore generated Universal JSONs
 dataset.json
+# ...except the hand-made metric-parity fixture
+!tests/fixtures/parity/dataset.json
 
 # Ignore generated KDM Code Models
 *_kdm.xmi

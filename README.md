@@ -289,8 +289,10 @@ autocare), FoSCI 5 (1 on Roller), CARGO 1 invocation (its 30-entry K x seed grid
 
 ```bash
 uv run --python 3.12 --with pytest --with numpy==2.4.4 --with scipy==1.18.0 --with scikit-learn==1.9.0 \
-  --with scikit-fuzzy==0.5.0 --with tensorflow==2.21.0 pytest tests -q
+  --with scikit-fuzzy==0.5.0 --with tensorflow==2.21.0 --with javalang==0.13.0 --with pandas --with pyarrow pytest tests -q
 ```
 
-Without the extra `--with` packages only `tests/test_vaec_core.py` skips. The FoSCI end-to-end test runs the real search (~90 s). The
+`javalang` is needed to collect `tests/test_monoembed.py`; without `pandas`/`pyarrow` six MonoEmbed tests skip, and without the
+other extras `tests/test_vaec_core.py` skips. No submodule needs to be initialised. `tests/test_dataset_common.py` builds the extractor, so it
+needs JDK 17+ and Maven. The FoSCI end-to-end test runs the real search (~90 s). The
 extractor has its own JUnit suite: `mvn -f datasets/extractor/pom.xml test`.

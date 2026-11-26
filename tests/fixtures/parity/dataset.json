@@ -1,0 +1,948 @@
+{
+ "dataset": "Parity",
+ "methods": {
+  "p.C00.saveOrder": {
+   "id": "p.C00.saveOrder",
+   "class": "C00",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C09.findOrder",
+    "p.C03.saveOrder",
+    "p.C02.saveOrder",
+    "p.C07.getCustomer"
+   ]
+  },
+  "p.C00.getCustomer": {
+   "id": "p.C00.getCustomer",
+   "class": "C00",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C12.findOrder",
+    "p.C01.listItems",
+    "p.C02.getCustomer",
+    "p.C00.saveOrder"
+   ]
+  },
+  "p.C00.listItems": {
+   "id": "p.C00.listItems",
+   "class": "C00",
+   "package": "p",
+   "method_name": "listItems",
+   "return_type": "List",
+   "parameters": [
+    "String",
+    "int"
+   ],
+   "calls": [
+    "p.C12.getCustomer",
+    "p.C03.findOrder",
+    "p.C11.paymentStatus",
+    "p.C02.getCustomer"
+   ]
+  },
+  "p.C01.listItems": {
+   "id": "p.C01.listItems",
+   "class": "C01",
+   "package": "p",
+   "method_name": "listItems",
+   "return_type": "List",
+   "parameters": [
+    "String",
+    "int"
+   ],
+   "calls": [
+    "p.C07.paymentStatus",
+    "p.C13.saveOrder",
+    "p.C00.getCustomer",
+    "p.C01.getCustomer"
+   ]
+  },
+  "p.C01.getCustomer": {
+   "id": "p.C01.getCustomer",
+   "class": "C01",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C04.paymentStatus",
+    "p.C13.saveOrder",
+    "p.C08.paymentStatus",
+    "p.C03.findOrder"
+   ]
+  },
+  "p.C01.saveOrder": {
+   "id": "p.C01.saveOrder",
+   "class": "C01",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C13.findOrder",
+    "p.C05.saveOrder",
+    "p.C07.listItems",
+    "p.C12.findOrder"
+   ]
+  },
+  "p.C02.getCustomer": {
+   "id": "p.C02.getCustomer",
+   "class": "C02",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C07.paymentStatus",
+    "p.C10.paymentStatus",
+    "p.C02.saveOrder",
+    "p.C10.getCustomer"
+   ]
+  },
+  "p.C02.saveOrder": {
+   "id": "p.C02.saveOrder",
+   "class": "C02",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C09.saveOrder",
+    "p.C10.paymentStatus",
+    "p.C06.findOrder",
+    "p.C01.saveOrder"
+   ]
+  },
+  "p.C02.findOrder": {
+   "id": "p.C02.findOrder",
+   "class": "C02",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C03.findOrder",
+    "p.C02.getCustomer",
+    "p.C07.getCustomer",
+    "p.C05.saveOrder"
+   ]
+  },
+  "p.C03.findOrder": {
+   "id": "p.C03.findOrder",
+   "class": "C03",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C10.paymentStatus",
+    "p.C03.saveOrder",
+    "p.C11.getCustomer",
+    "p.C00.getCustomer"
+   ]
+  },
+  "p.C03.saveOrder": {
+   "id": "p.C03.saveOrder",
+   "class": "C03",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C04.paymentStatus",
+    "p.C11.getCustomer",
+    "p.C07.paymentStatus",
+    "p.C03.findOrder"
+   ]
+  },
+  "p.C03.paymentStatus": {
+   "id": "p.C03.paymentStatus",
+   "class": "C03",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C11.paymentStatus",
+    "p.C00.getCustomer",
+    "p.C11.getCustomer",
+    "p.C06.findOrder"
+   ]
+  },
+  "p.C04.saveOrder": {
+   "id": "p.C04.saveOrder",
+   "class": "C04",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C13.getCustomer",
+    "p.C01.saveOrder",
+    "p.C05.saveOrder",
+    "p.C11.getCustomer"
+   ]
+  },
+  "p.C04.paymentStatus": {
+   "id": "p.C04.paymentStatus",
+   "class": "C04",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C07.paymentStatus",
+    "p.C03.saveOrder",
+    "p.C07.listItems",
+    "p.C04.findOrder"
+   ]
+  },
+  "p.C04.findOrder": {
+   "id": "p.C04.findOrder",
+   "class": "C04",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C11.paymentStatus",
+    "p.C10.saveOrder",
+    "p.C07.getCustomer",
+    "p.C13.findOrder"
+   ]
+  },
+  "p.C05.getCustomer": {
+   "id": "p.C05.getCustomer",
+   "class": "C05",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C04.findOrder",
+    "p.C13.saveOrder",
+    "p.C04.saveOrder",
+    "p.C05.getCustomer"
+   ]
+  },
+  "p.C05.saveOrder": {
+   "id": "p.C05.saveOrder",
+   "class": "C05",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C08.listItems",
+    "p.C04.findOrder",
+    "p.C04.saveOrder",
+    "p.C11.getCustomer"
+   ]
+  },
+  "p.C05.paymentStatus": {
+   "id": "p.C05.paymentStatus",
+   "class": "C05",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C10.getCustomer",
+    "p.C07.listItems",
+    "p.C00.getCustomer",
+    "p.C05.paymentStatus"
+   ]
+  },
+  "p.C06.listItems": {
+   "id": "p.C06.listItems",
+   "class": "C06",
+   "package": "p",
+   "method_name": "listItems",
+   "return_type": "List",
+   "parameters": [
+    "String",
+    "int"
+   ],
+   "calls": [
+    "p.C10.paymentStatus",
+    "p.C05.saveOrder",
+    "p.C04.saveOrder",
+    "p.C12.findOrder"
+   ]
+  },
+  "p.C06.findOrder": {
+   "id": "p.C06.findOrder",
+   "class": "C06",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C07.listItems",
+    "p.C09.findOrder",
+    "p.C07.paymentStatus",
+    "p.C01.saveOrder"
+   ]
+  },
+  "p.C06.getCustomer": {
+   "id": "p.C06.getCustomer",
+   "class": "C06",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C04.findOrder",
+    "p.C02.getCustomer",
+    "p.C10.paymentStatus",
+    "p.C04.saveOrder"
+   ]
+  },
+  "p.C07.getCustomer": {
+   "id": "p.C07.getCustomer",
+   "class": "C07",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C07.getCustomer",
+    "p.C04.paymentStatus",
+    "p.C10.paymentStatus",
+    "p.C13.saveOrder"
+   ]
+  },
+  "p.C07.listItems": {
+   "id": "p.C07.listItems",
+   "class": "C07",
+   "package": "p",
+   "method_name": "listItems",
+   "return_type": "List",
+   "parameters": [
+    "String",
+    "int"
+   ],
+   "calls": [
+    "p.C13.saveOrder",
+    "p.C00.saveOrder",
+    "p.C10.paymentStatus",
+    "p.C13.getCustomer"
+   ]
+  },
+  "p.C07.paymentStatus": {
+   "id": "p.C07.paymentStatus",
+   "class": "C07",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C07.listItems",
+    "p.C13.getCustomer",
+    "p.C01.saveOrder",
+    "p.C02.saveOrder"
+   ]
+  },
+  "p.C08.paymentStatus": {
+   "id": "p.C08.paymentStatus",
+   "class": "C08",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C08.paymentStatus",
+    "p.C04.saveOrder",
+    "p.C10.paymentStatus",
+    "p.C03.paymentStatus"
+   ]
+  },
+  "p.C08.listItems": {
+   "id": "p.C08.listItems",
+   "class": "C08",
+   "package": "p",
+   "method_name": "listItems",
+   "return_type": "List",
+   "parameters": [
+    "String",
+    "int"
+   ],
+   "calls": [
+    "p.C09.paymentStatus",
+    "p.C13.findOrder",
+    "p.C07.getCustomer",
+    "p.C01.saveOrder"
+   ]
+  },
+  "p.C08.findOrder": {
+   "id": "p.C08.findOrder",
+   "class": "C08",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C08.listItems",
+    "p.C09.saveOrder",
+    "p.C01.saveOrder",
+    "p.C03.saveOrder"
+   ]
+  },
+  "p.C09.paymentStatus": {
+   "id": "p.C09.paymentStatus",
+   "class": "C09",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C03.saveOrder",
+    "p.C02.findOrder",
+    "p.C00.getCustomer",
+    "p.C03.findOrder"
+   ]
+  },
+  "p.C09.findOrder": {
+   "id": "p.C09.findOrder",
+   "class": "C09",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C12.paymentStatus",
+    "p.C09.saveOrder",
+    "p.C13.getCustomer",
+    "p.C03.findOrder"
+   ]
+  },
+  "p.C09.saveOrder": {
+   "id": "p.C09.saveOrder",
+   "class": "C09",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C13.saveOrder",
+    "p.C12.findOrder",
+    "p.C10.paymentStatus",
+    "p.C07.listItems"
+   ]
+  },
+  "p.C10.paymentStatus": {
+   "id": "p.C10.paymentStatus",
+   "class": "C10",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C03.findOrder",
+    "p.C11.findOrder",
+    "p.C02.findOrder",
+    "p.C00.getCustomer"
+   ]
+  },
+  "p.C10.getCustomer": {
+   "id": "p.C10.getCustomer",
+   "class": "C10",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C00.saveOrder",
+    "p.C13.getCustomer",
+    "p.C02.getCustomer",
+    "p.C11.getCustomer"
+   ]
+  },
+  "p.C10.saveOrder": {
+   "id": "p.C10.saveOrder",
+   "class": "C10",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C02.findOrder",
+    "p.C09.paymentStatus",
+    "p.C04.saveOrder",
+    "p.C04.paymentStatus"
+   ]
+  },
+  "p.C11.getCustomer": {
+   "id": "p.C11.getCustomer",
+   "class": "C11",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C00.getCustomer",
+    "p.C05.saveOrder",
+    "p.C04.paymentStatus",
+    "p.C06.listItems"
+   ]
+  },
+  "p.C11.paymentStatus": {
+   "id": "p.C11.paymentStatus",
+   "class": "C11",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C10.saveOrder",
+    "p.C05.getCustomer",
+    "p.C12.paymentStatus",
+    "p.C06.getCustomer"
+   ]
+  },
+  "p.C11.findOrder": {
+   "id": "p.C11.findOrder",
+   "class": "C11",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C05.saveOrder",
+    "p.C11.paymentStatus",
+    "p.C08.findOrder",
+    "p.C02.findOrder"
+   ]
+  },
+  "p.C12.getCustomer": {
+   "id": "p.C12.getCustomer",
+   "class": "C12",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C01.listItems",
+    "p.C07.listItems",
+    "p.C09.saveOrder",
+    "p.C12.paymentStatus"
+   ]
+  },
+  "p.C12.paymentStatus": {
+   "id": "p.C12.paymentStatus",
+   "class": "C12",
+   "package": "p",
+   "method_name": "paymentStatus",
+   "return_type": "String",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C11.getCustomer",
+    "p.C08.findOrder",
+    "p.C10.saveOrder",
+    "p.C02.findOrder"
+   ]
+  },
+  "p.C12.findOrder": {
+   "id": "p.C12.findOrder",
+   "class": "C12",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C11.paymentStatus",
+    "p.C03.findOrder",
+    "p.C11.getCustomer",
+    "p.C10.saveOrder"
+   ]
+  },
+  "p.C13.saveOrder": {
+   "id": "p.C13.saveOrder",
+   "class": "C13",
+   "package": "p",
+   "method_name": "saveOrder",
+   "return_type": "void",
+   "parameters": [
+    "Order"
+   ],
+   "calls": [
+    "p.C00.getCustomer",
+    "p.C09.findOrder",
+    "p.C03.paymentStatus",
+    "p.C12.findOrder"
+   ]
+  },
+  "p.C13.findOrder": {
+   "id": "p.C13.findOrder",
+   "class": "C13",
+   "package": "p",
+   "method_name": "findOrder",
+   "return_type": "Order",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C00.saveOrder",
+    "p.C03.findOrder",
+    "p.C03.paymentStatus",
+    "p.C10.paymentStatus"
+   ]
+  },
+  "p.C13.getCustomer": {
+   "id": "p.C13.getCustomer",
+   "class": "C13",
+   "package": "p",
+   "method_name": "getCustomer",
+   "return_type": "Customer",
+   "parameters": [
+    "int"
+   ],
+   "calls": [
+    "p.C13.saveOrder",
+    "p.C02.saveOrder",
+    "p.C11.findOrder",
+    "p.C01.listItems"
+   ]
+  }
+ },
+ "edges": [
+  {
+   "src": "p.C05",
+   "dst": "p.C02",
+   "type": "FIELD",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C01",
+   "dst": "p.C08",
+   "type": "CALL",
+   "weight": 3.0
+  },
+  {
+   "src": "p.C09",
+   "dst": "p.C00",
+   "type": "EXTENDS",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C00",
+   "dst": "p.C01",
+   "type": "FIELD",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C01",
+   "dst": "p.C03",
+   "type": "CALL",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C00",
+   "dst": "p.C09",
+   "type": "CALL",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C10",
+   "dst": "p.C13",
+   "type": "EXTENDS",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C09",
+   "dst": "p.C13",
+   "type": "FIELD",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C03",
+   "dst": "p.C00",
+   "type": "EXTENDS",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C04",
+   "dst": "p.C06",
+   "type": "CALL",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C09",
+   "dst": "p.C04",
+   "type": "EXTENDS",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C01",
+   "dst": "p.C09",
+   "type": "EXTENDS",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C05",
+   "dst": "p.C01",
+   "type": "EXTENDS",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C07",
+   "dst": "p.C10",
+   "type": "EXTENDS",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C12",
+   "dst": "p.C05",
+   "type": "FIELD",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C05",
+   "dst": "p.C04",
+   "type": "CALL",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C11",
+   "dst": "p.C12",
+   "type": "CALL",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C05",
+   "dst": "p.C11",
+   "type": "FIELD",
+   "weight": 3.0
+  },
+  {
+   "src": "p.C09",
+   "dst": "p.C01",
+   "type": "CALL",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C02",
+   "dst": "p.C12",
+   "type": "CALL",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C07",
+   "dst": "p.C06",
+   "type": "CALL",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C12",
+   "dst": "p.C08",
+   "type": "EXTENDS",
+   "weight": 3.0
+  },
+  {
+   "src": "p.C05",
+   "dst": "p.C11",
+   "type": "CALL",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C09",
+   "dst": "p.C12",
+   "type": "FIELD",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C13",
+   "dst": "p.C01",
+   "type": "CALL",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C11",
+   "dst": "p.C10",
+   "type": "CALL",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C11",
+   "dst": "p.C13",
+   "type": "CALL",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C04",
+   "dst": "p.C11",
+   "type": "FIELD",
+   "weight": 3.0
+  },
+  {
+   "src": "p.C00",
+   "dst": "p.C07",
+   "type": "CALL",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C09",
+   "dst": "p.C01",
+   "type": "FIELD",
+   "weight": 1.0
+  },
+  {
+   "src": "p.C03",
+   "dst": "p.C12",
+   "type": "CALL",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C11",
+   "dst": "p.C03",
+   "type": "FIELD",
+   "weight": 4.0
+  },
+  {
+   "src": "p.C13",
+   "dst": "p.C07",
+   "type": "CALL",
+   "weight": 2.0
+  },
+  {
+   "src": "p.C07",
+   "dst": "p.C06",
+   "type": "EXTENDS",
+   "weight": 3.0
+  }
+ ],
+ "usecases": {
+  "p.C00": [
+   "signup",
+   "checkout"
+  ],
+  "p.C01": [
+   "checkout",
+   "signup",
+   "admin"
+  ],
+  "p.C02": [
+   "checkout",
+   "signup"
+  ],
+  "p.C03": [
+   "signup",
+   "admin",
+   "checkout"
+  ],
+  "p.C04": [
+   "signup"
+  ],
+  "p.C05": [
+   "browse",
+   "admin"
+  ],
+  "p.C06": [
+   "signup",
+   "admin"
+  ],
+  "p.C07": [
+   "signup",
+   "admin",
+   "checkout"
+  ],
+  "p.C08": [
+   "admin",
+   "signup",
+   "checkout"
+  ],
+  "p.C09": [
+   "browse",
+   "signup"
+  ],
+  "p.C10": [
+   "signup"
+  ],
+  "p.C11": [
+   "admin",
+   "checkout"
+  ],
+  "p.C12": [
+   "browse",
+   "signup",
+   "checkout"
+  ],
+  "p.C13": [
+   "admin"
+  ]
+ }
+}
