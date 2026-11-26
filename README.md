@@ -126,9 +126,14 @@ graph TD
 * **[CARGO](https://github.com/vikramnitin9/tackle-data-gravity-insights)** (ASE 2022) - `tools/cargo/`
 * **AE-K** baseline (autoencoder + KMeans) - `tools/ae-k/`
 * **VAE-C** (variational autoencoder + fuzzy c-means) - `tools/vae-c/`
+* **MicroMiner** (Trabelsi et al., JSEP 2023; rebuilt from the authors' notebooks in `tools/microminer/originals/`) - `tools/microminer/`
+* **Code2Vec** (Al-Debagy & Martinek, 2021; embeddings from [tech-srl/code2vec](https://github.com/tech-srl/code2vec)) - `tools/code2vec/`
+* **HyDec / HierDec** (Sellami et al., SANER 2022; [khaledsellami/decomp-hydec](https://github.com/khaledsellami/decomp-hydec)) - `tools/hydec/`
+* **RLDec** (Sellami & Saied, EMSE 2025; [khaledsellami/decomp-rldec](https://github.com/khaledsellami/decomp-rldec)) - `tools/rldec/`
 
-The last six moved here from the retired `fyp-benchmarking` repository, which this repository supersedes. Each tool's README
-says what it needs and which datasets are N/A for it.
+CHGNN, CoGCN, FoSCI, CARGO, AE-K and VAE-C moved here from the retired `fyp-benchmarking` repository, which this repository supersedes;
+MicroMiner, Code2Vec, HyDec and RLDec follow the authors' own code or notebooks. Each tool's README says what it needs and which
+datasets are N/A for it.
 
 #### Tool x dataset applicability
 
@@ -139,6 +144,15 @@ says what it needs and which datasets are N/A for it.
 | daytrader, plants | authors' bundled inputs | yes | yes | N/A with the current trace (1 functional atom) | committed Doop facts |
 | javafx-pos | N/A (no web entrypoints) | yes | N/A | no trace yet | committed Doop facts |
 | genapp (COBOL) | N/A | N/A | N/A | N/A | N/A |
+
+| Dataset | MicroMiner | Code2Vec | HyDec (`hierDec`) | RLDec |
+| :--- | :--- | :--- | :--- | :--- |
+| every Java dataset | yes | yes | yes (`--approach hyDec` also needs `fosci_trace.csv.gz`) | yes (needs at least 2 classes) |
+| genapp (COBOL) | N/A | N/A | N/A | N/A |
+
+Code2Vec needs its submodule built (`JavaExtractor`) and the released `java14m` model (downloaded and cached on first use), RLDec
+trains a DQN (`--runner uv|docker|local`; a GPU is used when available), and MicroMiner defaults to CodeBERT embeddings when `torch` is
+installed (`--embedder tfidf` otherwise). Their READMEs have the details.
 
 A dataset can declare that a tool family cannot analyse it: `datasets/<name>/bytecode_analysis.json` (`{"supported": false, "reason": "..."}`) makes CARGO's cell N/A, whatever facts exist. An N/A cell is still written: `output.json` is `{"error": "...", "tool": "..."}` and the metrics refuse to score it.
 
@@ -283,13 +297,15 @@ cells (or they are copied over from another machine).
 any cell whose every run failed for a real reason such as a missing input or Docker being down, and runs the cells one after another. `report` only reads files, so it can run while `run` is still going; it also shows the older
 single-run cells (Triplet-Guided CHGNN, MAGNET, Mono2Micro) if they have outputs. `N/A` marks a cell that does not apply to a tool,
 `FAIL` a cell where every run failed. The paper profile uses: CHGNN 10 runs, CoGCN 5, AE-K 3, VAE-C 3 (5 on bear-board, pharmacy,
-autocare), FoSCI 5 (1 on Roller), CARGO 1 invocation (its 30-entry K x seed grid runs inside).
+autocare), FoSCI 5 (1 on Roller), CARGO 1 invocation (its 30-entry K x seed grid runs inside), MicroMiner 10, Code2Vec 1, HyDec 1 (deterministic
+tools), RLDec 5 (`quick` trains for only `--iterations 2`).
 
 ## Tests
 
 ```bash
 uv run --python 3.12 --with pytest --with numpy==2.4.4 --with scipy==1.18.0 --with scikit-learn==1.9.0 \
-  --with scikit-fuzzy==0.5.0 --with tensorflow==2.21.0 --with javalang==0.13.0 --with pandas --with pyarrow pytest tests -q
+  --with scikit-fuzzy==0.5.0 --with tensorflow==2.21.0 --with javalang==0.13.0 --with pandas --with pyarrow \
+  --with networkx==3.6.1 pytest tests -q
 ```
 
 `javalang` is needed to collect `tests/test_monoembed.py`; without `pandas`/`pyarrow` six MonoEmbed tests skip, and without the

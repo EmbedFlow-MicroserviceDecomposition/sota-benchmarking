@@ -46,6 +46,10 @@ def test_the_paper_profile_uses_the_run_counts_of_the_migration_sweep():
     assert benchmark.runs_for("fosci", "jpetstore", "paper") == 5
     assert benchmark.runs_for("fosci", "apache-roller", "paper") == 1  # ~1-2 h per run
     assert benchmark.runs_for("cargo", "jpetstore", "paper") == 1      # the 30-run K x seed grid runs inside it
+    assert benchmark.runs_for("microminer", "jpetstore", "paper") == 10
+    assert benchmark.runs_for("code2vec", "jpetstore", "paper") == 1
+    assert benchmark.runs_for("hydec", "jpetstore", "paper") == 1
+    assert benchmark.runs_for("rldec", "jpetstore", "paper") == 5
 
 
 def test_the_quick_profile_is_one_run_everywhere_and_one_cargo_grid_entry():
@@ -53,6 +57,9 @@ def test_the_quick_profile_is_one_run_everywhere_and_one_cargo_grid_entry():
     assert benchmark.tool_args("cargo", "quick") == "--k 7 --seeds 42"
     assert benchmark.tool_args("cargo", "paper") == ""
     assert benchmark.tool_args("chgnn", "quick") == ""
+    assert benchmark.tool_args("rldec", "quick") == "--iterations 2"
+    assert benchmark.tool_args("rldec", "paper") == ""
+    assert all(benchmark.tool_args(t, "quick") == "" for t in ("microminer", "code2vec", "hydec"))
 
 
 def test_datasets_are_the_directories_that_have_a_dataset_py(root):

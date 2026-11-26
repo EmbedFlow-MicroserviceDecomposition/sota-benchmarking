@@ -30,13 +30,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import run_sweep  # noqa: E402
 
-TOOLS = ["chgnn", "cogcn", "ae-k", "vae-c", "fosci", "cargo"]            # the tools `run` drives
+TOOLS = ["chgnn", "cogcn", "ae-k", "vae-c", "fosci", "cargo", "microminer", "code2vec", "hydec", "rldec"]            # the tools `run` drives
 REPORT_TOOLS = TOOLS + ["triplet-guided-chgnn", "magnet", "mono2micro"]   # `report` also reads these when they have outputs
 # run counts of the migration sweep (fyp-benchmarking's protocol): unseeded tools are averaged, CARGO runs its own 30-entry grid
-RUNS = {"chgnn": 10, "cogcn": 5, "ae-k": 3, "vae-c": 3, "fosci": 5, "cargo": 1}
+RUNS = {"chgnn": 10, "cogcn": 5, "ae-k": 3, "vae-c": 3, "fosci": 5, "cargo": 1,
+        "microminer": 10, "code2vec": 1, "hydec": 1, "rldec": 5}
 RUNS_OVERRIDE = {("vae-c", "bear-board"): 5, ("vae-c", "pharmacy"): 5, ("vae-c", "autocare"): 5,   # the thesis averages 5 attempts
                  ("fosci", "apache-roller"): 1}                                                    # ~1-2 h per run
-QUICK_ARGS = {"cargo": "--k 7 --seeds 42"}                                # one CARGO grid entry instead of K x seed = 30
+QUICK_ARGS = {"cargo": "--k 7 --seeds 42",                                 # one CARGO grid entry instead of K x seed = 30
+              "rldec": "--iterations 2"}                                   # a short RL training run
 METRICS = ["SM", "ICP", "IFN", "NED", "BCP", "CHM", "CHD"]
 HIGHER_IS_BETTER = {"SM": True, "ICP": False, "IFN": False, "NED": True, "BCP": False, "CHM": True, "CHD": True,
                     "SM_undirected": True, "IFN_cross_edge": False, "NED_relative": True, "NED_triplebound": False}
