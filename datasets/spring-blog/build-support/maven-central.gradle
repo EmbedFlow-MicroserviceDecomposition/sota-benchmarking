@@ -1,0 +1,11 @@
+// The pinned build lists jcenter (now hangs Gradle 3.5, which has no read timeout) and plain-http mirrors that are gone.
+// Resolve from Maven Central, and jcenter-only artifacts (spring-boot-starter-jade4j) from Aliyun's HTTPS jcenter mirror.
+def remap = { repos ->
+    repos.withType(MavenArtifactRepository).all {
+        it.url = it.name == 'BintrayJCenter' ? 'https://maven.aliyun.com/repository/jcenter' : 'https://repo.maven.apache.org/maven2'
+    }
+}
+allprojects {
+    remap(buildscript.repositories)
+    remap(repositories)
+}

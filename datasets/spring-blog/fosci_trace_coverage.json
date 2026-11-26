@@ -1,0 +1,29 @@
+{
+  "dataset": "spring-blog",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 2017,
+  "classes": 47,
+  "classes_covered": 37,
+  "class_coverage": 0.7872,
+  "traceable_classes": 40,
+  "traceable_class_coverage": 0.925,
+  "methods": 147,
+  "methods_covered": 109,
+  "method_coverage": 0.7415,
+  "target": 0.7,
+  "uncovered_classes": [
+    "com.raysmond.blog.Constants",
+    "com.raysmond.blog.support.web.PygmentsVerbatimSerializer",
+    "com.raysmond.blog.utils.Markdown"
+  ],
+  "uncovered_interfaces": [
+    "com.raysmond.blog.repositories.PostRepository",
+    "com.raysmond.blog.repositories.SettingRepository",
+    "com.raysmond.blog.repositories.TagRepository",
+    "com.raysmond.blog.repositories.UserRepository",
+    "com.raysmond.blog.services.SettingService",
+    "com.raysmond.blog.support.web.MarkdownService",
+    "com.raysmond.blog.support.web.SyntaxHighlightService"
+  ],
+  "unmatched_trace_classes": []
+}

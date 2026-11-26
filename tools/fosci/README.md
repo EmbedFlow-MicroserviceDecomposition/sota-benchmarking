@@ -46,7 +46,8 @@ they were recorded on other builds of the apps.
 | acme-air, bear-board, pharmacy, spring-petclinic, daytrader, plants | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
 | autocare | the reduced form of such a scripted trace (reduction is idempotent) |
 | jpetstore | functional suite (`datasets/jpetstore/exercise_usecases.py`, 18 use cases covering the authors' 14 scenarios): 337 traces, classes 17/24 (71%; every non-interface class), methods 64% |
-| spring-blog, jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
+| spring-blog | functional suite (22 use cases, every controller endpoint; `--jdk8`): 2017 traces, classes 37/47 (79%; 92% of non-interfaces: the rest are `Constants` and dead code), methods 74% |
+| jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
 
@@ -56,7 +57,8 @@ the same suite Mono2Micro records; harness in `datasets/workload.py`) against a 
 trace unless every use case passes. Per-use-case trace row spans go to `outputs/<dataset>/trace/usecase_spans.json`.
 
 ```bash
-uv run record_trace.py --dataset-path ../../datasets/jpetstore [--package org.mybatis.jpetstore] [--jdk8]
+uv run record_trace.py --dataset-path ../../datasets/jpetstore [--package org.mybatis.jpetstore]
+uv run record_trace.py --dataset-path ../../datasets/spring-blog --jdk8   # JDK 8 apps need the JDK 8 agent
 uv run trace_coverage.py --dataset-path ../../datasets/jpetstore   # coverage of an existing trace; exits 1 below 70%
 ```
 

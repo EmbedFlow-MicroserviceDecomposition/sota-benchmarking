@@ -65,7 +65,7 @@ The following datasets run inside dedicated Docker Compose environments with dat
 
 Every dataset provides an `exercise_usecases.py` functional test suite that can be run on its own. Mono2Micro records it use case by use case,
 and FoSCI's `tools/fosci/record_trace.py` records the whole suite as the dataset's execution trace. Suites built on `datasets/workload.py`
-(so far: jpetstore) check every response and exit non-zero if any use case fails:
+(so far: jpetstore, spring-blog) check every response and exit non-zero if any use case fails:
 
 ```bash
 # Run all use cases sequentially

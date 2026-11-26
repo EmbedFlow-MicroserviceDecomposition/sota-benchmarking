@@ -29,3 +29,21 @@ uv run dataset.py
 ```
 
 This will parse all Java files inside the `SpringBlog` repository and output the standardized `dataset.json` file.
+
+## Running the app and its functional suite
+
+The pinned Gradle 3.5 build lists jcenter (which now hangs Gradle 3.5: no read timeout) and dead plain-http mirrors;
+`build-support/maven-central.gradle` remaps them to Maven Central and Aliyun's HTTPS jcenter mirror without touching the
+submodule. Mount the checkout as `/SpringBlog` so the jar gets the name the compose file expects:
+
+```bash
+cd SpringBlog
+docker run --rm -v "$PWD":/SpringBlog -v "$PWD/../build-support":/build-support:ro -v sota-gradle:/root/.gradle \
+  -w /SpringBlog eclipse-temurin:8-jdk ./gradlew -q --no-daemon -I /build-support/maven-central.gradle build -x test
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:8080 (admin/admin)
+python3 exercise_usecases.py --wait           # 22 use cases, exits 1 if any fails
+```
+
+`uv run ../../tools/fosci/record_trace.py --dataset-path . --jdk8` records `fosci_trace.csv.gz` from the same suite.
+Two bugs in the pinned app are kept as they are and the suite expects them: the login page's `rememberMe` checkbox is
+ignored (Spring Security reads `remember-me`), and `/tags/<name>` is a 500 (its `tags/show` template is missing).

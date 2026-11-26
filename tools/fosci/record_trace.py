@@ -22,6 +22,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -62,6 +63,25 @@ def count_rows(path):
         return sum(1 for _ in f)
 
 
+def wait_until_up(suite, compose, env, timeout=900):
+    """Wait for the app, failing at once (with its log) if a container exits, e.g. a JDK 8 app given the JDK 11 agent."""
+    deadline = time.time() + timeout
+    while True:
+        try:
+            suite.wait_ready(timeout=10)
+            return
+        except TimeoutError:
+            pass
+        exited = subprocess.run(compose + ["ps", "-a", "--status", "exited", "--format", "{{.Name}}"], env=env,
+                                capture_output=True, text=True).stdout.split()
+        if exited:
+            logs = subprocess.run(compose + ["logs", "--tail", "20"], env=env, capture_output=True, text=True)
+            sys.exit(f"container(s) exited before the app came up: {', '.join(exited)}\n{logs.stdout}{logs.stderr}\n"
+                     "(UnsupportedClassVersionError means a JDK 8 app: pass --jdk8)")
+        if time.time() > deadline:
+            sys.exit(f"{suite.name} did not come up within {timeout}s")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--dataset-path", required=True)
@@ -88,7 +108,7 @@ def main():
     subprocess.run(compose + ["down", "-v"], env=env, check=True)
     subprocess.run(compose + ["up", "-d"], env=env, check=True)
     try:
-        suite.wait_ready()
+        wait_until_up(suite, compose, env)
         spans, start = {}, {}
         results = suite.run_all(on_start=lambda n: start.__setitem__(n, count_rows(raw)),
                                 on_end=lambda n: spans.__setitem__(n, [start[n], count_rows(raw)]))
