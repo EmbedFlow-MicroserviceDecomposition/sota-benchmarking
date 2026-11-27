@@ -62,3 +62,19 @@ uv run dataset.py
 ```
 
 This will parse all Java files inside the repository and output the standardized `dataset.json` file.
+
+## Running the app and its functional suite
+
+The build's git-commit-id plugin (2.2.2, which ignores `-Dmaven.gitcommitid.skip`) needs the submodule's git directory, so
+mount it where the submodule's `.git` file points:
+
+```bash
+cd spring-petclinic
+docker run --rm -v "$PWD":/src -v "$(cd "$(git rev-parse --git-dir)" && pwd)":/.git/modules/datasets/spring-petclinic/spring-petclinic:ro \
+  -v sota-m2:/root/.m2 -w /src maven:3.9-eclipse-temurin-8 mvn -q -B package -DskipTests
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:8080
+python3 exercise_usecases.py --wait           # 10 use cases, exits 1 if any fails
+```
+
+`uv run ../../tools/fosci/record_trace.py --dataset-path . --jdk8` records `fosci_trace.csv.gz` from the same suite. The
+in-memory HSQLDB is re-seeded at every start (owners 1-10, pet types cat .. hamster).

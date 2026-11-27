@@ -1,0 +1,22 @@
+{
+  "dataset": "spring-petclinic",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 527,
+  "classes": 24,
+  "classes_covered": 20,
+  "class_coverage": 0.8333,
+  "traceable_classes": 20,
+  "traceable_class_coverage": 1.0,
+  "methods": 90,
+  "methods_covered": 53,
+  "method_coverage": 0.5889,
+  "target": 0.7,
+  "uncovered_classes": [],
+  "uncovered_interfaces": [
+    "org.springframework.samples.petclinic.owner.OwnerRepository",
+    "org.springframework.samples.petclinic.owner.PetRepository",
+    "org.springframework.samples.petclinic.vet.VetRepository",
+    "org.springframework.samples.petclinic.visit.VisitRepository"
+  ],
+  "unmatched_trace_classes": []
+}
