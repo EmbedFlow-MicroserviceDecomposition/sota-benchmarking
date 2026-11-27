@@ -43,12 +43,13 @@ they were recorded on other builds of the apps.
 
 | Dataset | Trace today |
 | :--- | :--- |
-| acme-air, bear-board, pharmacy, spring-petclinic | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
+| bear-board, pharmacy, spring-petclinic | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
 | autocare | the reduced form of such a scripted trace (reduction is idempotent) |
 | jpetstore | functional suite (`datasets/jpetstore/exercise_usecases.py`, 18 use cases covering the authors' 14 scenarios): 337 traces, classes 17/24 (71%; every non-interface class), methods 64% |
 | spring-blog | functional suite (22 use cases, every controller endpoint; `--jdk8`): 2008 traces, classes 37/47 (79%; 92% of non-interfaces: the rest are `Constants` and dead code), methods 74% |
 | plants | functional suite (22 use cases: JSF storefront, checkout, registration, admin; `--jdk8`): 4158 traces, classes 30/37 (81%; the rest are never-thrown exceptions, a JPA key class, back-order classes the app never seeds and an unwired validator), methods 61% |
 | daytrader | functional suite (26 use cases: both UIs, every config mode, database build, primitives, WebSockets; `--jdk8`; amd64 image, emulated on Apple Silicon): 504 traces, classes 85/115 (74%; the rest are classes the server calls directly that call no other app class, so a call-based trace cannot see them, and the `/ejb3` primitives that fail to load), methods 62% |
+| acme-air | functional suite (14 use cases: every REST endpoint, loader, profile, flight search, booking, cancellation; `--jdk8`): 95 traces, classes 40/84 (48%). **Below 70% by construction:** 37 classes cannot appear in a trace of the running app: the `wxs` data service (15; its proprietary objectgrid dependency is not published and the server runs `morphia`), `acmeair-reporter` (12; a command-line JMeter log parser, not in the WAR) and 10 interfaces. Of the 47 reachable classes 40 (85%) are covered; methods 31% |
 | jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
@@ -63,6 +64,7 @@ uv run record_trace.py --dataset-path ../../datasets/jpetstore [--package org.my
 uv run record_trace.py --dataset-path ../../datasets/spring-blog --jdk8   # JDK 8 apps need the JDK 8 agent
 uv run record_trace.py --dataset-path ../../datasets/plants --jdk8
 uv run record_trace.py --dataset-path ../../datasets/daytrader --jdk8
+uv run record_trace.py --dataset-path ../../datasets/acme-air --jdk8
 uv run trace_coverage.py --dataset-path ../../datasets/jpetstore   # coverage of an existing trace; exits 1 below 70%
 ```
 

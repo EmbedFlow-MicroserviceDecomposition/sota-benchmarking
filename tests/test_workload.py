@@ -101,7 +101,7 @@ def test_wait_ready_times_out_while_the_app_is_not_deployed(server):
         Suite("Demo", server, ready_path="/nope").wait_ready(timeout=0)
 
 
-@pytest.mark.parametrize("dataset", ["jpetstore", "spring-blog", "plants", "daytrader"])
+@pytest.mark.parametrize("dataset", ["jpetstore", "spring-blog", "plants", "daytrader", "acme-air"])
 def test_suites_keep_mono2micro_contract(dataset):
     """record.py needs USECASES and run_usecase(name, **kwargs); the suite must match them."""
     path = ROOT / "datasets" / dataset / "exercise_usecases.py"
