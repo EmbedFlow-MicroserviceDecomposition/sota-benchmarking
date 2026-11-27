@@ -5,18 +5,16 @@
   "classes": 115,
   "classes_covered": 85,
   "class_coverage": 0.7391,
-  "traceable_classes": 111,
-  "traceable_class_coverage": 0.7658,
+  "traceable_classes": 109,
+  "traceable_class_coverage": 0.7798,
   "methods": 951,
   "methods_covered": 592,
   "method_coverage": 0.6225,
   "target": 0.7,
   "uncovered_classes": [
     "com.ibm.websphere.samples.daytrader.ejb3.TradeSLSBBean.quotePriceComparator",
-    "com.ibm.websphere.samples.daytrader.util.WebSocketJMSMessage",
     "com.ibm.websphere.samples.daytrader.web.jsf.MarketSummaryJSF",
     "com.ibm.websphere.samples.daytrader.web.prims.ExplicitGC",
-    "com.ibm.websphere.samples.daytrader.web.prims.PingInterceptorBinding",
     "com.ibm.websphere.samples.daytrader.web.prims.PingJSONP",
     "com.ibm.websphere.samples.daytrader.web.prims.PingServlet",
     "com.ibm.websphere.samples.daytrader.web.prims.PingServlet2JNDI",
@@ -43,7 +41,9 @@
     "com.ibm.websphere.samples.daytrader.TradeServices",
     "com.ibm.websphere.samples.daytrader.ejb3.TradeSLSBLocal",
     "com.ibm.websphere.samples.daytrader.ejb3.TradeSLSBRemote",
-    "com.ibm.websphere.samples.daytrader.web.prims.PingEJBIFace"
+    "com.ibm.websphere.samples.daytrader.util.WebSocketJMSMessage",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingEJBIFace",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingInterceptorBinding"
   ],
   "unmatched_trace_classes": [
     "com.ibm.websphere.samples.daytrader.ejb3._EJSRemote0SLTradeSLSBBean_78e9c356_Tie"

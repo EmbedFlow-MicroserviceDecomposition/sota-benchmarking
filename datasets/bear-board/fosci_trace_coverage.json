@@ -1,0 +1,37 @@
+{
+  "dataset": "bear-board",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 38,
+  "classes": 34,
+  "classes_covered": 25,
+  "class_coverage": 0.7353,
+  "traceable_classes": 28,
+  "traceable_class_coverage": 0.8929,
+  "methods": 82,
+  "methods_covered": 71,
+  "method_coverage": 0.8659,
+  "target": 0.7,
+  "uncovered_classes": [
+    "com.rokin.baylorboard.domain.Roles",
+    "com.rokin.baylorboard.domain.Tweet",
+    "com.rokin.baylorboard.enums.Role"
+  ],
+  "uncovered_interfaces": [
+    "com.rokin.baylorboard.repository.AwardRepository",
+    "com.rokin.baylorboard.repository.EventRepository",
+    "com.rokin.baylorboard.repository.RoleRepository",
+    "com.rokin.baylorboard.repository.TweetRepository",
+    "com.rokin.baylorboard.repository.UserRepository",
+    "com.rokin.baylorboard.repository.WhitelistUserRepository"
+  ],
+  "unmatched_trace_classes": [
+    "com.rokin.baylorboard.domain.Award_Accessor_td2rv",
+    "com.rokin.baylorboard.domain.Award_Instantiator_td2rv",
+    "com.rokin.baylorboard.domain.Event_Accessor_lax7nl",
+    "com.rokin.baylorboard.domain.Event_Instantiator_lax7nl",
+    "com.rokin.baylorboard.domain.User_Accessor_hiajsj",
+    "com.rokin.baylorboard.domain.User_Instantiator_hiajsj",
+    "com.rokin.baylorboard.domain.WhitelistUser_Accessor_c0qs46",
+    "com.rokin.baylorboard.domain.WhitelistUser_Instantiator_c0qs46"
+  ]
+}

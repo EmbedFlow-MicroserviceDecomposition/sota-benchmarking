@@ -5,18 +5,15 @@
   "classes": 84,
   "classes_covered": 40,
   "class_coverage": 0.4762,
-  "traceable_classes": 74,
-  "traceable_class_coverage": 0.5405,
+  "traceable_classes": 69,
+  "traceable_class_coverage": 0.5797,
   "methods": 687,
   "methods_covered": 211,
   "method_coverage": 0.3071,
   "target": 0.7,
   "uncovered_classes": [
-    "com.acmeair.AcmeAirConstants",
-    "com.acmeair.entities.FlightPK",
     "com.acmeair.morphia.BigIntegerConverter",
     "com.acmeair.morphia.DatastoreFactory",
-    "com.acmeair.morphia.MorphiaConstants",
     "com.acmeair.reporter.ReportGenerator",
     "com.acmeair.reporter.parser.IndividualChartResults",
     "com.acmeair.reporter.parser.MultipleChartResults",
@@ -29,9 +26,7 @@
     "com.acmeair.reporter.parser.component.NmonParser",
     "com.acmeair.reporter.util.Messages",
     "com.acmeair.reporter.util.StatResult",
-    "com.acmeair.service.DataService",
     "com.acmeair.web.AppConfig",
-    "com.acmeair.wxs.WXSConstants",
     "com.acmeair.wxs.entities.AirportCodeMappingImpl",
     "com.acmeair.wxs.entities.BookingImpl",
     "com.acmeair.wxs.entities.BookingPKImpl",
@@ -48,6 +43,7 @@
     "com.acmeair.wxs.utils.WXSSessionManager"
   ],
   "uncovered_interfaces": [
+    "com.acmeair.AcmeAirConstants",
     "com.acmeair.entities.AirportCodeMapping",
     "com.acmeair.entities.Booking",
     "com.acmeair.entities.BookingPK",
@@ -55,9 +51,13 @@
     "com.acmeair.entities.CustomerAddress",
     "com.acmeair.entities.CustomerSession",
     "com.acmeair.entities.Flight",
+    "com.acmeair.entities.FlightPK",
     "com.acmeair.entities.FlightSegment",
+    "com.acmeair.morphia.MorphiaConstants",
     "com.acmeair.service.BookingService",
-    "com.acmeair.service.TransactionService"
+    "com.acmeair.service.DataService",
+    "com.acmeair.service.TransactionService",
+    "com.acmeair.wxs.WXSConstants"
   ],
   "unmatched_trace_classes": []
 }

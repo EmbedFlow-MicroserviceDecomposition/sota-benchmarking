@@ -45,7 +45,10 @@ services:
       - ./bear-board/target/Maharjan_Rokin-0.0.1-SNAPSHOT.jar:/app.jar:ro
       - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
       - ../../tools/mono2micro/outputs/bear-board/tables:/tables:rw
-    command: java -javaagent:/minerva/minerva-agent-1.0.jar=/tables -jar /app.jar --spring.data.mongodb.uri=mongodb://mongodb:27017/bearboard --kafka.host=kafka --kafka.port=9092 --twitter.consumer.key=dummy --twitter.consumer.secret=dummy --twitter.access.token=dummy --twitter.access.secret=dummy
+      - ../../tools/fosci/tracer-agent:/fosci:ro
+      - ${TRACE_DIR:-../../tools/fosci/outputs/bear-board/trace}:/trace:rw
+    # JAVA_AGENT unset: Mono2Micro's agent; empty (JAVA_AGENT=): no agent; tools/fosci/record_trace.py sets the FoSCI tracer
+    command: java ${JAVA_AGENT--javaagent:/minerva/minerva-agent-1.0.jar=/tables} -jar /app.jar --spring.data.mongodb.uri=mongodb://mongodb:27017/bearboard --kafka.host=kafka --kafka.port=9092 --twitter.consumer.key=dummy --twitter.consumer.secret=dummy --twitter.access.token=dummy --twitter.access.secret=dummy
     depends_on:
       - mongodb
       - kafka

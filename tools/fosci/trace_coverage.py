@@ -58,18 +58,17 @@ def interfaces(dataset, dataset_dir):
     found = set()
     for cls in dataset["classes"]:
         simple = cls.rpartition(".")[2]
-        rel = files.get(cls)
-        if rel is None:  # no methods recorded: look for the top-level file of its package path
+        path = os.path.join(source_root, files[cls]) if cls in files else None
+        if path is None:  # no methods recorded: look for the top-level file of its package path
             parts = cls.split(".")
             for i in range(len(parts), 0, -1):
                 candidate = os.path.join(*parts[:i]) + ".java"
                 hits = [p for p in _java_files(source_root) if p.endswith(os.sep + candidate)]
                 if hits:
-                    rel = hits[0]
+                    path = hits[0]  # already includes source_root
                     break
-        if rel is None:
+        if path is None:
             continue
-        path = rel if os.path.isabs(rel) else os.path.join(source_root, rel)
         try:
             src = open(path, encoding="utf-8", errors="replace").read()
         except OSError:

@@ -98,11 +98,11 @@ class Client:
             resp = Response(e.code, url, e.read().decode("utf-8", errors="replace"))
         return check(resp, f"{method} {path}", expect, contains, absent)
 
-    def websocket(self, path, **kw):
-        """Open a WebSocket on `path` of the same server, with this session's cookies."""
+    def websocket(self, path, headers=None, **kw):
+        """Open a WebSocket on `path` of the same server, with this session's cookies (plus `headers`, e.g. Origin)."""
         url = "ws" + self.base_url[4:] + path
         cookie = "; ".join(f"{c.name}={c.value}" for c in self.cookies)
-        return WebSocket(url, headers={"Cookie": cookie} if cookie else None, **kw)
+        return WebSocket(url, headers=dict({"Cookie": cookie} if cookie else {}, **(headers or {})), **kw)
 
     def get(self, path, params=None, **kw):
         return self.request("GET", path, params=params, **kw)
