@@ -77,13 +77,22 @@ class Client:
         self.opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cookies))
 
     def request(self, method, path, params=None, data=None, json_body=None, headers=None,
-                expect=200, contains=(), absent=(), timeout=None):
+                expect=200, contains=(), absent=(), timeout=None, files=None):
         url = path if path.startswith("http") else self.base_url + path
         if params:
             url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params, doseq=True)
         hdrs = {"User-Agent": "Mozilla/5.0 (sota-benchmarking functional suite)"}
         body = None
-        if json_body is not None:
+        if files is not None:  # {field: (filename, bytes, content type)}, sent with `data` as multipart/form-data
+            boundary = "sota" + os.urandom(12).hex()
+            parts = [f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode()
+                     for k, v in (data or {}).items()]
+            for field, (filename, content, ctype) in files.items():
+                parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{field}"; filename="{filename}"'
+                             f'\r\nContent-Type: {ctype}\r\n\r\n'.encode() + content + b"\r\n")
+            body = b"".join(parts) + f"--{boundary}--\r\n".encode()
+            hdrs["Content-Type"] = f"multipart/form-data; boundary={boundary}"
+        elif json_body is not None:
             body = json.dumps(json_body).encode("utf-8")
             hdrs["Content-Type"] = "application/json"
         elif data is not None:

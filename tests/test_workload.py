@@ -1,6 +1,7 @@
 import base64
 import hashlib
 import importlib.util
+import re
 import socket
 import struct
 import threading
@@ -35,6 +36,8 @@ class Handler(BaseHTTPRequestHandler):
         data = self.rfile.read(int(self.headers["Content-Length"]))
         self.send_response(200)
         self.end_headers()
+        if self.headers.get("Content-Type", "").startswith("multipart/form-data"):
+            data = self.headers["Content-Type"].encode() + b"\n" + data
         self.wfile.write(b"echo " + data)
 
     def log_message(self, *args):
@@ -210,3 +213,12 @@ def test_websocket_client_handshakes_echoes_text_binary_and_big_frames_and_answe
 def test_websocket_refuses_a_server_that_does_not_upgrade(server):
     with pytest.raises(UsecaseFailed, match="handshake refused"):
         WebSocket(server.replace("http", "ws") + "/home")
+
+
+def test_client_posts_multipart_files(server):
+    body = Client(server).request("POST", "/upload", data={"note": "hi"},
+                                  files={"image": ("car.png", b"\x89PNG", "image/png")}).text
+    boundary = re.search(r"boundary=(\S+)", body).group(1)
+    assert 'name="note"\r\n\r\nhi' in body
+    assert 'name="image"; filename="car.png"\r\nContent-Type: image/png' in body
+    assert body.rstrip().endswith(f"--{boundary}--")

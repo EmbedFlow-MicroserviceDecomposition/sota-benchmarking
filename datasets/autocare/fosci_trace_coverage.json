@@ -1,0 +1,39 @@
+{
+  "dataset": "autocare",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 61,
+  "classes": 48,
+  "classes_covered": 41,
+  "class_coverage": 0.8542,
+  "traceable_classes": 41,
+  "traceable_class_coverage": 1.0,
+  "methods": 283,
+  "methods_covered": 242,
+  "method_coverage": 0.8551,
+  "target": 0.7,
+  "uncovered_classes": [],
+  "uncovered_interfaces": [
+    "com.policynepal.autocare.comment.repository.CommentRepository",
+    "com.policynepal.autocare.comment.repository.DeletedCommentRepository",
+    "com.policynepal.autocare.user.repository.DeletedUserRepository",
+    "com.policynepal.autocare.user.repository.UserRepository",
+    "com.policynepal.autocare.vehicle.repository.CustomVehicleRepository",
+    "com.policynepal.autocare.vehicle.repository.DeletedVehicleRepository",
+    "com.policynepal.autocare.vehicle.repository.VehicleRepository"
+  ],
+  "unmatched_trace_classes": [
+    "com.policynepal.autocare.comment.model.Comment_Accessor_gvdgfl",
+    "com.policynepal.autocare.comment.model.Comment_Instantiator_gvdgfl",
+    "com.policynepal.autocare.comment.model.DeletedComment_Accessor_604v02",
+    "com.policynepal.autocare.user.model.DeletedUser_Accessor_um0das",
+    "com.policynepal.autocare.user.model.Organization_Accessor_qihndp",
+    "com.policynepal.autocare.user.model.Organization_Instantiator_qihndp",
+    "com.policynepal.autocare.user.model.User_Accessor_6l8c2f",
+    "com.policynepal.autocare.user.model.User_Instantiator_6l8c2f",
+    "com.policynepal.autocare.vehicle.model.DeletedVehicle_Accessor_o7qpe6",
+    "com.policynepal.autocare.vehicle.model.VehicleImage_Accessor_gbs6ee",
+    "com.policynepal.autocare.vehicle.model.VehicleImage_Instantiator_gbs6ee",
+    "com.policynepal.autocare.vehicle.model.Vehicle_Accessor_cqg04y",
+    "com.policynepal.autocare.vehicle.model.Vehicle_Instantiator_cqg04y"
+  ]
+}
