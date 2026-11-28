@@ -1,0 +1,9 @@
+// VehicleService imports org.assertj.core.util.Files, but the pinned build only has AssertJ as a test dependency, so the
+// main code does not compile. Put it on the main (and so the boot jar's) classpath; Spring Boot's plugin sets the version.
+allprojects {
+    afterEvaluate {
+        dependencies {
+            implementation 'org.assertj:assertj-core'
+        }
+    }
+}

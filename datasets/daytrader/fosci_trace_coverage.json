@@ -1,0 +1,51 @@
+{
+  "dataset": "daytrader",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 504,
+  "classes": 115,
+  "classes_covered": 85,
+  "class_coverage": 0.7391,
+  "traceable_classes": 109,
+  "traceable_class_coverage": 0.7798,
+  "methods": 951,
+  "methods_covered": 592,
+  "method_coverage": 0.6225,
+  "target": 0.7,
+  "uncovered_classes": [
+    "com.ibm.websphere.samples.daytrader.ejb3.TradeSLSBBean.quotePriceComparator",
+    "com.ibm.websphere.samples.daytrader.web.jsf.MarketSummaryJSF",
+    "com.ibm.websphere.samples.daytrader.web.prims.ExplicitGC",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingJSONP",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingServlet",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingServlet2JNDI",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingServletSetContentLength",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingServletWriter",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingSession1",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingSession2",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingUpgradeServlet.Handler",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingUpgradeServlet.Listener",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingWebSocketBinary",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingWebSocketTextAsync",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingWebSocketTextSync",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2Entity",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2MDBTopic",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2Session2CMROne2Many",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2Session2CMROne2One",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2Session2Entity",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2Session2Entity2JSP",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2Session2EntityCollection",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2SessionRemote",
+    "com.ibm.websphere.samples.daytrader.web.prims.ejb3.PingServlet2TwoPhase"
+  ],
+  "uncovered_interfaces": [
+    "com.ibm.websphere.samples.daytrader.TradeServices",
+    "com.ibm.websphere.samples.daytrader.ejb3.TradeSLSBLocal",
+    "com.ibm.websphere.samples.daytrader.ejb3.TradeSLSBRemote",
+    "com.ibm.websphere.samples.daytrader.util.WebSocketJMSMessage",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingEJBIFace",
+    "com.ibm.websphere.samples.daytrader.web.prims.PingInterceptorBinding"
+  ],
+  "unmatched_trace_classes": [
+    "com.ibm.websphere.samples.daytrader.ejb3._EJSRemote0SLTradeSLSBBean_78e9c356_Tie"
+  ]
+}

@@ -6,11 +6,27 @@ services:
       - MYSQL_DATABASE=jforum
     ports:
       - "3306:3306"
-    volumes:
-      - ./jakartaEE/src/main/config/database/mysql/mysql_db_struct.sql:/docker-entrypoint-initdb.d/01_struct.sql:ro
-      - ./jakartaEE/src/main/config/database/mysql/mysql_data_dump.sql:/docker-entrypoint-initdb.d/02_data.sql:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
       interval: 5s
       timeout: 5s
       retries: 10
+
+  # The database is left empty: the suite runs JForum's web installer, which creates the schema and the Admin user.
+  jforum:
+    container_name: jforum-app
+    image: tomcat:10.1-jdk11
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      # unset: Mono2Micro's agent; empty (JAVA_AGENT=): no agent; tools/fosci/record_trace.py sets the FoSCI tracer
+      - CATALINA_OPTS=${JAVA_AGENT--javaagent:/minerva/minerva-agent-1.0.jar=/tables}
+    volumes:
+      - ./jakartaEE/target/jforum.war:/usr/local/tomcat/webapps/jforum.war:ro
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/jforum/tables:/tables:rw
+      - ../../tools/fosci/tracer-agent:/fosci:ro
+      - ${TRACE_DIR:-../../tools/fosci/outputs/jforum/trace}:/trace:rw

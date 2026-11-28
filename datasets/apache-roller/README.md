@@ -41,60 +41,34 @@ uv run dataset.py
 ```
 This will parse the unified directory and output the standardized `dataset.json` file for the evaluation pipeline.
 
-### Mono2Micro Integration and Docker Execution
+## Running the app and its functional suite
 
-The `roller` submodule provides native Docker support, but to successfully deploy it and run the Mono2Micro Minerva agent, several modifications must be made to the Docker configurations.
+Roller 6.1.5 is a Tomcat 9 / Java 17 web application on PostgreSQL. The compose file mounts the built WAR as the ROOT webapp,
+Roller's `roller-custom.properties` (database settings, `installation.type=auto`) and the two drivers the WAR does not bundle.
+Build the WAR and fetch the drivers once:
 
-**1. Modify the `Dockerfile`:**
-- **Local Build Source:** The original Dockerfile clones the code from GitHub, bypassing your local source. Modify the build stage to copy the local directory instead:
-  ```dockerfile
-  # Remove: RUN git clone https://github.com/apache/roller.git
-  # Remove: RUN git checkout tags/roller-6.1.0; \
-  COPY . /tmp/roller
-  RUN mvn -Duser.home=/builder/home -DskipTests=true -B clean install
-  ```
-- **PostgreSQL Port Fix:** Change `ARG DATABASE_HOST=postgresql:5434` to `ARG DATABASE_HOST=postgresql:5432` to match the default port exposed in `docker-compose.yml`.
-- **JDK Bug Fix:** The original base image `tomcat:9-jdk17-openjdk-slim` contains an ancient Java 17 build with a fatal `cgroup v2` bug that crashes Tomcat during initialization. Change the base image to `tomcat:9.0-jdk17-temurin-jammy`.
-
-**2. Optimize Docker Cache (Optional):**
-To prevent Docker from downloading Maven dependencies on every build, add a `.dockerignore` file in the `roller/` directory:
-```text
-docker-compose.yml
-.git
-.github
-target/
-app/target/
-**/*.war
-**/*.jar
-docker/roller-data/
-```
-*Tip: You can also use `--mount=type=cache,target=/builder/home/.m2` in the `RUN mvn` command to cache Maven dependencies across builds.*
-
-**3. Modify `docker-compose.yml` (Inject Minerva):**
-To trace the application, map the Minerva tools into the Tomcat container and append the JVM arguments. Add the following to the `roller` service:
-```yaml
-      volumes:
-         # ... existing volumes ...
-         - ../../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
-         - ../../../tools/mono2micro/outputs/apache-roller/tables:/tables:rw
-      environment:
-         - JAVA_OPTS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
-```
-
-**4. Build and Start Roller:**
 ```bash
 cd roller
-docker-compose up --build
+docker run --rm -v "$PWD":/src -v sota-m2:/root/.m2 -w /src maven:3.9-eclipse-temurin-17 mvn -q -B -DskipTests package
+cd .. && mkdir -p lib
+docker run --rm -v "$PWD/lib":/out -v sota-m2:/root/.m2 maven:3.9-eclipse-temurin-17 sh -c \
+  'mvn -q -B dependency:copy -Dartifact=org.postgresql:postgresql:42.3.1 -DoutputDirectory=/out &&
+   mvn -q -B dependency:copy -Dartifact=javax.mail:mail:1.4.7 -DoutputDirectory=/out && chmod a+r /out/*'
+JAVA_AGENT= docker compose up -d      # no agent; http://localhost:8080
+python3 exercise_usecases.py --wait   # 16 use cases, exits 1 if any fails
 ```
 
-**5. Extract Runtime Traces:**
-Mono2Micro's `usecase` tool requires you to capture the real-time standard error output from the container. In a new terminal window, pipe the container logs into the output directory:
-```bash
-docker logs -f roller-roller-1 > ../../../tools/mono2micro/outputs/apache-roller/logs/console.log 2>&1
-```
+The database starts empty. The suite runs Roller's auto-installer (create tables, bootstrap), registers `admin` / `admin123` (the
+first user becomes the global admin) and switches user registration, weblog creation and media uploads on in the global config.
+The use cases follow the FoSCI authors' 78 scenarios (`tools/fosci/FoSCI/testscenario/roller-ts.txt`): registration and login,
+weblogs and settings, entries, the public site and feeds, comments (with Roller's math captcha), categories, the blogroll (incl.
+OPML import), media files, themes and templates, members and pings, site administration, planet groups and subscriptions, the
+AtomPub and XML-RPC services and the Ajax, OAuth, preview, trackback and mobile-rendering servlets. `uv run ../../tools/fosci/record_trace.py --dataset-path .` records `fosci_trace.csv.gz` from the same suite.
 
-**6. Record Use Cases:**
-In a third terminal, run the orchestrator's `usecase` CLI:
-```bash
-../../../tools/mono2micro/Mono2Micro-CLI/mono2micro usecase -o ../../../tools/mono2micro/outputs/apache-roller/contexts/usecases.json
-```
+Notes: Roller's Struts2 forms carry a `salt` token and name their buttons `action:<action>!<method>`; the suite reads every form
+back from the page. Ping-target URLs are checked with a DNS lookup, so the suite uses `localhost`. The compose file uses PostgreSQL 16
+and `tomcat:9-jdk17`; the Dockerfile in `roller/` builds from GitHub, so it is not used.
+
+Known app behaviour the suite works around: the global config cannot be saved while no weblog exists (the suite creates `frontpage`
+first); the AtomPub BASIC check in 6.1.5 compares the password with a null field (`RollerAtomHandler.authenticateBASIC`), so the service
+answers 401 to every request; a ping target saved without the page's `actionName` is treated as an edit and fails.

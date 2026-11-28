@@ -42,3 +42,30 @@ uv run dataset.py
 ```
 
 This will parse the unified directory and output the standardized `dataset.json` file for the evaluation pipeline.
+
+## Running the app and its functional suite
+
+```bash
+cd sample.daytrader7
+docker run --rm -v "$PWD":/src -v sota-m2:/root/.m2 -w /src maven:3.9-eclipse-temurin-8 mvn -q -B package -DskipTests
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:9082/daytrader/app
+python3 exercise_usecases.py --wait           # 26 use cases, exits 1 if any fails
+```
+
+The Open Liberty image is `linux/amd64` only, so on Apple Silicon it runs under emulation (it still starts in about 15 s).
+Liberty reads the agent from `JVM_ARGS` (the `WLP_JVM_OPTIONS` this compose file used before is ignored, so no agent was ever
+attached). The app starts with an **empty database**: the suite's first use case, `BuildDB`, sets a small user/quote count
+(25 users, 80 quotes; the benchmark's 15000 x 10000 would put hundreds of thousands of calls into one trace) and builds it.
+
+The suite drives both UIs (the servlet UI at `/app` and the JSF UI at `*.faces`), every configuration mode (Full EJB3 and
+Direct JDBC, sync / JMS two-phase / managed-thread orders, JSP and JSP-Images, caching on and off), the database build and
+reset, the primitives, and five WebSocket endpoints (`workload.WebSocket`).
+`uv run ../../tools/fosci/record_trace.py --dataset-path . --jdk8` records `fosci_trace.csv.gz` from the same suite.
+
+The default runtime mode is **Direct (JDBC)**, which bypasses the EJB layer: the old trace (12% of the classes) never left it.
+
+Bugs of the pinned app on this Liberty that the suite expects as they are:
+- the `/ejb3` primitives that inject the trade EJB do not load (`CWNEN0074E`, a 404), and `PingServlet2PDF`,
+  `PingServlet2ServletRcv`, `PingJspEL.jsp` and `PingServlet2Jsp.jsp` are 500s;
+- in Full EJB3 mode the account page is intermittently a 500 (EclipseLink "value holder with null session");
+- the config servlet switches order alerts off when an update omits `UseRemoteEJBInterface`.

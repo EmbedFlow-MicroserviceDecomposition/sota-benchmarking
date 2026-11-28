@@ -134,9 +134,10 @@ says what it needs and which datasets are N/A for it.
 
 | Dataset | CHGNN | CoGCN | AE-K / VAE-C | FoSCI | CARGO |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| acme-air, apache-roller, autocare, bear-board, jforum, jpetstore, pharmacy, spring-blog | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | own trace `fosci_trace.csv.gz` (not recorded yet for apache-roller, jforum, jpetstore, spring-blog: the cell fails until it is) | committed Doop facts |
+| acme-air, apache-roller, autocare, bear-board, jforum, jpetstore, pharmacy, spring-blog | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | own trace `fosci_trace.csv.gz` (recorded by `tools/fosci/record_trace.py` from the dataset's functional suite; not recorded yet for apache-roller, jforum: the cell fails until it is) | committed Doop facts |
 | spring-petclinic | config in `tools/chgnn/configs/` | yes | yes (`entrypoints.txt`) | own trace `fosci_trace.csv.gz` | N/A (declared in `bytecode_analysis.json`: Java 17 pin) |
-| daytrader, plants | authors' bundled inputs | yes | yes | N/A with the current trace (1 functional atom) | committed Doop facts |
+| daytrader | authors' bundled inputs | yes | yes | own trace `fosci_trace.csv.gz` from its functional suite | committed Doop facts |
+| plants | authors' bundled inputs | yes | yes | own trace `fosci_trace.csv.gz` from its functional suite | committed Doop facts |
 | javafx-pos | N/A (no web entrypoints) | yes | N/A | no trace yet | committed Doop facts |
 | genapp (COBOL) | N/A | N/A | N/A | N/A | N/A |
 

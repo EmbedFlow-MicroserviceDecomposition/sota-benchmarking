@@ -5,8 +5,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - CATALINA_OPTS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
+      # unset: Mono2Micro's agent; empty (JAVA_AGENT=): no agent; tools/fosci/record_trace.py sets the FoSCI tracer
+      - CATALINA_OPTS=${JAVA_AGENT--javaagent:/minerva/minerva-agent-1.0.jar=/tables}
     volumes:
       - ./jpetstore-6/target/jpetstore.war:/usr/local/tomcat/webapps/jpetstore.war:ro
       - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
       - ../../tools/mono2micro/outputs/jpetstore/tables:/tables:rw
+      - ../../tools/fosci/tracer-agent:/fosci:ro
+      - ${TRACE_DIR:-../../tools/fosci/outputs/jpetstore/trace}:/trace:rw

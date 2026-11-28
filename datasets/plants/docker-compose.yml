@@ -5,9 +5,14 @@ services:
     ports:
       - "9080:9080"
     environment:
-      - WLP_JVM_OPTIONS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
+      # Liberty's server script reads JVM_ARGS (WLP_JVM_OPTIONS, used before, is ignored: no agent ever attached).
+      # JAVA_AGENT unset: Mono2Micro's agent; empty (JAVA_AGENT=): no agent; tools/fosci/record_trace.py sets the FoSCI tracer
+      - JVM_ARGS=${JAVA_AGENT--javaagent:/minerva/minerva-agent-1.0.jar=/tables}
     volumes:
       - ./sample.plantsbywebsphere/target/liberty/wlp:/wlp:rw
+      - ./liberty/sota-overrides.xml:/wlp/usr/servers/PlantsByWebSphereServer/configDropins/overrides/sota-overrides.xml:ro
       - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
       - ../../tools/mono2micro/outputs/plants/tables:/tables:rw
+      - ../../tools/fosci/tracer-agent:/fosci:ro
+      - ${TRACE_DIR:-../../tools/fosci/outputs/plants/trace}:/trace:rw
     command: /wlp/bin/server run PlantsByWebSphereServer

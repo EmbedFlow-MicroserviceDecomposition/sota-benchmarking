@@ -51,3 +51,26 @@ To launch Acme Air with MongoDB and an injected Mono2Micro Minerva agent, use th
 docker-compose up --build
 ```
 Once the Liberty server indicates it is ready, initialize the database by navigating to `http://localhost:9080/loader.html` and clicking "Load the Database". After that, you can log in on the main page.
+
+## Running the app and its functional suite
+
+Build only the web app's WAR, with the MongoDB (`morphia`) data service: `gradlew build` also compiles `acmeair-services-wxs`,
+whose `com.ibm.websphere.objectgrid:objectgrid` dependency is not published anywhere, so it fails.
+
+```bash
+cd acmeair
+docker run --rm -v "$PWD":/acmeair -v sota-gradle:/root/.gradle -w /acmeair eclipse-temurin:8-jdk \
+  ./gradlew -q --no-daemon -Pservice=morphia :acmeair-webapp:war
+cd .. && JAVA_AGENT= docker compose up -d --build   # no agent; http://localhost:9080/acmeair-webapp/
+python3 exercise_usecases.py --wait                  # 14 use cases, exits 1 if any fails
+```
+
+The app is served at `/acmeair-webapp` (the WAR's own context root wins over `server.xml`'s `contextRoot="/"`; `/` is Liberty's
+welcome page). It starts with an empty MongoDB: the suite's `LoadDB` loads 20 customers (`uid0@email.com` .. `uid19@email.com`,
+password `password`) and the flight schedule from today on.
+`uv run ../../tools/fosci/record_trace.py --dataset-path . --jdk8` records `fosci_trace.csv.gz` from the same suite.
+
+Trace coverage is 48% of `dataset.json`'s classes, below the 70% target by construction: the `wxs` data service (15 classes),
+`acmeair-reporter` (12, a separate command-line tool) and 10 interfaces cannot appear in a trace of the running app. The suite
+covers 40 of the 47 reachable classes (85%); the rest are constants holders, an annotation, the JAX-RS `Application` subclass
+and classes used only from static initialisers.

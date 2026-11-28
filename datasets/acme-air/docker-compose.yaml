@@ -13,13 +13,15 @@ services:
     ports:
       - "9080:9080"
     environment:
-      # Inject the Minerva Agent automatically!
-      - JVM_ARGS=-javaagent:/minerva/minerva-agent-1.0.jar=/tables
+      # JAVA_AGENT unset: Mono2Micro's agent; empty (JAVA_AGENT=): no agent; tools/fosci/record_trace.py sets the FoSCI tracer
+      - JVM_ARGS=${JAVA_AGENT--javaagent:/minerva/minerva-agent-1.0.jar=/tables}
       - WLP_LOGGING_CONSOLE_LOGLEVEL=info
     volumes:
       # Mount the Mono2Micro instrumenter and tables output directories
       - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
       - ../../tools/mono2micro/outputs/acme-air/tables:/tables:rw
+      - ../../tools/fosci/tracer-agent:/fosci:ro
+      - ${TRACE_DIR:-../../tools/fosci/outputs/acme-air/trace}:/trace:rw
     depends_on:
       - mongodb
     networks:

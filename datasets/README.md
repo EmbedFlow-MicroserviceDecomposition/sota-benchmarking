@@ -43,19 +43,16 @@ Per project guidelines, submodules are kept at their clean upstream commit refer
 ### 3. Plants By WebSphere (`plants`)
 - **Type**: WebSphere Liberty enterprise application.
 - **Customization**: Configured with Open Liberty and DB2/derby drivers in `src/main/liberty/config/server.xml`.
-- **Run**:
-  ```bash
-  docker compose -f datasets/plants/docker-compose.yml up -d
-  ```
+- **Run**: see `datasets/plants/README.md` (build, Liberty overrides, functional suite).
 
 ### 4. Containerized Web Applications
 The following datasets run inside dedicated Docker Compose environments with database backends and pre-instrumented JVM configurations:
 - **Acme Air**: `datasets/acme-air/docker-compose.yaml` (Liberty + MongoDB)
 - **Apache Roller**: `datasets/apache-roller/docker-compose.yml` (Tomcat + PostgreSQL)
 - **Bear Board**: `datasets/bear-board/docker-compose.yml` (Spring Boot + MySQL)
-- **DayTrader**: `datasets/daytrader/docker-compose.yml` (Open Liberty + Derby)
+- **DayTrader**: `datasets/daytrader/docker-compose.yml` (Open Liberty + Derby; amd64 image, emulated on Apple Silicon)
 - **JPetStore**: `datasets/jpetstore/docker-compose.yml` (Tomcat + HSQLDB)
-- **Pharmacy**: `datasets/pharmacy/docker-compose.yml` (Spring Boot + PostgreSQL)
+- **Pharmacy**: `datasets/pharmacy/docker-compose.yml` (Spring Boot + MariaDB)
 - **Spring Blog**: `datasets/spring-blog/docker-compose.yml` (Spring Boot + H2)
 - **Spring PetClinic**: `datasets/spring-petclinic/docker-compose.yml` (Spring Boot + MySQL)
 
@@ -63,7 +60,9 @@ The following datasets run inside dedicated Docker Compose environments with dat
 
 ## Exercising Use Cases Independently
 
-Every dataset provides a self-contained `exercise_usecases.py` script that can be executed independently of any specific analysis tool:
+Every dataset provides an `exercise_usecases.py` functional test suite that can be run on its own. Mono2Micro records it use case by use case,
+and FoSCI's `tools/fosci/record_trace.py` records the whole suite as the dataset's execution trace. Suites built on `datasets/workload.py`
+(so far: jpetstore, spring-blog, plants, daytrader, acme-air, bear-board, spring-petclinic, autocare, pharmacy, jforum, apache-roller) check every response and exit non-zero if any use case fails:
 
 ```bash
 # Run all use cases sequentially

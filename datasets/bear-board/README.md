@@ -68,3 +68,18 @@ In a third terminal, run the interactive API tester script:
 python api_tester.py
 ```
 *(The script will pause before every HTTP request, allowing you to type the use case name into the Mono2Micro orchestrator and start recording before firing the actual API calls).*
+
+## Running the app and its functional suite
+
+```bash
+cd bear-board
+docker run --rm -v "$PWD":/src -v sota-m2:/root/.m2 -w /src maven:3.9-eclipse-temurin-8 mvn -q -B package -DskipTests
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:8080 (with MongoDB, Kafka, ZooKeeper)
+python3 exercise_usecases.py --wait           # 18 use cases, exits 1 if any fails
+```
+
+`uv run ../../tools/fosci/record_trace.py --dataset-path .` records `fosci_trace.csv.gz` from the same suite (the app runs on
+the JDK 11 image, so the default agent). Tweets only arrive from the live Twitter API, which needs real credentials (the
+compose file passes dummy ones): the tweet board is exercised empty, the stream fails in the background, and `Tweet` never
+appears in a trace. The STOMP news push is tested over the SockJS endpoint's raw WebSocket (`/websocket-chat/websocket`,
+with an allowed `Origin`).

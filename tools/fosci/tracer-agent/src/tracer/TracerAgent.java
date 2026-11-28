@@ -40,7 +40,7 @@ public final class TracerAgent {
                 }
                 try {
                     ClassReader reader = new ClassReader(classfileBuffer);
-                    ClassWriter writer = new ClassWriter(reader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+                    ClassWriter writer = new LoaderAwareClassWriter(reader, loader);
                     ClassVisitor visitor = new TracingClassVisitor(writer, className.replace('/', '.'));
                     reader.accept(visitor, ClassReader.EXPAND_FRAMES);
                     return writer.toByteArray();
@@ -50,6 +50,57 @@ public final class TracerAgent {
                 }
             }
         });
+    }
+
+    /**
+     * COMPUTE_FRAMES needs the common superclass of two types. ASM's default loads both classes through the agent's
+     * own class loader, which cannot see an app server's application classes ("Type ... not present"), so such
+     * classes were silently left uninstrumented. This reads the hierarchy from the class files of the loader that is
+     * defining the class, without loading anything; an unresolvable type still skips the class (never a wrong frame).
+     */
+    static final class LoaderAwareClassWriter extends ClassWriter {
+        private final ClassLoader loader;
+
+        LoaderAwareClassWriter(ClassReader reader, ClassLoader loader) {
+            super(reader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+            this.loader = loader;
+        }
+
+        @Override
+        protected String getCommonSuperClass(String type1, String type2) {
+            ClassReader r1 = read(type1);
+            ClassReader r2 = read(type2);
+            if ((r1.getAccess() & Opcodes.ACC_INTERFACE) != 0 || (r2.getAccess() & Opcodes.ACC_INTERFACE) != 0) {
+                return "java/lang/Object";
+            }
+            java.util.Set<String> ancestors = new java.util.HashSet<>();
+            for (String t = type1; t != null; t = read(t).getSuperName()) {
+                ancestors.add(t);
+            }
+            for (String t = type2; t != null; t = read(t).getSuperName()) {
+                if (ancestors.contains(t)) {
+                    return t;
+                }
+            }
+            return "java/lang/Object";
+        }
+
+        private ClassReader read(String type) {
+            String resource = type + ".class";
+            ClassLoader[] loaders = {loader, ClassLoader.getSystemClassLoader()};
+            for (ClassLoader l : loaders) {
+                java.io.InputStream in = l == null ? ClassLoader.getSystemResourceAsStream(resource)
+                                                   : l.getResourceAsStream(resource);
+                if (in != null) {
+                    try (java.io.InputStream stream = in) {
+                        return new ClassReader(stream);
+                    } catch (IOException e) {
+                        throw new TypeNotPresentException(type, e);
+                    }
+                }
+            }
+            throw new TypeNotPresentException(type, null);
+        }
     }
 
     static final class TracingClassVisitor extends ClassVisitor {

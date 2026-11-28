@@ -28,3 +28,23 @@ uv run dataset.py
 ```
 
 This will parse all Java files inside the `pharmacy` repository and output the standardized `dataset.json` file.
+
+## Running the app and its functional suite
+
+Build the WAR with JDK 8 (the Gradle 5.4.1 image is amd64-only, hence `--platform`; the repo has no wrapper jar):
+
+```bash
+cd pharmacy
+docker run --rm --platform linux/amd64 -v "$PWD":/src -v sota-gradle:/home/gradle/.gradle -w /src gradle:5.4.1-jdk8 \
+  gradle -q --no-daemon bootWar -x test
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:8080/pharmacy
+python3 exercise_usecases.py --wait           # 11 use cases, exits 1 if any fails
+```
+
+The compose file waits for MariaDB's health check and creates the image folders the app writes to (`/opt/pharmacy/images/`).
+`uv run ../../tools/fosci/record_trace.py --dataset-path . --jdk8` records `fosci_trace.csv.gz` from the same suite.
+
+Every request is permitted without a token (`ResourceServerConfiguration` ends in `antMatchers("/**").permitAll()`), so the
+suite only fetches tokens to exercise the OAuth2 server. `grant_type=client_credentials` returns HTTP 500 (the token enhancer
+casts the principal to `User`).
+

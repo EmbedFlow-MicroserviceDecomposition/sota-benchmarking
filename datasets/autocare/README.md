@@ -81,3 +81,24 @@ In a third terminal, run the interactive API tester:
 python api_tester.py
 ```
 *(The script will pause before every HTTP request, allowing you to manually type the use case name into the Mono2Micro orchestrator and start recording before it fires the actual traffic).*
+
+## Running the app and its functional suite
+
+The pinned source imports AssertJ in main code but declares it test-only, so build the JAR with the init script (JDK 8; the Gradle 5.4.1 image is amd64-only, hence `--platform`; the repo has no
+wrapper jar):
+
+```bash
+cd autocare-nepal
+docker run --rm --platform linux/amd64 -v "$PWD":/src -v "$PWD/../build-support":/support:ro \
+  -v sota-gradle:/home/gradle/.gradle -w /src gradle:5.4.1-jdk8 \
+  gradle -q --no-daemon --init-script /support/assertj-on-main.gradle bootJar
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:8080
+python3 exercise_usecases.py --wait           # 15 use cases, exits 1 if any fails
+```
+
+`docker-compose.yml` runs Adobe's S3Mock in place of AWS S3 (MinIO's images are no longer public) on a fixed IP, because
+the app's AWS SDK client only does path-style requests when the endpoint is an IP address. `uv run ../../tools/fosci/record_trace.py
+--dataset-path . --jdk8` records `fosci_trace.csv.gz` from the same suite.
+
+Two behaviours of the pinned app are bugs the suite tolerates: `grant_type=client_credentials` returns HTTP 500 (the token
+enhancer casts the principal to `User`), and a search whose `locationDetails` has no `location` array throws an NPE.
