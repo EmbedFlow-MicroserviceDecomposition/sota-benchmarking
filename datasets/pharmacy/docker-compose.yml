@@ -6,21 +6,29 @@ services:
       MYSQL_USER: username
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      retries: 30
 
   pharmacy:
     container_name: pharmacy-app
     image: eclipse-temurin:8-jre
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     ports:
       - "8080:8080"
     volumes:
       - ./pharmacy/build/libs/upachar.war:/app/upachar.war:ro
       - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
       - ../../tools/mono2micro/outputs/pharmacy/tables:/tables:rw
+      - ../../tools/fosci/tracer-agent:/fosci:ro
+      - ${TRACE_DIR:-../../tools/fosci/outputs/pharmacy/trace}:/trace:rw
+    # The app writes uploaded images under /opt/pharmacy/images/. JAVA_AGENT unset: Mono2Micro's agent; empty
+    # (JAVA_AGENT=): no agent; tools/fosci/record_trace.py sets the FoSCI tracer.
     command: >
-      java -javaagent:/minerva/minerva-agent-1.0.jar=/tables
-      -jar /app/upachar.war
-      --spring.datasource.url=jdbc:mysql://mysql:3306/pharmacy?useSSL=false&createDatabaseIfNotExist=true
-      --spring.datasource.username=username
-      --spring.datasource.password=password
+      sh -c "mkdir -p /opt/pharmacy/images/drugs /opt/pharmacy/images/categories /opt/pharmacy/images/orders &&
+      exec java ${JAVA_AGENT--javaagent:/minerva/minerva-agent-1.0.jar=/tables} -jar /app/upachar.war
+      --spring.datasource.url=jdbc:mysql://mysql:3306/pharmacy?useSSL=false
+      --spring.datasource.username=username --spring.datasource.password=password"

@@ -222,3 +222,8 @@ def test_client_posts_multipart_files(server):
     assert 'name="note"\r\n\r\nhi' in body
     assert 'name="image"; filename="car.png"\r\nContent-Type: image/png' in body
     assert body.rstrip().endswith(f"--{boundary}--")
+
+
+def test_client_posts_several_files_under_one_field(server):
+    body = Client(server).request("POST", "/upload", files={"rx": [("a.png", b"A", "image/png"), ("b.png", b"B", "image/png")]}).text
+    assert body.count('name="rx"') == 2 and 'filename="a.png"' in body and 'filename="b.png"' in body

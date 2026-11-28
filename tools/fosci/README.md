@@ -43,7 +43,7 @@ they were recorded on other builds of the apps.
 
 | Dataset | Trace today |
 | :--- | :--- |
-| pharmacy | recorded with `tracer-agent/` in fyp-benchmarking by driving the app with ~20-30 scripted requests: **not yet a functional test suite**, to be re-recorded |
+| pharmacy | functional suite (11 use cases: sign-up/validate/update/delete users with every validation error, OAuth2 grants, dosage forms, categories, sub-categories, drugs with images and every listing, orders with prescriptions/status/re-order, CSV bulk load; `--jdk8`): 23 traces, classes 51/59 (86%; every non-interface class except the never-called `DrugQuantityService`), methods 83% |
 | autocare | functional suite (15 use cases: sign-up, every OAuth2 grant incl. the failing client-credentials one, users, vehicles with every search filter, S3 image upload/delete, comments; `--jdk8`): 61 traces, classes 41/48 (85%; every non-interface class), methods 86% |
 | jpetstore | functional suite (`datasets/jpetstore/exercise_usecases.py`, 18 use cases covering the authors' 14 scenarios): 337 traces, classes 17/24 (71%; every non-interface class), methods 64% |
 | spring-blog | functional suite (22 use cases, every controller endpoint; `--jdk8`): 2008 traces, classes 37/47 (79%; 92% of non-interfaces: the rest are `Constants` and dead code), methods 74% |
@@ -70,6 +70,7 @@ uv run record_trace.py --dataset-path ../../datasets/acme-air --jdk8
 uv run record_trace.py --dataset-path ../../datasets/bear-board
 uv run record_trace.py --dataset-path ../../datasets/spring-petclinic --jdk8
 uv run record_trace.py --dataset-path ../../datasets/autocare --jdk8
+uv run record_trace.py --dataset-path ../../datasets/pharmacy --jdk8
 uv run trace_coverage.py --dataset-path ../../datasets/jpetstore   # coverage of an existing trace; exits 1 below 70%
 ```
 

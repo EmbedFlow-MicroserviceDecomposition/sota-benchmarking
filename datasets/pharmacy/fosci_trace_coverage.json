@@ -1,0 +1,33 @@
+{
+  "dataset": "pharmacy",
+  "trace": "fosci_trace.csv.gz",
+  "traces": 23,
+  "classes": 59,
+  "classes_covered": 51,
+  "class_coverage": 0.8644,
+  "traceable_classes": 52,
+  "traceable_class_coverage": 0.9808,
+  "methods": 166,
+  "methods_covered": 137,
+  "method_coverage": 0.8253,
+  "target": 0.7,
+  "uncovered_classes": [
+    "com.upachar.web.order.service.DrugQuantityService"
+  ],
+  "uncovered_interfaces": [
+    "com.upachar.web.drug.repository.CategoryRepository",
+    "com.upachar.web.drug.repository.DosageFormRepository",
+    "com.upachar.web.drug.repository.DrugRepository",
+    "com.upachar.web.drug.repository.SubCategoryRepository",
+    "com.upachar.web.order.repository.DrugQuantityRepository",
+    "com.upachar.web.order.repository.OrderRepository",
+    "com.upachar.web.user.repository.UserRepository"
+  ],
+  "unmatched_trace_classes": [
+    "com.upachar.web.drug.domain.Category_Accessor_yhhug",
+    "com.upachar.web.drug.domain.Drug_Accessor_b5g533",
+    "com.upachar.web.drug.domain.SubCategory_Accessor_5ajtbx",
+    "com.upachar.web.order.domain.Order_Accessor_kqm475",
+    "com.upachar.web.user.domain.User_Accessor_uykh2k"
+  ]
+}

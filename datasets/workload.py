@@ -83,13 +83,14 @@ class Client:
             url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params, doseq=True)
         hdrs = {"User-Agent": "Mozilla/5.0 (sota-benchmarking functional suite)"}
         body = None
-        if files is not None:  # {field: (filename, bytes, content type)}, sent with `data` as multipart/form-data
+        if files is not None:  # {field: (filename, bytes, content type) or a list of them}, sent with `data` as multipart/form-data
             boundary = "sota" + os.urandom(12).hex()
             parts = [f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode()
                      for k, v in (data or {}).items()]
-            for field, (filename, content, ctype) in files.items():
-                parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{field}"; filename="{filename}"'
-                             f'\r\nContent-Type: {ctype}\r\n\r\n'.encode() + content + b"\r\n")
+            for field, value in files.items():
+                for filename, content, ctype in (value if isinstance(value, list) else [value]):  # a list: one part each
+                    parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{field}"; filename="{filename}"'
+                                 f'\r\nContent-Type: {ctype}\r\n\r\n'.encode() + content + b"\r\n")
             body = b"".join(parts) + f"--{boundary}--\r\n".encode()
             hdrs["Content-Type"] = f"multipart/form-data; boundary={boundary}"
         elif json_body is not None:
