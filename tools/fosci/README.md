@@ -52,7 +52,8 @@ they were recorded on other builds of the apps.
 | acme-air | functional suite (14 use cases: every REST endpoint, loader, profile, flight search, booking, cancellation; `--jdk8`): 95 traces, classes 40/84 (48%). **Below 70% by construction:** 37 classes cannot appear in a trace of the running app: the `wxs` data service (15; its proprietary objectgrid dependency is not published and the server runs `morphia`), `acmeair-reporter` (12; a command-line JMeter log parser, not in the WAR) and 10 interfaces. Of the 47 reachable classes 40 (85%) are covered; methods 31% |
 | bear-board | functional suite (18 use cases: users, events, awards, whitelist, tweet board, STOMP news push over WebSocket): 38 traces, classes 25/34 (74%; 89% of non-interfaces: the rest are `Tweet`, which only the live Twitter API fills, and the `Role`/`Roles` enums, only read as constants), methods 87% |
 | spring-petclinic | functional suite (10 use cases: owner search/create/edit with validation, pets of every type incl. duplicate and missing fields, visits, vets as HTML/JSON/XML, the crash page; `--jdk8`): 527 traces, classes 20/24 (83%; every non-interface class), methods 59% |
-| jforum, apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
+| jforum | functional suite (23 use cases from the authors' 37 JMeter scenarios plus the admin panel: installer, registration, topics/posts/polls, moderation, bookmarks, private messages, profile, search, attachments with quota and extension limits, karma, banners, moderated forum, every mail notification): 570 traces, classes 250/366 (68%; 77% of non-interfaces; the gap is the SQL Server/Oracle/HSQLDB/PostgreSQL DAOs, the POP3 integration and weekly-summary jobs that run on a schedule, constants-only classes, startup-only cache engines and SSO, failure-only exceptions and the background reindex thread, which the call-based trace cannot see), methods 65% |
+| apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
 
@@ -71,6 +72,7 @@ uv run record_trace.py --dataset-path ../../datasets/bear-board
 uv run record_trace.py --dataset-path ../../datasets/spring-petclinic --jdk8
 uv run record_trace.py --dataset-path ../../datasets/autocare --jdk8
 uv run record_trace.py --dataset-path ../../datasets/pharmacy --jdk8
+uv run record_trace.py --dataset-path ../../datasets/jforum
 uv run trace_coverage.py --dataset-path ../../datasets/jpetstore   # coverage of an existing trace; exits 1 below 70%
 ```
 

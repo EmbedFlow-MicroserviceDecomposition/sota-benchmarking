@@ -4,20 +4,25 @@ This directory contains the dataset configuration, ground-truth business context
 
 ---
 
-## 1. Database Setup with Docker Compose
+## 1. Run the App and Its Functional Suite
 
-JForum uses a MariaDB/MySQL backend database. We provide a `docker-compose.yml` that boots MariaDB 10.5 and initializes all required schema tables and seed data:
+JForum 2.9 is a Jakarta EE 10 web application (Java 11, Tomcat 10.1). Build the WAR, then start Tomcat and an **empty**
+MariaDB: the suite runs JForum's web installer itself, which creates the schema and the `Admin` user (password `admin`).
 
 ```bash
-docker compose -f datasets/jforum/docker-compose.yml up -d mysql
+cd jakartaEE
+docker run --rm -v "$PWD":/src -v sota-m2:/root/.m2 -w /src maven:3.9-eclipse-temurin-11 mvn -q -B package -DskipTests
+cd .. && JAVA_AGENT= docker compose up -d     # no agent; http://localhost:8080/jforum
+python3 exercise_usecases.py --wait           # 23 use cases, exits 1 if any fails
 ```
 
-Verify that tables are created:
-```bash
-docker exec jforum-mysql-1 mysql -u root -e "SHOW TABLES IN jforum;"
-```
+The suite follows the FoSCI authors' 37 JMeter scenarios (`tools/fosci/FoSCI/testscenario/jforum-ts.txt`) and adds the admin panel,
+registration, attachments, karma, banners, polls, a moderated forum and every mail notification (no SMTP server listens, so the
+sends fail inside the app). The app is protected by OWASP CSRFGuard, so the suite reads each form back from the page.
+`uv run ../../tools/fosci/record_trace.py --dataset-path .` records `fosci_trace.csv.gz` from the same suite.
 
----
+Known app behaviour the suite works around: deleting a post needs the moderation-log fields (`log_type`, `log_description`) that the
+page's JavaScript adds; an admin "delete" of a user only locks the account.
 
 ## 2. Generate Universal Dataset Representation
 
@@ -30,16 +35,11 @@ This generates `datasets/jforum/dataset.json` containing all classes, methods, c
 
 ---
 
-## 3. Build Application and Generate Classpath
-
-Compile JForum (configured for Java 11):
+## 3. Generate the Classpath
 
 ```bash
-mvn compile -f datasets/jforum/jakartaEE/pom.xml
 mvn dependency:build-classpath -f datasets/jforum/jakartaEE/pom.xml -Dmdep.outputFile=cp.txt
 ```
-
----
 
 ## 4. Run Mono2Micro End-to-End Pipeline
 
@@ -49,10 +49,10 @@ Extract symbol tables and reference graphs:
 sh ./tools/mono2micro/Mono2Micro-CLI/mono2micro analyze -s datasets/jforum/jakartaEE -o tools/mono2micro/outputs/jforum/tables
 ```
 
-### Step B: Record Dynamic Traces Across Domain Use Cases
-Execute the instrumented `net.jforum.UseCaseRunner` with the Minerva agent across all 8 business use cases (`UserAuthentication`, `ForumManagement`, `TopicManagement`, `PostManagement`, `PrivateMessaging`, `Search`, `AdminManagement`, `Installation`):
+### Step B: Record Dynamic Traces
+Mono2Micro records the functional suite use case by use case against the running app (agent attached through `JAVA_AGENT`):
 ```bash
-python3 tools/mono2micro/record_jforum.py
+python3 tools/mono2micro/record.py --dataset-path datasets/jforum
 ```
 
 ### Step C: Generate Microservice Partition Recommendations
