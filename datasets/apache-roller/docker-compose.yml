@@ -1,0 +1,32 @@
+services:
+  postgresql:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=rollerdb
+      - POSTGRES_USER=scott
+      - POSTGRES_PASSWORD=tiger
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scott -d rollerdb"]
+      interval: 3s
+      retries: 30
+
+  roller:
+    container_name: roller-app
+    image: tomcat:9-jdk17
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      # unset: Mono2Micro's agent; empty (JAVA_AGENT=): no agent; tools/fosci/record_trace.py sets the FoSCI tracer
+      - CATALINA_OPTS=${JAVA_AGENT--javaagent:/minerva/minerva-agent-1.0.jar=/tables}
+    volumes:
+      - ./roller/app/target/roller.war:/usr/local/tomcat/webapps/ROOT.war:ro
+      - ./roller-custom.properties:/usr/local/tomcat/lib/roller-custom.properties:ro
+      - ./lib/postgresql-42.3.1.jar:/usr/local/tomcat/lib/postgresql.jar:ro
+      - ./lib/mail-1.4.7.jar:/usr/local/tomcat/lib/mail.jar:ro
+      - ../../tools/mono2micro/Mono2Micro-CLI/instrumenter:/minerva:ro
+      - ../../tools/mono2micro/outputs/apache-roller/tables:/tables:rw
+      - ../../tools/fosci/tracer-agent:/fosci:ro
+      - ${TRACE_DIR:-../../tools/fosci/outputs/apache-roller/trace}:/trace:rw

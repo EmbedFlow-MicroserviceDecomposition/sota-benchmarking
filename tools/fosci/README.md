@@ -53,7 +53,7 @@ they were recorded on other builds of the apps.
 | bear-board | functional suite (18 use cases: users, events, awards, whitelist, tweet board, STOMP news push over WebSocket): 38 traces, classes 25/34 (74%; 89% of non-interfaces: the rest are `Tweet`, which only the live Twitter API fills, and the `Role`/`Roles` enums, only read as constants), methods 87% |
 | spring-petclinic | functional suite (10 use cases: owner search/create/edit with validation, pets of every type incl. duplicate and missing fields, visits, vets as HTML/JSON/XML, the crash page; `--jdk8`): 527 traces, classes 20/24 (83%; every non-interface class), methods 59% |
 | jforum | functional suite (23 use cases from the authors' 37 JMeter scenarios plus the admin panel: installer, registration, topics/posts/polls, moderation, bookmarks, private messages, profile, search, attachments with quota and extension limits, karma, banners, moderated forum, every mail notification): 570 traces, classes 250/366 (68%; 77% of non-interfaces; the gap is the SQL Server/Oracle/HSQLDB/PostgreSQL DAOs, the POP3 integration and weekly-summary jobs that run on a schedule, constants-only classes, startup-only cache engines and SSO, failure-only exceptions and the background reindex thread, which the call-based trace cannot see), methods 65% |
-| apache-roller | **none yet**: the cell fails with "no execution trace" until one is recorded |
+| apache-roller | functional suite (16 use cases from the authors' 78 scenarios: installer, registration, weblogs, entries, public site and feeds, comments with the math captcha, categories, blogroll with OPML import, media files, themes and templates, members and pings, site administration, planet groups, XML-RPC, AtomPub and the Ajax/OAuth/preview/trackback/mobile servlets): 123 traces, classes 383/534 (72%; 80% of non-interfaces; the gap is startup-only, scheduled-task and failure-only classes and the AtomPub entry collections, which Roller 6.1.5's broken BASIC check never lets in), methods 59% |
 | javafx-pos (desktop) | none yet |
 | genapp (COBOL) | none: N/A |
 
@@ -73,6 +73,7 @@ uv run record_trace.py --dataset-path ../../datasets/spring-petclinic --jdk8
 uv run record_trace.py --dataset-path ../../datasets/autocare --jdk8
 uv run record_trace.py --dataset-path ../../datasets/pharmacy --jdk8
 uv run record_trace.py --dataset-path ../../datasets/jforum
+uv run record_trace.py --dataset-path ../../datasets/apache-roller
 uv run trace_coverage.py --dataset-path ../../datasets/jpetstore   # coverage of an existing trace; exits 1 below 70%
 ```
 
